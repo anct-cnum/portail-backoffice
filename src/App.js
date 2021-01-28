@@ -8,6 +8,8 @@ import Home from './components/connected/Home.js'
 
 import { PrivateRoute } from './components/connected/PrivateRoute';
 
+require('dotenv').config()
+
 function App() {
   return (
     <div className="App">
