@@ -6,7 +6,6 @@ import Structure from './structure/index';
 
 function Home() {
   const user = useSelector(state => state.authentication.user.user);
-  console.log(user)
   return (
     <div className="Login">
       <h2>Mon portail</h2>
