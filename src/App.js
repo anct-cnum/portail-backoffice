@@ -20,9 +20,6 @@ function App() {
           <Route path="/login" component={Login} />
           <Redirect from="*" to="/" />
         </Switch>
-
-
-
       </Router>
     </div>
   );
