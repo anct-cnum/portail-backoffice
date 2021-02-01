@@ -4,11 +4,11 @@ export const conseillerActions = {
   getAll,
 };
 
-function getAll() {
+function getAll(page = 0) {
   return dispatch => {
       dispatch(request());
 
-      conseillerService.getAll()
+      conseillerService.getAll(page)
           .then(
             conseillers => dispatch(success(conseillers)),
               error => {

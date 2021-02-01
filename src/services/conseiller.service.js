@@ -8,13 +8,13 @@ export const conseillerService = {
   getAll,
 }
 
-function getAll() {
+function getAll(page) {
   const requestOptions = {
       method: 'GET',
       headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/conseillers`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers?&$skip=${page}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
