@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-
+import { useSelector } from 'react-redux'
 import Conseiller from './Conseiller';
 
 function Conseillers() {
 
+
+  const conseillers = useSelector(state => state.conseillers);
+
+  console.log(conseillers)
   // TODO : call useSelector
-  const conseillers = Array(20).fill({
+  /*const conseillers = Array(20).fill({
     nom: 'Guillois',
     prenom: 'Loïc',
     dateCreation: new Date(),
     codePostal: 85130
-  })
+  })*/
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -23,8 +27,10 @@ function Conseillers() {
   const goTo = (page) => setPage(page)
 
   useEffect(() => {
-    const count = Math.floor(conseillers.length / ITEMS_PER_PAGE);
-    setPageCount(conseillers.length % ITEMS_PER_PAGE === 0 ? count : count + 1);
+    if(!conseillers.loading) {
+      const count = Math.floor(conseillers.data.length / ITEMS_PER_PAGE);
+      setPageCount(conseillers.data.length % ITEMS_PER_PAGE === 0 ? count : count + 1);
+    }
   }, [ ]);
 
   const tabs = [
@@ -58,7 +64,9 @@ function Conseillers() {
         { tabs.map(tab => <button onClick={applyFilter.bind(this, tab)}>{tab.name}</button>) }
       </div>
 
-      { paginate(conseillers, ITEMS_PER_PAGE, page).map(conseiller => {
+      { conseillers.loading && <span>Chargement...</span> }
+
+      { !conseillers.loading && paginate(conseillers.items.data, ITEMS_PER_PAGE, page).map(conseiller => {
         return (<Conseiller conseiller={conseiller} />)
       })
         }
