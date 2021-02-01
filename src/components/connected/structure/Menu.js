@@ -1,7 +1,14 @@
+//import { useHistory } from 'react-router-dom';
+import { history } from '../../../helpers';
+
 function Menu() {
+
+  //let history = useHistory();
+
   return (
     <div className="Menu">
-      TODO
+      <button onClick={() => history.push('/structure/conseillers')}>Mes conseillers</button>
+      <button onClick={() => history.push('/structure/informations')}>Mes informations</button>
     </div>
   );
 }

@@ -16,9 +16,9 @@ function App() {
       <h1>Back Office</h1>
       <Router history={history}>
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
+
           <Route path="/login" component={Login} />
-          <Redirect from="*" to="/" />
+          <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
     </div>

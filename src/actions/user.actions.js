@@ -16,7 +16,7 @@ function login(username, password, from) {
           data.user.role = data.user.roles[0];
           delete data.user.roles;
           dispatch(success(data));
-          history.push('/');
+          history.push(`/${data.user.role}`);
         },
         error => {
           dispatch(failure(error));
