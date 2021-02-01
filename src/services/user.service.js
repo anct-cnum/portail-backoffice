@@ -6,12 +6,12 @@ export const userService = {
 function login(username, password) {
 
   const strategy = process.env.REACT_APP_STRATEGYAUTH;
-  const apiUrlAuth = process.env.REACT_APP_APIAUTH;
+  const apiUrlAuth = `${process.env.REACT_APP_API}/authentication`;
 
   const requestOptions = {
     method: 'POST',
-    headers: { 
-      'Content-Type': 'application/json' 
+    headers: {
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       "strategy": strategy,
