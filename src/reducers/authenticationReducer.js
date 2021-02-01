@@ -9,6 +9,7 @@ export default function authentication(state = initialState, action) {
         user: action.user
       };
     case 'LOGIN_SUCCESS':
+      console.log(action)
       return {
         loggedIn: true,
         user: action.user

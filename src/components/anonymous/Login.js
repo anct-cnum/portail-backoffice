@@ -40,7 +40,7 @@ function Login() {
       <h2>Connexion</h2>
       <div>
         <div>
-          {error && <span>`{error.error}`</span>}
+          {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
         </div>
 
         <div className="rf-my-3w">
