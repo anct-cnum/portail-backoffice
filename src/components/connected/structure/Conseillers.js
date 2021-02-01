@@ -25,7 +25,7 @@ function Conseillers() {
   useEffect(() => {
     const count = Math.floor(conseillers.length / ITEMS_PER_PAGE);
     setPageCount(conseillers.length % ITEMS_PER_PAGE === 0 ? count : count + 1);
-  }, [ conseillers ]);
+  }, [ ]);
 
   const tabs = [
     {
