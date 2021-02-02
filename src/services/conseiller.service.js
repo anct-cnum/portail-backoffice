@@ -1,4 +1,4 @@
-import { authHeader, history } from '../helpers';
+import { authHeader, history, userId } from '../helpers';
 
 import { userService } from './user.service';
 
@@ -14,7 +14,7 @@ function getAll(page) {
       headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/conseillers?&$skip=${page}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${userId()}/misesEnRelation?$skip=${page}&$sort[createdAt]=-1`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
