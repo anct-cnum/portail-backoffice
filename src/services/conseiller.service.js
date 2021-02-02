@@ -1,4 +1,4 @@
-import { authHeader, history } from '../helpers';
+import { authHeader, history, userId } from '../helpers';
 
 import { userService } from './user.service';
 
@@ -8,13 +8,13 @@ export const conseillerService = {
   getAll,
 }
 
-function getAll(page) {
+function getAll(id, page) {
   const requestOptions = {
       method: 'GET',
       headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/conseillers?&$skip=${page}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${userId()}/misesEnRelation?&$skip=${page}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

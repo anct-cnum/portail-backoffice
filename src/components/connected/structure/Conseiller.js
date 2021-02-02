@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 
 function Conseiller({ conseiller }) {
+  console.log(conseiller)
   return (
     <div className="conseiller">
       <strong>{conseiller.prenom} {conseiller.nom}</strong>
