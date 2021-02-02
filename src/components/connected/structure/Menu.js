@@ -1,9 +1,6 @@
-//import { useHistory } from 'react-router-dom';
 import { history } from '../../../helpers';
 
 function Menu() {
-
-  //let history = useHistory();
 
   return (
     <div className="Menu">

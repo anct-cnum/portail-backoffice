@@ -1,6 +1,6 @@
-import { authHeader } from '../helpers';
+import { authHeader, history } from '../helpers';
 
-import { logout } from './user.service';
+import { userService } from './user.service';
 
 const apiUrlRoot = process.env.REACT_APP_API;
 
@@ -8,13 +8,13 @@ export const conseillerService = {
   getAll,
 }
 
-function getAll() {
+function getAll(page) {
   const requestOptions = {
       method: 'GET',
       headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/conseillers`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers?&$skip=${page}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -23,8 +23,8 @@ function handleResponse(response) {
       if (!response.ok) {
           if (response.status === 401) {
               // auto logout if 401 response returned from api
-              logout();
-              location.reload(true);
+              userService.logout();
+              history.push('/');
           }
 
           const error = (data && data.message) || response.statusText;

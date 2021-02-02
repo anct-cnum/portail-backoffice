@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux'
 import Conseiller from './Conseiller';
+import { conseillerActions } from '../../../actions';
+import Pagination from '../../common/Pagination';
 
 function Conseillers() {
+  const dispatch = useDispatch();
 
-  // TODO : call useSelector
-  const conseillers = Array(20).fill({
-    nom: 'Guillois',
-    prenom: 'Loïc',
-    dateCreation: new Date(),
-    codePostal: 85130
-  })
+  const conseillers = useSelector(state => state.conseillers);
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const ITEMS_PER_PAGE = 5;
 
-  const paginate = (array, page_size, page_number) => {
-    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  const navigate = (page) => {
+    setPage(page);
+    dispatch(conseillerActions.getAll(page * conseillers.items.limit)); // TODO filter on user
   }
 
-  const goTo = (page) => setPage(page)
-
   useEffect(() => {
-    const count = Math.floor(conseillers.length / ITEMS_PER_PAGE);
-    setPageCount(conseillers.length % ITEMS_PER_PAGE === 0 ? count : count + 1);
-  }, [ ]);
+    if (conseillers.items) {
+      const count = Math.floor(conseillers.items.total / conseillers.items.limit);
+      setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
+    }
+  }, []);
 
   const tabs = [
     {
@@ -55,17 +52,18 @@ function Conseillers() {
     <div className="conseillers">
 
       <div className="tabs">
-        { tabs.map(tab => <button onClick={applyFilter.bind(this, tab)}>{tab.name}</button>) }
+        {tabs.map((tab, idx) => <button onClick={applyFilter.bind(this, tab)} key={idx}>{tab.name}</button>)}
       </div>
 
-      { paginate(conseillers, ITEMS_PER_PAGE, page).map(conseiller => {
-        return (<Conseiller conseiller={conseiller} />)
-      })
-        }
+      { conseillers.loading && <span>Chargement...</span>}
 
-        <div className="pagination">
-          { [...Array(pageCount).keys()].map(p => <button onClick={goTo.bind(this, p + 1)}>{p + 1}</button>) }
-        </div>
+      { !conseillers.loading && conseillers.items.data.map((conseiller, idx) => {
+        return (<Conseiller key={idx} conseiller={conseiller} />)
+      })
+      }
+
+      <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+
     </div>
   );
 }
