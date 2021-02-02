@@ -8,13 +8,13 @@ export const conseillerService = {
   getAll,
 }
 
-function getAll(id, page) {
+function getAll(page) {
   const requestOptions = {
       method: 'GET',
       headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/structures/${userId()}/misesEnRelation?&$skip=${page}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${userId()}/misesEnRelation?$skip=${page}&$sort[createdAt]=-1`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
