@@ -57,6 +57,8 @@ function Conseillers() {
 
       { conseillers && conseillers.loading && <span>Chargement...</span>}
 
+      { !conseillers.loading && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
+
       { !conseillers.loading && conseillers.items.data && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} conseiller={conseiller} />)
       })
