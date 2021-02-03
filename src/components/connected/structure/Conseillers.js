@@ -55,9 +55,11 @@ function Conseillers() {
         {tabs.map((tab, idx) => <button onClick={applyFilter.bind(this, tab)} key={idx}>{tab.name}</button>)}
       </div>
 
-      { conseillers.loading && <span>Chargement...</span>}
+      { conseillers && conseillers.loading && <span>Chargement...</span>}
 
-      { !conseillers.loading && conseillers.items.data.map((conseiller, idx) => {
+      { !conseillers.loading && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
+
+      { !conseillers.loading && conseillers.items.data && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} conseiller={conseiller} />)
       })
       }
