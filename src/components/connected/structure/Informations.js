@@ -1,12 +1,33 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { structureActions } from '../../../actions';
+import { useEffect } from 'react';
+import dayjs from 'dayjs';
 
 function Informations() {
 
-  const user = useSelector(state => state.authentication.user.user);
+  const dispatch = useDispatch();
+  const structure = useSelector(state => state.structure.details);
+  useEffect(() => {
+    dispatch(structureActions.getAll());
+  }, []);
 
   return (
     <div className="informations">
-
+      <div>
+        <h2>Structure</h2>
+        <strong>{ structure?.nom }</strong>
+        <p>Siret : { structure?.siret }</p>
+        <p>Date d'inscription : { dayjs(structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
+        <p>Code Postal : { structure?.codePostal }</p>
+        <p>Statut : { structure?.statut }</p>
+      </div>
+      <div>
+      <h2>Contact</h2>
+        <strong>Nom : { structure?.contactNom }</strong>
+        <p>Prénom : { structure?.contactPrenom }</p>
+        <p>Téléphone : { structure?.contactTelephone }</p>
+        <p>Nombre de matchings : { structure?.nombreConseillersSouhaites }</p>
+      </div>
     </div>
   );
 }

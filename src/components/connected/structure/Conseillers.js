@@ -61,7 +61,9 @@ function Conseillers() {
         {tabs.map((tab, idx) => <li><button className={`rf-tag ${idx === currentTab ? 'current' : ''}`} onClick={applyFilter.bind(this, idx)} key={idx}>{tab.name}</button></li>)}
       </ul>
 
-      { conseillers.loading && <span>Chargement...</span>}
+      { conseillers && conseillers.loading && <span>Chargement...</span> }
+
+      { !conseillers.loading && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} update={update} />)
