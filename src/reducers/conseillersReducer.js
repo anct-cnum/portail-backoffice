@@ -1,18 +1,18 @@
 export default function conseillers(state = [], action) {
   switch (action.type) {
-  case 'GETALL_REQUEST':
+    case 'GETALL_REQUEST':
       return {
-      loading: true
+        loading: true
       };
-  case 'GETALL_SUCCESS':
+    case 'GETALL_SUCCESS':
       return {
-      items: action.conseillers
+        items: action.conseillers
       };
-  case 'GETALL_FAILURE':
+    case 'GETALL_FAILURE':
       return {
-      error: action.error
+        error: action.error
       };
-  default:
+    default:
       return state
   }
 }
