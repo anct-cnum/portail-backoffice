@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
 import { conseillerActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
+
+import './conseillers.css';
 
 function Conseillers() {
   const dispatch = useDispatch();
@@ -11,31 +13,35 @@ function Conseillers() {
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
 
   const navigate = (page) => {
     setPage(page);
-    dispatch(conseillerActions.getAll(page * conseillers.items.limit)); // TODO filter on user
+    dispatch(conseillerActions.getAll({ page, filter: tabs[currentTab].filter }));
   }
 
   useEffect(() => {
+    update();
     if (conseillers.items) {
       const count = Math.floor(conseillers.items.total / conseillers.items.limit);
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
     }
   }, []);
 
+  const update = () => dispatch(conseillerActions.getAll({ page, filter: tabs[currentTab].filter }));
+
   const tabs = [
     {
       name: 'Nouvelles candidatures',
-      filter: 'nouvelles'
+      filter: 'nouvelle'
     },
     {
       name: 'Acceptées',
-      filter: 'acceptees'
+      filter: 'acceptee'
     },
     {
       name: 'Refusées',
-      filter: 'refusees'
+      filter: 'refusee'
     },
     {
       name: 'Toutes',
@@ -43,24 +49,24 @@ function Conseillers() {
     }
   ]
 
-  const applyFilter = ({ filter }) => {
-    // TODO : use selector to update list
-    console.log(filter);
+  const applyFilter = (idx) => {
+    setCurrentTab(idx);
+    dispatch(conseillerActions.getAll({ page: page, filter: tabs[idx].filter }));
   }
 
   return (
     <div className="conseillers">
 
-      <div className="tabs">
-        {tabs.map((tab, idx) => <button onClick={applyFilter.bind(this, tab)} key={idx}>{tab.name}</button>)}
-      </div>
+      <ul className="tabs rf-tags-group">
+        {tabs.map((tab, idx) => <li><button className={`rf-tag ${idx === currentTab ? 'current' : ''}`} onClick={applyFilter.bind(this, idx)} key={idx}>{tab.name}</button></li>)}
+      </ul>
 
-      { conseillers && conseillers.loading && <span>Chargement...</span>}
+      { conseillers && conseillers.loading && <span>Chargement...</span> }
 
       { !conseillers.loading && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
 
-      { !conseillers.loading && conseillers.items.data && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} conseiller={conseiller} />)
+      { !conseillers.error && !conseillers.loading && conseillers.items.data.map((conseiller, idx) => {
+        return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} update={update} />)
       })
       }
 

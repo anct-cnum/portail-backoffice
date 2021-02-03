@@ -11,9 +11,8 @@ function Home({ match }) {
 
   return (
     <div className="Login">
-      <h2>Mon portail</h2>
-      <h3>{user?.name}</h3>
-      <Link to="/login">Se déconnecter</Link>
+      <h3><span className="rf-fi-user-fill"></span> {user?.name}</h3>
+      <Link className="rf-btn rf-btn--icon-right rf-fi-arrow-right-line" to="/login">Se déconnecter</Link>
 
       { user?.role === 'admin' &&
         <Admin />
