@@ -1,14 +1,14 @@
 import { structureService } from '../services/structure.service.js';
 
 export const structureActions = {
-  getAll,
+  get,
 };
 
-function getAll() {
+function get() {
   return dispatch => {
       dispatch(request());
 
-      structureService.getAll()
+      structureService.get()
           .then(
             structure => dispatch(success(structure)),
               error => {
@@ -17,7 +17,7 @@ function getAll() {
           );
   };
 
-  function request() { return { type: 'GETALL_REQUEST' } }
-  function success(structure) { return { type: 'GETALL_SUCCESS', structure } }
-  function failure(error) { return { type: 'GETALL_FAILURE', error } }
+  function request() { return { type: 'GET_REQUEST' } }
+  function success(structure) { return { type: 'GET_SUCCESS', structure } }
+  function failure(error) { return { type: 'GET_FAILURE', error } }
 }
