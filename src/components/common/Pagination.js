@@ -9,60 +9,79 @@ function Pagination({ pageCount, current, navigate }) {
   const onClick = (e, page) => {
     e.preventDefault();
     navigate(page);
-}
+  }
 
   if (pageCount <= 1) {
     return (<ul className="pagination" />);
   }
 
   return (
-    <ul className="pagination">
-      <li className={`page-item ${isFirstPage ? 'active' : ''}`}>
-        <a href="/#" className="page-link" onClick={e => onClick(e, 1)}>1</a>
-      </li>
-      {
-        (pageCount > 5 && current > 3) &&
-        <li className="page-item disabled">
-          <a href="/#" className="page-link">...</a>
-        </li>
-      }
-      {
-        showPrevious &&
-        <li className="page-item">
-          <a
-            href="/#"
-            className="page-link"
-            onClick={e => onClick(e, previousPage)}>{previousPage}
+    <nav class="rf-pagination" aria-label="Pagination navigation">
+      <ul className="rf-pagination__list">
+        <li className={`rf-pagination__item--first rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>
+          <a className="rf-pagination__link" href="#" onClick={e => !isFirstPage ? onClick(e, 1) : () => { }} aria-label="Première page" title="Première page">
           </a>
         </li>
-      }
-      {
-        (!isFirstPage && !isLastPage) &&
-        <li className="page-item active">
-          <a
-            href="/#"
-            className="page-link"
-            onClick={e => onClick(e, current)}>{current}
+        <li className={`rf-pagination__item--prev rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>
+          <a className="rf-pagination__link" onClick={e => !isFirstPage ? onClick(e, previousPage) : () => { }} href="#" aria-label="Page précédente" title="Page précédente">
+            <span class="rf-pagination__label">Précédente</span>
           </a>
         </li>
-      }
-      {
-        (nextPage < lastPage) &&
-        <li className="page-item">
-          <a href="/#" className="page-link" onClick={e => onClick(e, nextPage)}>{nextPage}</a>
+        <li className={`rf-pagination__item ${isFirstPage ? 'rf-pagination__item--active' : ''}`}>
+          <a href="/#" className="rf-pagination__link" onClick={e => onClick(e, 1)}>1</a>
         </li>
-      }
-      {
-        (current < pageCount - 2) &&
-        <li className="page-item disabled">
-          <a href="/#" className="page-link">...</a>
+        {
+          (pageCount > 5 && current > 3) &&
+          <li className="rf-pagination__item rf-pagination__item--from-md">
+            <a href="/#" className="rf-pagination__link">...</a>
+          </li>
+        }
+        {
+          showPrevious &&
+          <li className="rf-pagination__item">
+            <a
+              href="/#"
+              className="rf-pagination__link"
+              onClick={e => onClick(e, previousPage)}>{previousPage}
+            </a>
+          </li>
+        }
+        {
+          (!isFirstPage && !isLastPage) &&
+          <li className="rf-pagination__item rf-pagination__item--active">
+            <a
+              href="/#"
+              className="rf-pagination__link"
+              onClick={e => onClick(e, current)}>{current}
+            </a>
+          </li>
+        }
+        {
+          (nextPage < lastPage) &&
+          <li className="rf-pagination__item">
+            <a href="/#" className="rf-pagination__link" onClick={e => onClick(e, nextPage)}>{nextPage}</a>
+          </li>
+        }
+        {
+          (current < pageCount - 2) &&
+          <li className="rf-pagination__item rf-pagination__item--from-md">
+            <a href="/#" className="rf-pagination__link">...</a>
+          </li>
+        }
+        <li className={`rf-pagination__item ${isLastPage && 'rf-pagination__item--active'}`}>
+          <a href="/#" className="rf-pagination__link" onClick={e => onClick(e, lastPage)}>{lastPage}</a>
         </li>
-      }
-      <li className={`page-item ${isLastPage && 'active'}`}>
-        <a href="/#" className="page-link" onClick={e => onClick(e, lastPage)}>{lastPage}</a>
-      </li>
-      {/*[...Array(pageCount).keys()].map(p => <button onClick={navigate.bind(this, p + 1)} className={`${p === current ? 'current' : ''}`}>{p + 1}</button>)*/}
-    </ul>
+        <li class={`rf-pagination__item--next rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>
+          <a className="rf-pagination__link" onClick={e => !isLastPage ? onClick(e, nextPage) : () => { }} href="#" aria-label="Page suivante" title="Page suivante">
+            <span class="rf-pagination__label">Suivante</span>
+          </a>
+        </li>
+        <li class={`rf-pagination__item--last rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>
+          <a className="rf-pagination__link" href="#" onClick={e => !isLastPage ? onClick(e, lastPage) : () => { }} aria-label="Dernière page" title="Dernière page">
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
