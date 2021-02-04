@@ -29,7 +29,7 @@ function Informations() {
         <strong>Nom : { structure?.contactNom }</strong>
         <p>Prénom : { structure?.contactPrenom }</p>
         <p>Téléphone : { structure?.contactTelephone }</p>
-        <p>Nombre de matchings : { conseillers.items.total }</p>
+        <p>Nombre de mises en relation : { conseillers.items.total }</p>
       </div>
     </div>
   );
