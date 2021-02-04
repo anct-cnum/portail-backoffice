@@ -27,7 +27,7 @@ function App() {
               <div className="rf-header__navbar">
               <div className="rf-service">
                   <h1>
-                      Votre espace stucture
+                      Votre espace Conseiller Numérique France Services
                   </h1>
               </div>
             </div>
