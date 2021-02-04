@@ -6,9 +6,11 @@ import dayjs from 'dayjs';
 function Informations() {
 
   const dispatch = useDispatch();
-  const structure = useSelector(state => state.structure.details);
+  const structure = useSelector(state => state.structure);
+  const conseillers = useSelector(state => state.conseillers);
+
   useEffect(() => {
-    dispatch(structureActions.getAll());
+    dispatch(structureActions.get());
   }, []);
 
   return (
@@ -20,13 +22,14 @@ function Informations() {
         <p>Date d'inscription : { dayjs(structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
         <p>Code Postal : { structure?.codePostal }</p>
         <p>Statut : { structure?.statut }</p>
+        <p>Nombre de conseillers souhaites : { structure?.nombreConseillersSouhaites }</p>
       </div>
       <div>
       <h2>Contact</h2>
         <strong>Nom : { structure?.contactNom }</strong>
         <p>Prénom : { structure?.contactPrenom }</p>
         <p>Téléphone : { structure?.contactTelephone }</p>
-        <p>Nombre de matchings : { structure?.nombreConseillersSouhaites }</p>
+        <p>Nombre de matchings : { conseillers.items.total }</p>
       </div>
     </div>
   );

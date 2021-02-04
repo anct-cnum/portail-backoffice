@@ -4,10 +4,10 @@ import { userService } from './user.service';
 const apiUrlRoot = process.env.REACT_APP_API;
 
 export const structureService = {
-  getAll,
+  get,
 }
 
-function getAll() {
+function get() {
   const requestOptions = {
       method: 'GET',
       headers: authHeader()
