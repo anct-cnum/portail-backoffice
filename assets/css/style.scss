@@ -1,0 +1,27 @@
+.header__logo-rf {
+    height: 78px;
+}
+
+.Login {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+}
+
+.rf-sur-mesure {
+    flex: none;
+    padding-right: 0;
+    height: 75px;
+}
+
+.logo-conseiller-numerique {
+    height: 75px;
+    margin-left: 1.25rem;
+    border-left: 1px solid silver;
+    display: flex;
+}
+  
+.logo-conseiller-numerique img:first-child {
+    height: 54px;
+    margin-top: 1.2em;
+    font-weight: lighter!important;
+}
