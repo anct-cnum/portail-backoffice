@@ -14,6 +14,7 @@ function Conseillers() {
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [currentTab, setCurrentTab] = useState(0);
+  const [constructorHasRun, setConstructorHasRun] = useState(false);
 
   const navigate = (page) => {
     setPage(page);
@@ -21,12 +22,11 @@ function Conseillers() {
   }
 
   useEffect(() => {
-    update();
     if (conseillers.items) {
       const count = Math.floor(conseillers.items.total / conseillers.items.limit);
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
     }
-  }, []);
+  }, [conseillers]);
 
   const update = () => dispatch(conseillerActions.getAll({ page, filter: tabs[currentTab].filter }));
 
@@ -54,6 +54,13 @@ function Conseillers() {
     dispatch(conseillerActions.getAll({ page: page, filter: tabs[idx].filter }));
   }
 
+  const constructor = () => {
+    if (constructorHasRun) return;
+    update();
+    setConstructorHasRun(true);
+  };
+  constructor();
+
   return (
     <div className="conseillers">
 
@@ -63,9 +70,9 @@ function Conseillers() {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
+      { !conseillers.loading && conseillers.items && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
 
-      { !conseillers.error && !conseillers.loading && conseillers.items.data.map((conseiller, idx) => {
+      { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} update={update} />)
       })
       }
