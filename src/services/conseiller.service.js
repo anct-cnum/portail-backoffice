@@ -1,4 +1,4 @@
-import { authHeader, history, userId } from '../helpers';
+import { authHeader, history, userEntityId } from '../helpers';
 
 import { userService } from './user.service';
 
@@ -14,7 +14,7 @@ function getAll(page, filter) {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/structures/${userId()}/misesEnRelation?$skip=${page}&$sort[createdAt]=-1`;
+  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[createdAt]=-1`;
   if (filter) {
     uri += `&filter=${filter}`;
   }
