@@ -36,8 +36,12 @@ function Login() {
   }
 
   return (
-    <div className="Login">
-      <h2>Connexion</h2>
+<div className="rf-container rf-mt-3w">
+  <div className="rf-grid-row">
+    <div className="rf-col-3"></div>
+    <div className="Login rf-col-6 rf-p-5w">
+      <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
+      
       <div>
         <div>
           {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
@@ -61,7 +65,10 @@ function Login() {
         {loggingIn && <span>Connexion en cours...</span>}
         <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
       </div>
+      <div className="rf-col-3"></div>
     </div>
+  </div>
+</div>
   );
 }
 
