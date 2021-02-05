@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
 import { conseillerActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
+import {
+  Link,
+  useParams
+} from "react-router-dom";
 
 import './conseillers.css';
 
@@ -13,12 +17,12 @@ function Conseillers() {
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const [currentTab, setCurrentTab] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
+  let { filter } = useParams();
 
   const navigate = (page) => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ page, filter: tabs[currentTab].filter }));
+    dispatch(conseillerActions.getAll({ page, filter: filter }));
   }
 
   useEffect(() => {
@@ -28,7 +32,11 @@ function Conseillers() {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ page, filter: tabs[currentTab].filter }));
+  useEffect(() => {
+    update();
+    }, [ filter ]);
+
+  const update = () => dispatch(conseillerActions.getAll({ page, filter }));
 
   const tabs = [
     {
@@ -49,11 +57,6 @@ function Conseillers() {
     }
   ]
 
-  const applyFilter = (idx) => {
-    setCurrentTab(idx);
-    dispatch(conseillerActions.getAll({ page: page, filter: tabs[idx].filter }));
-  }
-
   const constructor = () => {
     if (constructorHasRun) return;
     update();
@@ -65,7 +68,7 @@ function Conseillers() {
     <div className="conseillers">
 
       <ul className="tabs rf-tags-group">
-        {tabs.map((tab, idx) => <li><button className={`rf-tag ${idx === currentTab ? 'current' : ''}`} onClick={applyFilter.bind(this, idx)} key={idx}>{tab.name}</button></li>)}
+        {tabs.map((tab, idx) => <li key={idx}><Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`} to={`/structure/conseillers/${tab.filter}`}>{tab.name}</Link></li>)}
       </ul>
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
@@ -73,7 +76,7 @@ function Conseillers() {
       { !conseillers.loading && conseillers.items && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} update={update} />)
+        return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} statut={conseiller.statut} update={update} />)
       })
       }
 
