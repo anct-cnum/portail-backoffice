@@ -1,13 +1,13 @@
-export default function structure(state = null, action) {
+export default function conseiller(state = null, action) {
     switch (action.type) {
     case 'GET_REQUEST':
         return {
         loading: true
         };
     case 'GET_SUCCESS':
-        return {
+        return  {
             ...state,
-            details: action.structure
+            details: action.conseiller
         };
     case 'GET_FAILURE':
         return {

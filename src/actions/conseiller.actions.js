@@ -1,9 +1,29 @@
 import { conseillerService } from '../services/conseiller.service.js';
 
 export const conseillerActions = {
+  get,
   getAll,
   updateStatus,
 };
+
+function get(id) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.get(id)
+        .then(
+          conseiller => dispatch(success(conseiller)),
+            error => {
+                dispatch(failure(error));
+            }
+        );
+};
+
+function request() { return { type: 'GET_REQUEST' } }
+function success(conseiller) { return { type: 'GET_SUCCESS', conseiller } }
+function failure(error) { return { type: 'GET_FAILURE', error } }
+
+}
 
 function getAll({page = 0, filter }) {
   return dispatch => {

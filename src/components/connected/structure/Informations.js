@@ -18,18 +18,18 @@ function Informations() {
     <div className="informations">
       <div>
         <h2>Structure</h2>
-        <strong>{ structure?.nom }</strong>
-        <p>Siret : { structure?.siret }</p>
-        <p>Date d&apos;inscription : { dayjs(structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
-        <p>Code Postal : { structure?.codePostal }</p>
-        <p>Statut : { structure?.statut }</p>
-        <p>Nombre de conseillers souhaites : { structure?.nombreConseillersSouhaites }</p>
+        <strong>{ structure?.details?.nom }</strong>
+        <p>Siret : { structure?.details?.siret }</p>
+        <p>Date d&apos;inscription : { dayjs(structure?.details?.dateDebutMission).format('DD/MM/YYYY') }</p>
+        <p>Code Postal : { structure?.details?.codePostal }</p>
+        <p>Statut : { structure?.details?.statut }</p>
+        <p>Nombre de conseillers souhaites : { structure?.details?.nombreConseillersSouhaites }</p>
       </div>
       <div>
       <h2>Contact</h2>
-        <strong>Nom : { structure?.contactNom }</strong>
-        <p>Prénom : { structure?.contactPrenom }</p>
-        <p>Téléphone : { structure?.contactTelephone }</p>
+        <strong>Nom : { structure?.details?.contactNom }</strong>
+        <p>Prénom : { structure?.details?.contactPrenom }</p>
+        <p>Téléphone : { structure?.details?.contactTelephone }</p>
         <p>Nombre de mises en relation : { conseillers.items.total }</p>
       </div>
     </div>

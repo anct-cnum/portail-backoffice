@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { conseillerActions } from '../../../actions';
+import { Link } from "react-router-dom";
 
 function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
   }
 
   return (
+  <Link style={{boxShadow:"none"}} to={{
+        pathname:'/structure/conseiller/details',
+        conseillerId: conseiller._id }}>
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
         <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>
@@ -60,6 +64,7 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
         </div>
       </div>
     </div>
+  </Link>
   );
 }
 
