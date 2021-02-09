@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
+import React from 'react';
 
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { conseillerActions } from '../../../actions';
@@ -41,12 +43,12 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
               <div className="rf-col-lg-4">
                 {statut !== 'acceptee' &&
                   <button onClick={updateStatut.bind(this, 'acceptee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
-                    ça m'intéresse
+                    ça m&apos;intéresse
                   </button>
                 }
                 {statut !== 'refusee' &&
                   <button onClick={updateStatut.bind(this, 'refusee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary" title="ça ne m'intéresse pas">
-                    ça ne m'intéresse pas
+                    ça ne m&apos;intéresse pas
                   </button>
                 }
               </div>
@@ -59,6 +61,13 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
       </div>
     </div>
   );
+}
+
+Conseiller.propTypes = {
+  conseiller: PropTypes.object,
+  miseEnRelationId: PropTypes.string,
+  statut: PropTypes.string,
+  update: PropTypes.func
 }
 
 export default Conseiller;

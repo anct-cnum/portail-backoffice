@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions } from '../../../actions';
 import { useEffect } from 'react';
@@ -19,7 +20,7 @@ function Informations() {
         <h2>Structure</h2>
         <strong>{ structure?.nom }</strong>
         <p>Siret : { structure?.siret }</p>
-        <p>Date d'inscription : { dayjs(structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
+        <p>Date d&apos;inscription : { dayjs(structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
         <p>Code Postal : { structure?.codePostal }</p>
         <p>Statut : { structure?.statut }</p>
         <p>Nombre de conseillers souhaites : { structure?.nombreConseillersSouhaites }</p>

@@ -13,6 +13,7 @@
     "dayjs": "^1.10.4",
     "dotenv": "^8.2.0",
     "postcss": "^8.1.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -34,7 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "lint": "eslint src/. --config .eslintrc.json --fix"
   },
   "eslintConfig": {
     "extends": [

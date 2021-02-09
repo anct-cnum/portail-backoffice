@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { Route } from 'react-router-dom';
@@ -5,7 +7,7 @@ import { Route } from 'react-router-dom';
 import Admin from './admin/index';
 import Structure from './structure/index';
 
-function Home({ match }) {
+function Home() {
 
   const user = useSelector(state => state.authentication.user.user);
 
@@ -15,7 +17,6 @@ function Home({ match }) {
       <div className="rf-container rf-mt-4w">
         <div className="rf-grid-row">
           <div className="rf-col-4 rf-col-offset-8">
-
             <div className="rf-tile rf-tile--horizontal">
               <div className="rf-tile__body">
                 <h3 className="rf-tile__title">
