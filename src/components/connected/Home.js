@@ -16,8 +16,7 @@ function Home() {
 
       <div className="rf-container rf-mt-4w">
         <div className="rf-grid-row">
-          <div className="rf-col-4 rf-col-offset-12">
-
+          <div className="rf-col-4 rf-col-offset-8">
             <div className="rf-tile rf-tile--horizontal">
               <div className="rf-tile__body">
                 <h3 className="rf-tile__title">

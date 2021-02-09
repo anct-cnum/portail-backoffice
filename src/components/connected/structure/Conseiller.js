@@ -35,7 +35,7 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
         <h4 className="rf-card__title">
           {conseiller.prenom} {conseiller.nom}
         </h4>
-        <p className="rf-card__desc">
+        <div className="rf-card__desc">
 
           <div className="rf-container-fluid">
             <div className="rf-grid-row">
@@ -57,7 +57,7 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
               <div className="rf-col-4"><strong>Code postal:</strong> {conseiller.codePostal}</div>
             </div>
           </div>
-        </p>
+        </div>
       </div>
     </div>
   );
