@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Menu from './Menu';
 import Conseillers from './Conseillers';
 import Informations from './Informations';
+import conseillerDetails from './ConseillerDetails';
 
 function Structure() {
   const structure = useSelector(state => state.structure);
@@ -24,7 +25,7 @@ function Structure() {
             <Route path={`/structure/informations`} component={Informations} />
             <Redirect from="/structure/conseillers" to={`/structure/conseillers/nouvelle`} />
             <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
-
+            <Route path={`/structure/conseiller/details`} component={conseillerDetails} />
           </div>
         </div>
       </div>

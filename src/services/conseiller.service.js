@@ -5,8 +5,18 @@ import { userService } from './user.service';
 const apiUrlRoot = process.env.REACT_APP_API;
 
 export const conseillerService = {
+  get,
   getAll,
   updateStatus,
+}
+
+function get(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
 function getAll(page, filter) {
