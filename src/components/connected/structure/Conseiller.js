@@ -33,12 +33,12 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
         <h4 className="rf-card__title">
           {conseiller.prenom} {conseiller.nom}
         </h4>
-        <p className="rf-card__desc">
+        <div className="rf-card__desc">
 
-          <div class="rf-container-fluid">
-            <div class="rf-grid-row">
-              <div class="rf-col-4"><span>Candidature du {dayjs(conseiller.dateCreation).format('DD/MM/YYYY')}</span></div>
-              <div class="rf-col-lg-4">
+          <div className="rf-container-fluid">
+            <div className="rf-grid-row">
+              <div className="rf-col-4"><span>Candidature du {dayjs(conseiller.dateCreation).format('DD/MM/YYYY')}</span></div>
+              <div className="rf-col-lg-4">
                 {statut !== 'acceptee' &&
                   <button onClick={updateStatut.bind(this, 'acceptee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
                     ça m'intéresse
@@ -51,11 +51,11 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
                 }
               </div>
             </div>
-            <div class="rf-grid-row">
-              <div class="rf-col-4"><strong>Code postal:</strong> {conseiller.codePostal}</div>
+            <div className="rf-grid-row">
+              <div className="rf-col-4"><strong>Code postal:</strong> {conseiller.codePostal}</div>
             </div>
           </div>
-        </p>
+        </div>
       </div>
     </div>
   );
