@@ -4,6 +4,8 @@ import { history } from '../helpers';
 export const userActions = {
   login,
   logout,
+  verifyToken,
+  choosePassword
 };
 
 function login(username, password, from) {
@@ -32,4 +34,48 @@ function login(username, password, from) {
 function logout() {
   userService.logout();
   return { type: 'LOGOUT' };
+}
+
+function verifyToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.verifyToken(token)
+      .then(
+        user => {
+          user.role = user.roles[0];
+          delete user.roles;
+          dispatch(success(user));
+        },
+        error => {
+          dispatch(failure(error));
+        }
+      );
+  };
+
+  function request(token) { return { type: 'VERIFY_TOKEN_REQUEST', token } }
+  function success(user) { return { type: 'VERIFY_TOKEN_SUCCESS', user } }
+  function failure(error) { return { type: 'VERIFY_TOKEN_FAILURE', error } }
+}
+
+function choosePassword(token, password) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.choosePassword(token, password)
+      .then(
+        user => {
+          user.role = user.roles[0];
+          delete user.roles;
+          dispatch(success(user));
+        },
+        error => {
+          dispatch(failure(error));
+        }
+      );
+  };
+
+  function request(token) { return { type: 'CHOOSE_PASSWORD_REQUEST', token } }
+  function success(user) { return { type: 'CHOOSE_PASSWORD_SUCCESS', user } }
+  function failure(error) { return { type: 'CHOOSE_PASSWORD_FAILURE', error } }
 }
