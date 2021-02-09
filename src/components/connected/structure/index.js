@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -12,14 +13,14 @@ function Structure() {
     <div className="structure">
       <div className="rf-m-1w rf-mb-4w">
         <h3>Espace structure - {structure?.nom}</h3>
-        <div class="rf-highlight">SIRET: {structure?.siret}</div>
+        <div className="rf-highlight">SIRET: {structure?.siret}</div>
       </div>
-      <div class="rf-container-fluid">
-        <div class="rf-grid-row">
-          <div class="rf-col-2">
+      <div className="rf-container-fluid">
+        <div className="rf-grid-row">
+          <div className="rf-col-2">
             <Menu />
           </div>
-          <div class="rf-col-xs-12 rf-col-lg-10">
+          <div className="rf-col-xs-12 rf-col-lg-10">
             <Route path={`/structure/informations`} component={Informations} />
             <Redirect from="/structure/conseillers" to={`/structure/conseillers/nouvelle`} />
             <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
