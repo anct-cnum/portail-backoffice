@@ -1,5 +1,7 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
 
@@ -26,6 +28,10 @@ function ConseillerDetails({ location }) {
       </div>
     </div>
   );
+}
+
+ConseillerDetails.propTypes = {
+    location: PropTypes.object
 }
 
 export default ConseillerDetails;
