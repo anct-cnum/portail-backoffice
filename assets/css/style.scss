@@ -1,3 +1,5 @@
+$blue-france:#000091;
+
 .header__logo-rf {
     height: 78px;
 }
@@ -24,4 +26,22 @@
     height: 54px;
     margin-top: 1.2em;
     font-weight: lighter!important;
+}
+
+.rf-tag.current {
+    font-weight: bold;
+}
+
+/** Icones menu gauche **/
+.Menu .rf-sidemenu__item--active [class^="rf-fi"] {
+    color: $blue-france;
+}
+
+/** style custom **/
+.alignRight {
+    text-align: right;
+}
+
+.valignMiddle {
+    vertical-align: middle;
 }
