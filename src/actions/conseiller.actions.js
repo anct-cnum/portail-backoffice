@@ -19,9 +19,9 @@ function get(id) {
         );
 };
 
-function request() { return { type: 'GET_REQUEST' } }
-function success(conseiller) { return { type: 'GET_SUCCESS', conseiller } }
-function failure(error) { return { type: 'GET_FAILURE', error } }
+function request() { return { type: 'GET_CONSEILLER_REQUEST' } }
+function success(conseiller) { return { type: 'GET_CONSEILLER_SUCCESS', conseiller } }
+function failure(error) { return { type: 'GET_CONSEILLER_FAILURE', error } }
 
 }
 

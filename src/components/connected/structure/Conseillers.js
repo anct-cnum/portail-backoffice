@@ -8,8 +8,6 @@ import {
   useParams
 } from "react-router-dom";
 
-import './conseillers.css';
-
 function Conseillers() {
   const dispatch = useDispatch();
 

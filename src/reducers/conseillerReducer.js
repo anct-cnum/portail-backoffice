@@ -1,15 +1,15 @@
 export default function conseiller(state = null, action) {
     switch (action.type) {
-    case 'GET_REQUEST':
+    case 'GET_CONSEILLER_REQUEST':
         return {
         loading: true
         };
-    case 'GET_SUCCESS':
+    case 'GET_CONSEILLER_SUCCESS':
         return  {
             ...state,
-            details: action.conseiller
+            conseiller: action.conseiller
         };
-    case 'GET_FAILURE':
+    case 'GET_CONSEILLER_FAILURE':
         return {
         error: action.error
         };
