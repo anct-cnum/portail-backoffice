@@ -42,12 +42,12 @@ function Conseillers() {
       filter: 'nouvelle'
     },
     {
-      name: 'Acceptées',
-      filter: 'acceptee'
+      name: 'Intéressantes',
+      filter: 'interessee'
     },
     {
-      name: 'Refusées',
-      filter: 'refusee'
+      name: 'Pas intéressantes',
+      filter: 'nonInteressee'
     },
     {
       name: 'Recrutées',

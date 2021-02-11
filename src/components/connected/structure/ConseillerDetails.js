@@ -21,11 +21,11 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
-          <h2><i className="ri-briefcase-fill valignMiddle"></i>&nbsp;Conseiller {conseiller?.conseiller?.Nom}&nbsp;{conseiller?.conseiller?.prenom}</h2>
-          <p>Situation professionnelle : {conseiller?.conseiller?.Nom}</p>
-          <p>Lieu de résidence : {conseiller?.conseiller?.geo_name}</p>
-          <p>Distance de déplacement : {conseiller?.conseiller?.max_distance}&nbsp;Km</p>
-          <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.start_date).format('DD/MM/YYYY') }</p>
+          <h2><i className="ri-briefcase-fill valignMiddle"></i>&nbsp;Conseiller {conseiller?.conseiller?.nom}&nbsp;{conseiller?.conseiller?.prenom}</h2>
+          <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
+          <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
+          <p>Distance de déplacement : {conseiller?.conseiller?.distanceMax}&nbsp;Km</p>
+          <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
           <p>Email : {conseiller?.conseiller?.email}</p>
       </div>
     </div>
