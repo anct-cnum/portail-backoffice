@@ -50,6 +50,10 @@ function Conseillers() {
       filter: 'refusee'
     },
     {
+      name: 'Recrutées',
+      filter: 'recrutee'
+    },
+    {
       name: 'Toutes',
       filter: 'toutes'
     }
