@@ -14,11 +14,11 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
     key: 'nouvelle',
     label: 'Nouvelle candidature'
   }, {
-    key: 'refusee',
-    label: 'Candidature refusée'
+    key: 'nonInteressee',
+    label: 'Candidature non intéressante'
   }, {
-    key: 'acceptee',
-    label: 'Candidature acceptée'
+    key: 'interessee',
+    label: 'Candidature intéressante'
   }, {
     key: 'recrutee',
     label: 'Recruté'
@@ -48,21 +48,26 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
 
           <div className="rf-container-fluid">
             <div className="rf-grid-row">
-              <div className="rf-col-4"><span>Candidature du {dayjs(conseiller.dateCreation).format('DD/MM/YYYY')}</span></div>
+              <div className="rf-col-4"><span>Candidature du {dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</span></div>
               <div className="rf-col-lg-4">
-              {statut === 'acceptee' &&
+              {statut === 'interessee' &&
                   <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
                     <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Recruter
                   </button>
                 }
-                {statut !== 'acceptee' && statut !== 'recrutee' &&
-                  <button onClick={updateStatut.bind(this, 'acceptee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
+                {statut !== 'interessee' && statut !== 'recrutee' &&
+                  <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
                     ça m&apos;intéresse
                   </button>
                 }
-                {statut !== 'refusee' && statut !== 'recrutee' &&
-                  <button onClick={updateStatut.bind(this, 'refusee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary" title="ça ne m'intéresse pas">
+                {statut !== 'nonInteressee' && statut !== 'recrutee' &&
+                  <button onClick={updateStatut.bind(this, 'nonInteressee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary" title="ça ne m'intéresse pas">
                     ça ne m&apos;intéresse pas
+                  </button>
+                }
+                {statut === 'recrutee' &&
+                  <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left" title="annuler le recrutement">
+                    annuler le recrutement
                   </button>
                 }
               </div>

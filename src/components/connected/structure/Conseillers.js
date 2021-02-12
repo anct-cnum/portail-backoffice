@@ -42,12 +42,12 @@ function Conseillers() {
       filter: 'nouvelle'
     },
     {
-      name: 'Acceptées',
-      filter: 'acceptee'
+      name: 'Intéressantes',
+      filter: 'interessee'
     },
     {
-      name: 'Refusées',
-      filter: 'refusee'
+      name: 'Pas intéressantes',
+      filter: 'nonInteressee'
     },
     {
       name: 'Recrutées',
@@ -75,7 +75,7 @@ function Conseillers() {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && conseillers.items && !conseillers.items.data && <span>Aucune mise en relation pour le moment</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} conseiller={conseiller.conseiller} miseEnRelationId={conseiller._id} statut={conseiller.statut} update={update} />)
