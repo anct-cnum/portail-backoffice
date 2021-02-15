@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import { Link } from "react-router-dom";
 
+import ButtonsAction from './ButtonsAction'
+
 function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
   const dispatch = useDispatch();
 
@@ -34,49 +36,29 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
   }
 
   return (
-    <div className="conseiller rf-card rf-card--horizontal rf-card--no-arrow">
+    <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
-        <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>
-        <h4 className="rf-card__title">
-          <Link className="linkCustom" style={{boxShadow:"none"}} to={{
+      <Link style={{boxShadow:"none"}} to={{
             pathname:'/structure/conseiller/details',
-            conseillerId: conseiller._id }}>
-            {conseiller.prenom} {conseiller.nom}&nbsp;<span className="rf-fi-arrow-right-line linkCustom" style={{verticalAlign:"text-bottom"}}></span>
-          </Link>
-        </h4>
-        <div className="rf-card__desc">
-
-          <div className="rf-container-fluid">
-            <div className="rf-grid-row">
-              <div className="rf-col-4"><span>Candidature du {dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</span></div>
-              <div className="rf-col-lg-4">
-              {statut === 'interessee' &&
-                  <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
-                    <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Recruter
-                  </button>
-                }
-                {statut !== 'interessee' && statut !== 'recrutee' &&
-                  <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
-                    ça m&apos;intéresse
-                  </button>
-                }
-                {statut !== 'nonInteressee' && statut !== 'recrutee' &&
-                  <button onClick={updateStatut.bind(this, 'nonInteressee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary" title="ça ne m'intéresse pas">
-                    ça ne m&apos;intéresse pas
-                  </button>
-                }
-                {statut === 'recrutee' &&
-                  <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left" title="annuler le recrutement">
-                    annuler le recrutement
-                  </button>
-                }
+            conseillerId: conseiller._id,
+            miseEnRelationId: miseEnRelationId,
+            miseEnRelationStatut: statut }}>
+          <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>
+          <h4 className="rf-card__title">
+          {conseiller.prenom} {conseiller.nom}
+          </h4>
+          <div className="rf-card__desc">
+            <div className="rf-container-fluid">
+              <div className="rf-grid-row">
+                <div className="rf-col-4"><span>Candidature du <strong>{dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</strong></span></div>
+              </div>
+              <div className="rf-grid-row">
+                <div className="rf-col-4">Code postal: {conseiller.codePostal}</div>
               </div>
             </div>
-            <div className="rf-grid-row">
-              <div className="rf-col-4"><strong>Code postal:</strong> {conseiller.codePostal}</div>
-            </div>
           </div>
-        </div>
+          <p className="customTitleLink"><em>Cliquez pour afficher plus de détails</em></p>
+        </Link>
       </div>
     </div>
   );

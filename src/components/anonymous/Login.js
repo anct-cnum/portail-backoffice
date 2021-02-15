@@ -48,10 +48,10 @@ function Login() {
         </div>
 
         <div className="rf-my-3w">
-          <label className="rf-label">Identifiant</label>
+          <label className="rf-label">Adresse email</label>
           <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
           {submitted && !username &&
-            <div className="invalid">Identifiant requis</div>
+            <div className="invalid">Adresse email requise</div>
           }
         </div>
 

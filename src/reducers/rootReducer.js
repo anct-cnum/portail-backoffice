@@ -3,6 +3,7 @@ import createAccountReducer from './createAccountReducer';
 import conseillersReducer from './conseillersReducer';
 import conseillerReducer from './conseillerReducer';
 import structureReducer from './structureReducer';
+import statsReducer from "./statsReducer";
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     createAccount: createAccountReducer,
     conseillers: conseillersReducer,
     conseiller: conseillerReducer,
-    structure: structureReducer
+    structure: structureReducer,
+    stats: statsReducer,
 })
 
 export default rootReducer;

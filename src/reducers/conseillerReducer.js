@@ -13,6 +13,11 @@ export default function conseiller(state = null, action) {
         return {
         error: action.error
         };
+    case 'UPDATE_STATUS_SUCCESS':
+        return {
+            ...state,
+            miseEnRelation: action.miseEnRelation
+        };
     default:
         return state
     }

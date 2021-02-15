@@ -25,7 +25,7 @@ function Menu() {
                         <span className="rf-fi-search-line"></span>
                       </div>
                       <div className="rf-col rf-p-1v">
-                        Mes conseillers
+                        Mes candidatures
                     </div>
                   </div>
                 </div>
