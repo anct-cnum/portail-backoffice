@@ -41,20 +41,6 @@ function Conseillers() {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
 
-  let statsMapped = {
-    'nouvelle': 0,
-    'interessee': 0,
-    'nonInteressee': 0,
-    'recrutee': 0,
-    'toutes': 0
-  }
-  if (stats?.stats) {
-    for (const stat in stats?.stats) {
-      statsMapped[`${stats?.stats[stat].statut}`] = `${stats?.stats[stat].count}`;
-    }
-    statsMapped['toutes'] = `${stats?.stats.length}`;
-  }
- 
   const tabs = [
     {
       name: 'Nouvelles candidatures',
@@ -89,7 +75,7 @@ function Conseillers() {
     <div className="conseillers">
 
       <ul className="tabs rf-tags-group">
-        {tabs.map((tab, idx) => <li key={idx}><Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`} to={`/structure/conseillers/${tab.filter}`}>{tab.name}&nbsp;({statsMapped[tab.filter]})</Link></li>)}
+        {tabs.map((tab, idx) => <li key={idx}><Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`} to={`/structure/conseillers/${tab.filter}`}>{tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] != undefined ? stats?.stats[tab.filter] : 0 })</Link></li>)}
       </ul>
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }

@@ -10,7 +10,14 @@ return dispatch => {
 
     statsService.getMisesEnRelationStats()
         .then(
-        stats => dispatch(success(stats)),
+            stats => {
+            stats['toutes'] = 0;
+            stats.map(stat => {
+                stats[stat.statut] = stat.count,
+                stats['toutes'] += stat.count
+            }),
+            dispatch(success(stats))
+            },
             error => {
                 dispatch(failure(error));
             }

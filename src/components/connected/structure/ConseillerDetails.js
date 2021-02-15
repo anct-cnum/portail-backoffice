@@ -28,6 +28,9 @@ function ConseillerDetails({ location }) {
       <div>
           <h2><i className="ri-briefcase-fill valignMiddle"></i>&nbsp;Conseiller {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</h2>
           <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
+          <p>Diplomé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
+          <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
+          <p>Expérience professionnelle : {conseiller?.conseiller?.aUneExperienceMedNum}</p>
           <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
           <p>Distance de déplacement : {conseiller?.conseiller?.distanceMax}&nbsp;Km</p>
           <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
