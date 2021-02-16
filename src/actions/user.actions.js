@@ -17,6 +17,8 @@ function login(username, password) {
       data => {
         data.user.role = data.user.roles[0];
         delete data.user.roles;
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
         history.push(`/${data.user.role}`);
       },
