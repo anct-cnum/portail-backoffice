@@ -63,7 +63,7 @@ function ChoosePassword({ match }) {
               </div>
 
               <div className="rf-my-3w">
-                <label className="rf-label">Votre identifiant:</label>
+                <label className="rf-label">Votre adresse email:</label>
                 <span>{user.name}</span>
               </div>
 

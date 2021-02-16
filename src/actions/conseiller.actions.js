@@ -49,7 +49,7 @@ function updateStatus({id, statut}) {
 
     conseillerService.updateStatus(id, statut)
         .then(
-          conseiller => dispatch(success(conseiller)),
+          miseEnRelation => dispatch(success(miseEnRelation)),
             error => {
                 dispatch(failure(error));
             }
@@ -57,6 +57,6 @@ function updateStatus({id, statut}) {
 };
 
   function request() { return { type: 'UPDATE_STATUS_REQUEST' } }
-  function success(conseiller) { return { type: 'UPDATE_STATUS_SUCCESS', conseiller } }
+  function success(miseEnRelation) { return { type: 'UPDATE_STATUS_SUCCESS', miseEnRelation } }
   function failure(error) { return { type: 'UPDATE_STATUS_FAILURE', error } }
 }
