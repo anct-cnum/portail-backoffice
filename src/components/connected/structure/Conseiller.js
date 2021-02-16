@@ -57,7 +57,7 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
               </div>
             </div>
           </div>
-          <p className="customTitleLink"><em>Cliquez pour afficher plus de détails</em></p>
+          <p className="customTitleLink"><em>Afficher plus de détails</em></p>
         </Link>
       </div>
     </div>
