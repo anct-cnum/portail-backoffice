@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Admin from './admin/index';
@@ -35,8 +35,9 @@ function Home() {
       }
 
       { user?.role === 'structure' &&
-        <Route path={`/structure`} component={Structure} />
+        <Structure />
       }
+
     </>
   );
 }

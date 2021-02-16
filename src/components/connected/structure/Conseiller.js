@@ -25,8 +25,7 @@ function Conseiller({ conseiller, miseEnRelationId, statut }) {
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
         <Link style={{ boxShadow: 'none' }} to={{
-          pathname: '/structure/conseiller/details',
-          conseillerId: conseiller._id,
+          pathname: `/structure/conseiller/${conseiller._id}`,
           miseEnRelationId: miseEnRelationId,
           miseEnRelationStatut: statut }}>
           <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>

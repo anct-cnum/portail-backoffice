@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
@@ -10,13 +10,14 @@ function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
+  let { conseillerId } = useParams();
 
   const updateStatut = statut => {
     dispatch(conseillerActions.updateStatus({ id: location.miseEnRelationId, statut }));
   };
 
   useEffect(() => {
-    dispatch(conseillerActions.get(location.conseillerId));
+    dispatch(conseillerActions.get(conseillerId));
   }, []);
 
   return (
