@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-
 function Conseiller({ conseiller, miseEnRelationId, statut }) {
 
   const statutLabel = [{
@@ -20,7 +19,6 @@ function Conseiller({ conseiller, miseEnRelationId, statut }) {
     key: 'recrutee',
     label: 'Recruté'
   },
-
   ];
 
   return (
