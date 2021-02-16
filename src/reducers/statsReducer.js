@@ -1,29 +1,29 @@
 const initialState = {
-    stats: {
-        'nouvelle': 0,
-        'interessee': 0,
-        'nonInteressee': 0,
-        'recrutee': 0,
-        'toutes': 0,
-    }
+  stats: {
+    'nouvelle': 0,
+    'interessee': 0,
+    'nonInteressee': 0,
+    'recrutee': 0,
+    'toutes': 0,
+  }
 };
 
 export default function stats(state = initialState, action) {
-    switch (action.type) {
+  switch (action.type) {
     case 'GET_MISES_EN_RELATION_STATS_REQUEST':
-        return {
+      return {
         loading: true
-        };
+      };
     case 'GET_MISES_EN_RELATION_STATS_SUCCESS':
-        return  {
-            ...state,
-            stats: action.stats
-        };
+      return {
+        ...state,
+        stats: action.stats
+      };
     case 'GET_MISES_EN_RELATION_STATS_FAILURE':
-        return {
+      return {
         error: action.error
-        };
+      };
     default:
-        return state
-    }
+      return state;
+  }
 }

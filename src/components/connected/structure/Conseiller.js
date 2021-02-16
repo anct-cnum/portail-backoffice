@@ -2,15 +2,10 @@ import dayjs from 'dayjs';
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { conseillerActions } from '../../../actions';
-import { Link } from "react-router-dom";
 
-import ButtonsAction from './ButtonsAction'
-
-function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
-  const dispatch = useDispatch();
+function Conseiller({ conseiller, miseEnRelationId, statut }) {
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -26,26 +21,19 @@ function Conseiller({ conseiller, miseEnRelationId, statut, update }) {
     label: 'Recruté'
   },
 
-  ]
-
-  const updateStatut = statut => {
-    dispatch(conseillerActions.updateStatus({ id: miseEnRelationId, statut }));
-    setTimeout(() => {
-      update();
-    }, 500);
-  }
+  ];
 
   return (
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
-      <Link style={{boxShadow:"none"}} to={{
-            pathname:'/structure/conseiller/details',
-            conseillerId: conseiller._id,
-            miseEnRelationId: miseEnRelationId,
-            miseEnRelationStatut: statut }}>
+        <Link style={{ boxShadow: 'none' }} to={{
+          pathname: '/structure/conseiller/details',
+          conseillerId: conseiller._id,
+          miseEnRelationId: miseEnRelationId,
+          miseEnRelationStatut: statut }}>
           <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>
           <h4 className="rf-card__title">
-          {conseiller.prenom} {conseiller.nom}
+            {conseiller.prenom} {conseiller.nom}
           </h4>
           <div className="rf-card__desc">
             <div className="rf-container-fluid">
@@ -69,6 +57,6 @@ Conseiller.propTypes = {
   miseEnRelationId: PropTypes.string,
   statut: PropTypes.string,
   update: PropTypes.func
-}
+};
 
 export default Conseiller;

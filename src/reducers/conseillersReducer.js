@@ -13,6 +13,6 @@ export default function conseillers(state = [], action) {
         error: action.error
       };
     default:
-      return state
+      return state;
   }
 }

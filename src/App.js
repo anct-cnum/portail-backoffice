@@ -4,11 +4,11 @@ import { history } from './helpers';
 
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
-import ChoosePassword from './components/anonymous/createAccount/ChoosePassword'
+import ChoosePassword from './components/anonymous/createAccount/ChoosePassword';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
-require('dotenv').config()
+require('dotenv').config();
 
 function App() {
   return (
@@ -16,19 +16,19 @@ function App() {
       <header className="rf-header">
         <div className="rf-container">
           <div className="rf-header__body">
-              <div className="rf-header__brand rf-sur-mesure">
-                  <a href="#" title="République française" style={{boxShadow: "none"}}>
-                      <img src="/logos/logoRF.svg" width="96" alt="République Française. Liberté Égalité Fraternité." className="header__logo-rf" />
-                  </a>
-              </div>
-              <div className="rf-header__operator logo-conseiller-numerique">
-                  <img src="/logos/logo-conseiller-numerique.svg" alt="logo conseiller numérique France Services" />
-              </div>
-              <div className="rf-header__navbar">
+            <div className="rf-header__brand rf-sur-mesure">
+              <a href="#" title="République française" style={{ boxShadow: 'none' }}>
+                <img src="/logos/logoRF.svg" width="96" alt="République Française. Liberté Égalité Fraternité." className="header__logo-rf" />
+              </a>
+            </div>
+            <div className="rf-header__operator logo-conseiller-numerique">
+              <img src="/logos/logo-conseiller-numerique.svg" alt="logo conseiller numérique France Services" />
+            </div>
+            <div className="rf-header__navbar">
               <div className="rf-service">
-                  <h1>
+                <h1>
                       Votre espace Conseiller Numérique France Services
-                  </h1>
+                </h1>
               </div>
             </div>
           </div>

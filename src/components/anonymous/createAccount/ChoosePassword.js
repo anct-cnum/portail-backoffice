@@ -32,14 +32,14 @@ function ChoosePassword({ match }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  const checkComplexity = password => password.length >= 6;
+
+  function handleSubmit() {
     setSubmitted(true);
     if (password && confirmPassword === password && checkComplexity(password)) {
       dispatch(userActions.choosePassword(token, password));
     }
   }
-
-  const checkComplexity = password => password.length >= 6;
 
   return (
     <div className="rf-container rf-mt-3w">
@@ -92,7 +92,7 @@ function ChoosePassword({ match }) {
           }
 
           { passwordChoosen &&
-            <span>Votre compte a été créé avec succès. <Link to='/login'>Vous pouvez vous connecter</Link>.</span>
+            <span>Votre compte a été créé avec succès. <Link to="/login">Vous pouvez vous connecter</Link>.</span>
           }
 
           <div className="rf-col-3"></div>
@@ -104,6 +104,6 @@ function ChoosePassword({ match }) {
 
 ChoosePassword.propTypes = {
   match: PropTypes.object
-}
+};
 
 export default ChoosePassword;

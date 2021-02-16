@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Route } from 'react';
 
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Admin from './admin/index';
 import Structure from './structure/index';
