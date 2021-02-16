@@ -25,7 +25,7 @@ function failure(error) { return { type: 'GET_CONSEILLER_FAILURE', error } }
 
 }
 
-function getAll({page = 0, filter, sortData = 'createdAt', sortOrder = 1 }) {
+function getAll({page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1 }) {
   return dispatch => {
       dispatch(request());
 
