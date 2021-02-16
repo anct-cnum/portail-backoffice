@@ -6,6 +6,7 @@ import Menu from './Menu';
 import Conseillers from './Conseillers';
 import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
+import Documents from './Documents';
 import { structureActions } from '../../../actions';
 
 function Structure() {
@@ -32,6 +33,7 @@ function Structure() {
             <Redirect from="/structure/conseillers" to={`/structure/conseillers/nouvelle`} />
             <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
             <Route path={`/structure/conseiller/details`} component={conseillerDetails} />
+            <Route path={`/structure/documents`} component={Documents} />
           </div>
         </div>
       </div>
