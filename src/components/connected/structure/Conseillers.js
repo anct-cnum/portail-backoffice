@@ -21,7 +21,7 @@ function Conseillers() {
 
   const navigate = (page) => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ page, filter: filter }));
+    dispatch(conseillerActions.getAll({ page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter }));
   }
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function Conseillers() {
     update();
     }, [ filter ]);
 
-  const update = () => dispatch(conseillerActions.getAll({ page, filter }));
+  const update = () => dispatch(conseillerActions.getAll({ page: page - 1, filter }));
 
   useEffect(() => {
     dispatch(statsActions.getMisesEnRelationStats());
