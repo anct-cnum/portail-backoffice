@@ -57,7 +57,11 @@ function Login() {
 
             <div className="rf-my-3w">
               <label className="rf-label">Mot de passe</label>
-              <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+              <input name="password"
+                type="password"
+                value={password}
+                onChange={handleChange}
+                className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
               {submitted && !password &&
             <div className="invalid">Mot de passe requis</div>
               }

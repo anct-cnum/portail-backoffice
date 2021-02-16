@@ -17,12 +17,16 @@ function ButtonsAction({ statut, updateStatut }) {
             </button>
       }
       {statut !== 'nonInteressee' && statut !== 'recrutee' &&
-            <button onClick={updateStatut.bind(this, 'nonInteressee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary" title="ça ne m'intéresse pas">
+            <button onClick={updateStatut.bind(this, 'nonInteressee')}
+              className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              title="ça ne m'intéresse pas">
             ça ne m&apos;intéresse pas
             </button>
       }
       {statut === 'recrutee' &&
-            <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left" title="annuler le recrutement">
+            <button onClick={updateStatut.bind(this, 'interessee')}
+              className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
+              title="annuler le recrutement">
             annuler le recrutement
             </button>
       }
