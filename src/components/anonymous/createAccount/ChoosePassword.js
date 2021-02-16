@@ -69,7 +69,11 @@ function ChoosePassword({ match }) {
 
               <div className="rf-my-3w">
                 <label className="rf-label">Mot de passe</label>
-                <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                <input name="password"
+                  type="password"
+                  value={password}
+                  onChange={handleChange}
+                  className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
                 {submitted && !password &&
                   <div className="invalid">Mot de passe requis</div>
                 }
@@ -80,7 +84,11 @@ function ChoosePassword({ match }) {
 
               <div className="rf-my-3w">
                 <label className="rf-label">Mot de passe (confirmation)</label>
-                <input name="confirmPassword" type="password" value={confirmPassword} onChange={handleChange} className={(password !== confirmPassword ? ' is-invalid rf-input' : 'rf-input')} />
+                <input name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={handleChange}
+                  className={(password !== confirmPassword ? ' is-invalid rf-input' : 'rf-input')} />
                 {password !== confirmPassword &&
                   <div className="invalid">Mot de passe doit être identique</div>
                 }

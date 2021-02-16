@@ -32,14 +32,18 @@ function ConseillerDetails({ location }) {
         {conseiller?.conseiller?.estDiplomeMedNum &&
             <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
         }
-        <p>A de l’expérience dans l’accompagnement de personnes vers l’autonomie dans leurs usages de technologies, services et médias numériques : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
+        <p>
+          A de l’expérience dans l’accompagnement de personnes vers l’autonomie dans leurs usages de technologies, services et médias numériques :
+          {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}
+        </p>
         <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
         <p>Distance de déplacement : {conseiller?.conseiller?.distanceMax}&nbsp;Km</p>
         <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
         <p>Email : {conseiller?.conseiller?.email}</p>
         <p>Téléphone : {conseiller?.conseiller?.telephone}</p>
       </div>
-      <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelationStatut} updateStatut={updateStatut} />
+      <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelationStatut}
+        updateStatut={updateStatut} />
       <p></p>
     </div>
   );
