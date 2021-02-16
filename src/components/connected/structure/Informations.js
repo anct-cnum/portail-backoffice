@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions } from '../../../actions';
+import { structureActions, conseillerActions } from '../../../actions';
 import dayjs from 'dayjs';
 
 function Informations() {
@@ -11,6 +11,7 @@ function Informations() {
 
   useEffect(() => {
     dispatch(structureActions.get());
+    dispatch(conseillerActions.getAll({}));
   }, []);
 
   return (
@@ -31,7 +32,7 @@ function Informations() {
             <p>Nom :<strong> { structure?.structure?.contactNom }</strong></p>
             <p>Prénom : { structure?.structure?.contactPrenom }</p>
             <p>Téléphone : { structure?.structure?.contactTelephone }</p>
-            <p>Nombre de mises en relation : { conseillers.items.total }</p>
+            <p>Nombre de mises en relation : { conseillers?.items?.total }</p>
           </div>
         </div>
       </div>

@@ -25,9 +25,6 @@ function login(username, password) {
   return fetch(apiUrlAuth, requestOptions)
   .then(handleResponse)
   .then(user => {
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    localStorage.setItem('user', JSON.stringify(user));
-
     return user;
   });
 }

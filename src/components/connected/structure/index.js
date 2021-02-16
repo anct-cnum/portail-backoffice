@@ -30,10 +30,10 @@ function Structure() {
           </div>
           <div className="rf-col-9">
             <Route path={`/structure/informations`} component={Informations} />
-            <Redirect from="/structure/conseillers" to={`/structure/conseillers/nouvelle`} />
             <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
             <Route path={`/structure/conseiller/details`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
+            <Redirect exact from="/structure" to={`/structure/conseillers/nouvelle`} />
           </div>
         </div>
       </div>
