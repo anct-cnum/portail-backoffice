@@ -20,7 +20,11 @@ function login(username, password) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        history.push(`/${data.user.role}`);
+        if (data.user.role === 'structure') {
+          history.push('/structure/conseillers/nouvelle');
+        } else {
+          history.push('/admin');
+        }
       },
       error => {
         dispatch(failure(error));
