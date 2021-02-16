@@ -13,7 +13,7 @@ function Pagination({ pageCount, current, navigate }) {
   const onClick = (e, page) => {
     e.preventDefault();
     navigate(page);
-  }
+  };
 
   if (pageCount <= 1) {
     return (<ul className="pagination" />);
@@ -24,11 +24,18 @@ function Pagination({ pageCount, current, navigate }) {
       <nav className="rf-pagination rf-grid-row rf-grid-row--center" aria-label="Pagination navigation">
         <ul className="rf-pagination__list rf-col-8">
           <li className={`rf-pagination__item--first rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>
-            <a className="rf-pagination__link" href="#" onClick={e => !isFirstPage ? onClick(e, 1) : () => { }} aria-label="Première page" title="Première page">
+            <a className="rf-pagination__link"
+              href="#"
+              onClick={e => !isFirstPage ? onClick(e, 1) : () => { }}
+              aria-label="Première page"
+              title="Première page">
             </a>
           </li>
           <li className={`rf-pagination__item--prev rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>
-            <a className="rf-pagination__link" onClick={e => !isFirstPage ? onClick(e, previousPage) : () => { }} href="#" aria-label="Page précédente" title="Page précédente">
+            <a className="rf-pagination__link" onClick={e => !isFirstPage ? onClick(e, previousPage) : () => { }}
+              href="#"
+              aria-label="Page précédente"
+              title="Page précédente">
               <span className="rf-pagination__label">Précédente</span>
             </a>
           </li>
@@ -77,12 +84,19 @@ function Pagination({ pageCount, current, navigate }) {
             <a href="/#" className="rf-pagination__link" onClick={e => onClick(e, lastPage)}>{lastPage}</a>
           </li>
           <li className={`rf-pagination__item--next rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>
-            <a className="rf-pagination__link" onClick={e => !isLastPage ? onClick(e, nextPage) : () => { }} href="#" aria-label="Page suivante" title="Page suivante">
+            <a className="rf-pagination__link"
+              onClick={e => !isLastPage ? onClick(e, nextPage) : () => { }}
+              href="#"
+              aria-label="Page suivante"
+              title="Page suivante">
               <span className="rf-pagination__label">Suivante</span>
             </a>
           </li>
           <li className={`rf-pagination__item--last rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>
-            <a className="rf-pagination__link" href="#" onClick={e => !isLastPage ? onClick(e, lastPage) : () => { }} aria-label="Dernière page" title="Dernière page">
+            <a className="rf-pagination__link"
+              href="#" onClick={e => !isLastPage ? onClick(e, lastPage) : () => { }}
+              aria-label="Dernière page"
+              title="Dernière page">
             </a>
           </li>
         </ul>
@@ -95,6 +109,6 @@ Pagination.propTypes = {
   pageCount: PropTypes.number,
   current: PropTypes.number,
   navigate: PropTypes.func
-}
+};
 
 export default Pagination;

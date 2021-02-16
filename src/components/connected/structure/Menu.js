@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {
-  Link
-} from "react-router-dom";
-
-import { useLocation } from 'react-router-dom'
+  Link,
+  useLocation
+} from 'react-router-dom';
 
 function Menu() {
 
@@ -21,10 +20,10 @@ function Menu() {
               <Link className="rf-sidemenu__link" to="/structure/conseillers/nouvelle">
                 <div className="rf-container">
                   <div className="rf-grid-row rf-grid-row--middle">
-                      <div className="rf-col alignRight">
-                        <span className="rf-fi-search-line"></span>
-                      </div>
-                      <div className="rf-col rf-p-1v">
+                    <div className="rf-col alignRight">
+                      <span className="rf-fi-search-line"></span>
+                    </div>
+                    <div className="rf-col rf-p-1v">
                         Mes candidatures
                     </div>
                   </div>
@@ -35,10 +34,10 @@ function Menu() {
               <Link className="rf-sidemenu__link" to="/structure/informations">
                 <div className="rf-container">
                   <div className="rf-grid-row rf-grid-row--middle rf-grid-row--center">
-                      <div className="rf-col alignRight">
-                        <span className="rf-fi-eye-line"></span>
-                      </div>
-                      <div className="rf-col rf-p-1v">
+                    <div className="rf-col alignRight">
+                      <span className="rf-fi-eye-line"></span>
+                    </div>
+                    <div className="rf-col rf-p-1v">
                         Mes informations
                     </div>
                   </div>
@@ -49,10 +48,10 @@ function Menu() {
               <Link className="rf-sidemenu__link" to="/structure/documents">
                 <div className="rf-container">
                   <div className="rf-grid-row rf-grid-row--middle rf-grid-row--center">
-                      <div className="rf-col alignRight">
-                        <span className="ri-folder-open-line"></span>
-                      </div>
-                      <div className="rf-col rf-p-1v">
+                    <div className="rf-col alignRight">
+                      <span className="ri-folder-open-line"></span>
+                    </div>
+                    <div className="rf-col rf-p-1v">
                         Mes documents
                     </div>
                   </div>

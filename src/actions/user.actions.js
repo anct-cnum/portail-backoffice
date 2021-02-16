@@ -8,27 +8,33 @@ export const userActions = {
   choosePassword
 };
 
-function login(username, password, from) {
+function login(username, password) {
   return dispatch => {
     dispatch(request({ username }));
 
     userService.login(username, password)
-      .then(
-        data => {
-          data.user.role = data.user.roles[0];
-          delete data.user.roles;
-          dispatch(success(data));
-          history.push(`/${data.user.role}`);
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      data => {
+        data.user.role = data.user.roles[0];
+        delete data.user.roles;
+        dispatch(success(data));
+        history.push(`/${data.user.role}`);
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
-  function request(user) { return { type: 'LOGIN_REQUEST', user } }
-  function success(user) { return { type: 'LOGIN_SUCCESS', user } }
-  function failure(error) { return { type: 'LOGIN_FAILURE', error } }
+  function request(user) {
+    return { type: 'LOGIN_REQUEST', user };
+  }
+  function success(user) {
+    return { type: 'LOGIN_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'LOGIN_FAILURE', error };
+  }
 }
 
 function logout() {
@@ -41,21 +47,27 @@ function verifyToken(token) {
     dispatch(request(token));
 
     userService.verifyToken(token)
-      .then(
-        user => {
-          user.role = user.roles[0];
-          delete user.roles;
-          dispatch(success(user));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      user => {
+        user.role = user.roles[0];
+        delete user.roles;
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
-  function request(token) { return { type: 'VERIFY_TOKEN_REQUEST', token } }
-  function success(user) { return { type: 'VERIFY_TOKEN_SUCCESS', user } }
-  function failure(error) { return { type: 'VERIFY_TOKEN_FAILURE', error } }
+  function request(token) {
+    return { type: 'VERIFY_TOKEN_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'VERIFY_TOKEN_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_TOKEN_FAILURE', error };
+  }
 }
 
 function choosePassword(token, password) {
@@ -63,19 +75,25 @@ function choosePassword(token, password) {
     dispatch(request(token));
 
     userService.choosePassword(token, password)
-      .then(
-        user => {
-          user.role = user.roles[0];
-          delete user.roles;
-          dispatch(success(user));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      user => {
+        user.role = user.roles[0];
+        delete user.roles;
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
-  function request(token) { return { type: 'CHOOSE_PASSWORD_REQUEST', token } }
-  function success(user) { return { type: 'CHOOSE_PASSWORD_SUCCESS', user } }
-  function failure(error) { return { type: 'CHOOSE_PASSWORD_FAILURE', error } }
+  function request(token) {
+    return { type: 'CHOOSE_PASSWORD_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'CHOOSE_PASSWORD_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'CHOOSE_PASSWORD_FAILURE', error };
+  }
 }

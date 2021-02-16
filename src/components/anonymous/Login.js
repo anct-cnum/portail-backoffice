@@ -27,48 +27,48 @@ function Login() {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     setSubmitted(true);
     if (username && password) {
-      const { from } = location.state || { from: { pathname: "/" } };
+      const { from } = location.state || { from: { pathname: '/' } };
       dispatch(userActions.login(username, password, from));
     }
   }
 
   return (
-<div className="rf-container rf-mt-3w">
-  <div className="rf-grid-row">
-    <div className="rf-col-3"></div>
-    <div className="Login rf-col-6 rf-p-5w">
-      <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
-      
-      <div>
-        <div>
-          {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
-        </div>
+    <div className="rf-container rf-mt-3w">
+      <div className="rf-grid-row">
+        <div className="rf-col-3"></div>
+        <div className="Login rf-col-6 rf-p-5w">
+          <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
 
-        <div className="rf-my-3w">
-          <label className="rf-label">Adresse email</label>
-          <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
-          {submitted && !username &&
+          <div>
+            <div>
+              {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
+            </div>
+
+            <div className="rf-my-3w">
+              <label className="rf-label">Adresse email</label>
+              <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
+              {submitted && !username &&
             <div className="invalid">Adresse email requise</div>
-          }
-        </div>
+              }
+            </div>
 
-        <div className="rf-my-3w">
-          <label className="rf-label">Mot de passe</label>
-          <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
-          {submitted && !password &&
+            <div className="rf-my-3w">
+              <label className="rf-label">Mot de passe</label>
+              <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+              {submitted && !password &&
             <div className="invalid">Mot de passe requis</div>
-          }
+              }
+            </div>
+            {loggingIn && <span>Connexion en cours...</span>}
+            <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
+          </div>
+          <div className="rf-col-3"></div>
         </div>
-        {loggingIn && <span>Connexion en cours...</span>}
-        <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
       </div>
-      <div className="rf-col-3"></div>
     </div>
-  </div>
-</div>
   );
 }
 

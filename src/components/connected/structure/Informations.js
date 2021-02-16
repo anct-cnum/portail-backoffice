@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions } from '../../../actions';
-import { useEffect } from 'react';
 import dayjs from 'dayjs';
 
 function Informations() {
@@ -28,7 +27,7 @@ function Informations() {
             <p>Nombre de conseillers souhaites : { structure?.structure?.nombreConseillersSouhaites }</p>
           </div>
           <div className="rf-col-4">
-          <h2><span className="rf-fi--lg rf-fi-user-fill"></span>&nbsp;Contact</h2>
+            <h2><span className="rf-fi--lg rf-fi-user-fill"></span>&nbsp;Contact</h2>
             <p>Nom :<strong> { structure?.structure?.contactNom }</strong></p>
             <p>Prénom : { structure?.structure?.contactPrenom }</p>
             <p>Téléphone : { structure?.structure?.contactTelephone }</p>

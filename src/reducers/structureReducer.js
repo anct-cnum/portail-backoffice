@@ -1,19 +1,19 @@
 export default function structure(state = null, action) {
-    switch (action.type) {
+  switch (action.type) {
     case 'GET_STRUCTURE_REQUEST':
-        return {
+      return {
         loading: true
-        };
+      };
     case 'GET_STRUCTURE_SUCCESS':
-        return {
-            ...state,
-            structure: action.structure
-        };
+      return {
+        ...state,
+        structure: action.structure
+      };
     case 'GET_STRUCTURE_FAILURE':
-        return {
+      return {
         error: action.error
-        };
+      };
     default:
-        return state
-    }
+      return state;
+  }
 }

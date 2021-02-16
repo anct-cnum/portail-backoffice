@@ -8,7 +8,7 @@ export const conseillerService = {
   get,
   getAll,
   updateStatus,
-}
+};
 
 function get(id) {
   const requestOptions = {
