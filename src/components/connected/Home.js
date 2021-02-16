@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Admin from './admin/index';
