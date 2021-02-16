@@ -13,9 +13,9 @@ function Home() {
   return (
     <>
 
-      <div className="rf-container rf-mt-4w">
-        <div className="rf-grid-row">
-          <div className="rf-col-4 rf-col-offset-8">
+      <div className="rf-container-fluid rf-mt-4w">
+        <div className="rf-grid-row rf-grid-row--end">
+          <div className="rf-col-3 rf-mr-2w">
             <div className="rf-tile rf-tile--horizontal">
               <div className="rf-tile__body">
                 <h3 className="rf-tile__title">
