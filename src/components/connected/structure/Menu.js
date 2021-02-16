@@ -45,6 +45,20 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item ${location.pathname === '/structure/documents' ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/documents">
+                <div className="rf-container">
+                  <div className="rf-grid-row rf-grid-row--middle rf-grid-row--center">
+                      <div className="rf-col alignRight">
+                        <span className="ri-folder-open-line"></span>
+                      </div>
+                      <div className="rf-col rf-p-1v">
+                        Mes documents
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
