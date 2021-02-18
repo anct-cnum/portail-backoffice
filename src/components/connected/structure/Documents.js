@@ -29,6 +29,22 @@ function Documents() {
             </a>
           </p>
         </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/Guide%20de%20l%27employeur%20-%20Public%20-%20V3.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
+                        Télécharger le guide de l&rsquo;employeur (pdf)
+            </a>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/Guide%20d%27entretien.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide d'entretien">
+                        Télécharger le guide d&rsquo;entretien (pdf)
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

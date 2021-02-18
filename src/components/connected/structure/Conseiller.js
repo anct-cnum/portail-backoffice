@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ conseiller, miseEnRelationId, statut }) {
+function Conseiller({ conseiller, miseEnRelationId, statut, distance }) {
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -27,7 +27,8 @@ function Conseiller({ conseiller, miseEnRelationId, statut }) {
         <Link style={{ boxShadow: 'none' }} to={{
           pathname: `/structure/conseiller/${conseiller._id}`,
           miseEnRelationId: miseEnRelationId,
-          miseEnRelationStatut: statut }}>
+          miseEnRelationStatut: statut,
+          miseEnRelationDistance: distance }}>
           <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === statut).label}</p>
           <h4 className="rf-card__title">
             {conseiller.prenom} {conseiller.nom}
@@ -53,7 +54,8 @@ Conseiller.propTypes = {
   conseiller: PropTypes.object,
   miseEnRelationId: PropTypes.string,
   statut: PropTypes.string,
-  update: PropTypes.func
+  update: PropTypes.func,
+  distance: PropTypes.number
 };
 
 export default Conseiller;

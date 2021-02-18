@@ -25,14 +25,12 @@ function Informations() {
             <p>Date d&apos;inscription : { dayjs(structure?.structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
             <p>Code Postal : { structure?.structure?.codePostal }</p>
             <p>Statut : { structure?.structure?.statut }</p>
-            <p>Nombre de conseillers souhaites : { structure?.structure?.nombreConseillersSouhaites }</p>
           </div>
           <div className="rf-col-4">
             <h2><span className="rf-fi--lg rf-fi-user-fill"></span>&nbsp;Contact</h2>
             <p>Nom :<strong> { structure?.structure?.contactNom }</strong></p>
             <p>Prénom : { structure?.structure?.contactPrenom }</p>
             <p>Téléphone : { structure?.structure?.contactTelephone }</p>
-            <p>Nombre de mises en relation : { conseillers?.items?.total }</p>
           </div>
         </div>
       </div>
