@@ -24,7 +24,7 @@ $blue-france:#000091;
 
 .logo-conseiller-numerique img:first-child {
     height: 54px;
-    margin-top: 1.2em;
+    margin-top: 1.1em;
     font-weight: lighter!important;
 }
 
@@ -49,4 +49,12 @@ $blue-france:#000091;
 .conseiller .customTitleLink {
     color: $blue-france;
     text-align: right;
+}
+
+.capitalizeFirstLetter {
+  text-transform: capitalize;
+}
+
+.titrage {
+  font-size: 56px;
 }
