@@ -13,24 +13,25 @@ require('dotenv').config();
 function App() {
   return (
     <div className="App">
-      <header className="rf-header">
+      <header className="rf-header" role="banner">
         <div className="rf-container">
-          <div className="rf-header__body">
-            <div className="rf-header__brand rf-sur-mesure">
-              <a href="#" title="République française" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logoRF.svg" width="96" alt="République Française. Liberté Égalité Fraternité." className="header__logo-rf" />
-              </a>
-            </div>
-            <div className="rf-header__operator logo-conseiller-numerique">
-              <img src="/logos/logo-conseiller-numerique.svg" alt="logo conseiller numérique France Services" />
-            </div>
-            <div className="rf-header__navbar">
-              <div className="rf-service">
-                <h1>
+          <div className="rf-grid-row rf-grid-row--top">
+            <div className="rf-col-1"></div>
+            <div className="rf-col-10">
+              <div className="rf-header__body">
+                <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
+                  <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
+                </a>
+                <div className="rf-header__navbar" style={{ marginBottom: '34px' }}>
+                  <div className="rf-service">
+                    <a className="rf-service__title titrage" href="/" title="Portail Conseiller Numérique">
                       Votre espace Conseiller Numérique France Services
-                </h1>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="rf-col-1"></div>
           </div>
         </div>
       </header>
@@ -41,6 +42,95 @@ function App() {
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
+      <footer className="rf-footer" role="contentinfo" id="footer">
+        <div className="rf-container">
+          <div className="rf-grid-row">
+            <div className="rf-col-1"></div>
+            <div className="rf-col-10">
+              <div className="rf-footer__body">
+                <div className="rf-container" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                  <div className="rf-grid-row rf-grid-row--bottom">
+                    <div>
+                      <div>
+                        <div className="rf-footer__brand">
+                          <a className="rf-footer__brand-link" href="/">
+                            <div style={{ display: 'inline-block' }} >
+                              <img src="/logos/logoRF.svg" alt="logo République Française" style={{ height: '80px', marginRight: '28px' }}/>
+                            </div>
+                            <div style={{ display: 'inline-block' }} >
+                              <img src="/logos/logo-anct.svg" alt="logo Agence Nationale De La Cohésion Des Territoires"
+                                style={{ height: '59px', marginRight: '50px' }}/>
+                            </div>
+                            <div style={{ display: 'inline-block' }} >
+                              <img src="/logos/logo-banque-des-territoires.svg" alt="logo Banque Des Territoires"
+                                style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }}/>
+                            </div>
+                            <div style={{ display: 'inline-block' }} >
+                              <img src="/logos/logo-france-relance.svg" alt="logo France Relance" style={{ height: '70px', marginBottom: '7px' }}/>
+                            </div>
+                          </a>
+                        </div>
+                        <div className="rf-footer__content rf-mt-3w">
+                          <p className="rf-footer__content-desc">
+                        Conseiller numérique France Services est un dispositif financé par l&rsquo;Etat dans le cadre de France Relance.
+                        Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires et opéré par la Banque des territoires
+                          </p>
+                        </div>
+                        <div>
+                          <ul className="rf-footer__content-list" style={{ justifyContent: 'flex-end' }}>
+                            <li >
+                              <a className="rf-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/">anct.gouv.fr</a>
+                            </li>
+                            <li >
+                              <a className="rf-footer__content-link" href="https://societenumerique.gouv.fr/">societenumerique.gouv.fr</a>
+                            </li>
+                            <li >
+                              <a className="rf-footer__content-link" href="https://www.banquedesterritoires.fr/">banquedesterritoires.fr</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="rf-footer__bottom">
+                        <ul className="rf-footer__bottom-list">
+                          <li className="rf-footer__bottom-item">
+                            <a className="rf-footer__bottom-link rf-pr-1w" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
+                          </li>
+                          <li className="rf-footer__bottom-item">
+                            <a className="rf-footer__bottom-link rf-px-1w"
+                              href="https://www.conseiller-numerique.gouv.fr/accessibilite">Accessibilité: non conforme
+                            </a>
+                          </li>
+                          <li className="rf-footer__bottom-item">
+                            <a className="rf-footer__bottom-link rf-px-1w"
+                              href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions légales
+                            </a>
+                          </li>
+                          <li className="rf-footer__bottom-item">
+                            <a className="rf-footer__bottom-link rf-px-1w"
+                              href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                          Données personnelles
+                            </a>
+                          </li>
+                          <li className="rf-footer__bottom-item">
+                            <a className="rf-footer__bottom-link rf-px-1w"
+                              href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                          Conditions générales d&rsquo;utilisation
+                            </a>
+                          </li>
+                        </ul>
+                        <div className="rf-footer__bottom-copy">
+                          © République Française 2021
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="rf-col-1"></div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

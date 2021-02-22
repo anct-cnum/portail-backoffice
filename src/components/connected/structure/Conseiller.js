@@ -29,7 +29,7 @@ function Conseiller({ miseEnRelation }) {
           miseEnRelation: miseEnRelation }}>
           <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === miseEnRelation.statut).label}</p>
           <h4 className="rf-card__title">
-            {miseEnRelation.conseiller.prenom} {miseEnRelation.conseiller.nom}
+            <span className="capitalizeFirstLetter">{miseEnRelation.conseiller.prenom}&nbsp;{miseEnRelation.conseiller.nom}</span>
           </h4>
           <div className="rf-card__desc">
             <div className="rf-container-fluid">

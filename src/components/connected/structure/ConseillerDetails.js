@@ -26,7 +26,10 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
-        <h2><i className="ri-briefcase-fill valignMiddle"></i>&nbsp;Conseiller {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</h2>
+        <h2>
+          <i className="ri-briefcase-fill valignMiddle"></i>
+          <span className="capitalizeFirstLetter">&nbsp;{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
+        </h2>
         <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
         <p>Diplomé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
         {conseiller?.conseiller?.estDiplomeMedNum &&
