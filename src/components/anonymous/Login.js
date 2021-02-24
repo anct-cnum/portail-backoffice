@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userActions } from '../../actions';
+import Header from '../common/Header';
 
 function Login() {
 
@@ -36,40 +37,50 @@ function Login() {
   }
 
   return (
-    <div className="rf-container rf-mt-3w">
-      <div className="rf-grid-row">
-        <div className="rf-col-3"></div>
-        <div className="Login rf-col-6 rf-p-5w">
-          <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
-
-          <div>
-            <div>
-              {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
-            </div>
-
-            <div className="rf-my-3w">
-              <label className="rf-label">Adresse email</label>
-              <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
-              {submitted && !username &&
-            <div className="invalid">Adresse email requise</div>
-              }
-            </div>
-
-            <div className="rf-my-3w">
-              <label className="rf-label">Mot de passe</label>
-              <input name="password"
-                type="password"
-                value={password}
-                onChange={handleChange}
-                className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
-              {submitted && !password &&
-            <div className="invalid">Mot de passe requis</div>
-              }
-            </div>
-            {loggingIn && <span>Connexion en cours...</span>}
-            <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
-          </div>
+    <div>
+      <Header/>
+      <div className="rf-container rf-mt-3w rf-mb-5w">
+        <div className="rf-grid-row rf-grid-row--center rf-p-2w">
+          <span style={{ textAlign: 'center' }}>
+            <strong>Cet espace dédié aux structures permet la consultation de candidatures et la sélection de candidats.
+              <br/>Il met à disposition également de la documentation et l&rsquo;affichage de ses informations.
+            </strong>
+          </span>
+        </div>
+        <div className="rf-grid-row">
           <div className="rf-col-3"></div>
+          <div className="Login rf-col-6 rf-p-2w">
+            <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
+
+            <div>
+              <div>
+                {error && <span style={{ color: 'red' }}>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
+              </div>
+
+              <div className="rf-my-3w">
+                <label className="rf-label">Adresse email</label>
+                <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
+                {submitted && !username &&
+              <div className="invalid">Adresse email requise</div>
+                }
+              </div>
+
+              <div className="rf-my-3w">
+                <label className="rf-label">Mot de passe</label>
+                <input name="password"
+                  type="password"
+                  value={password}
+                  onChange={handleChange}
+                  className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                {submitted && !password &&
+              <div className="invalid">Mot de passe requis</div>
+                }
+              </div>
+              {loggingIn && <span>Connexion en cours...</span>}
+              <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
+            </div>
+            <div className="rf-col-3"></div>
+          </div>
         </div>
       </div>
     </div>

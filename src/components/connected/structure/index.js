@@ -8,6 +8,7 @@ import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import { structureActions } from '../../../actions';
+import Header from '../../common/Header';
 
 function Structure() {
   const dispatch = useDispatch();
@@ -19,11 +20,14 @@ function Structure() {
 
   return (
     <div className="structure">
-      <div className="rf-m-1w rf-mb-4w rf-ml-4w">
-        <h2>Espace structure - {structure?.structure?.nom}</h2>
-        <div className="rf-highlight">SIRET: {structure?.structure?.siret}</div>
+      <Header connected />
+      <div className="rf-ml-1w rf-my-1w rf-py-1w">
+        <h2 style={{ textAlign: 'center' }}>
+          Espace structure - {structure?.structure?.nom}&nbsp;<span className="rf-highlight valignMiddle">SIRET: {structure?.structure?.siret}
+          </span>
+        </h2>
       </div>
-      <div className="rf-container-fluid">
+      <div className="rf-container-fluid rf-mb-5w">
         <div className="rf-grid-row">
           <div className="rf-col-3">
             <Menu />

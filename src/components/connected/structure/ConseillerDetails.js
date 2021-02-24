@@ -27,22 +27,20 @@ function ConseillerDetails({ location }) {
       </Link>
       <div>
         <h2>
-          <i className="ri-briefcase-fill valignMiddle"></i>
-          <span className="capitalizeFirstLetter">&nbsp;{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
+          <span className="capitalizeFirstLetter">
+            <i className="ri-briefcase-fill valignTextTop"></i>
+            &nbsp;{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
         <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
-        <p>Diplomé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
+        <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
         {conseiller?.conseiller?.estDiplomeMedNum &&
             <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
         }
-        <p>
-          A de l’expérience dans l’accompagnement de personnes vers l’autonomie dans leurs usages de technologies, services et médias numériques :
-          {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}
-        </p>
+        <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
         <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
         <p>Distance de déplacement : { Math.ceil(location.miseEnRelation?.distance / 1000) }&nbsp;Km</p>
         <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
-        <p>Email : {conseiller?.conseiller?.email}</p>
+        <p>Courriel : {conseiller?.conseiller?.email}</p>
         <p>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</p>
       </div>
       <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}

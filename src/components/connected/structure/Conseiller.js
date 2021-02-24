@@ -11,10 +11,10 @@ function Conseiller({ miseEnRelation }) {
     label: 'Nouvelle candidature'
   }, {
     key: 'nonInteressee',
-    label: 'Candidature non intéressante'
+    label: 'Candidature non retenue'
   }, {
     key: 'interessee',
-    label: 'Candidature intéressante'
+    label: 'Candidature sélectionnée'
   }, {
     key: 'recrutee',
     label: 'Recruté'
@@ -27,9 +27,14 @@ function Conseiller({ miseEnRelation }) {
         <Link style={{ boxShadow: 'none' }} to={{
           pathname: `/structure/conseiller/${miseEnRelation.conseiller._id}`,
           miseEnRelation: miseEnRelation }}>
-          <p className="rf-card__detail">Conseiller - {statutLabel.find(item => item.key === miseEnRelation.statut).label}</p>
           <h4 className="rf-card__title">
-            <span className="capitalizeFirstLetter">{miseEnRelation.conseiller.prenom}&nbsp;{miseEnRelation.conseiller.nom}</span>
+            <span className="capitalizeFirstLetter">
+              <i className="ri-briefcase-fill valignTextTop"></i>
+              &nbsp;{miseEnRelation.conseiller.prenom}&nbsp;{miseEnRelation.conseiller.nom}
+            </span>
+            <div className="rf-highlight valignTextTop" style={{ display: 'inline-block' }}>
+              {statutLabel.find(item => item.key === miseEnRelation.statut).label}
+            </div>
           </h4>
           <div className="rf-card__desc">
             <div className="rf-container-fluid">

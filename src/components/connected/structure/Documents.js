@@ -11,6 +11,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le contrat de projet type">
                         Télécharger le contrat de projet type (pdf)
             </a>
+            <span className="rf-highlight" style={{ display: 'inline-block' }}>
+              Contrat de travail à durée déterminée
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -19,6 +22,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger la fiche de poste type">
                         Télécharger la fiche de poste type (pdf)
             </a>
+            <span className="rf-highlight" style={{ display: 'inline-block' }}>
+              Fiche avec détails de l&rsquo;offre, des missions et des tâches
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -27,6 +33,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le modèle de délibération">
                         Télécharger le modèle de délibération (pdf)
             </a>
+            <span className="rf-highlight" style={{ display: 'inline-block' }}>
+              Document pour la création d&rsquo;un poste non permanent
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -35,6 +44,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
                         Télécharger le guide de l&rsquo;employeur (pdf)
             </a>
+            <span className="rf-highlight" style={{ display: 'inline-block' }}>
+              Détails du dispositif pour la structure accueillante
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -43,6 +55,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le guide d'entretien">
                         Télécharger le guide d&rsquo;entretien (pdf)
             </a>
+            <span className="rf-highlight" style={{ display: 'inline-block' }}>
+              Préconisations pour l&rsquo;entretien du candidat
+            </span>
           </p>
         </div>
       </div>
