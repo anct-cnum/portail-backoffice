@@ -7,7 +7,6 @@ function Informations() {
 
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
-  const conseillers = useSelector(state => state.conseillers);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -16,7 +15,7 @@ function Informations() {
 
   return (
     <div className="informations">
-      <div className="rf-container">
+      <div className="rf-container-fluid">
         <div className="rf-grid-row rf-grid-row--top">
           <div className="rf-col-4">
             <h2 style={{ marginTop: '0' }}><i className="ri-sm ri-government-line valignBottom"></i>&nbsp;Structure</h2>

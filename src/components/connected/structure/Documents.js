@@ -4,7 +4,7 @@ function Documents() {
 
   return (
     <div className="documents">
-      <div className="rf-container">
+      <div className="rf-container-fluid">
         <div className="rf-grid-row">
           <p>
             <a href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/Contrat%20de%20projet%20type.pdf"

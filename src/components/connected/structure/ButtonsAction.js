@@ -8,14 +8,14 @@ function ButtonsAction({ statut, updateStatut }) {
     <div>
       {statut === 'nouvelle' &&
         <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
-          Ca m&apos;intéresse
+          &Ccedil;a m&apos;intéresse
         </button>
       }
       {statut === 'nouvelle' &&
         <button onClick={updateStatut.bind(this, 'nonInteressee')}
           className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
           title="ça ne m'intéresse pas">
-          Ca ne m&apos;intéresse pas
+          &Ccedil;a ne m&apos;intéresse pas
         </button>
       }
       {statut === 'interessee' &&
