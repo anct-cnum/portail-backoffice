@@ -43,15 +43,15 @@ function Conseillers() {
 
   const tabs = [
     {
-      name: 'Nouvelles candidatures',
+      name: 'Candidatures reçues',
       filter: 'nouvelle'
     },
     {
-      name: 'Intéressantes',
+      name: 'Candidatures sélectionnées',
       filter: 'interessee'
     },
     {
-      name: 'Pas intéressantes',
+      name: 'Candidatures non retenues',
       filter: 'nonInteressee'
     },
     {
@@ -59,7 +59,7 @@ function Conseillers() {
       filter: 'recrutee'
     },
     {
-      name: 'Toutes',
+      name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }
   ];

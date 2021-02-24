@@ -6,29 +6,43 @@ function ButtonsAction({ statut, updateStatut }) {
   return (
 
     <div>
+      {statut === 'nouvelle' &&
+        <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
+          &Ccedil;a m&apos;intéresse
+        </button>
+      }
+      {statut === 'nouvelle' &&
+        <button onClick={updateStatut.bind(this, 'nonInteressee')}
+          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+          title="ça ne m'intéresse pas">
+          &Ccedil;a ne m&apos;intéresse pas
+        </button>
+      }
       {statut === 'interessee' &&
-            <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
-              <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Recruter
-            </button>
+        <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
+          <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Recruter
+        </button>
       }
-      {statut !== 'interessee' && statut !== 'recrutee' &&
-            <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
-            ça m&apos;intéresse
-            </button>
+      { statut === 'interessee' &&
+        <button onClick={updateStatut.bind(this, 'nouvelle')}
+          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+          title="Annuler">
+          Annuler
+        </button>
       }
-      {statut !== 'nonInteressee' && statut !== 'recrutee' &&
-            <button onClick={updateStatut.bind(this, 'nonInteressee')}
-              className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-              title="ça ne m'intéresse pas">
-            ça ne m&apos;intéresse pas
-            </button>
+      { statut === 'nonInteressee' &&
+        <button onClick={updateStatut.bind(this, 'nouvelle')}
+          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+          title="Annuler">
+          Annuler
+        </button>
       }
       {statut === 'recrutee' &&
-            <button onClick={updateStatut.bind(this, 'interessee')}
-              className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
-              title="annuler le recrutement">
-            annuler le recrutement
-            </button>
+        <button onClick={updateStatut.bind(this, 'interessee')}
+          className="rf-btn rf-btn--secondary rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
+          title="annuler le recrutement">
+        Annuler le recrutement
+        </button>
       }
     </div>
   );
