@@ -43,7 +43,7 @@ function Conseillers() {
 
   const tabs = [
     {
-      name: 'Candidatures reçues',
+      name: 'Nouvelles candidatures',
       filter: 'nouvelle'
     },
     {

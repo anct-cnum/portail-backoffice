@@ -23,7 +23,6 @@ function Informations() {
             <p>Siret : { structure?.structure?.siret }</p>
             <p>Date d&apos;inscription : { dayjs(structure?.structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
             <p>Code Postal : { structure?.structure?.codePostal }</p>
-            <p>Statut : { structure?.structure?.statut }</p>
           </div>
           <div className="rf-col-4">
             <h2 style={{ marginTop: '0' }}><span className="rf-fi--lg rf-fi-user-fill"></span>&nbsp;Contact</h2>
