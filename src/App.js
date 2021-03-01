@@ -20,7 +20,7 @@ function App() {
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
-      <footer className="rf-footer" role="contentinfo" id="footer">
+      <footer className="rf-footer rf-mt-12w" role="contentinfo" id="footer">
         <div className="rf-container">
           <div className="rf-grid-row">
             <div className="rf-col-1"></div>

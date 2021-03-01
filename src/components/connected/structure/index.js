@@ -19,11 +19,13 @@ function Structure() {
   }, []);
 
   return (
-    <div className="structure">
+    <div className="structure rf-pb-md-3w">
       <Header connected />
       <div className="rf-ml-1w rf-my-1w rf-py-1w">
         <h2 style={{ textAlign: 'center' }}>
-          Espace structure - {structure?.structure?.nom}&nbsp;<span className="rf-highlight valignMiddle">SIRET: {structure?.structure?.siret}
+          Espace structure — {structure?.structure?.nom}&nbsp;
+          <span className="rf-highlight valignMiddle" style={{ fontWeight: 'normal' }}>
+            SIRET: {structure?.structure?.siret}
           </span>
         </h2>
       </div>

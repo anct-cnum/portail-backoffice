@@ -36,7 +36,7 @@ function Pagination({ pageCount, current, navigate }) {
               href="#"
               aria-label="Page précédente"
               title="Page précédente">
-              <span className="rf-pagination__label">Précédente</span>
+              <span className="rf-pagination__label">Page précédente</span>
             </a>
           </li>
           <li className={`rf-pagination__item ${isFirstPage ? 'rf-pagination__item--active' : ''}`}>
@@ -89,7 +89,7 @@ function Pagination({ pageCount, current, navigate }) {
               href="#"
               aria-label="Page suivante"
               title="Page suivante">
-              <span className="rf-pagination__label">Suivante</span>
+              <span className="rf-pagination__label">Page suivante</span>
             </a>
           </li>
           <li className={`rf-pagination__item--last rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>

@@ -28,8 +28,7 @@ function ConseillerDetails({ location }) {
       <div>
         <h2>
           <span className="capitalizeFirstLetter">
-            <i className="ri-briefcase-fill valignTextTop"></i>
-            &nbsp;{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
+            {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
         <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
         <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
@@ -40,9 +39,10 @@ function ConseillerDetails({ location }) {
         <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
         <p>Distance de déplacement : { Math.ceil(location.miseEnRelation?.distance / 1000) }&nbsp;Km</p>
         <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
-        <p>Courriel : {conseiller?.conseiller?.email}</p>
+        <p>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></p>
         <p>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</p>
       </div>
+      <br/>
       <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
         updateStatut={updateStatut} />
       <p></p>
