@@ -17,43 +17,28 @@ function Menu() {
         <div className="rf-sidemenu__wrapper" id="rf-sidemenu-wrapper">
           <ul className="rf-sidemenu__list">
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/conseillers') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/conseillers/nouvelle">
-                <div className="rf-container">
-                  <div className="rf-grid-row rf-grid-row--middle">
-                    <div className="rf-col alignRight">
-                      <span className="rf-fi-search-line"></span>
-                    </div>
-                    <div className="rf-col rf-p-1v">
-                        Mes candidatures
-                    </div>
+              <Link className="rf-sidemenu__link" to="/structure/conseillers/nouvelle" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes candidatures
                   </div>
                 </div>
               </Link>
             </li>
             <li className={`rf-sidemenu__item ${location.pathname === '/structure/informations' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/informations">
-                <div className="rf-container">
-                  <div className="rf-grid-row rf-grid-row--middle rf-grid-row--center">
-                    <div className="rf-col alignRight">
-                      <span className="rf-fi-eye-line"></span>
-                    </div>
-                    <div className="rf-col rf-p-1v">
-                        Mes informations
-                    </div>
+              <Link className="rf-sidemenu__link" to="/structure/informations" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes informations
                   </div>
                 </div>
               </Link>
             </li>
             <li className={`rf-sidemenu__item ${location.pathname === '/structure/documents' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/documents">
-                <div className="rf-container">
-                  <div className="rf-grid-row rf-grid-row--middle rf-grid-row--center">
-                    <div className="rf-col alignRight">
-                      <span className="ri-folder-open-line"></span>
-                    </div>
-                    <div className="rf-col rf-p-1v">
-                        Mes documents
-                    </div>
+              <Link className="rf-sidemenu__link" to="/structure/documents" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes documents
                   </div>
                 </div>
               </Link>

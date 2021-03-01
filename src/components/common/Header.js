@@ -17,11 +17,12 @@ function Header({ connected }) {
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
               </a>
-              <div className="rf-header__navbar" style={{ marginBottom: '34px' }}>
+              <div className="rf-header__navbar" style={{ marginBottom: '18px' }}>
                 <div className="rf-service">
                   <a className="rf-service__title titrage" href="/" title="Portail Conseiller Numérique">
                     Votre espace Conseiller Numérique France Services
                   </a>
+                  <p className="rf-service__tagline">Espace de gestion des candidatures</p>
                 </div>
               </div>
               { connected &&

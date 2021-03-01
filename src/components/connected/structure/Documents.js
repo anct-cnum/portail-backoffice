@@ -11,9 +11,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
                         Télécharger le guide de l&rsquo;employeur (pdf)
             </a>
-            <div className="rf-highlight">
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Détails du dispositif pour la structure accueillante
-            </div>
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -22,9 +22,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger la fiche de poste type">
                         Télécharger la fiche de poste type (pdf)
             </a>
-            <div className="rf-highlight">
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Fiche avec détails de l&rsquo;offre, des missions et des tâches
-            </div>
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -33,9 +33,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le guide d'entretien">
                         Télécharger le guide d&rsquo;entretien (pdf)
             </a>
-            <div className="rf-highlight">
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Préconisations pour l&rsquo;entretien du candidat
-            </div>
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -44,9 +44,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le modèle de délibération">
                         Télécharger le modèle de délibération (pdf)
             </a>
-            <div className="rf-highlight">
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Document pour la création d&rsquo;un poste non permanent
-            </div>
+            </span>
           </p>
         </div>
         <div className="rf-grid-row">
@@ -55,9 +55,9 @@ function Documents() {
               className="rf-link" target="blank" title="Télécharger le contrat de projet type">
                         Télécharger le contrat de projet type (pdf)
             </a>
-            <div className="rf-highlight">
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Contrat de travail à durée déterminée
-            </div>
+            </span>
           </p>
         </div>
       </div>

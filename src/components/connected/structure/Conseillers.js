@@ -87,7 +87,7 @@ function Conseillers() {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} />);
