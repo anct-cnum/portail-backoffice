@@ -5,6 +5,7 @@ import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
+import PopIn from '../../common/PopIn';
 
 function ConseillerDetails({ location }) {
 
@@ -26,6 +27,7 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
+        <PopIn statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
         <h2>
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
