@@ -30,11 +30,11 @@ function Home() {
         </div>
       </div>
 
-      { user?.role === 'admin' &&
+      { (user?.role === 'admin' || user?.role === 'structure') &&
         <Admin />
       }
 
-      { user?.role === 'structure' &&
+      { user?.role === 'admin' &&
         <Structure />
       }
 
