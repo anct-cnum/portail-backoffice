@@ -18,6 +18,11 @@ export default function conseiller(state = null, action) {
         ...state,
         miseEnRelation: action.miseEnRelation
       };
+    case 'UPDATE_DATE_SUCCESS':
+      return {
+        ...state,
+        miseEnRelation: action.miseEnRelation
+      };
     default:
       return state;
   }
