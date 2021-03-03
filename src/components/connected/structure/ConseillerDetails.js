@@ -45,9 +45,11 @@ function ConseillerDetails({ location }) {
         <p>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</p>
       </div>
       <br/>
-      <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
-        updateStatut={updateStatut} />
-      <p></p>
+      <ButtonsAction
+        statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
+        miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
+        updateStatut={updateStatut}
+        dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement ? conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
     </div>
   );
 }
