@@ -5,6 +5,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const structureService = {
   get,
+  getAll,
 };
 
 function get() {
@@ -14,6 +15,19 @@ function get() {
   };
 
   return fetch(`${apiUrlRoot}/structures/${userEntityId()}`, requestOptions).then(handleResponse);
+}
+
+function getAll(page, filter, sortData, sortOrder) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}`;
+  if (filter) {
+    uri += `&filter=${filter}`;
+  }
+
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

@@ -9,15 +9,13 @@ function Home() {
 
   return (
     <>
-
-      { user?.role === 'admin' &&
+      { (user?.role === 'admin' || user?.role === 'structure') &&
         <Admin />
       }
 
       { user?.role === 'structure' &&
         <Structure />
       }
-
     </>
   );
 }
