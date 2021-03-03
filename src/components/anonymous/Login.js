@@ -48,10 +48,25 @@ function Login() {
           </span>
         </div>
         <div className="rf-grid-row">
-          <div className="rf-col-3"></div>
-          <div className="Login rf-col-6 rf-p-2w">
-            <h2>Connexion<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
 
+          <div className="rf-col-xs-12 rf-col-sm-6 rf-pt-8w">
+            <p>
+              <strong>Rappel sur les étapes du processus de recrutement
+              des conseillers numériques France Services</strong>
+            </p>
+            <p>
+              <ul style={{ paddingLeft: '18px' }}>
+                <li>Inscription sur la plateforme <a href="http://conseiller-numerique.gouv.fr/">conseiller-numerique.gouv.fr</a></li>
+                <li>Concertation territoriale</li>
+                <li>&Eacute;tude des candidatures <span style={{ color: '#B60000' }}>(Vous êtes ici)</span></li>
+                <li>Conduite des entretiens de recrutement</li>
+                <li>Demande de subvention</li>
+                <li>Signature du contrat</li>
+              </ul>
+            </p>
+          </div>
+          <div className="Login rf-col-xs-12 rf-col-sm-6 rf-p-2w" style={{ textAlign: 'left' }}>
+            <h2>Connexion</h2>
             <div>
               <div>
                 {error && <span style={{ color: 'red' }}>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
@@ -79,7 +94,7 @@ function Login() {
               {loggingIn && <span>Connexion en cours...</span>}
               <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
             </div>
-            <div className="rf-col-3"></div>
+
           </div>
         </div>
       </div>
