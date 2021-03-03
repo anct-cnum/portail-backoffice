@@ -30,11 +30,11 @@ function get() {
 }
 
 
-function getAll({ page = 0, filter, sortData = 'siret', sortOrder = 1 }) {
+function getAll({ departement, page = 0, filter, sortData = 'siret', sortOrder = 1 }) {
   return dispatch => {
     dispatch(request());
 
-    structureService.getAll(page, filter, sortData, sortOrder)
+    structureService.getAll(departement, page, filter, sortData, sortOrder)
     .then(
       structures => dispatch(success(structures)),
       error => {

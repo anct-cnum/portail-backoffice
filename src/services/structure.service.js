@@ -17,12 +17,12 @@ function get() {
   return fetch(`${apiUrlRoot}/structures/${userEntityId()}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, filter, sortData, sortOrder) {
+function getAll(departement, page, filter, sortData, sortOrder) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}`;
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}&codeDepartement=${departement}`;
   if (filter) {
     uri += `&filter=${filter}`;
   }
