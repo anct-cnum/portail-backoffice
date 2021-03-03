@@ -8,6 +8,9 @@ function Structures() {
   const dispatch = useDispatch();
 
   const structures = useSelector(state => state.structures);
+  const user = useSelector(state => state.authentication.user.user);
+
+  const departement = user.departement;
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -25,7 +28,7 @@ function Structures() {
     }
   }, [structures]);
 
-  const update = () => dispatch(structureActions.getAll({ page: page - 1 }));
+  const update = () => dispatch(structureActions.getAll({ departement, page: page - 1 }));
 
   useEffect(() => {
     update();

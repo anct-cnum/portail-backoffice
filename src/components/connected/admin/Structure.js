@@ -8,7 +8,7 @@ function Structure({ structure }) {
   return (
     <div className="structure rf-card rf-card--horizontal">
       <div className="rf-card__body">
-        <p className="rf-card__detail">SIRET {structure.siret}</p>
+        <p className="rf-card__detail">SIRET {structure.siret !== 'null' ? structure.siret : 'non renseigné' }</p>
         <h4 className="rf-card__title">
           <span className="capitalizeFirstLetter">{structure.nom}</span>
         </h4>

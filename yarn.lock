@@ -1228,6 +1228,15 @@
     "@gouvfr/links" "^0.4.0"
     "@gouvfr/schemes" "^0.4.0"
 
+"@gouvfr/buttons@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@gouvfr/buttons/-/buttons-0.5.3.tgz#7d5e49a04f74be6f9ecc329f99f7ff7be4ec6980"
+  integrity sha512-PqnmqSDoO23Oc4N5ULZNl3Kf4fjI59gjc0pqSfsexXUriOpe/snUdSEIGbk7repWHsyqA2bhv2k7JsqZOoz3mg==
+  dependencies:
+    "@gouvfr/core" "^0.5.3"
+    "@gouvfr/links" "^0.5.3"
+    "@gouvfr/schemes" "^0.5.3"
+
 "@gouvfr/callouts@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@gouvfr/callouts/-/callouts-0.4.0.tgz#f17f989a4c83c641b6bd385fc0f172621b285076"
@@ -1268,6 +1277,13 @@
   dependencies:
     gently-copy "^3.2.0"
     prompt "^1.0.0"
+
+"@gouvfr/core@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@gouvfr/core/-/core-0.5.3.tgz#3cce7c85df131bbef66d000683fa7e2a1251c15d"
+  integrity sha512-0XEEZMxxNpZcCPrwReaT+DyyKuVvEB9hFkFfQl2EIV9SFNLJwY39F8mr5XqWAH+3XMlsvPqSkaUc28xUHa5IJQ==
+  dependencies:
+    "@gouvfr/schemes" "^0.5.3"
 
 "@gouvfr/footer@^0.4.0":
   version "0.4.0"
@@ -1337,6 +1353,14 @@
     "@gouvfr/core" "^0.4.0"
     "@gouvfr/schemes" "^0.4.0"
 
+"@gouvfr/links@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@gouvfr/links/-/links-0.5.3.tgz#7f372fd135e09061be1e128e05c5077576b68753"
+  integrity sha512-/rsEGBmsoV5ZbPCEM9AoQtmZJwsKxqtqqLCdXYkjaJNo8bKdDfROa6zzGwnnDlBfuKaSZgM42TEiD6KCdOKDNA==
+  dependencies:
+    "@gouvfr/core" "^0.5.3"
+    "@gouvfr/schemes" "^0.5.3"
+
 "@gouvfr/logo@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@gouvfr/logo/-/logo-0.4.0.tgz#8a5a84cc2609b663d309b7638c593efdf7c6408a"
@@ -1344,6 +1368,16 @@
   dependencies:
     "@gouvfr/core" "^0.4.0"
     "@gouvfr/schemes" "^0.4.0"
+
+"@gouvfr/modal@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@gouvfr/modal/-/modal-0.5.4.tgz#e342ce1d25b403b576d6a271482fcabb041bcf00"
+  integrity sha512-HVQkdOvaoQEFU7XBTVOVjYyC1E5m/fbDkqsN1r/N+SgUABZpG4THEvZwKUMFc6/aUDfhiQFGlk5C87e4kIJUrA==
+  dependencies:
+    "@gouvfr/buttons" "^0.5.3"
+    "@gouvfr/core" "^0.5.3"
+    "@gouvfr/links" "^0.5.3"
+    "@gouvfr/schemes" "^0.5.3"
 
 "@gouvfr/navigation@^0.4.0":
   version "0.4.0"
@@ -1378,6 +1412,11 @@
   integrity sha512-yOI0/4rzL98rJG6R3Y+nc6wLju+fEteFmT4YMALJtScrdSWEnadifam/pbacLWLCQoh+r6xsfi8s/VeU5zy6wg==
   dependencies:
     "@gouvfr/core" "^0.4.0"
+
+"@gouvfr/schemes@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@gouvfr/schemes/-/schemes-0.5.3.tgz#5884fe02a8f656b2e6272edf803a931f999912d4"
+  integrity sha512-9BN5VH4H8U+j4Wcit+gc8a26wQLMPEAm6edlNmj0BhHrcgK2X7yNrS0Zg0J90KqILQRKNMDC8AxYg7GvtrWDKg==
 
 "@gouvfr/search@^0.4.0":
   version "0.4.0"
@@ -8040,6 +8079,11 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
+
+json-loader@^0.5.7:
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/json-loader/-/json-loader-0.5.7.tgz#dca14a70235ff82f0ac9a3abeb60d337a365185d"
+  integrity sha512-QLPs8Dj7lnf3e3QYS1zkCo+4ZwqOiF9d/nZnYozTISxXWCfNs9yuky5rJw4/W34s7POaNlbZmQGaB5NiXCbP4w==
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
