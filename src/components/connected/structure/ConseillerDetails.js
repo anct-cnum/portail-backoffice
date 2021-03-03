@@ -5,6 +5,7 @@ import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
+import PopIn from '../../common/PopIn';
 
 function ConseillerDetails({ location }) {
 
@@ -26,25 +27,24 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
+        <PopIn statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
         <h2>
-          <i className="ri-briefcase-fill valignMiddle"></i>
-          <span className="capitalizeFirstLetter">&nbsp;{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
+          <span className="capitalizeFirstLetter">
+            {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
         <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'a en emploi' : 'sans emploi'}</p>
-        <p>Diplomé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
+        <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
         {conseiller?.conseiller?.estDiplomeMedNum &&
             <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
         }
-        <p>
-          A de l’expérience dans l’accompagnement de personnes vers l’autonomie dans leurs usages de technologies, services et médias numériques :
-          {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}
-        </p>
+        <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
         <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
         <p>Distance de déplacement : { Math.ceil(location.miseEnRelation?.distance / 1000) }&nbsp;Km</p>
         <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
-        <p>Email : {conseiller?.conseiller?.email}</p>
+        <p>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></p>
         <p>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</p>
       </div>
+      <br/>
       <ButtonsAction statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
         updateStatut={updateStatut} />
       <p></p>

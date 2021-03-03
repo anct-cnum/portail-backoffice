@@ -47,11 +47,11 @@ function Conseillers() {
       filter: 'nouvelle'
     },
     {
-      name: 'Intéressantes',
+      name: 'Candidatures sélectionnées',
       filter: 'interessee'
     },
     {
-      name: 'Pas intéressantes',
+      name: 'Candidatures non retenues',
       filter: 'nonInteressee'
     },
     {
@@ -59,7 +59,7 @@ function Conseillers() {
       filter: 'recrutee'
     },
     {
-      name: 'Toutes',
+      name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }
   ];
@@ -87,7 +87,7 @@ function Conseillers() {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
         return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} />);

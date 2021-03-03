@@ -13,28 +13,6 @@ require('dotenv').config();
 function App() {
   return (
     <div className="App">
-      <header className="rf-header" role="banner">
-        <div className="rf-container">
-          <div className="rf-grid-row rf-grid-row--top">
-            <div className="rf-col-1"></div>
-            <div className="rf-col-10">
-              <div className="rf-header__body">
-                <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                  <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
-                </a>
-                <div className="rf-header__navbar" style={{ marginBottom: '34px' }}>
-                  <div className="rf-service">
-                    <a className="rf-service__title titrage" href="/" title="Portail Conseiller Numérique">
-                      Votre espace Conseiller Numérique France Services
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="rf-col-1"></div>
-          </div>
-        </div>
-      </header>
       <Router history={history}>
         <Switch>
           <Route path="/login" component={Login} />
@@ -42,7 +20,7 @@ function App() {
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
-      <footer className="rf-footer" role="contentinfo" id="footer">
+      <footer className="rf-footer rf-mt-12w" role="contentinfo" id="footer">
         <div className="rf-container">
           <div className="rf-grid-row">
             <div className="rf-col-1"></div>
@@ -72,8 +50,8 @@ function App() {
                         </div>
                         <div className="rf-footer__content rf-mt-3w">
                           <p className="rf-footer__content-desc">
-                        Conseiller numérique France Services est un dispositif financé par l&rsquo;Etat dans le cadre de France Relance.
-                        Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires et opéré par la Banque des territoires
+                        Conseiller numérique France Services est un dispositif financé par l&rsquo;&Eacute;tat dans le cadre de France Relance.
+                        Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires et opéré par la Banque des Territoires.
                           </p>
                         </div>
                         <div>

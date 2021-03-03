@@ -6,7 +6,6 @@ $blue-france:#000091;
 
 .Login {
     border-radius: 8px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     text-align: center;
 }
 
@@ -29,7 +28,13 @@ $blue-france:#000091;
 }
 
 .rf-tag.current {
-    font-weight: bold;
+    font-weight: 600;
+    color: white;
+    background-color: #5770BE;
+}
+
+.rf-tag:hover {
+  background-color: #D5DBEF;
 }
 
 /** Icones menu gauche **/
@@ -42,8 +47,16 @@ $blue-france:#000091;
     text-align: right;
 }
 
+.valignTextTop {
+  vertical-align: text-top;
+}
+
 .valignMiddle {
-    vertical-align: middle;
+  vertical-align: middle;
+}
+
+.valignBottom {
+  vertical-align: bottom;
 }
 
 .conseiller .customTitleLink {
@@ -53,8 +66,15 @@ $blue-france:#000091;
 
 .capitalizeFirstLetter {
   text-transform: capitalize;
+  color: $blue-france;
 }
 
 .titrage {
   font-size: 56px;
+}
+
+/* Modal Gestion */
+.modalOpened {
+  opacity: 1;
+  visibility: visible;
 }
