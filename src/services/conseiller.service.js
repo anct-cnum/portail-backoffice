@@ -8,6 +8,7 @@ export const conseillerService = {
   get,
   getAll,
   updateStatus,
+  updateDateRecrutement,
 };
 
 function get(id) {
@@ -38,6 +39,18 @@ function updateStatus(id, statut) {
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
       statut: statut
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
+}
+
+function updateDateRecrutement(id, date) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      dateRecrutement: date
     })
   };
 
