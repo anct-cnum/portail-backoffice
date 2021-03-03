@@ -14,10 +14,10 @@ function Conseiller({ miseEnRelation }) {
     label: 'Candidature non retenue'
   }, {
     key: 'interessee',
-    label: 'Candidature sélectionnée'
+    label: 'Candidature pré sélectionnée'
   }, {
     key: 'recrutee',
-    label: 'Recruté'
+    label: 'Candidature validée'
   },
   ];
 

@@ -22,7 +22,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
     <div>
       {statut === 'nouvelle' &&
         <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
-          Sélectionner ce profil
+          Pré sélectionner
         </button>
       }
       {statut === 'nouvelle' &&
@@ -34,7 +34,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
       }
       {statut === 'interessee' &&
         <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
-          <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Recruter
+          <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
         </button>
       }
       { statut === 'interessee' &&
@@ -55,9 +55,9 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         <div>
           <label
             className="rf-label rf-mx-1w"
-            style={{ color: '#000091', fontSize: 'unset' }}
+            style={{ fontSize: 'unset' }}
             htmlFor="datePicker">
-              Veuillez saisir la date d&rsquo;embauche du ou de la candidate retenu(e) :
+            <strong>Veuillez sélectionner la date d&rsquo;embauche du ou de la candidate retenu(e) :</strong>
           </label>
           <DatePicker
             id="datePicker"

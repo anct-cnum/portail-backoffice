@@ -47,7 +47,7 @@ function Conseillers() {
       filter: 'nouvelle'
     },
     {
-      name: 'Candidatures sélectionnées',
+      name: 'Candidatures pré sélectionnées',
       filter: 'interessee'
     },
     {
@@ -55,7 +55,7 @@ function Conseillers() {
       filter: 'nonInteressee'
     },
     {
-      name: 'Recrutées',
+      name: 'Candidatures validées',
       filter: 'recrutee'
     },
     {
