@@ -43,8 +43,8 @@ function ConseillerDetails({ location }) {
         <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
         <p>Distance de déplacement : { Math.ceil(location.miseEnRelation?.distance / 1000) }&nbsp;Km</p>
         <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
-        <p>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></p>
-        <p>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</p>
+        <p><strong>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></strong></p>
+        <p><strong>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
       </div>
       <br/>
       <ButtonsAction
