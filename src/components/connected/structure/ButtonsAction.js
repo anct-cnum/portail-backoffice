@@ -21,19 +21,19 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
     <div>
       {statut === 'nouvelle' &&
-        <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="ça m'intéresse">
+        <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="Pré sélectionner">
           Pré sélectionner
         </button>
       }
       {statut === 'nouvelle' &&
         <button onClick={updateStatut.bind(this, 'nonInteressee')}
           className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-          title="ça ne m'intéresse pas">
+          title="Ce profil ne correspond pas">
           Ce profil ne correspond pas
         </button>
       }
       {statut === 'interessee' &&
-        <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Recruter">
+        <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Valider cette candidature">
           <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
         </button>
       }
@@ -73,7 +73,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         <p>
           <button onClick={updateStatut.bind(this, 'interessee')}
             className="rf-btn rf-btn--secondary rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
-            title="annuler le recrutement">
+            title="Annuler le recrutement">
           Annuler le recrutement
           </button>
         </p>

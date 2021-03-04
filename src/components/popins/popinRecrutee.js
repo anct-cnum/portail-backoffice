@@ -41,19 +41,19 @@ function popinRecrutee({ statut }) {
                   <p>
                     <strong>Merci de bien vouloir :</strong>
                     <br/>
-                    1) Sélectionner la date d&rsquo;embauche du ou de la candidate retenu(e).
+                    1) Sélectionner la date d&rsquo;embauche du ou de la candidat(e) retenu(e).
                     <br/>
                     2) Compléter les différents champs indispensables à l&rsquo;étude de votre demande de subvention en cliquant sur le lien correspondant :
                     <br/>
                     <br/>
                     <strong>Structures publiques</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
                     <br/>
                     <strong>Entreprises</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
                     <br/>
                     <strong>Associations</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations</a>
                   </p>
                 </div>
               </div>
