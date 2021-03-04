@@ -54,7 +54,7 @@ function Login() {
               <strong>Rappel sur les étapes du processus de recrutement
               des conseillers numériques France Services</strong>
             </p>
-            <p>
+            <div>
               <ul style={{ paddingLeft: '18px' }}>
                 <li>Inscription sur la plateforme <a href="http://conseiller-numerique.gouv.fr/">conseiller-numerique.gouv.fr</a></li>
                 <li>Concertation territoriale</li>
@@ -63,7 +63,7 @@ function Login() {
                 <li>Demande de subvention</li>
                 <li>Signature du contrat</li>
               </ul>
-            </p>
+            </div>
           </div>
           <div className="Login rf-col-xs-12 rf-col-sm-6 rf-p-2w" style={{ textAlign: 'left' }}>
             <h2>Connexion</h2>
