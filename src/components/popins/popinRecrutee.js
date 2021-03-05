@@ -44,8 +44,9 @@ function popinRecrutee({ statut }) {
                     1) Sélectionner la date d&rsquo;embauche du ou de la candidat(e) retenu(e).
                     <br/>
                     2) Compléter les différents champs indispensables à l&rsquo;étude de votre demande de subvention en cliquant sur le lien correspondant :
-                    <br/>
-                    <br/>
+                    <br/><br/>
+                    NB : Si vous avez validé plusieurs candidatures, merci de ne réaliser qu’une seule demande.
+                    <br /><br />
                     <strong>Structures publiques</strong> :&nbsp;
                     <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
                     <br/>
