@@ -44,9 +44,15 @@ function Conseiller({ miseEnRelation }) {
               <div className="rf-grid-row">
                 <div className="rf-col-4">Code postal: {miseEnRelation.conseiller.codePostal}</div>
               </div>
+              { miseEnRelation.conseiller?.pix?.partage &&
+                <div className="tooltip">
+                  <img src="/logos/logo-pix.svg" alt="logo Pix" style={{ height: '36px' }}/>
+                  <span className="tooltiptext">A partagé ses résultats Pix</span>
+                </div>
+              }
             </div>
           </div>
-          <p className="customTitleLink"><em>Afficher plus de détails</em></p>
+          <p className="customTitleLink" style={{ margin: 0 }}><em>Afficher plus de détails</em></p>
         </Link>
       </div>
     </div>

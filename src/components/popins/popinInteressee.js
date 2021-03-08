@@ -42,7 +42,7 @@ function popinInteresse({ statut }) {
                   <p>
                     Rappel des étapes
                   </p>
-                  <p>
+                  <div>
                     <ul>
                       <li>Inscription sur la plateforme <a href="http://conseiller-numerique.gouv.fr/" target="blank">conseiller-numerique.gouv.fr</a></li>
                       <li>Concertation territoriale</li>
@@ -51,7 +51,7 @@ function popinInteresse({ statut }) {
                       <li>Demande de subvention</li>
                       <li>Signature du contrat</li>
                     </ul>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
