@@ -5,11 +5,11 @@ export const structureActions = {
   getAll,
 };
 
-function get() {
+function get(id) {
   return dispatch => {
     dispatch(request());
 
-    structureService.get()
+    structureService.get(id)
     .then(
       structure => dispatch(success(structure)),
       error => {

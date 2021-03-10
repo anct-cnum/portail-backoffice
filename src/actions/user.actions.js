@@ -23,7 +23,7 @@ function login(username, password) {
         if (data.user.role === 'structure') {
           history.push('/structure/conseillers/nouvelle');
         } else {
-          history.push('/admin');
+          history.push('/structures');
         }
       },
       error => {
