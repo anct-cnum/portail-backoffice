@@ -30,7 +30,7 @@ function get(id) {
 }
 
 
-function getAll({ departement, page = 0, filter, sortData = 'siret', sortOrder = 1 }) {
+function getAll({ departement, page = 0, filter, sortData = 'createdAt', sortOrder = 1 }) {
   return dispatch => {
     dispatch(request());
 
