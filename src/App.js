@@ -5,6 +5,7 @@ import { history } from './helpers';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
 import ChoosePassword from './components/anonymous/createAccount/ChoosePassword';
+import InvitationPrefet from './components/anonymous/createAccount/InvitationPrefet';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/inscription/:token" component={ChoosePassword} />
+          <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>

@@ -5,7 +5,9 @@ export const userActions = {
   login,
   logout,
   verifyToken,
-  choosePassword
+  verifyPrefetToken,
+  choosePassword,
+  inviteAccountsPrefet
 };
 
 function login(username, password) {
@@ -73,6 +75,58 @@ function verifyToken(token) {
   }
   function failure(error) {
     return { type: 'VERIFY_TOKEN_FAILURE', error };
+  }
+}
+
+function verifyPrefetToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.verifyPrefetToken(token)
+    .then(
+      result => {
+        dispatch(success(result.isValid));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'VERIFY_PREFET_TOKEN_REQUEST', token };
+  }
+  function success(isValid) {
+    return { type: 'VERIFY_PREFET_TOKEN_SUCCESS', isValid };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_PREFET_TOKEN_FAILURE', error };
+  }
+}
+
+function inviteAccountsPrefet(token, emails, departement) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.inviteAccountsPrefet(token, emails, departement)
+    .then(
+      () => {
+        dispatch(success());
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'INVITING_PREFET_REQUEST' };
+  }
+  function success() {
+    return { type: 'INVITING_PREFET_SUCCESS' };
+  }
+  function failure(error) {
+    return { type: 'INVITING_PREFET_FAILURE', error };
   }
 }
 
