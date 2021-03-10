@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Header({ connected }) {
 
   const user = useSelector(state => state.authentication.user?.user);
+  const location = useLocation();
+  const role = new URLSearchParams(location.search).get('role');
 
   return (
     <header className="rf-header" role="banner">
@@ -22,7 +24,12 @@ function Header({ connected }) {
                   <a className="rf-service__title titrage" href="/" title="Portail Conseiller Numérique">
                     Votre espace Conseiller Numérique France Services
                   </a>
-                  <p className="rf-service__tagline">Espace de gestion des candidatures</p>
+                  { role === 'structure' &&
+                    <p className="rf-service__tagline">Espace de gestion des candidatures</p>
+                  }
+                  { role === 'prefet' &&
+                    <p className="rf-service__tagline">Espace de visualisation des structures</p>
+                  }
                 </div>
               </div>
               { connected &&

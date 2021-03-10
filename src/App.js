@@ -12,6 +12,7 @@ import PrivateRoute from './components/connected/PrivateRoute';
 require('dotenv').config();
 
 function App() {
+
   return (
     <div className="App">
       <Router history={history}>
