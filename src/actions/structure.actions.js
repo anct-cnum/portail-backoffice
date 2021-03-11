@@ -5,11 +5,11 @@ export const structureActions = {
   getAll,
 };
 
-function get() {
+function get(id) {
   return dispatch => {
     dispatch(request());
 
-    structureService.get()
+    structureService.get(id)
     .then(
       structure => dispatch(success(structure)),
       error => {
@@ -30,7 +30,7 @@ function get() {
 }
 
 
-function getAll({ departement, page = 0, filter, sortData = 'siret', sortOrder = 1 }) {
+function getAll({ departement, page = 0, filter, sortData = 'createdAt', sortOrder = 1 }) {
   return dispatch => {
     dispatch(request());
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import Menu from './Menu';
 import Structures from './Structures';
+import StructureDetails from './StructureDetails';
 import Header from '../../common/Header';
 
 import { useSelector } from 'react-redux';
@@ -45,6 +46,8 @@ function Admin() {
           </div>
           <div className="rf-col-9">
             <Route path={`/structures`} component={Structures} />
+            <Route path={`/structure/:id`} component={StructureDetails} />
+            <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
           </div>
         </div>
       </div>

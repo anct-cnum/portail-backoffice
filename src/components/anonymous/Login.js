@@ -19,6 +19,8 @@ function Login() {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const role = new URLSearchParams(location.search).get('role');
+
   useEffect(() => {
     dispatch(userActions.logout());
   }, []);
@@ -42,13 +44,22 @@ function Login() {
       <div className="rf-container rf-mt-3w rf-mb-5w">
         <div className="rf-grid-row rf-grid-row--center rf-p-2w">
           <span style={{ textAlign: 'center' }}>
-            <strong>Cet espace dédié aux structures permet la consultation de candidatures et la sélection de candidats.
-              <br/>Il met à disposition également de la documentation et l&rsquo;affichage de ses informations.
-            </strong>
+            { role === 'structure' &&
+              <strong>Cet espace dédié aux structures permet la consultation de candidatures et la sélection de candidats.
+                <br/>Il met à disposition également de la documentation et l&rsquo;affichage de ses informations.
+              </strong>
+            }
+            { role === 'prefet' &&
+              <strong>
+                Cet espace vous permet de visualiser l&apos;ensemble des structures qui ont manifesté leur intérêt pour le
+                dispositif Conseiller Numérique France Services sur votre département
+              </strong>
+            }
           </span>
         </div>
         <div className="rf-grid-row">
 
+          { role === 'structure' &&
           <div className="rf-col-xs-12 rf-col-sm-6 rf-pt-8w">
             <p>
               <strong>Rappel sur les étapes du processus de recrutement
@@ -64,7 +75,7 @@ function Login() {
                 <li>Signature du contrat</li>
               </ul>
             </div>
-          </div>
+          </div> }
           <div className="Login rf-col-xs-12 rf-col-sm-6 rf-p-2w" style={{ textAlign: 'left' }}>
             <h2>Connexion</h2>
             <div>
