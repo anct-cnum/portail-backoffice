@@ -33,9 +33,8 @@ function StructureDetails() {
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure?.type}</p>
           <p>Code postal : {structure?.structure?.codePostal}</p>
-          <p>Candidat pour le poste de conseiller numérique France Services : {structure?.structure?.aIdentifieCandidat ? 'oui' : 'non' }</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
-          <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format("D MMMM YYYY")}</p>
+          <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
           <p>Contact : {structure?.structure?.contactPrenom} {structure?.structure?.contactNom} ({structure?.structure?.contactFonction})</p>
           <p>Téléphone : {structure?.structure?.contactTelephone}</p>
           <p>Email : <a href={`mailto:${structure?.structure?.contactEmail}`}>{structure?.structure?.contactEmail}</a></p>
