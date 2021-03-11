@@ -24,7 +24,7 @@ function Menu() {
                       <span className="rf-fi-search-line"></span>
                     </div>
                     <div className="rf-col rf-p-1v">
-                        Mes structures
+                      Liste des structures
                     </div>
                   </div>
                 </div>

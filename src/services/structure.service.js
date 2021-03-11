@@ -8,13 +8,13 @@ export const structureService = {
   getAll,
 };
 
-function get() {
+function get(id) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/structures/${userEntityId()}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${id ? id : userEntityId()}`, requestOptions).then(handleResponse);
 }
 
 function getAll(departement, page, filter, sortData, sortOrder) {

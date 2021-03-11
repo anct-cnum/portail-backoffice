@@ -103,7 +103,7 @@ function ChoosePassword({ match }) {
             }
 
             { passwordChoosen &&
-              <span>Votre compte a été créé avec succès. <Link to="/login">Vous pouvez vous connecter</Link>.</span>
+              <span>Votre compte a été créé avec succès. <Link to={`/login?role=${user?.roles[0]}`}>Vous pouvez vous connecter</Link>.</span>
             }
 
             <div className="rf-col-3"></div>
