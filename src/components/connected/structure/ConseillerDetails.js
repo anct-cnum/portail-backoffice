@@ -5,8 +5,8 @@ import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
-import PopinInteressee from '../../popins/popinInteressee';
-import PopinRecrutee from '../../popins/popinRecrutee';
+import PopinInteressee from './popins/popinInteressee';
+import PopinRecrutee from './popins/popinRecrutee';
 
 function ConseillerDetails({ location }) {
 
