@@ -76,7 +76,12 @@ function Login() {
               </ul>
             </div>
           </div> }
-          <div className="Login rf-col-xs-12 rf-col-sm-6 rf-p-2w" style={{ textAlign: 'left' }}>
+          { role !== 'structure' &&
+            <div className="rf-col-offset-3"></div>
+          }
+          <div
+            className={`Login ${role === 'structure' ? 'rf-col-xs-12 rf-col-sm-6 rf-p-2w' : 'rf-col-6'}`}
+            style={role === 'structure' ? { textAlign: 'left' } : { textAlign: 'center' }} >
             <h2>Connexion</h2>
             <div>
               <div>

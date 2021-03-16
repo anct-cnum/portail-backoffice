@@ -17,15 +17,19 @@ function Menu() {
         <div className="rf-sidemenu__wrapper" id="rf-sidemenu-wrapper">
           <ul className="rf-sidemenu__list">
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structures') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structures">
-                <div className="rf-container">
-                  <div className="rf-grid-row rf-grid-row--middle">
-                    <div className="rf-col alignRight">
-                      <span className="rf-fi-search-line"></span>
-                    </div>
-                    <div className="rf-col rf-p-1v">
-                      Liste des structures
-                    </div>
+              <Link className="rf-sidemenu__link" to="/structures" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Liste des structures
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/admin/documents" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes documents
                   </div>
                 </div>
               </Link>
