@@ -7,7 +7,7 @@ function Header({ connected }) {
 
   const user = useSelector(state => state.authentication.user?.user);
   const location = useLocation();
-  const role = new URLSearchParams(location.search).get('role');
+  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
 
   return (
     <header className="rf-header" role="banner">
@@ -44,7 +44,7 @@ function Header({ connected }) {
                         </span>
                       </li>
                       <li className="rf-shortcuts__item">
-                        <Link className="rf-btn rf-btn--sm" to="/login">Se déconnecter&nbsp;<i className="ri-logout-box-r-line"></i></Link>
+                        <Link className="rf-btn rf-btn--sm" to={`/login?role=${role}`}>Se déconnecter&nbsp;<i className="ri-logout-box-r-line"></i></Link>
                       </li>
                     </ul>
                   </div>
