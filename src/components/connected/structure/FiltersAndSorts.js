@@ -75,11 +75,11 @@ function filtersAndSorts() {
     <div>
       <div className="rf-container-fluid">
         {/* Filtres */}
-        <div className="rf-grid-row rf-grid-row--center rf-mt-3w">
+        <div className="rf-grid-row rf-mt-3w">
           <div className="rf-col-3 rf-mr-4w">
             <div className="rf-form-group">
               <fieldset className="rf-fieldset rf-fieldset--inline">
-                <legend className="rf-fieldset__legend">Sélectionner le(s) niveaux Pix</legend>
+                <legend className="rf-fieldset__legend">Sélectionner le(s) niveau(x) Pix</legend>
                 <div className="rf-fieldset__content">
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
                     <input
