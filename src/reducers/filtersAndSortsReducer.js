@@ -5,6 +5,21 @@ export default function filtersAndSorts(state = null, action) {
         ...state,
         order: action.order,
       };
+    case 'UPDATE_PIX':
+      return {
+        ...state,
+        pix: action.pix,
+      };
+    case 'UPDATE_DIPLOME':
+      return {
+        ...state,
+        diplome: action.diplome,
+      };
+    case 'UPDATE_EMPLOI':
+      return {
+        ...state,
+        emploi: action.emploi,
+      };
     default:
       return state;
   }

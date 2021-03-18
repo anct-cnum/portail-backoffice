@@ -23,7 +23,7 @@ function Conseillers() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter, sortData: filtersAndSorts?.order }));
+    dispatch(conseillerActions.getAll({ page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
   };
 
   useEffect(() => {
@@ -33,7 +33,9 @@ function Conseillers() {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order }));
+  const update = () => {
+    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+  };
 
   useEffect(() => {
     update();
@@ -87,7 +89,7 @@ function Conseillers() {
         </li>)}
       </ul>
 
-      <FiltersAndSorts update={update} />
+      <FiltersAndSorts />
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
