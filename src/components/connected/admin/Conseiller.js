@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Conseiller({ conseiller }) {
 
-  const statutLabel = [{
+  /*const statutLabel = [{
     key: 'nouvelle',
     label: 'Nouvelle candidature'
   }, {
@@ -19,7 +19,7 @@ function Conseiller({ conseiller }) {
     key: 'recrutee',
     label: 'Candidature validée'
   },
-  ];
+  ];*/
 
   return (
     <div className="conseiller rf-card rf-card--horizontal">
