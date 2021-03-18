@@ -5,7 +5,7 @@ import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
-function ConseillerDetails({ location }) {
+function ConseillerDetails() {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
