@@ -71,9 +71,12 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
       }
       {statut === 'recrutee' &&
         <p>
-          <button onClick={updateStatut.bind(this, 'interessee')}
-            className="rf-btn rf-btn--secondary rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
-            title="Annuler le recrutement">
+          <button onClick={() => {
+            updateStatut('interessee');
+            updateDateRecrutement(null);
+          }}
+          className="rf-btn rf-btn--secondary rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
+          title="Annuler le recrutement">
           Annuler le recrutement
           </button>
         </p>

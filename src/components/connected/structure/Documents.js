@@ -60,6 +60,28 @@ function Documents() {
             </span>
           </p>
         </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
+              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Publique">
+                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Publique (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Appel à manifestation d’intérêt pour les collectivités territoriales et leurs groupements
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
+              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Privé">
+                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Privé (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Appel à manifestation d’intérêt pour les acteurs à statut privé
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
