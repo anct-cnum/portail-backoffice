@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
+import FiltersAndSorts from './FiltersAndSorts';
 import {
   Link,
   useParams
@@ -18,10 +19,16 @@ function Conseillers() {
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
+  const filtersAndSorts = useSelector(state => state.filtersAndSorts);
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter }));
+    dispatch(conseillerActions.getAll({
+      page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+      filter: filter,
+      sortData: filtersAndSorts?.order,
+      persoFilters: filtersAndSorts
+    }));
   };
 
   useEffect(() => {
@@ -31,7 +38,9 @@ function Conseillers() {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ page: page - 1, filter }));
+  const update = () => {
+    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+  };
 
   useEffect(() => {
     update();
@@ -84,6 +93,8 @@ function Conseillers() {
           </Link>
         </li>)}
       </ul>
+
+      <FiltersAndSorts />
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
