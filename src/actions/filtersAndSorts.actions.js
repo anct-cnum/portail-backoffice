@@ -17,7 +17,6 @@ function updateOrder(order) {
 
 function updatePix(pix) {
   return dispatch => {
-
     dispatch(success(pix));
   };
 
@@ -28,7 +27,6 @@ function updatePix(pix) {
 
 function updateDiplome(diplome) {
   return dispatch => {
-
     dispatch(success(diplome));
   };
 
@@ -39,7 +37,6 @@ function updateDiplome(diplome) {
 
 function updateEmploi(emploi) {
   return dispatch => {
-
     dispatch(success(emploi));
   };
 

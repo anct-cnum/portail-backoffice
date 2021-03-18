@@ -23,7 +23,12 @@ function Conseillers() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+    dispatch(conseillerActions.getAll({
+      page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+      filter: filter,
+      sortData: filtersAndSorts?.order,
+      persoFilters: filtersAndSorts
+    }));
   };
 
   useEffect(() => {
