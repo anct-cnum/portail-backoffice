@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import Structure from './Structure';
 import { structureActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
+import PropTypes from 'prop-types';
 
-function Structures() {
+function Structures({ departement }) {
   const dispatch = useDispatch();
 
   const structures = useSelector(state => state.structures);
   const user = useSelector(state => state.authentication.user.user);
 
-  const departement = user.departement;
+  if (user.role !== 'admin') {
+    departement = user.departement;
+  }
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -60,5 +63,9 @@ function Structures() {
     </div>
   );
 }
+
+Structures.propTypes = {
+  departement: PropTypes.string
+};
 
 export default Structures;

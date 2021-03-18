@@ -32,11 +32,13 @@ function get(id) {
 
 }
 
-function getAll({ page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1 }) {
+function getAll({ departement, misesEnRelation, page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1 }) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.getAll(page, filter, sortData, sortOrder)
+    const getAll = misesEnRelation ? conseillerService.getAllMisesEnRelation : conseillerService.getAll;
+
+    getAll(departement, page, filter, sortData, sortOrder)
     .then(
       conseillers => dispatch(success(conseillers)),
       error => {

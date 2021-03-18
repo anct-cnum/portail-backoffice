@@ -22,7 +22,8 @@ function getAll(departement, page, filter, sortData, sortOrder) {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}&codeDepartement=${departement}`;
+  const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}`;
   if (filter) {
     uri += `&filter=${filter}`;
   }

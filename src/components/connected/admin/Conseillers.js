@@ -4,15 +4,14 @@ import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import {
-  Link,
   useParams
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function Conseillers() {
+function Conseillers({ departement }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
-  const stats = useSelector(state => state.stats);
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -21,7 +20,12 @@ function Conseillers() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: conseillers.items ? (page - 1) * conseillers.items.limit : 0, filter: filter }));
+    dispatch(conseillerActions.getAll({
+      departement,
+      misesEnRelation: false,
+      page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+      filter: filter })
+    );
   };
 
   useEffect(() => {
@@ -31,7 +35,7 @@ function Conseillers() {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ misesEnRelation: true, page: page - 1, filter }));
+  const update = () => dispatch(conseillerActions.getAll({ departement, misesEnRelation: false, page: page - 1, filter }));
 
   useEffect(() => {
     update();
@@ -41,7 +45,7 @@ function Conseillers() {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
 
-  const tabs = [
+  /*const tabs = [
     {
       name: 'Nouvelles candidatures',
       filter: 'nouvelle'
@@ -62,7 +66,7 @@ function Conseillers() {
       name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }
-  ];
+  ];*/
 
   const constructor = () => {
     if (constructorHasRun) {
@@ -77,12 +81,12 @@ function Conseillers() {
     <div className="conseillers">
 
       <ul className="tabs rf-tags-group">
-        {tabs.map((tab, idx) => <li key={idx}>
+        {/*tabs.map((tab, idx) => <li key={idx}>
           <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
             to={`/structure/conseillers/${tab.filter}`}>
             {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })
           </Link>
-        </li>)}
+  </li>)*/}
       </ul>
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
@@ -90,7 +94,7 @@ function Conseillers() {
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} />);
+        return (<Conseiller key={idx} conseiller={conseiller} update={update} />);
       })
       }
 
@@ -99,5 +103,9 @@ function Conseillers() {
     </div>
   );
 }
+
+Conseillers.propTypes = {
+  departement: PropTypes.string
+};
 
 export default Conseillers;
