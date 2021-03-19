@@ -21,7 +21,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, page, filter, sortData, sortOrder, persoFilters) {
+function getAll(departement, page, filter, sortData, sortOrder) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -36,7 +36,7 @@ function getAll(departement, page, filter, sortData, sortOrder, persoFilters) {
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getAllMisesEnRelation(departement, page, filter, sortData, sortOrder) {
+function getAllMisesEnRelation(departement, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
