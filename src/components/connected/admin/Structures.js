@@ -10,9 +10,11 @@ function Structures({ departement }) {
 
   const structures = useSelector(state => state.structures);
   const user = useSelector(state => state.authentication.user.user);
+  let region;
 
   if (user.role !== 'admin') {
-    departement = user.departement;
+    departement = user.departement ? user.departement : null;
+    region = user.region ? user.region : null;
   }
 
   const [page, setPage] = useState(1);
@@ -21,7 +23,7 @@ function Structures({ departement }) {
 
   const navigate = page => {
     setPage(page);
-    dispatch(structureActions.getAll({ departement, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
+    dispatch(structureActions.getAll({ departement, region, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
   };
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function Structures({ departement }) {
     }
   }, [structures]);
 
-  const update = () => dispatch(structureActions.getAll({ departement, page: page - 1 }));
+  const update = () => dispatch(structureActions.getAll({ departement, region, page: page - 1 }));
 
   useEffect(() => {
     update();

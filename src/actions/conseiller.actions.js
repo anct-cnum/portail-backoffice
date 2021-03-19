@@ -32,13 +32,13 @@ function get(id) {
 
 }
 
-function getAll({ departement, misesEnRelation, page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1, persoFilters }) {
+function getAll({ departement, region, misesEnRelation, page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1, persoFilters }) {
   return dispatch => {
     dispatch(request());
 
     const getAll = misesEnRelation ? conseillerService.getAllMisesEnRelation : conseillerService.getAll;
 
-    getAll(departement, page, filter, sortData, sortOrder, persoFilters)
+    getAll(departement, region, page, filter, sortData, sortOrder, persoFilters)
     .then(
       conseillers => dispatch(success(conseillers)),
       error => {
