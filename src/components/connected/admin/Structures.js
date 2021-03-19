@@ -21,7 +21,7 @@ function Structures({ departement }) {
 
   const navigate = page => {
     setPage(page);
-    dispatch(structureActions.getAll({ page: structures.items ? (page - 1) * structures.items.limit : 0 }));
+    dispatch(structureActions.getAll({ departement, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
   };
 
   useEffect(() => {
