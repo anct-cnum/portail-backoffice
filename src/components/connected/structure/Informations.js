@@ -10,7 +10,7 @@ function Informations() {
 
   useEffect(() => {
     dispatch(structureActions.get());
-    dispatch(conseillerActions.getAll({}));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true }));
   }, []);
 
   return (

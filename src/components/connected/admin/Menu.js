@@ -1,12 +1,16 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import {
   Link,
   useLocation
 } from 'react-router-dom';
 
 function Menu() {
+  const user = useSelector(state => state.authentication.user.user);
 
+  const role = user.role;
   const location = useLocation();
 
   return (
@@ -25,6 +29,18 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            { role === 'admin' &&
+              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/conseillers') ? 'rf-sidemenu__item--active' : ''}`}>
+                <Link className="rf-sidemenu__link" to="/conseillers" style={{ padding: '0.5rem 0' }}>
+                  <div className="rf-container" style={{ padding: '0' }}>
+                    <div className="rf-grid-row rf-grid-row--end">
+                    Liste des conseillers
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            }
+            { role === 'prefet' &&
             <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/admin/documents" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
@@ -33,7 +49,7 @@ function Menu() {
                   </div>
                 </div>
               </Link>
-            </li>
+            </li> }
           </ul>
         </div>
       </div>

@@ -7,6 +7,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 export const conseillerService = {
   get,
   getAll,
+  getAllMisesEnRelation,
   updateStatus,
   updateDateRecrutement,
 };
@@ -20,12 +21,29 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, filter, sortData, sortOrder, persoFilters) {
+function getAll(departement, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[${sortData}]=${sortOrder}`;
+  const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}`;
+
+  if (filter) {
+    uri += `&filter=${filter}`;
+  }
+
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function getAllMisesEnRelation(departement, page, filter, sortData, sortOrder) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
+  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}`;
+
   if (filter) {
     uri += `&filter=${filter}`;
   }

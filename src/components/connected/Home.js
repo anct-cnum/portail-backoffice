@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       { (user?.role === 'admin' || user?.role === 'prefet') &&
-        <Admin />
+        <Admin role={user.role} />
       }
 
       { user?.role === 'structure' &&
