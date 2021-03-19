@@ -32,7 +32,7 @@ function get(id) {
 
 }
 
-function getAll({ departement, region, misesEnRelation, page = 0, filter, sortData = 'conseillerCreatedAt', sortOrder = 1, persoFilters }) {
+function getAll({ departement, region, misesEnRelation, page = 0, filter, sortData = 'conseillerObj.createdAt', sortOrder = 1, persoFilters }) {
   return dispatch => {
     dispatch(request());
 
