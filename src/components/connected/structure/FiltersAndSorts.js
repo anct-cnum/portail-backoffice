@@ -145,7 +145,7 @@ function filtersAndSorts() {
           <input type="checkbox"
             className="rf-toggle__input"
             id="orderByDateStart"
-            checked={filtersAndSorts?.order === 'conseiller.dateDisponibilite'}
+            checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
             onChange={e => changeSort(e)}/>
           <label className="rf-toggle__label"
             htmlFor="orderByDateStart"
