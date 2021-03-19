@@ -13,7 +13,7 @@ function filtersAndSorts() {
 
   //Sort
   const changeSort = e => {
-    let order = e.target.checked ? 'conseillers.dateDisponibilite' : 'conseillers.createdAt';
+    let order = e.target.checked ? 'conseillerObj.dateDisponibilite' : 'conseillerObj.createdAt';
     dispatch(filtersAndSortsActions.updateOrder(order));
     dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: order, persoFilters: filtersAndSorts }));
   };
@@ -145,7 +145,7 @@ function filtersAndSorts() {
           <input type="checkbox"
             className="rf-toggle__input"
             id="orderByDateStart"
-            checked={filtersAndSorts?.order === 'conseillers.dateDisponibilite'}
+            checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
             onChange={e => changeSort(e)}/>
           <label className="rf-toggle__label"
             htmlFor="orderByDateStart"
