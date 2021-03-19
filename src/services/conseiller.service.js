@@ -21,7 +21,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, page, filter, sortData, sortOrder) {
+function getAll(departement, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -46,6 +46,20 @@ function getAllMisesEnRelation(departement, page, filter, sortData, sortOrder) {
 
   if (filter) {
     uri += `&filter=${filter}`;
+  }
+  if (persoFilters) {
+    //Pix ?
+    if (persoFilters?.pix !== undefined && persoFilters?.pix.length > 0) {
+      uri += `&pix=${persoFilters?.pix}`;
+    }
+    //Diplome ?
+    if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
+      uri += `&diplome=${persoFilters?.diplome}`;
+    }
+    //Emploi ?
+    if (persoFilters?.emploi !== undefined && persoFilters?.emploi !== '') {
+      uri += `&emploi=${persoFilters?.emploi}`;
+    }
   }
 
   return fetch(uri, requestOptions).then(handleResponse);
