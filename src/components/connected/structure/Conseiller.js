@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation }) {
+function Conseiller({ miseEnRelation, currentPage, currentFilter }) {
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -26,7 +26,9 @@ function Conseiller({ miseEnRelation }) {
       <div className="rf-card__body">
         <Link style={{ boxShadow: 'none' }} to={{
           pathname: `/structure/conseiller/${miseEnRelation.conseiller._id}`,
-          miseEnRelation: miseEnRelation }}>
+          miseEnRelation: miseEnRelation,
+          currentPage: currentPage,
+          currentFilter: currentFilter }}>
           <h4 className="rf-card__title">
             <span className="capitalizeFirstLetter">
               <i className="ri-briefcase-fill valignTextTop"></i>
@@ -60,7 +62,9 @@ function Conseiller({ miseEnRelation }) {
 }
 
 Conseiller.propTypes = {
-  miseEnRelation: PropTypes.object
+  miseEnRelation: PropTypes.object,
+  currentPage: PropTypes.number,
+  currentFilter: PropTypes.string
 };
 
 export default Conseiller;

@@ -8,14 +8,20 @@ import {
   Link,
   useParams
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function Conseillers() {
+function Conseillers({ location }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
   const stats = useSelector(state => state.stats);
 
-  const [page, setPage] = useState(1);
+  let [page, setPage] = useState(1);
+  let savePage = null;
+  if (location.currentPage) {
+    savePage = location.currentPage;
+  }
+
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
@@ -40,7 +46,12 @@ function Conseillers() {
   }, [conseillers]);
 
   const update = () => {
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+    if (savePage !== null) {
+      navigate(savePage);
+      delete location.currentPage;
+    } else {
+      dispatch(conseillerActions.getAll({ misesEnRelation: true, page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+    }
   };
 
   useEffect(() => {
@@ -78,7 +89,6 @@ function Conseillers() {
     if (constructorHasRun) {
       return;
     }
-    update();
     setConstructorHasRun(true);
   };
   constructor();
@@ -89,20 +99,23 @@ function Conseillers() {
       <ul className="tabs rf-tags-group">
         {tabs.map((tab, idx) => <li key={idx}>
           <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
-            to={`/structure/conseillers/${tab.filter}`}>
+            to={{
+              pathname: `/structure/conseillers/${tab.filter}`,
+              currentPage: 1
+            }}>
             {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })
           </Link>
         </li>)}
       </ul>
 
-      <FiltersAndSorts />
+      <FiltersAndSorts resetPage={setPage} />
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} />);
+        return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} currentPage={page} currentFilter={filter} />);
       })
       }
 
@@ -111,5 +124,9 @@ function Conseillers() {
     </div>
   );
 }
+
+Conseillers.propTypes = {
+  location: PropTypes.object
+};
 
 export default Conseillers;

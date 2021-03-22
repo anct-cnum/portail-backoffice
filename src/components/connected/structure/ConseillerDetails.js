@@ -55,7 +55,13 @@ function ConseillerDetails({ location }) {
 
   return (
     <div className="ConseillerDetails">
-      <Link style={{ boxShadow: 'none' }} to="/structure/conseillers/nouvelle" className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+      <Link
+        style={{ boxShadow: 'none' }}
+        to={{
+          pathname: `/structure/conseillers/${location.currentFilter}`,
+          currentPage: location.currentPage
+        }}
+        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
         Retour à la liste
       </Link>
       <div>
