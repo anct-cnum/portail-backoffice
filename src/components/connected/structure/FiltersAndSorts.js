@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filtersAndSortsActions, conseillerActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function filtersAndSorts() {
+function filtersAndSorts({ resetPage }) {
 
   const dispatch = useDispatch();
   let filtersAndSorts = useSelector(state => state.filtersAndSorts);
-
-  const [page] = useState(1);
   let { filter } = useParams();
 
   //Sort
   const changeSort = e => {
     let order = e.target.checked ? 'conseillerObj.dateDisponibilite' : 'conseillerObj.createdAt';
     dispatch(filtersAndSortsActions.updateOrder(order));
-    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: order, persoFilters: filtersAndSorts }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: order, persoFilters: filtersAndSorts }));
+    resetPage(1);
   };
 
   //filter Pix
@@ -36,7 +36,8 @@ function filtersAndSorts() {
       diplome: filtersAndSorts?.diplome,
       emploi: filtersAndSorts?.emploi
     };
-    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    resetPage(1);
   };
 
   //filter Diplome
@@ -52,7 +53,8 @@ function filtersAndSorts() {
       diplome: diplome,
       emploi: filtersAndSorts?.emploi
     };
-    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    resetPage(1);
   };
 
   //filter Emploi
@@ -68,7 +70,8 @@ function filtersAndSorts() {
       diplome: filtersAndSorts?.diplome,
       emploi: emploi
     };
-    dispatch(conseillerActions.getAll({ page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    resetPage(1);
   };
 
   return (
@@ -159,5 +162,9 @@ function filtersAndSorts() {
   );
 
 }
+
+filtersAndSorts.propTypes = {
+  resetPage: PropTypes.func
+};
 
 export default filtersAndSorts;
