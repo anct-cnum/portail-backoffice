@@ -2,7 +2,6 @@ export const filtersAndSortsActions = {
   updateOrder,
   updatePix,
   updateDiplome,
-  updateEmploi,
 };
 
 function updateOrder(order) {
@@ -32,15 +31,5 @@ function updateDiplome(diplome) {
 
   function success(diplome) {
     return { type: 'UPDATE_DIPLOME', diplome };
-  }
-}
-
-function updateEmploi(emploi) {
-  return dispatch => {
-    dispatch(success(emploi));
-  };
-
-  function success(emploi) {
-    return { type: 'UPDATE_EMPLOI', emploi };
   }
 }

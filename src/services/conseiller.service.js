@@ -56,10 +56,6 @@ function getAllMisesEnRelation(departement, page, filter, sortData, sortOrder, p
     if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
       uri += `&diplome=${persoFilters?.diplome}`;
     }
-    //Emploi ?
-    if (persoFilters?.emploi !== undefined && persoFilters?.emploi !== '') {
-      uri += `&emploi=${persoFilters?.emploi}`;
-    }
   }
 
   return fetch(uri, requestOptions).then(handleResponse);

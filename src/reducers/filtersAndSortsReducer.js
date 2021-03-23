@@ -15,11 +15,6 @@ export default function filtersAndSorts(state = null, action) {
         ...state,
         diplome: action.diplome,
       };
-    case 'UPDATE_EMPLOI':
-      return {
-        ...state,
-        emploi: action.emploi,
-      };
     default:
       return state;
   }
