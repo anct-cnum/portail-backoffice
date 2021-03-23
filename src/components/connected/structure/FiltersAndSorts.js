@@ -33,8 +33,7 @@ function filtersAndSorts({ resetPage }) {
     dispatch(filtersAndSortsActions.updatePix(pix));
     let persoFilters = {
       pix: pix,
-      diplome: filtersAndSorts?.diplome,
-      emploi: filtersAndSorts?.emploi
+      diplome: filtersAndSorts?.diplome
     };
     dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
@@ -50,25 +49,7 @@ function filtersAndSorts({ resetPage }) {
     dispatch(filtersAndSortsActions.updateDiplome(diplome));
     let persoFilters = {
       pix: filtersAndSorts?.pix,
-      diplome: diplome,
-      emploi: filtersAndSorts?.emploi
-    };
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
-    resetPage(1);
-  };
-
-  //filter Emploi
-  const changeEmploi = () => {
-    let emploi = document.getElementById('selectEmploi').value;
-
-    if (emploi !== '') {
-      emploi = (emploi === 'true');
-    }
-    dispatch(filtersAndSortsActions.updateEmploi(emploi));
-    let persoFilters = {
-      pix: filtersAndSorts?.pix,
-      diplome: filtersAndSorts?.diplome,
-      emploi: emploi
+      diplome: diplome
     };
     dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
@@ -127,14 +108,6 @@ function filtersAndSorts({ resetPage }) {
           <div className="rf-col-3 rf-mr-4w">
             <label className="rf-label" htmlFor="selectDiplome">Diplômé ?</label>
             <select className="rf-select" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
-              <option value="">- Tous -</option>
-              <option value="true">Oui</option>
-              <option value="false">Non</option>
-            </select>
-          </div>
-          <div className="rf-col-3">
-            <label className="rf-label" htmlFor="selectEmploi">A un Emploi ?</label>
-            <select className="rf-select" id="selectEmploi" name="selectEmploi" onChange={changeEmploi} value={filtersAndSorts?.emploi}>
               <option value="">- Tous -</option>
               <option value="true">Oui</option>
               <option value="false">Non</option>
