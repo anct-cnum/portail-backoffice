@@ -11,7 +11,7 @@ function Structures({ departement }) {
 
   const structures = useSelector(state => state.structures);
   const user = useSelector(state => state.authentication.user.user);
-  let region;
+  let region = null;
 
   if (user.role !== 'admin') {
     departement = user.departement ? user.departement : null;
