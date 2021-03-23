@@ -8,7 +8,7 @@ import 'moment/locale/fr';
 
 moment.locale('fr');
 
-function StructureDetails() {
+function StructureDetails({ location }) {
 
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
@@ -20,7 +20,13 @@ function StructureDetails() {
 
   return (
     <div className="StructureDetails">
-      <Link style={{ boxShadow: 'none' }} to="/structures" className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+      <Link
+        style={{ boxShadow: 'none' }}
+        to={{
+          pathname: `/structures`,
+          currentPage: location.currentPage
+        }}
+        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
         Retour à la liste
       </Link>
       <div>

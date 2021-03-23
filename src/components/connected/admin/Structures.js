@@ -4,6 +4,7 @@ import Structure from './Structure';
 import { structureActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 function Structures({ departement }) {
   const dispatch = useDispatch();
@@ -17,7 +18,13 @@ function Structures({ departement }) {
     region = user.region ? user.region : null;
   }
 
-  const [page, setPage] = useState(1);
+  let [page, setPage] = useState(1);
+  let savePage = null;
+  let location = useLocation();
+  if (location.currentPage) {
+    savePage = location.currentPage;
+  }
+
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
 
@@ -33,7 +40,14 @@ function Structures({ departement }) {
     }
   }, [structures]);
 
-  const update = () => dispatch(structureActions.getAll({ departement, region, page: page - 1 }));
+  const update = () => {
+    if (savePage !== null) {
+      navigate(savePage);
+      delete location.currentPage;
+    } else {
+      dispatch(structureActions.getAll({ departement, region, page: page - 1 }));
+    }
+  };
 
   useEffect(() => {
     update();
@@ -43,7 +57,6 @@ function Structures({ departement }) {
     if (constructorHasRun) {
       return;
     }
-    update();
     setConstructorHasRun(true);
   };
   constructor();
@@ -56,7 +69,7 @@ function Structures({ departement }) {
       { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span> }
 
       { !structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
-        return (<Structure key={idx} structure={structure} />);
+        return (<Structure key={idx} structure={structure} currentPage={page} />);
       })
       }
 

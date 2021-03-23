@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
-import {
-  useParams
-} from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Conseillers({ departement }) {
@@ -14,7 +12,13 @@ function Conseillers({ departement }) {
   const conseillers = useSelector(state => state.conseillers);
   const user = useSelector(state => state.authentication.user.user);
 
-  const [page, setPage] = useState(1);
+  let [page, setPage] = useState(1);
+  let savePage = null;
+  let location = useLocation();
+  if (location.currentPage) {
+    savePage = location.currentPage;
+  }
+
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
@@ -42,7 +46,14 @@ function Conseillers({ departement }) {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
+  const update = () => {
+    if (savePage !== null) {
+      navigate(savePage);
+      delete location.currentPage;
+    } else {
+      dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
+    }
+  };
 
   useEffect(() => {
     update();
@@ -79,7 +90,6 @@ function Conseillers({ departement }) {
     if (constructorHasRun) {
       return;
     }
-    update();
     setConstructorHasRun(true);
   };
   constructor();
@@ -101,7 +111,7 @@ function Conseillers({ departement }) {
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} conseiller={conseiller} update={update} />);
+        return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
       })
       }
 

@@ -5,7 +5,7 @@ import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
-function ConseillerDetails() {
+function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
@@ -48,7 +48,13 @@ function ConseillerDetails() {
 
   return (
     <div className="ConseillerDetails">
-      <Link style={{ boxShadow: 'none' }} to="/conseillers" className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+      <Link
+        style={{ boxShadow: 'none' }}
+        to={{
+          pathname: `/conseillers`,
+          currentPage: location.currentPage
+        }}
+        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
         Retour à la liste
       </Link>
       <div>
