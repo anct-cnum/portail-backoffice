@@ -21,11 +21,21 @@ function Admin() {
   let departementsRegionList = Array.from(departementsRegionRaw);
   let deptLabel = null;
 
-  departementsRegionList.forEach(d => {
-    if (`${d.num_dep}` === `${user.departement}`) {
-      deptLabel = d.dep_name;
-    }
-  });
+  let regionList = require('../../../data/regions');
+
+  if (user.departement) {
+    departementsRegionList.forEach(d => {
+      if (`${d.num_dep}` === `${user.departement}`) {
+        deptLabel = `département ${d.dep_name}`;
+      }
+    });
+  } else if (user.region) {
+    regionList.forEach(d => {
+      if (`${d.code}` === `${user.region}`) {
+        deptLabel = `région ${d.name}`;
+      }
+    });
+  }
 
   const titleLabel = [{
     key: 'admin',

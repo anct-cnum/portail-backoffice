@@ -12,16 +12,23 @@ function Conseillers({ departement }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
+  const user = useSelector(state => state.authentication.user.user);
 
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
 
+  let region = null;
+  if (user.role !== 'admin') {
+    region = user.region ? user.region : null;
+  }
+
   const navigate = page => {
     setPage(page);
     dispatch(conseillerActions.getAll({
       departement,
+      region,
       misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
       filter: filter })
@@ -35,7 +42,7 @@ function Conseillers({ departement }) {
     }
   }, [conseillers]);
 
-  const update = () => dispatch(conseillerActions.getAll({ departement, misesEnRelation: false, page: page - 1, filter }));
+  const update = () => dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
 
   useEffect(() => {
     update();

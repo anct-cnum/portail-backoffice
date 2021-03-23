@@ -17,13 +17,14 @@ function get(id) {
   return fetch(`${apiUrlRoot}/structures/${id ? id : userEntityId()}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, page, filter, sortData, sortOrder) {
+function getAll(departement, region, page, filter, sortData, sortOrder) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}`;
+  const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}`;
   if (filter) {
     uri += `&filter=${filter}`;
   }
