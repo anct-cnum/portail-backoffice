@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ conseiller }) {
+function Conseiller({ conseiller, currentPage }) {
 
   /*const statutLabel = [{
     key: 'nouvelle',
@@ -25,7 +25,9 @@ function Conseiller({ conseiller }) {
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
         <Link style={{ boxShadow: 'none' }} to={{
-          pathname: `/conseiller/${conseiller._id}` }}>
+          pathname: `/conseiller/${conseiller._id}`,
+          currentPage: currentPage
+        }}>
           <h4 className="rf-card__title">
             <span className="capitalizeFirstLetter">
               <i className="ri-briefcase-fill valignTextTop"></i>
@@ -56,7 +58,8 @@ function Conseiller({ conseiller }) {
 }
 
 Conseiller.propTypes = {
-  conseiller: PropTypes.object
+  conseiller: PropTypes.object,
+  currentPage: PropTypes.number,
 };
 
 export default Conseiller;

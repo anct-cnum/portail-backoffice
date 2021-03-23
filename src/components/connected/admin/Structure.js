@@ -4,13 +4,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Structure({ structure }) {
+function Structure({ structure, currentPage }) {
 
   return (
     <div className="structure rf-card rf-card--horizontal">
       <div className="rf-card__body">
-        <Link style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/${structure._id}` }}>
+        <Link style={{ boxShadow: 'none' }}
+          to={{
+            pathname: `/structure/${structure._id}`,
+            currentPage: currentPage
+          }}>
           <p className="rf-card__detail">SIRET {structure.siret !== 'null' ? structure.siret : 'non renseigné' }</p>
           <h4 className="rf-card__title">
             <span className="capitalizeFirstLetter">{structure.nom}</span>
@@ -32,7 +35,8 @@ function Structure({ structure }) {
 }
 
 Structure.propTypes = {
-  structure: PropTypes.object
+  structure: PropTypes.object,
+  currentPage: PropTypes.number,
 };
 
 export default Structure;
