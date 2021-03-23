@@ -4,19 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import ButtonsAction from './ButtonsAction';
-import PopinInteressee from './popins/popinInteressee';
-import PopinRecrutee from './popins/popinRecrutee';
 
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
   let { id } = useParams();
-
-  const updateStatut = statut => {
-    dispatch(conseillerActions.updateStatus({ id: location.miseEnRelation?._id, statut }));
-  };
 
   useEffect(() => {
     dispatch(conseillerActions.get(id));
@@ -58,15 +51,13 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/structure/conseillers/${location.currentFilter}`,
+          pathname: `/conseillers`,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
         Retour à la liste
       </Link>
       <div>
-        <PopinInteressee statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
-        <PopinRecrutee statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
         <h2>
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
@@ -128,12 +119,6 @@ function ConseillerDetails({ location }) {
           </div>
         </div>
       </div>
-      <br/>
-      <ButtonsAction
-        statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
-        miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
-        updateStatut={updateStatut}
-        dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ? conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
     </div>
   );
 }

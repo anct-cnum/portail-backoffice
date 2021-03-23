@@ -7,6 +7,50 @@ function Documents() {
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
           <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
+              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Publique">
+                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Publique (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Appel à manifestation d’intérêt pour les collectivités territoriales et leurs groupements
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
+              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Privé">
+                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Privé (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Appel à manifestation d’intérêt pour les acteurs à statut privé
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/presentation-conseiller-numerique.pdf"
+              className="rf-link" target="blank" title="Télécharger la fiche conseiller numérique">
+                        Télécharger la fiche conseiller numérique (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Présentation des activités du Conseiller Numérique France Services
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/cir_45126.pdf"
+              className="rf-link" target="blank" title="Télécharger la circulaire">
+                        Télécharger la circulaire (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Détails de la circulaire
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20de%20l%27employeur%20-%20Public%20-%20V3.pdf"
               className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
                         Télécharger le guide de l&rsquo;employeur (pdf)
@@ -57,28 +101,6 @@ function Documents() {
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Contrat de travail à durée déterminée
-            </span>
-          </p>
-        </div>
-        <div className="rf-grid-row">
-          <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
-              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Publique">
-                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Publique (pdf)
-            </a>
-            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Appel à manifestation d’intérêt pour les collectivités territoriales et leurs groupements
-            </span>
-          </p>
-        </div>
-        <div className="rf-grid-row">
-          <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
-              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Privé">
-                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Privé (pdf)
-            </a>
-            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Appel à manifestation d’intérêt pour les acteurs à statut privé
             </span>
           </p>
         </div>

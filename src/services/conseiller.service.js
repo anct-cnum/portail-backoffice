@@ -7,6 +7,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 export const conseillerService = {
   get,
   getAll,
+  getAllMisesEnRelation,
   updateStatus,
   updateDateRecrutement,
 };
@@ -20,14 +21,43 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, filter, sortData, sortOrder) {
+function getAll(departement, region, page, filter, sortData, sortOrder) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[${sortData}]=${sortOrder}`;
+  const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
+  const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}`;
+
   if (filter) {
     uri += `&filter=${filter}`;
+  }
+
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function getAllMisesEnRelation(departement, region, page, filter, sortData, sortOrder, persoFilters) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
+  const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}`;
+
+  if (filter) {
+    uri += `&filter=${filter}`;
+  }
+  if (persoFilters) {
+    //Pix ?
+    if (persoFilters?.pix !== undefined && persoFilters?.pix.length > 0) {
+      uri += `&pix=${persoFilters?.pix}`;
+    }
+    //Diplome ?
+    if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
+      uri += `&diplome=${persoFilters?.diplome}`;
+    }
   }
 
   return fetch(uri, requestOptions).then(handleResponse);

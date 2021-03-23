@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function popinInteresse({ statut }) {
+function popinInteressee({ statut }) {
 
   //Gestion of modal closure
   let closeModal = document.getElementById('modal-interessee-close');
@@ -63,8 +63,8 @@ function popinInteresse({ statut }) {
 
 }
 
-popinInteresse.propTypes = {
+popinInteressee.propTypes = {
   statut: PropTypes.string
 };
 
-export default popinInteresse;
+export default popinInteressee;

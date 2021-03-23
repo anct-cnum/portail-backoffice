@@ -11,10 +11,11 @@
 # production
 /build
 
-# Sub directories build by webpack
+# Sub directories and index.html build by webpack
 /public/css
 /public/fonts
 /public/js
+/public/index.html
 
 # misc
 .DS_Store

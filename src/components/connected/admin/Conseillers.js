@@ -3,21 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
-import FiltersAndSorts from './FiltersAndSorts';
-import {
-  Link,
-  useParams
-} from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Conseillers({ location }) {
+function Conseillers({ departement }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
-  const stats = useSelector(state => state.stats);
+  const user = useSelector(state => state.authentication.user.user);
 
   let [page, setPage] = useState(1);
   let savePage = null;
+  let location = useLocation();
   if (location.currentPage) {
     savePage = location.currentPage;
   }
@@ -25,17 +22,21 @@ function Conseillers({ location }) {
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
-  const filtersAndSorts = useSelector(state => state.filtersAndSorts);
+
+  let region = null;
+  if (user.role !== 'admin') {
+    region = user.region ? user.region : null;
+  }
 
   const navigate = page => {
     setPage(page);
     dispatch(conseillerActions.getAll({
-      misesEnRelation: true,
+      departement,
+      region,
+      misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
-      filter: filter,
-      sortData: filtersAndSorts?.order,
-      persoFilters: filtersAndSorts
-    }));
+      filter: filter })
+    );
   };
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function Conseillers({ location }) {
       navigate(savePage);
       delete location.currentPage;
     } else {
-      dispatch(conseillerActions.getAll({ misesEnRelation: true, page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+      dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
     }
   };
 
@@ -62,7 +63,7 @@ function Conseillers({ location }) {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
 
-  const tabs = [
+  /*const tabs = [
     {
       name: 'Nouvelles candidatures',
       filter: 'nouvelle'
@@ -83,7 +84,7 @@ function Conseillers({ location }) {
       name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }
-  ];
+  ];*/
 
   const constructor = () => {
     if (constructorHasRun) {
@@ -97,25 +98,20 @@ function Conseillers({ location }) {
     <div className="conseillers">
 
       <ul className="tabs rf-tags-group">
-        {tabs.map((tab, idx) => <li key={idx}>
+        {/*tabs.map((tab, idx) => <li key={idx}>
           <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
-            to={{
-              pathname: `/structure/conseillers/${tab.filter}`,
-              currentPage: 1
-            }}>
+            to={`/structure/conseillers/${tab.filter}`}>
             {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })
           </Link>
-        </li>)}
+  </li>)*/}
       </ul>
-
-      <FiltersAndSorts resetPage={setPage} />
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
       { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} currentPage={page} currentFilter={filter} />);
+        return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
       })
       }
 
@@ -126,7 +122,7 @@ function Conseillers({ location }) {
 }
 
 Conseillers.propTypes = {
-  location: PropTypes.object
+  departement: PropTypes.string
 };
 
 export default Conseillers;
