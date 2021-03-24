@@ -6,12 +6,11 @@ import Pagination from '../../common/Pagination';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-function Structures({ departement }) {
+function Structures({ departement, region }) {
   const dispatch = useDispatch();
 
   const structures = useSelector(state => state.structures);
   const user = useSelector(state => state.authentication.user.user);
-  let region;
 
   if (user.role !== 'admin') {
     departement = user.departement ? user.departement : null;
@@ -80,6 +79,7 @@ function Structures({ departement }) {
 }
 
 Structures.propTypes = {
+  region: PropTypes.string,
   departement: PropTypes.string
 };
 
