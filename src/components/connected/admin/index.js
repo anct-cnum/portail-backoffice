@@ -46,9 +46,20 @@ function Admin() {
   }];
 
   const [departement, setDepartement] = useState(null);
+  const [codeRegion, setCodeRegion] = useState(null);
 
   function selectDepartement(event) {
     setDepartement(event.target.value !== '' ? event.target.value : null);
+  }
+
+  function selectRegion(event) {
+    const value = event.target.value;
+    setCodeRegion(value !== '' ? value : null);
+    setDepartement(null);
+  }
+
+  function getDepartements() {
+    return departementsRegionRaw.filter(region => codeRegion !== null ? region.region_name === regionList.find(r => r.code === codeRegion).name : true);
   }
 
   return (
@@ -64,16 +75,25 @@ function Admin() {
           </div>
           <div className="rf-col-9">
             { user.role === 'admin' &&
-            <select className="rf-select rf-mb-2w" onChange={selectDepartement}>
-              <option value="">Tout département</option>
-              {departementsRegionRaw.map((region, idx) =>
-                <option key={idx} value={region.num_dep}>{region.num_dep} - {region.dep_name}</option>
-              )}
-            </select>}
+            <>
+              <select className="rf-select rf-mb-2w" onChange={selectRegion}>
+                <option value="">Toute région</option>
+                {regionList.sort((a, b) => a.name.normalize('NFD') > b.name.normalize('NFD')).map((region, idx) =>
+                  <option key={idx} value={region.code}>{region.name}</option>
+                )}
+              </select>
 
-            <Route path={`/structures`} component={() => <Structures departement={departement} />} />
+              <select className="rf-select rf-mb-2w" value={departement === null ? '' : departement} onChange={selectDepartement}>
+                <option value="">Tout département</option>
+                {getDepartements().map((region, idx) =>
+                  <option key={idx} value={region.num_dep}>{region.num_dep} - {region.dep_name}</option>
+                )}
+              </select>
+            </>}
+
+            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
-            <Route path={`/conseillers`} component={() => <Conseillers departement={role === 'admin' ? departement : null} />} />
+            <Route path={`/conseillers`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
             <Route path={`/conseiller/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
