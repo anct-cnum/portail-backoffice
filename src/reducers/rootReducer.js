@@ -5,6 +5,7 @@ import conseillerReducer from './conseillerReducer';
 import structureReducer from './structureReducer';
 import structuresReducer from './structuresReducer';
 import statsReducer from './statsReducer';
+import dashboardStatsReducer from './dashboardStatsReducer';
 import filtersAndSorts from './filtersAndSortsReducer';
 import { combineReducers } from 'redux';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   structures: structuresReducer,
   stats: statsReducer,
   filtersAndSorts: filtersAndSorts,
+  dashboardStats: dashboardStatsReducer,
 });
 
 export default rootReducer;
