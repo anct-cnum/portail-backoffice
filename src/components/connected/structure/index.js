@@ -13,6 +13,7 @@ import Header from '../../common/Header';
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const menu = useSelector(state => state.menu);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -31,10 +32,10 @@ function Structure() {
       </div>
       <div className="rf-container-fluid rf-mb-5w">
         <div className="rf-grid-row">
-          <div className="rf-col-3">
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
             <Menu />
           </div>
-          <div className="rf-col-9">
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
             <Route path={`/structure/informations`} component={Informations} />
             <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
             <Route path={`/structure/conseiller/:id`} component={conseillerDetails} />

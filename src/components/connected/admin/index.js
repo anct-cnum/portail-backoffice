@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
+  const menu = useSelector(state => state.menu);
   const location = useLocation();
 
   const role = user.role;
@@ -72,10 +73,10 @@ function Admin() {
       </div>
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
-          <div className="rf-col-3">
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
             <Menu />
           </div>
-          <div className="rf-col-9">
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
             { user.role === 'admin' && !location.pathname.startsWith('/tableau-de-bord') &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion}>
