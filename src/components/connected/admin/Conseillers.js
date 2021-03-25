@@ -6,7 +6,7 @@ import Pagination from '../../common/Pagination';
 import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Conseillers({ departement }) {
+function Conseillers({ departement, region }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
@@ -23,7 +23,6 @@ function Conseillers({ departement }) {
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
 
-  let region = null;
   if (user.role !== 'admin') {
     region = user.region ? user.region : null;
   }
@@ -122,6 +121,7 @@ function Conseillers({ departement }) {
 }
 
 Conseillers.propTypes = {
+  region: PropTypes.string,
   departement: PropTypes.string
 };
 
