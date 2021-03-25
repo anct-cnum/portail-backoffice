@@ -20,6 +20,17 @@ function Menu() {
         <button className="rf-sidemenu__btn--sidemenu-toggle" hidden aria-controls="rf-sidemenu-wrapper" aria-expanded="false">Dans cette rubrique</button>
         <div className="rf-sidemenu__wrapper" id="rf-sidemenu-wrapper">
           <ul className="rf-sidemenu__list">
+            { role === 'admin' &&
+                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/tableau-de-bord') ? 'rf-sidemenu__item--active' : ''}`}>
+                  <Link className="rf-sidemenu__link" to="/tableau-de-bord" style={{ padding: '0.5rem 0' }}>
+                    <div className="rf-container" style={{ padding: '0' }}>
+                      <div className="rf-grid-row rf-grid-row--end">
+                      Tableau de bord
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+            }
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structures') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structures" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
@@ -30,15 +41,15 @@ function Menu() {
               </Link>
             </li>
             { role === 'admin' &&
-              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/conseillers') ? 'rf-sidemenu__item--active' : ''}`}>
-                <Link className="rf-sidemenu__link" to="/conseillers" style={{ padding: '0.5rem 0' }}>
-                  <div className="rf-container" style={{ padding: '0' }}>
-                    <div className="rf-grid-row rf-grid-row--end">
-                    Liste des conseillers
+                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/conseillers') ? 'rf-sidemenu__item--active' : ''}`}>
+                  <Link className="rf-sidemenu__link" to="/conseillers" style={{ padding: '0.5rem 0' }}>
+                    <div className="rf-container" style={{ padding: '0' }}>
+                      <div className="rf-grid-row rf-grid-row--end">
+                      Liste des conseillers
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </li>
+                  </Link>
+                </li>
             }
             { role === 'prefet' &&
             <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>

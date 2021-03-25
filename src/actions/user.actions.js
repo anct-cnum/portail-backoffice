@@ -24,8 +24,10 @@ function login(username, password) {
         dispatch(success(data));
         if (data.user.role === 'structure') {
           history.push('/structure/conseillers/nouvelle');
-        } else {
+        } else if (data.user.role === 'prefet') {
           history.push('/structures');
+        } else if (data.user.role === 'admin') {
+          history.push('/tableau-de-bord');
         }
       },
       error => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, useLocation } from 'react-router-dom';
 
 import Menu from './Menu';
 import Structures from './Structures';
@@ -7,6 +7,7 @@ import StructureDetails from './StructureDetails';
 import Conseillers from './Conseillers';
 import ConseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
+import Stats from './Stats';
 import Header from '../../common/Header';
 
 import { useSelector } from 'react-redux';
@@ -14,6 +15,7 @@ import { useSelector } from 'react-redux';
 function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
+  const location = useLocation();
 
   const role = user.role;
 
@@ -74,7 +76,7 @@ function Admin() {
             <Menu />
           </div>
           <div className="rf-col-9">
-            { user.role === 'admin' &&
+            { user.role === 'admin' && !location.pathname.startsWith('/tableau-de-bord') &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion}>
                 <option value="">Toute région</option>
@@ -91,12 +93,18 @@ function Admin() {
               </select>
             </>}
 
+            <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/conseillers`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
             <Route path={`/conseiller/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
-            <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
+            { user.role === 'prefet' &&
+              <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
+            }
+            { user.role === 'admin' &&
+              <Route exact path="/" render={() => (<Redirect to="/tableau-de-bord" />)} />
+            }
           </div>
         </div>
       </div>
