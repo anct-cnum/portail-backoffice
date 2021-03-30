@@ -98,7 +98,11 @@ function filtersAndSorts({ resetPage }) {
                       onChange={changePix}
                     />
                     <label className="rf-label" htmlFor="pix-level-3">
-                      <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i></span>
+                      <span style={{ verticalAlign: 'sub' }}>
+                        <i className="ri-star-fill"></i>
+                        <i className="ri-star-fill"></i>
+                        <i className="ri-star-fill"></i>
+                      </span>
                     </label>
                   </div>
                 </div>
