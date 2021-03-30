@@ -36,7 +36,8 @@ function popinRecrutee({ statut }) {
                   <p>
                     Vous avez actionné le bouton &laquo;&nbsp;Valider cette candidature&nbsp;&raquo;
                     <br/>
-                    Votre choix est donc arrêté sur un ou plusieurs Conseillers numériques France Services. Vous allez donc passer à l&rsquo;étape de conventionnement.
+                    Votre choix est donc arrêté sur un ou plusieurs Conseillers numériques France Services.
+                    Vous allez donc passer à l&rsquo;étape de conventionnement.
                   </p>
                   <p>
                     <strong>Merci de bien vouloir :</strong>
@@ -48,13 +49,19 @@ function popinRecrutee({ statut }) {
                     NB : Si vous avez validé plusieurs candidatures, merci de ne réaliser qu’une seule demande.
                     <br /><br />
                     <strong>Structures publiques</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques"
+                      target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
                     <br/>
                     <strong>Entreprises</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises"
+                      target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
                     <br/>
                     <strong>Associations</strong> :&nbsp;
-                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations" target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations</a>
+                    <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations"
+                      target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations</a>
+                  </p>
+                  <p>
+                    <strong>Important : le recrutement reste conditionné à la conformité de votre dossier de demande de subvention.</strong>
                   </p>
                 </div>
               </div>
