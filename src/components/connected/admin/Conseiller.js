@@ -25,7 +25,7 @@ function Conseiller({ conseiller, currentPage }) {
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
         <Link style={{ boxShadow: 'none' }} to={{
-          pathname: `/conseiller/${conseiller._id}`,
+          pathname: `/candidat/${conseiller._id}`,
           currentPage: currentPage
         }}>
           <h4 className="rf-card__title">

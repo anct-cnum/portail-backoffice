@@ -25,7 +25,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter }) {
     <div className="conseiller rf-card rf-card--horizontal">
       <div className="rf-card__body">
         <Link style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/conseiller/${miseEnRelation.conseiller._id}`,
+          pathname: `/structure/candidat/${miseEnRelation.conseiller._id}`,
           miseEnRelation: miseEnRelation,
           currentPage: currentPage,
           currentFilter: currentFilter }}>

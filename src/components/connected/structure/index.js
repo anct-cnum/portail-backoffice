@@ -37,8 +37,8 @@ function Structure() {
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
             <Route path={`/structure/informations`} component={Informations} />
-            <Route path={`/structure/conseillers/:filter`} component={Conseillers} />
-            <Route path={`/structure/conseiller/:id`} component={conseillerDetails} />
+            <Route path={`/structure/candidats/:filter`} component={Conseillers} />
+            <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
           </div>
         </div>
