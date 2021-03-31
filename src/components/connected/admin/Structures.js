@@ -39,8 +39,6 @@ function Structures({ departement, region, search }) {
     }
   }, [structures]);
 
-
-
   const update = () => {
     if (savePage !== null) {
       navigate(savePage);
