@@ -100,7 +100,7 @@ function Conseillers({ location }) {
         {tabs.map((tab, idx) => <li key={idx}>
           <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
             to={{
-              pathname: `/structure/conseillers/${tab.filter}`,
+              pathname: `/structure/candidats/${tab.filter}`,
               currentPage: 1
             }}>
             {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })

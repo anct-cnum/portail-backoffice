@@ -51,7 +51,7 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/conseillers`,
+          pathname: `/candidats`,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">

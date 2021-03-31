@@ -58,11 +58,11 @@ function Menu() {
               </Link>
             </li>
             { role === 'admin' &&
-                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/conseillers') ? 'rf-sidemenu__item--active' : ''}`}>
-                  <Link className="rf-sidemenu__link" to="/conseillers" style={{ padding: '0.5rem 0' }}>
+                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
+                  <Link className="rf-sidemenu__link" to="/candidats" style={{ padding: '0.5rem 0' }}>
                     <div className="rf-container" style={{ padding: '0' }}>
                       <div className="rf-grid-row rf-grid-row--end">
-                      Liste des conseillers
+                      Liste des candidats
                       </div>
                     </div>
                   </Link>

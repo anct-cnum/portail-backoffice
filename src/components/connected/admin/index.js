@@ -109,8 +109,8 @@ function Admin() {
             <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
-            <Route path={`/conseillers`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
-            <Route path={`/conseiller/:id`} component={ConseillerDetails} />
+            <Route path={`/candidats`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
+            <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             { user.role === 'prefet' &&
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
