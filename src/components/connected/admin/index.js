@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
-
+import { searchActions } from '../../../actions';
 import Menu from './Menu';
 import Structures from './Structures';
 import StructureDetails from './StructureDetails';
@@ -10,13 +10,17 @@ import Documents from './Documents';
 import Stats from './Stats';
 import Header from '../../common/Header';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import SearchBox from './SearchBox';
 
 function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
+  const { search } = useSelector(state => state.search);
   const location = useLocation();
+
+  const dispatch = useDispatch();
 
   const role = user.role;
 
@@ -65,6 +69,10 @@ function Admin() {
     return departementsRegionRaw.filter(region => codeRegion !== null ? region.region_name === regionList.find(r => r.code === codeRegion).name : true);
   }
 
+  useEffect(() => {
+    dispatch(searchActions.updateSearch(''));
+  }, [location]);
+
   return (
     <div className="admin">
       <Header connected />
@@ -77,6 +85,10 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
+            { location.pathname.startsWith('/structures') &&
+              <SearchBox />
+            }
+
             { user.role === 'admin' && !location.pathname.startsWith('/tableau-de-bord') &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion}>
@@ -95,7 +107,7 @@ function Admin() {
             </>}
 
             <Route path={`/tableau-de-bord`} component={Stats} />
-            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} />} />
+            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/conseillers`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
             <Route path={`/conseiller/:id`} component={ConseillerDetails} />
