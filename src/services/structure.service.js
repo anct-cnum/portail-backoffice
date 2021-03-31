@@ -22,7 +22,6 @@ function getAll(departement, region, search, page, filter, sortData, sortOrder) 
     method: 'GET',
     headers: authHeader()
   };
-  console.log(search);
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
   const filterSearch = search !== '' ? `&$search=${search}` : '';
