@@ -89,7 +89,7 @@ function Admin() {
               <SearchBox />
             }
 
-            { user.role === 'admin' && !location.pathname.startsWith('/tableau-de-bord') &&
+            { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion}>
                 <option value="">Toute région</option>
