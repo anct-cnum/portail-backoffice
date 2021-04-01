@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions } from '../../../actions';
+import { structureActions, statsActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -12,11 +12,32 @@ function StructureDetails({ location }) {
 
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const { stats } = useSelector(state => state.stats);
   let { id } = useParams();
 
   useEffect(() => {
     dispatch(structureActions.get(id));
+    dispatch(statsActions.getMisesEnRelationStats(id));
   }, []);
+
+  const statutsLabel = [
+    {
+      name: 'nouvelles candidatures',
+      key: 'nouvelle'
+    },
+    {
+      name: 'candidatures pré sélectionnées',
+      key: 'interessee'
+    },
+    {
+      name: 'candidatures non retenues',
+      key: 'nonInteressee'
+    },
+    {
+      name: 'candidatures validées',
+      key: 'recrutee'
+    }
+  ];
 
   return (
     <div className="StructureDetails">
@@ -44,6 +65,15 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contactPrenom} {structure?.structure?.contactNom} ({structure?.structure?.contactFonction})</p>
           <p>Téléphone : {structure?.structure?.contactTelephone}</p>
           <p>Email : <a href={`mailto:${structure?.structure?.contactEmail}`}>{structure?.structure?.contactEmail}</a></p>
+          <h3>Statistiques</h3>
+          { stats && stats.length === 0 &&
+            <p>Pas de mise en relation pour le moment.</p>
+          }
+          { stats && stats.length > 0 && stats.map((stat, idx) =>
+            <p key={idx}>
+              {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
+            </p>
+          )}
         </div>
       </div>
     </div>

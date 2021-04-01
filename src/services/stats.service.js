@@ -5,7 +5,7 @@ export const statsService = {
   getMisesEnRelationStats,
 };
 
-function getMisesEnRelationStats() {
+function getMisesEnRelationStats(id) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -13,7 +13,7 @@ function getMisesEnRelationStats() {
 
   const apiUrlRoot = process.env.REACT_APP_API;
 
-  return fetch(`${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation/stats`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${id === null ? userEntityId() : id}/misesEnRelation/stats`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
