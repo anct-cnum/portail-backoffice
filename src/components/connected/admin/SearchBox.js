@@ -13,6 +13,13 @@ function SearchBox() {
     setSearchInputValue(e.target.value);
   }
 
+  function handleKeyDown(e) {
+    if (e.code === 'Enter') {
+      setSearchInputValue(e.target.value);
+      dispatch(searchActions.updateSearch(searchInputValue));
+    }
+  }
+
   function applySearch() {
     dispatch(searchActions.updateSearch(searchInputValue));
   }
@@ -24,7 +31,14 @@ function SearchBox() {
   return (
     <div className="rf-search-bar rf-mb-2w" role="search">
       <label className="rf-label" htmlFor="rf-search-input">Recherche</label>
-      <input className="rf-input" placeholder="Rechercher" type="search" id="rf-search-input" value={searchInputValue} onChange={handleChange} />
+      <input
+        className="rf-input"
+        placeholder="Rechercher"
+        type="search"
+        id="rf-search-input"
+        value={searchInputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown} />
       <button className="rf-btn" title="Rechercher" onClick={applySearch}>
         Rechercher
       </button>

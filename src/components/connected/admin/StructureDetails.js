@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions, statsActions } from '../../../actions';
+import { structureActions, statsActions, conseillerActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
+import Pagination from '../../common/Pagination';
+import Conseiller from './Conseiller';
 
 moment.locale('fr');
 
@@ -14,11 +16,25 @@ function StructureDetails({ location }) {
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
   let { id } = useParams();
+  const conseillers = useSelector(state => state.conseillers);
+  let [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+
+  const navigate = page => {
+    setPage(page);
+    dispatch(conseillerActions.getAll({
+      misesEnRelation: true,
+      structureId: id,
+      page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+    }));
+  };
 
   useEffect(() => {
-    dispatch(structureActions.get(id));
-    dispatch(statsActions.getMisesEnRelationStats(id));
-  }, []);
+    if (conseillers.items) {
+      const count = Math.floor(conseillers.items.total / conseillers.items.limit);
+      setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
+    }
+  }, [conseillers]);
 
   const statutsLabel = [
     {
@@ -38,6 +54,12 @@ function StructureDetails({ location }) {
       key: 'recrutee'
     }
   ];
+
+  useEffect(() => {
+    dispatch(structureActions.get(id));
+    navigate(1);
+    dispatch(statsActions.getMisesEnRelationStats(id));
+  }, []);
 
   return (
     <div className="StructureDetails">
@@ -69,11 +91,25 @@ function StructureDetails({ location }) {
           { stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
           }
-          { stats && stats.length > 0 && stats.map((stat, idx) =>
-            <p key={idx}>
-              {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
-            </p>
-          )}
+          { stats && stats.length > 0 &&
+            <>
+              { stats.map((stat, idx) =>
+                <p key={idx}>
+                  {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
+                </p>
+              )}
+              <h3>Liste des candidats</h3>
+
+              { conseillers && conseillers.loading && <span>Chargement...</span> }
+
+              { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
+                return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} currentPage={page} />);
+              })
+              }
+
+              <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+            </>
+          }
         </div>
       </div>
     </div>
