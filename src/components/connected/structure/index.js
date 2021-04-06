@@ -1,7 +1,7 @@
 import { React, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Pluralize from 'react-pluralize';
 import Menu from './Menu';
 import Conseillers from './Conseillers';
 import Informations from './Informations';
@@ -27,7 +27,10 @@ function Structure() {
         <h2 style={{ textAlign: 'center' }}>
           Espace structure — {structure?.structure?.nom}&nbsp;
           <span className="rf-highlight valignMiddle" style={{ fontWeight: 'normal' }}>
-            SIRET: {structure?.structure?.siret}
+            SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
+          </span>
+          <span className="rf-highlight" style={{ fontWeight: 'normal' }}>
+            <Pluralize singular={'conseiller validé'} plural={'conseillers validés'} count={structure?.structure?.nombreConseillersPrefet} /> par le préfet
           </span>
         </h2>
       </div>
