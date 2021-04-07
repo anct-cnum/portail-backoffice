@@ -23,16 +23,16 @@ function Structure() {
   return (
     <div className="structure rf-pb-md-3w">
       <Header connected />
-      <div className="rf-ml-1w rf-my-1w rf-py-1w">
-        <h2 style={{ textAlign: 'center' }}>
+      <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
+        <h2>
           Espace structure — {structure?.structure?.nom}&nbsp;
           <span className="rf-highlight valignMiddle" style={{ fontWeight: 'normal' }}>
             SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
           </span>
-          <span className="rf-highlight" style={{ fontWeight: 'normal' }}>
-            <Pluralize singular={'conseiller validé'} plural={'conseillers validés'} count={structure?.structure?.nombreConseillersPrefet} /> par le préfet
-          </span>
         </h2>
+        <span style={{ fontWeight: 'normal' }}>
+          <Pluralize singular={'conseiller validé'} plural={'conseillers validés'} count={structure?.structure?.nombreConseillersCoselec} /> par le préfet
+        </span>
       </div>
       <div className="rf-container-fluid rf-mb-5w">
         <div className="rf-grid-row">
