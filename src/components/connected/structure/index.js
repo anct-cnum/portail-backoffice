@@ -31,7 +31,7 @@ function Structure() {
           </span>
         </h2>
         <span style={{ fontWeight: 'normal' }}>
-          <Pluralize singular={'conseiller validé'} plural={'conseillers validés'} count={structure?.structure?.nombreConseillersCoselec} /> par le préfet
+          <Pluralize singular={'conseiller validé'} plural={'conseillers validés'} count={structure?.structure?.nombreConseillersCoselec} /> par l&apos;ANCT
         </span>
       </div>
       <div className="rf-container-fluid rf-mb-5w">
