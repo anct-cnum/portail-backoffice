@@ -6,7 +6,7 @@ import Pagination from '../../common/Pagination';
 import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Conseillers({ departement, region }) {
+function Conseillers({ departement, region, search }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
@@ -32,6 +32,7 @@ function Conseillers({ departement, region }) {
     dispatch(conseillerActions.getAll({
       departement,
       region,
+      search,
       misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
       filter: filter })
@@ -50,7 +51,7 @@ function Conseillers({ departement, region }) {
       navigate(savePage);
       delete location.currentPage;
     } else {
-      dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
+      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter }));
     }
   };
 
@@ -122,6 +123,7 @@ function Conseillers({ departement, region }) {
 
 Conseillers.propTypes = {
   region: PropTypes.string,
+  search: PropTypes.string,
   departement: PropTypes.string
 };
 

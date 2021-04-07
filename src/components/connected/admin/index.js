@@ -85,7 +85,7 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
-            { location.pathname.startsWith('/structures') &&
+            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
               <SearchBox />
             }
 
@@ -109,7 +109,12 @@ function Admin() {
             <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
-            <Route path={`/candidats`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
+            <Route path={`/candidats`}
+              component={
+                () => <Conseillers
+                  departement={role === 'admin' ? departement : null}
+                  region={codeRegion}
+                  search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             { user.role === 'prefet' &&

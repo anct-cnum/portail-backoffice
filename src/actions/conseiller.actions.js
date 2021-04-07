@@ -37,6 +37,7 @@ function getAll({
   region = null,
   structureId = null,
   misesEnRelation,
+  search = '',
   page = 0,
   filter,
   sortData = 'conseillerObj.createdAt',
@@ -47,9 +48,9 @@ function getAll({
 
     let promise;
     if (misesEnRelation) {
-      promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, page, filter, sortData, sortOrder, persoFilters);
+      promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters);
     } else {
-      promise = conseillerService.getAll(departement, region, page, filter, sortData, sortOrder, persoFilters);
+      promise = conseillerService.getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters);
     }
 
     promise
