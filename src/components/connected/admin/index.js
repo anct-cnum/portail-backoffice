@@ -11,7 +11,7 @@ import Stats from './Stats';
 import Header from '../../common/Header';
 
 import { useSelector, useDispatch } from 'react-redux';
-import SearchBox from './SearchBox';
+import SearchBox from '../../common/SearchBox';
 
 function Admin() {
 

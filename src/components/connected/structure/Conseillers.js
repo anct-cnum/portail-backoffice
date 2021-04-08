@@ -9,10 +9,12 @@ import {
   useParams
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SearchBox from '../../common/SearchBox';
 
 function Conseillers({ location }) {
   const dispatch = useDispatch();
 
+  const { search } = useSelector(state => state.search);
   const conseillers = useSelector(state => state.conseillers);
   const stats = useSelector(state => state.stats);
 
@@ -31,6 +33,7 @@ function Conseillers({ location }) {
     setPage(page);
     dispatch(conseillerActions.getAll({
       misesEnRelation: true,
+      search,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
       filter: filter,
       sortData: filtersAndSorts?.order,
@@ -50,7 +53,14 @@ function Conseillers({ location }) {
       navigate(savePage);
       delete location.currentPage;
     } else {
-      dispatch(conseillerActions.getAll({ misesEnRelation: true, page: page - 1, filter, sortData: filtersAndSorts?.order, persoFilters: filtersAndSorts }));
+      dispatch(conseillerActions.getAll({
+        misesEnRelation: true,
+        search,
+        page: page - 1,
+        filter,
+        sortData: filtersAndSorts?.order,
+        persoFilters: filtersAndSorts
+      }));
     }
   };
 
@@ -59,8 +69,13 @@ function Conseillers({ location }) {
   }, [filter]);
 
   useEffect(() => {
+    console.log(search);
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
+
+  useEffect(() => {
+    update();
+  }, [search]);
 
   const tabs = [
     {
@@ -107,6 +122,10 @@ function Conseillers({ location }) {
           </Link>
         </li>)}
       </ul>
+
+      { location.pathname.startsWith('/structure/candidats') &&
+        <SearchBox />
+      }
 
       <FiltersAndSorts resetPage={setPage} />
 
