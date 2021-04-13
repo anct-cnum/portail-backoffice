@@ -70,7 +70,7 @@ function Conseillers({ location }) {
 
   useEffect(() => {
     update();
-  }, [filter, search]);
+  }, [filter, filtersAndSorts, search]);
 
   const tabs = [
     {
