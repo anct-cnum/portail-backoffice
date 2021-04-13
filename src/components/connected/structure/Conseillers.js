@@ -65,17 +65,12 @@ function Conseillers({ location }) {
   };
 
   useEffect(() => {
-    update();
-  }, [filter]);
-
-  useEffect(() => {
-    console.log(search);
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
 
   useEffect(() => {
     update();
-  }, [search]);
+  }, [filter, search]);
 
   const tabs = [
     {
