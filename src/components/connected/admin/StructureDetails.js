@@ -21,7 +21,7 @@ function StructureDetails({ location }) {
   const typeStructure = [
     {
       key: 'PRIVATE',
-      type: 'Entreprise privée'
+      type: 'Privée'
     }, {
       key: 'COMMUNE',
       type: 'Commune'
@@ -37,9 +37,6 @@ function StructureDetails({ location }) {
     }, {
       key: 'REGION',
       type: 'Région'
-    }, {
-      key: undefined,
-      type: ''
     }
   ];
 
@@ -62,7 +59,7 @@ function StructureDetails({ location }) {
           SIRET {structure?.structure?.siret}
         </h3>
         <div className="rf-container-fluid">
-          <p>Type : {typeStructure.find(item => item.key === (structure?.structure?.type)).type}</p>
+          <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type)).type}</p>
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
