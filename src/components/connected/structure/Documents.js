@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function Documents() {
+
+  const structure = useSelector(state => state.structure?.structure);
 
   return (
     <div className="documents">
@@ -51,6 +54,18 @@ function Documents() {
         </div>
         <div className="rf-grid-row">
           <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Modele_de_convention.pdf"
+              className="rf-link" target="blank" title="Télécharger la convention de subvention">
+                        Télécharger la convention de subvention (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Modèle de convention de subvention
+            </span>
+          </p>
+        </div>
+        { structure?.type !== 'PRIVATE' &&
+        <div className="rf-grid-row">
+          <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Contrat%20de%20projet%20type.pdf"
               className="rf-link" target="blank" title="Télécharger le contrat de projet type">
                         Télécharger le contrat de projet type (pdf)
@@ -60,6 +75,21 @@ function Documents() {
             </span>
           </p>
         </div>
+        }
+        { structure?.type === 'PRIVATE' &&
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/CDD_type_structures_privees.pdf"
+              className="rf-link" target="blank" title="Télécharger le CDD type structures privées">
+                        Télécharger le contrat de projet type (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Contrat de travail à durée déterminée pour les structures privées
+            </span>
+          </p>
+        </div>
+        }
+        { structure?.type !== 'PRIVATE' &&
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
@@ -71,6 +101,8 @@ function Documents() {
             </span>
           </p>
         </div>
+        }
+        { structure?.type === 'PRIVATE' &&
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
@@ -82,6 +114,7 @@ function Documents() {
             </span>
           </p>
         </div>
+        }
       </div>
     </div>
   );

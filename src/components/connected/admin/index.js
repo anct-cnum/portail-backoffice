@@ -11,7 +11,7 @@ import Stats from './Stats';
 import Header from '../../common/Header';
 
 import { useSelector, useDispatch } from 'react-redux';
-import SearchBox from './SearchBox';
+import SearchBox from '../../common/SearchBox';
 
 function Admin() {
 
@@ -85,11 +85,11 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
-            { location.pathname.startsWith('/structures') &&
+            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
               <SearchBox />
             }
 
-            { user.role === 'admin' && !location.pathname.startsWith('/tableau-de-bord') &&
+            { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion}>
                 <option value="">Toute région</option>
@@ -109,7 +109,12 @@ function Admin() {
             <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
-            <Route path={`/candidats`} component={() => <Conseillers departement={role === 'admin' ? departement : null} region={codeRegion} />} />
+            <Route path={`/candidats`}
+              component={
+                () => <Conseillers
+                  departement={role === 'admin' ? departement : null}
+                  region={codeRegion}
+                  search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             { user.role === 'prefet' &&

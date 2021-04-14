@@ -32,13 +32,28 @@ function get(id) {
 
 }
 
-function getAll({ departement = null, region = null, misesEnRelation, page = 0, filter, sortData = 'conseillerObj.createdAt', sortOrder = 1, persoFilters }) {
+function getAll({
+  departement = null,
+  region = null,
+  structureId = null,
+  misesEnRelation,
+  search = '',
+  page = 0,
+  filter,
+  sortData = 'conseillerObj.createdAt',
+  sortOrder = 1,
+  persoFilters }) {
   return dispatch => {
     dispatch(request());
 
-    const getAll = misesEnRelation ? conseillerService.getAllMisesEnRelation : conseillerService.getAll;
+    let promise;
+    if (misesEnRelation) {
+      promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters);
+    } else {
+      promise = conseillerService.getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters);
+    }
 
-    getAll(departement, region, page, filter, sortData, sortOrder, persoFilters)
+    promise
     .then(
       conseillers => dispatch(success(conseillers)),
       error => {
