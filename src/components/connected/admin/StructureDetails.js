@@ -18,6 +18,31 @@ function StructureDetails({ location }) {
     dispatch(structureActions.get(id));
   }, []);
 
+  const typeStructure = [
+    {
+      key: 'PRIVATE',
+      type: 'Entreprise privée'
+    }, {
+      key: 'COMMUNE',
+      type: 'Commune'
+    }, {
+      key: 'EPCI',
+      type: 'EPCI'
+    }, {
+      key: 'DEPARTEMENT',
+      type: 'Département'
+    }, {
+      key: 'COLLECTIVITE',
+      type: 'Collectivité'
+    }, {
+      key: 'REGION',
+      type: 'Région'
+    }, {
+      key: undefined,
+      type: ''
+    }
+  ];
+
   return (
     <div className="StructureDetails">
       <Link
@@ -37,7 +62,7 @@ function StructureDetails({ location }) {
           SIRET {structure?.structure?.siret}
         </h3>
         <div className="rf-container-fluid">
-          <p>Type : {structure?.structure?.type}</p>
+          <p>Type : {typeStructure.find(item => item.key === (structure?.structure?.type)).type}</p>
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
