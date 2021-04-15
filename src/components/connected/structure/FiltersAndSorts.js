@@ -8,13 +8,14 @@ function filtersAndSorts({ resetPage }) {
 
   const dispatch = useDispatch();
   let filtersAndSorts = useSelector(state => state.filtersAndSorts);
+  const { search } = useSelector(state => state.search);
   let { filter } = useParams();
 
   //Sort
   const changeSort = e => {
     let order = e.target.checked ? 'conseillerObj.dateDisponibilite' : 'conseillerObj.createdAt';
     dispatch(filtersAndSortsActions.updateOrder(order));
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: order, persoFilters: filtersAndSorts }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: order, persoFilters: filtersAndSorts }));
     resetPage(1);
   };
 
@@ -35,7 +36,7 @@ function filtersAndSorts({ resetPage }) {
       pix: pix,
       diplome: filtersAndSorts?.diplome
     };
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
   };
 
@@ -51,7 +52,7 @@ function filtersAndSorts({ resetPage }) {
       pix: filtersAndSorts?.pix,
       diplome: diplome
     };
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
   };
 
