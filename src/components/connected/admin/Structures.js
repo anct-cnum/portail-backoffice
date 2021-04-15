@@ -72,6 +72,7 @@ function Structures({ departement, region, search }) {
           <thead>
             <th>SIRET</th>
             <th>Nom</th>
+            <th>Statut coselec</th>
             <th>Date de candidature</th>
             <th>Code postal</th>
             <th></th>

@@ -10,6 +10,7 @@ function Structure({ structure, currentPage }) {
     <tr>
       <td>{structure.siret !== null ? structure.siret : 'non renseigné' }</td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
+      <td>{structure.avisCoselec}</td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
       <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
