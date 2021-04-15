@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
-import { conseillerActions, statsActions } from '../../../actions';
+import { conseillerActions, statsActions, searchActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import FiltersAndSorts from './FiltersAndSorts';
 import {
@@ -71,6 +71,10 @@ function Conseillers({ location }) {
   useEffect(() => {
     update();
   }, [filter, filtersAndSorts, search]);
+
+  useEffect(() => {
+    dispatch(searchActions.updateSearch(''));
+  }, [filter]);
 
   const tabs = [
     {
