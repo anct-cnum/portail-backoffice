@@ -84,7 +84,7 @@ function Admin() {
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
             <Menu />
           </div>
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-8' : 'rf-col-xs-7 rf-col-sm-9'}`}>
             { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
               <SearchBox />
             }

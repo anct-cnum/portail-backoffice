@@ -43,7 +43,7 @@ function Structure() {
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
             <Menu />
           </div>
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9' : 'rf-col-xs-7 rf-col-sm-9'}`}>
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-8' : 'rf-col-xs-7 rf-col-sm-9'}`}>
             <Route path={`/structure/informations`} component={Informations} />
             <Route path={`/structure/candidats/:filter`} component={Conseillers} />
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
