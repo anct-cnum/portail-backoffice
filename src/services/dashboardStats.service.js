@@ -1,11 +1,11 @@
-import { authHeader, history, userEntityId } from '../helpers';
+import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
 
-export const statsService = {
-  getMisesEnRelationStats,
+export const dashboardStatsService = {
+  getStats,
 };
 
-function getMisesEnRelationStats(id) {
+function getStats() {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -13,7 +13,7 @@ function getMisesEnRelationStats(id) {
 
   const apiUrlRoot = process.env.REACT_APP_API;
 
-  return fetch(`${apiUrlRoot}/structures/${id === null ? userEntityId() : id}/misesEnRelation/stats`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/stats/dashboard`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

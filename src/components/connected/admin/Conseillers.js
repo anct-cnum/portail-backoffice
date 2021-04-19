@@ -6,7 +6,7 @@ import Pagination from '../../common/Pagination';
 import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Conseillers({ departement }) {
+function Conseillers({ departement, region, search }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
@@ -23,7 +23,6 @@ function Conseillers({ departement }) {
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
 
-  let region = null;
   if (user.role !== 'admin') {
     region = user.region ? user.region : null;
   }
@@ -33,9 +32,11 @@ function Conseillers({ departement }) {
     dispatch(conseillerActions.getAll({
       departement,
       region,
+      search,
       misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
-      filter: filter })
+      filter: filter
+    })
     );
   };
 
@@ -51,7 +52,7 @@ function Conseillers({ departement }) {
       navigate(savePage);
       delete location.currentPage;
     } else {
-      dispatch(conseillerActions.getAll({ departement, region, misesEnRelation: false, page: page - 1, filter }));
+      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter }));
     }
   };
 
@@ -62,29 +63,6 @@ function Conseillers({ departement }) {
   useEffect(() => {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
-
-  /*const tabs = [
-    {
-      name: 'Nouvelles candidatures',
-      filter: 'nouvelle'
-    },
-    {
-      name: 'Candidatures pré sélectionnées',
-      filter: 'interessee'
-    },
-    {
-      name: 'Candidatures non retenues',
-      filter: 'nonInteressee'
-    },
-    {
-      name: 'Candidatures validées',
-      filter: 'recrutee'
-    },
-    {
-      name: 'Afficher toutes les candidatures',
-      filter: 'toutes'
-    }
-  ];*/
 
   const constructor = () => {
     if (constructorHasRun) {
@@ -97,24 +75,28 @@ function Conseillers({ departement }) {
   return (
     <div className="conseillers">
 
-      <ul className="tabs rf-tags-group">
-        {/*tabs.map((tab, idx) => <li key={idx}>
-          <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
-            to={`/structure/conseillers/${tab.filter}`}>
-            {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })
-          </Link>
-  </li>)*/}
-      </ul>
+      { conseillers && conseillers.loading && <span>Chargement...</span>}
 
-      { conseillers && conseillers.loading && <span>Chargement...</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span>}
 
-      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
-
-      { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
-      })
-      }
-
+      <div className="rf-table">
+        <table>
+          <thead>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de candidature</th>
+            <th>Code postal</th>
+            <th>Résultat Pix</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+              return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
+            })
+            }
+          </tbody>
+        </table>
+      </div>
       <Pagination current={page} pageCount={pageCount} navigate={navigate} />
 
     </div>
@@ -122,6 +104,8 @@ function Conseillers({ departement }) {
 }
 
 Conseillers.propTypes = {
+  region: PropTypes.string,
+  search: PropTypes.string,
   departement: PropTypes.string
 };
 

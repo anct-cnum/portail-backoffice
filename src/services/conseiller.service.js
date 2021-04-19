@@ -21,14 +21,15 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, page, filter, sortData, sortOrder) {
+function getAll(departement, region, search, page, filter, sortData, sortOrder) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}`;
+  const filterSearch = search !== '' ? `&$search=${search}` : '';
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterSearch}`;
 
   if (filter) {
     uri += `&filter=${filter}`;
@@ -37,14 +38,16 @@ function getAll(departement, region, page, filter, sortData, sortOrder) {
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getAllMisesEnRelation(departement, region, page, filter, sortData, sortOrder, persoFilters) {
+function getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
-  let uri = `${apiUrlRoot}/structures/${userEntityId()}/misesEnRelation?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}`;
+  const filterSearch = search !== '' ? `&$search=${search}` : '';
+  let uri = `${apiUrlRoot}/structures/${structureId ? structureId : userEntityId()}/misesEnRelation?\
+$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterSearch}`;
 
   if (filter) {
     uri += `&filter=${filter}`;

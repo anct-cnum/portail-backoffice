@@ -4,11 +4,11 @@ export const statsActions = {
   getMisesEnRelationStats,
 };
 
-function getMisesEnRelationStats() {
+function getMisesEnRelationStats(id = null) {
   return dispatch => {
     dispatch(request());
 
-    statsService.getMisesEnRelationStats()
+    statsService.getMisesEnRelationStats(id)
     .then(
       stats => {
         stats['toutes'] = 0;

@@ -6,12 +6,11 @@ import Pagination from '../../common/Pagination';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-function Structures({ departement }) {
+function Structures({ departement, region, search }) {
   const dispatch = useDispatch();
 
   const structures = useSelector(state => state.structures);
   const user = useSelector(state => state.authentication.user.user);
-  let region = null;
 
   if (user.role !== 'admin') {
     departement = user.departement ? user.departement : null;
@@ -30,7 +29,7 @@ function Structures({ departement }) {
 
   const navigate = page => {
     setPage(page);
-    dispatch(structureActions.getAll({ departement, region, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
+    dispatch(structureActions.getAll({ departement, region, search, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
   };
 
   useEffect(() => {
@@ -45,7 +44,7 @@ function Structures({ departement }) {
       navigate(savePage);
       delete location.currentPage;
     } else {
-      dispatch(structureActions.getAll({ departement, region, page: page - 1 }));
+      dispatch(structureActions.getAll({ departement, region, search, page: page - 1 }));
     }
   };
 
@@ -64,15 +63,28 @@ function Structures({ departement }) {
   return (
     <div className="structures">
 
-      { structures && structures.loading && <span>Chargement...</span> }
+      { structures && structures.loading && <span>Chargement...</span>}
 
-      { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span> }
+      { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span>}
 
-      { !structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
-        return (<Structure key={idx} structure={structure} currentPage={page} />);
-      })
-      }
-
+      <div className="rf-table">
+        <table>
+          <thead>
+            <th>SIRET</th>
+            <th>Nom</th>
+            <th>Statut coselec</th>
+            <th>Date de candidature</th>
+            <th>Code postal</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
+              return (<Structure key={idx} structure={structure} currentPage={page} />);
+            })
+            }
+          </tbody>
+        </table>
+      </div>
       <Pagination current={page} pageCount={pageCount} navigate={navigate} />
 
     </div>
@@ -80,7 +92,9 @@ function Structures({ departement }) {
 }
 
 Structures.propTypes = {
-  departement: PropTypes.string
+  region: PropTypes.string,
+  departement: PropTypes.string,
+  search: PropTypes.string
 };
 
 export default Structures;
