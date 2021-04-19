@@ -35,7 +35,8 @@ function Conseillers({ departement, region, search }) {
       search,
       misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
-      filter: filter })
+      filter: filter
+    })
     );
   };
 
@@ -63,29 +64,6 @@ function Conseillers({ departement, region, search }) {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
 
-  /*const tabs = [
-    {
-      name: 'Nouvelles candidatures',
-      filter: 'nouvelle'
-    },
-    {
-      name: 'Candidatures pré sélectionnées',
-      filter: 'interessee'
-    },
-    {
-      name: 'Candidatures non retenues',
-      filter: 'nonInteressee'
-    },
-    {
-      name: 'Candidatures validées',
-      filter: 'recrutee'
-    },
-    {
-      name: 'Afficher toutes les candidatures',
-      filter: 'toutes'
-    }
-  ];*/
-
   const constructor = () => {
     if (constructorHasRun) {
       return;
@@ -97,24 +75,28 @@ function Conseillers({ departement, region, search }) {
   return (
     <div className="conseillers">
 
-      <ul className="tabs rf-tags-group">
-        {/*tabs.map((tab, idx) => <li key={idx}>
-          <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
-            to={`/structure/candidats/${tab.filter}`}>
-            {tab.name}&nbsp;({ stats?.stats !== undefined && stats?.stats[tab.filter] !== undefined ? stats?.stats[tab.filter] : 0 })
-          </Link>
-  </li>)*/}
-      </ul>
+      { conseillers && conseillers.loading && <span>Chargement...</span>}
 
-      { conseillers && conseillers.loading && <span>Chargement...</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span>}
 
-      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
-
-      { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
-      })
-      }
-
+      <div className="rf-table">
+        <table>
+          <thead>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de candidature</th>
+            <th>Code postal</th>
+            <th>Résultat Pix</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+              return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
+            })
+            }
+          </tbody>
+        </table>
+      </div>
       <Pagination current={page} pageCount={pageCount} navigate={navigate} />
 
     </div>

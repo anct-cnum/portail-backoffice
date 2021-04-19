@@ -7,30 +7,18 @@ import { Link } from 'react-router-dom';
 function Structure({ structure, currentPage }) {
 
   return (
-    <div className="structure rf-card rf-card--horizontal">
-      <div className="rf-card__body">
-        <Link style={{ boxShadow: 'none' }}
-          to={{
-            pathname: `/structure/${structure._id}`,
-            currentPage: currentPage
-          }}>
-          <p className="rf-card__detail">SIRET {structure.siret !== 'null' ? structure.siret : 'non renseigné' }</p>
-          <h4 className="rf-card__title">
-            <span className="capitalizeFirstLetter">{structure.nom}</span>
-          </h4>
-          <div className="rf-card__desc">
-            <div className="rf-container-fluid">
-              <div className="rf-grid-row">
-                <div className="rf-col-4"><span>Candidature du <strong>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</strong></span></div>
-              </div>
-              <div className="rf-grid-row">
-                <div className="rf-col-4">Code postal: {structure.codePostal}</div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </div>
-    </div>
+    <tr>
+      <td>{structure.siret !== null ? structure.siret : 'non renseigné' }</td>
+      <td className="capitalizeFirstLetter">{structure.nom}</td>
+      <td>{structure.avisCoselec}</td>
+      <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
+      <td>{structure.codePostal}</td>
+      <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+        to={{
+          pathname: `/structure/${structure._id}`,
+          currentPage: currentPage
+        }}>Détails</Link></td>
+    </tr>
   );
 }
 

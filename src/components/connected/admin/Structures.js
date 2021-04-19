@@ -63,15 +63,28 @@ function Structures({ departement, region, search }) {
   return (
     <div className="structures">
 
-      { structures && structures.loading && <span>Chargement...</span> }
+      { structures && structures.loading && <span>Chargement...</span>}
 
-      { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span> }
+      { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span>}
 
-      { !structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
-        return (<Structure key={idx} structure={structure} currentPage={page} />);
-      })
-      }
-
+      <div className="rf-table">
+        <table>
+          <thead>
+            <th>SIRET</th>
+            <th>Nom</th>
+            <th>Statut coselec</th>
+            <th>Date de candidature</th>
+            <th>Code postal</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
+              return (<Structure key={idx} structure={structure} currentPage={page} />);
+            })
+            }
+          </tbody>
+        </table>
+      </div>
       <Pagination current={page} pageCount={pageCount} navigate={navigate} />
 
     </div>

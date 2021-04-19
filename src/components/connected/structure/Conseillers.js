@@ -132,10 +132,25 @@ function Conseillers({ location }) {
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
 
-      { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-        return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} currentPage={page} currentFilter={filter} />);
-      })
-      }
+      <div className="rf-table">
+        <table>
+          <thead>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Statut</th>
+            <th>Date de candidature</th>
+            <th>Code postal</th>
+            <th>Résultat Pix</th>
+            <th></th>
+          </thead>
+          <tbody>
+            { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+              return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} currentPage={page} currentFilter={filter} />);
+            })
+            }
+          </tbody>
+        </table>
+      </div>
 
       <Pagination current={page} pageCount={pageCount} navigate={navigate} />
 
