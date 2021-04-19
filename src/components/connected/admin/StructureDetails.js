@@ -109,9 +109,9 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contactPrenom} {structure?.structure?.contactNom} ({structure?.structure?.contactFonction})</p>
           <p>Téléphone : {structure?.structure?.contactTelephone}</p>
           <p>Email : <a href={`mailto:${structure?.structure?.contactEmail}`}>{structure?.structure?.contactEmail}</a></p>
-          <p>Avis Coselec: {structure.avisCoselec ? structure.avisCoselec : 'en attente de passage'}</p>
-          { structure.avisCoselec &&
-            <p>Avis Coselec: {structure.nombreConseillersCoselec}</p>
+          <p>Avis Coselec: {structure.statut === 'VALIDATION_COSELEC' ? structure.avisCoselec : 'en attente de passage'}</p>
+          { structure.statut === 'VALIDATION_COSELEC' &&
+            <p>Avis Coselec: {[...structure.coselec].pop().nombreConseillersCoselec}</p>
           }
           <h3>Statistiques</h3>
           { stats && stats.length === 0 &&
