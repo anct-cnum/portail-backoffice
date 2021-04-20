@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { filterDateActions } from '../../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 registerLocale('fr', fr);
-function FilterDateBox(props) {
+function FilterDateBox() {
   const dispatch = useDispatch();
 
-  const [dateStart, setDateStart] = useState(props.dateStart);
-  const [dateEnd, setDateEnd] = useState(props.dateEnd);
+  const dates = useSelector(state => state.filterDate);
 
   function handleChangeStart(e) {
-    setDateStart(e);
     dispatch(filterDateActions.updateFilterDateStart(e));
   }
 
   function handleChangeEnd(e) {
-    setDateEnd(e);
     dispatch(filterDateActions.updateFilterDateEnd(e));
   }
 
@@ -34,7 +31,7 @@ function FilterDateBox(props) {
               className="rf-input rf-mx-1w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
-              selected={dateStart}
+              selected={dates.filterDateStart}
               onChange={handleChangeStart}
             />
           </div>
@@ -48,7 +45,7 @@ function FilterDateBox(props) {
               className="rf-input rf-mx-1w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
-              selected={dateEnd}
+              selected={dates.filterDateEnd}
               onChange={handleChangeEnd}
             />
           </div>

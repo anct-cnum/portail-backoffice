@@ -20,6 +20,8 @@ function Admin() {
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
 
+  const dates = useSelector(state => state.filterDate);
+
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -75,9 +77,6 @@ function Admin() {
     dispatch(searchActions.updateSearch(''));
   }, [location]);
 
-  // Comment récupérer les données de filterDateBox ?
-  const filterDateStart = null;
-  const filterDateEnd = null;
 
   return (
     <div className="admin">
@@ -118,7 +117,7 @@ function Admin() {
 
             <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion}
-              search={search} start={filterDateStart} end={filterDateEnd} />} />
+              search={search} start={String(dates.filterDateStart)} end={String(dates.filterDateEnd)} />} />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/candidats`}
               component={
