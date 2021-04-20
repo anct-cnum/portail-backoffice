@@ -9,7 +9,7 @@ import dashboardStatsReducer from './dashboardStatsReducer';
 import filtersAndSorts from './filtersAndSortsReducer';
 import menu from './menuReducer';
 import searchReducer from './searchReducer';
-import searchDateReducer from './searchDateReducer';
+import filterDateReducer from './filterDateReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   menu: menu,
   dashboardStats: dashboardStatsReducer,
   search: searchReducer,
-  searchDate: searchDateReducer,
+  filterDate: filterDateReducer,
 });
 
 export default rootReducer;

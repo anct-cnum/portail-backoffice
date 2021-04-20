@@ -6,4 +6,4 @@ export * from './filtersAndSorts.actions';
 export * from './menu.actions';
 export * from './dashboardStats.actions';
 export * from './search.actions';
-export * from './searchDate.actions';
+export * from './filterDate.actions';

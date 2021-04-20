@@ -133,7 +133,8 @@ function ConseillerDetails({ location }) {
         statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}
         miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
         updateStatut={updateStatut}
-        dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ? conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
+        dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ?
+          conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
     </div>
   );
 }

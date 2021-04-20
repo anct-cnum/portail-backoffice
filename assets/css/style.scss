@@ -80,11 +80,11 @@ $blue-france:#000091;
 }
 
 /* Filtre Date début et fin */
-.searchDateBoxDebut div.react-datepicker-wrapper, .searchDateBoxFin div.react-datepicker-wrapper {
+.filterDateBoxDebut div.react-datepicker-wrapper, .filterDateBoxFin div.react-datepicker-wrapper {
   width: 99%;
 }
 
-.searchDateBoxFin div.react-datepicker-wrapper {
+.filterDateBoxFin div.react-datepicker-wrapper {
   margin-left: 1%;
 }
 
@@ -97,7 +97,7 @@ $blue-france:#000091;
 }
 
 @media (max-width: 575px) {
-  .searchDateBoxDebut div.react-datepicker-wrapper, .searchDateBoxFin div.react-datepicker-wrapper {
+  .filterDateBoxDebut div.react-datepicker-wrapper, .filterDateBoxFin div.react-datepicker-wrapper {
     width: 100%;
     margin-left: 0%;
   }
