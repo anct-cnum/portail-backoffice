@@ -21,17 +21,31 @@ function Stats() {
         </div>
         { stats &&
         <div className="rf-container">
-          <div className="rf-grid-row">
-            <div className="rf-col-xs-12 rf-col-md-4">
+          <div className="rf-grid-row rf-mb-3w">
+            <div className="rf-col-xs-12 rf-col-md-3">
               <h4 style={{ height: '48px' }}>Nombre total de structures inscrites</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre total de candidats</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre total de mises en relation</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre total de candidatures recrutées</h4>
+            </div>
+          </div>
+          <div className="rf-grid-row">
+            <div className="rf-col-xs-12 rf-col-md-3">
               <span>{stats.structuresCount}</span>
             </div>
-            <div className="rf-col-xs-12 rf-col-md-4">
-              <h4 style={{ height: '48px' }}>Nombre total de candidats</h4>
+            <div className="rf-col-xs-12 rf-col-md-3">
               <span>{stats.conseillersCount}</span>
             </div>
-            <div className="rf-col-xs-12 rf-col-md-4">
-              <h4 style={{ height: '48px' }}>Nombre total de candidatures recrutées</h4>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <span>{stats.matchingsCount}</span>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
               <span>{stats.conseillersRecrutesCount}</span>
             </div>
           </div>
