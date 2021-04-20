@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions, statsActions, conseillerActions } from '../../../actions';
+import { structureActions, statsActions, conseillerActions, paginationActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -56,6 +56,7 @@ function StructureDetails({ location }) {
   ];
 
   useEffect(() => {
+    dispatch(paginationActions.resetPage(false));
     dispatch(structureActions.get(id));
     navigate(1);
     dispatch(statsActions.getMisesEnRelationStats(id));
@@ -129,7 +130,7 @@ function StructureDetails({ location }) {
               { conseillers && conseillers.loading && <span>Chargement...</span> }
 
               { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
-                return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} currentPage={page} />);
+                return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} />); //non conservation de la page car retour à la liste des conseillers...
               })
               }
 
