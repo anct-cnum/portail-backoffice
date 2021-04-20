@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { searchActions } from '../../../actions';
+import { searchActions, paginationActions } from '../../../actions';
 import Menu from './Menu';
 import Structures from './Structures';
 import StructureDetails from './StructureDetails';
@@ -17,6 +17,7 @@ function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
+  const pagination = useSelector(state => state.pagination);
   const { search } = useSelector(state => state.search);
   const location = useLocation();
 
@@ -56,10 +57,12 @@ function Admin() {
   const [codeRegion, setCodeRegion] = useState(null);
 
   function selectDepartement(event) {
+    dispatch(paginationActions.resetPage(true));
     setDepartement(event.target.value !== '' ? event.target.value : null);
   }
 
   function selectRegion(event) {
+    dispatch(paginationActions.resetPage(true));
     const value = event.target.value;
     setCodeRegion(value !== '' ? value : null);
     setDepartement(null);
@@ -91,7 +94,7 @@ function Admin() {
 
             { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
             <>
-              <select className="rf-select rf-mb-2w" onChange={selectRegion}>
+              <select className="rf-select rf-mb-2w" onChange={selectRegion} value={codeRegion === null ? '' : codeRegion}>
                 <option value="">Toute région</option>
                 {regionList.sort((a, b) => a.name.normalize('NFD') > b.name.normalize('NFD')).map((region, idx) =>
                   <option key={idx} value={region.code}>{region.name}</option>
