@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { searchActions } from '../../../actions';
+import { searchActions, searchDateActions } from '../../../actions';
 import Menu from './Menu';
 import Structures from './Structures';
 import StructureDetails from './StructureDetails';
@@ -12,12 +12,15 @@ import Header from '../../common/Header';
 
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBox from '../../common/SearchBox';
+import SearchDateBox from '../../common/SearchDateBox';
 
 function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
+  const { searchDate } = useSelector(state => state.searchDate);
+
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -73,6 +76,14 @@ function Admin() {
     dispatch(searchActions.updateSearch(''));
   }, [location]);
 
+  useEffect(() => {
+    dispatch(searchDateActions.updateSearchDateBegin(''));
+  }, []);
+
+  useEffect(() => {
+    dispatch(searchDateActions.updateSearchDateEnd(new Date()));
+  }, []);
+
   return (
     <div className="admin">
       <Header connected />
@@ -105,9 +116,24 @@ function Admin() {
                 )}
               </select>
             </>}
-
+            { (location.pathname.startsWith('/structures')) &&
+            <div className="rf-container-fluid">
+              <div className="rf-grid-row fr-grid-row--gutters">
+                <div className="rf-col-xs-12 rf-col-sm-6">
+                  <SearchDateBox classeDate="searchDateBoxDebut" placeholderTextDate="Date de début"
+                    idDate="datePickerDebut" nameDate="datePickerDebut" date="19/04/2021" selectorDate="begin"
+                  />
+                </div>
+                <div className="rf-col-xs-12 rf-col-sm-6">
+                  <SearchDateBox classeDate="searchDateBoxFin" placeholderTextDate="Date de fin"
+                    idDate="datePickerFin" nameDate="datePickerFin" date="19/04/2021" selectorDate="end"
+                  />
+                </div>
+              </div>
+            </div>
+            }
             <Route path={`/tableau-de-bord`} component={Stats} />
-            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
+            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search}/>} />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/candidats`}
               component={
@@ -123,6 +149,7 @@ function Admin() {
             { user.role === 'admin' &&
               <Route exact path="/" render={() => (<Redirect to="/tableau-de-bord" />)} />
             }
+
           </div>
         </div>
       </div>
