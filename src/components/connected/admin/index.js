@@ -12,6 +12,7 @@ import Header from '../../common/Header';
 
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBox from '../../common/SearchBox';
+import FilterDateBox from '../../common/FilterDateBox';
 
 function Admin() {
 
@@ -19,6 +20,9 @@ function Admin() {
   const menu = useSelector(state => state.menu);
   const pagination = useSelector(state => state.pagination);
   const { search } = useSelector(state => state.search);
+
+  const dates = useSelector(state => state.filterDate);
+
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -109,8 +113,16 @@ function Admin() {
               </select>
             </>}
 
+            { (location.pathname.startsWith('/structures')) &&
+              <FilterDateBox />
+            }
+
             <Route path={`/tableau-de-bord`} component={Stats} />
-            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} search={search} />} />
+            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion}
+              search={search}
+              start={dates.filterDateStart !== null ? String(dates.filterDateStart) : ''}
+              end={dates.filterDateEnd !== null ? String(dates.filterDateEnd) : ''} />}
+            />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/candidats`}
               component={
@@ -126,6 +138,7 @@ function Admin() {
             { user.role === 'admin' &&
               <Route exact path="/" render={() => (<Redirect to="/tableau-de-bord" />)} />
             }
+
           </div>
         </div>
       </div>

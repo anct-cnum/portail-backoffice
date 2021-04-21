@@ -135,13 +135,15 @@ function Conseillers({ location }) {
       <div className="rf-table">
         <table>
           <thead>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Statut</th>
-            <th>Date de candidature</th>
-            <th>Code postal</th>
-            <th>Résultat Pix</th>
-            <th></th>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Statut</th>
+              <th>Date de candidature</th>
+              <th>Code postal</th>
+              <th>Résultat Pix</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {

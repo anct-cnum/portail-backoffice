@@ -6,7 +6,7 @@ import Pagination from '../../common/Pagination';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-function Structures({ departement, region, search }) {
+function Structures({ departement, region, search, start, end }) {
   const dispatch = useDispatch();
 
   const structures = useSelector(state => state.structures);
@@ -37,7 +37,7 @@ function Structures({ departement, region, search }) {
     if (skip === 0 && pagination?.resetPage === false && location.currentPage !== undefined) {
       skip = (page - 1) * 10;
     }
-    dispatch(structureActions.getAll({ departement, region, search, type, page: skip }));
+    dispatch(structureActions.getAll({ departement, region, search, start, end, type, page: skip }));
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function Structures({ departement, region, search }) {
     if (pagination?.resetPage === false && location.currentPage !== undefined) {
       navigate(page);
     } else {
-      dispatch(structureActions.getAll({ departement, region, search, type, page: page - 1 }));
+      dispatch(structureActions.getAll({ departement, region, search, start, end, type, page: page - 1 }));
     }
   };
 
@@ -114,7 +114,9 @@ function Structures({ departement, region, search }) {
 Structures.propTypes = {
   region: PropTypes.string,
   departement: PropTypes.string,
-  search: PropTypes.string
+  search: PropTypes.string,
+  start: PropTypes.string,
+  end: PropTypes.string,
 };
 
 export default Structures;
