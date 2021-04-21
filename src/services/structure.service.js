@@ -35,9 +35,8 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
   if (type !== null) {
     filterType = type === 'PRIVATE' ? `&type=private` : '&type[$ne]=private';
   }
-
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterDateStart}${filterDateEnd}
-  ${filterType}${filterSearch}`;
+  // eslint-disable-next-line max-len
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterDateStart}${filterDateEnd}${filterType}${filterSearch}`;
 
 
   if (filter) {
