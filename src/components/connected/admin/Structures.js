@@ -23,6 +23,12 @@ function Structures({ departement, region, search, start, end }) {
 
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
+  const [type, setType] = useState(null);
+
+  function selectType(event) {
+    const value = event.target.value;
+    setType(value !== '' ? value : null);
+  }
 
   const navigate = page => {
     setPage(page);
@@ -31,7 +37,7 @@ function Structures({ departement, region, search, start, end }) {
     if (skip === 0 && pagination?.resetPage === false && location.currentPage !== undefined) {
       skip = (page - 1) * 10;
     }
-    dispatch(structureActions.getAll({ departement, region, search, start, end, page: skip }));
+    dispatch(structureActions.getAll({ departement, region, search, start, end, type, page: skip }));
   };
 
   useEffect(() => {
@@ -45,13 +51,17 @@ function Structures({ departement, region, search, start, end }) {
     if (pagination?.resetPage === false && location.currentPage !== undefined) {
       navigate(page);
     } else {
-      dispatch(structureActions.getAll({ departement, region, search, start, end, page: page - 1 }));
+      dispatch(structureActions.getAll({ departement, region, search, start, end, type, page: page - 1 }));
     }
   };
 
   useEffect(() => {
     update();
   }, []);
+
+  useEffect(() => {
+    update();
+  }, [type]);
 
   const constructor = () => {
     if (constructorHasRun) {
@@ -64,32 +74,39 @@ function Structures({ departement, region, search, start, end }) {
   return (
     <div className="structures">
 
+      <select className="rf-select rf-mb-2w" value={type === null ? '' : type} onChange={selectType}>
+        <option value="">Tout type</option>
+        <option value="PUBLIC">Publique</option>
+        <option value="PRIVATE">Privée</option>
+      </select>
+
       { structures && structures.loading && <span>Chargement...</span>}
 
       { !structures.loading && structures.items && structures.items.data.length === 0 && <span>Aucune structure pour le moment.</span>}
 
-      <div className="rf-table">
-        <table>
-          <thead>
-            <tr>
+      { structures?.items?.data?.length > 0 &&
+      <>
+        <div className="rf-table">
+          <table>
+            <thead>
               <th>SIRET</th>
               <th>Nom</th>
               <th>Statut coselec</th>
               <th>Date de candidature</th>
               <th>Code postal</th>
               <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
-              return (<Structure key={idx} structure={structure} currentPage={page} />);
-            })
-            }
-          </tbody>
-        </table>
-      </div>
-      <Pagination current={page} pageCount={pageCount} navigate={navigate} />
-
+            </thead>
+            <tbody>
+              {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
+                return (<Structure key={idx} structure={structure} currentPage={page} />);
+              })
+              }
+            </tbody>
+          </table>
+        </div>
+        <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+      </>
+      }
     </div>
   );
 }
