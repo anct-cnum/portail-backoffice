@@ -77,7 +77,6 @@ function Admin() {
     dispatch(searchActions.updateSearch(''));
   }, [location]);
 
-
   return (
     <div className="admin">
       <Header connected />
@@ -117,7 +116,10 @@ function Admin() {
 
             <Route path={`/tableau-de-bord`} component={Stats} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion}
-              search={search} start={String(dates.filterDateStart)} end={String(dates.filterDateEnd)} />} />
+              search={search}
+              start={dates.filterDateStart !== null ? String(dates.filterDateStart) : ''}
+              end={dates.filterDateEnd !== null ? String(dates.filterDateEnd) : ''} />}
+            />
             <Route path={`/structure/:id`} component={StructureDetails} />
             <Route path={`/candidats`}
               component={

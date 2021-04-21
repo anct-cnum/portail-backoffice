@@ -25,9 +25,13 @@ function getAll(departement, region, search, start, end, page, filter, sortData,
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
   const filterSearch = search !== '' ? `&$search=${search}` : '';
-  const filterDate = start !== null ? `&createdAt[$gt]=${Math.round(new Date(start).getTime() / 1000)}&createdAt[$lt]=${Math.round(new Date(end).getTime() / 1000)}` : '';
 
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterSearch}${filterDate}`;
+  const filterDateStart = start !== '' ? `&createdAt[$gt]=${new Date(start).toISOString()}` : '';
+  const filterDateEnd = end !== '' ? `&createdAt[$lt]=${new Date(end).toISOString()}` : '';
+
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterDateStart}${filterDateEnd}
+  ${filterSearch}`;
+
   if (filter) {
     uri += `&filter=${filter}`;
   }
