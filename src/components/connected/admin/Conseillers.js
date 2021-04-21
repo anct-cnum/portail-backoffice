@@ -11,13 +11,9 @@ function Conseillers({ departement, region, search }) {
 
   const conseillers = useSelector(state => state.conseillers);
   const user = useSelector(state => state.authentication.user.user);
-
-  let [page, setPage] = useState(1);
-  let savePage = null;
+  const pagination = useSelector(state => state.pagination);
   let location = useLocation();
-  if (location.currentPage) {
-    savePage = location.currentPage;
-  }
+  let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
 
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
@@ -48,9 +44,10 @@ function Conseillers({ departement, region, search }) {
   }, [conseillers]);
 
   const update = () => {
-    if (savePage !== null) {
-      navigate(savePage);
-      delete location.currentPage;
+    if (pagination?.resetPage === false && location.currentPage !== undefined) {
+      if (conseillers.items) {
+        navigate(page);
+      }
     } else {
       dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter }));
     }

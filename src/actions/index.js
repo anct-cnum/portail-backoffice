@@ -7,3 +7,4 @@ export * from './menu.actions';
 export * from './dashboardStats.actions';
 export * from './search.actions';
 export * from './filterDate.actions';
+export * from './pagination.actions';

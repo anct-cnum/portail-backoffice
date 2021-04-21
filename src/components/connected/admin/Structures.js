@@ -17,19 +17,21 @@ function Structures({ departement, region, search, start, end }) {
     region = user.region ? user.region : null;
   }
 
-  let [page, setPage] = useState(1);
-  let savePage = null;
   let location = useLocation();
-  if (location.currentPage) {
-    savePage = location.currentPage;
-  }
+  const pagination = useSelector(state => state.pagination);
+  let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
 
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
 
   const navigate = page => {
     setPage(page);
-    dispatch(structureActions.getAll({ departement, region, search, start, end, page: structures.items ? (page - 1) * structures.items.limit : 0 }));
+    let skip = structures.items ? (page - 1) * structures.items.limit : 0;
+    //Structures.items est undefined au retour à la liste donc calcul manuel
+    if (skip === 0 && pagination?.resetPage === false && location.currentPage !== undefined) {
+      skip = (page - 1) * 10;
+    }
+    dispatch(structureActions.getAll({ departement, region, search, start, end, page: skip }));
   };
 
   useEffect(() => {
@@ -40,9 +42,8 @@ function Structures({ departement, region, search, start, end }) {
   }, [structures]);
 
   const update = () => {
-    if (savePage !== null) {
-      navigate(savePage);
-      delete location.currentPage;
+    if (pagination?.resetPage === false && location.currentPage !== undefined) {
+      navigate(page);
     } else {
       dispatch(structureActions.getAll({ departement, region, search, start, end, page: page - 1 }));
     }

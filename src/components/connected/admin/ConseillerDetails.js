@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { conseillerActions } from '../../../actions';
+import { conseillerActions, paginationActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
@@ -12,6 +12,7 @@ function ConseillerDetails({ location }) {
   let { id } = useParams();
 
   useEffect(() => {
+    dispatch(paginationActions.resetPage(false));
     dispatch(conseillerActions.get(id));
   }, []);
 

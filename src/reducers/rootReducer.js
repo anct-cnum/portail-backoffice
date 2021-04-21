@@ -10,6 +10,7 @@ import filtersAndSorts from './filtersAndSortsReducer';
 import menu from './menuReducer';
 import searchReducer from './searchReducer';
 import filterDateReducer from './filterDateReducer';
+import pagination from './paginationReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   dashboardStats: dashboardStatsReducer,
   search: searchReducer,
   filterDate: filterDateReducer,
+  pagination: pagination,
 });
 
 export default rootReducer;
