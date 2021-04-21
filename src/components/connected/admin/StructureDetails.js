@@ -110,29 +110,44 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contactPrenom} {structure?.structure?.contactNom} ({structure?.structure?.contactFonction})</p>
           <p>Téléphone : {structure?.structure?.contactTelephone}</p>
           <p>Email : <a href={`mailto:${structure?.structure?.contactEmail}`}>{structure?.structure?.contactEmail}</a></p>
-          <p>Avis Coselec: {structure?.structure?.statut === 'VALIDATION_COSELEC' ? structure?.structure?.avisCoselec : 'en attente de passage'}</p>
-          { structure?.structure?.statut === 'VALIDATION_COSELEC' &&
-            <p>Avis Coselec: {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
+          <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' ? structure?.structure?.avisCoselec : 'en attente de passage'}</p>
+          {structure?.structure?.statut === 'VALIDATION_COSELEC' &&
+            <p>Nombre de conseillers : {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
           }
           <h3>Statistiques</h3>
-          { stats && stats.length === 0 &&
+          {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
           }
-          { stats && stats.length > 0 &&
+          {stats && stats.length > 0 &&
             <>
-              { stats.map((stat, idx) =>
+              {stats.map((stat, idx) =>
                 <p key={idx}>
                   {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
                 </p>
               )}
               <h3>Liste des candidats</h3>
 
-              { conseillers && conseillers.loading && <span>Chargement...</span> }
+              {conseillers && conseillers.loading && <span>Chargement...</span>}
 
-              { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
-                return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} />); //non conservation de la page car retour à la liste des conseillers...
-              })
-              }
+              <div className="rf-table">
+                <table>
+                  <thead>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Date de candidature</th>
+                    <th>Code postal</th>
+                    <th>Résultat Pix</th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
+                      // TODO: non conservation de la page car retour à la liste des conseillers
+                      return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} />);
+                    })
+                    }
+                  </tbody>
+                </table>
+              </div>
 
               <Pagination current={page} pageCount={pageCount} navigate={navigate} />
             </>
