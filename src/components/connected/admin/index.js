@@ -18,7 +18,6 @@ function Admin() {
 
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
-  const pagination = useSelector(state => state.pagination);
   const { search } = useSelector(state => state.search);
 
   const dates = useSelector(state => state.filterDate);
