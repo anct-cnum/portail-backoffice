@@ -7,6 +7,7 @@ import StructureDetails from './StructureDetails';
 import Conseillers from './Conseillers';
 import ConseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
+import ExportsCoselec from './ExportsCoselec';
 import Stats from './Stats';
 import Header from '../../common/Header';
 
@@ -131,6 +132,7 @@ function Admin() {
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
+            <Route path={`/admin/exports`} component={ExportsCoselec} />
             { user.role === 'prefet' &&
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             }
