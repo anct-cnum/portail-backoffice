@@ -26,9 +26,9 @@ function Informations() {
           </div>
           <div className="rf-col-4">
             <h2 style={{ marginTop: '0' }}>Contact</h2>
-            <p>Nom :<strong> { structure?.structure?.contactNom }</strong></p>
-            <p>Prénom : { structure?.structure?.contactPrenom }</p>
-            <p>Téléphone : { structure?.structure?.contactTelephone }</p>
+            <p>Nom :<strong> { structure?.structure?.contact?.nom }</strong></p>
+            <p>Prénom : { structure?.structure?.contact?.prenom }</p>
+            <p>Téléphone : { structure?.structure?.contact?.telephone }</p>
           </div>
         </div>
       </div>

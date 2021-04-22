@@ -107,9 +107,9 @@ function StructureDetails({ location }) {
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
-          <p>Contact : {structure?.structure?.contactPrenom} {structure?.structure?.contactNom} ({structure?.structure?.contactFonction})</p>
-          <p>Téléphone : {structure?.structure?.contactTelephone}</p>
-          <p>Email : <a href={`mailto:${structure?.structure?.contactEmail}`}>{structure?.structure?.contactEmail}</a></p>
+          <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
+          <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
+          <p>Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure.structure.contact.email}</a></p>
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' ? structure?.structure?.avisCoselec : 'en attente de passage'}</p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <p>Nombre de conseillers : {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
