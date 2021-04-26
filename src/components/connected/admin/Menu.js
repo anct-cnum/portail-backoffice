@@ -58,15 +58,26 @@ function Menu() {
               </Link>
             </li>
             { role === 'admin' &&
-                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
-                  <Link className="rf-sidemenu__link" to="/candidats" style={{ padding: '0.5rem 0' }}>
-                    <div className="rf-container" style={{ padding: '0' }}>
-                      <div className="rf-grid-row rf-grid-row--end">
+            <>
+              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
+                <Link className="rf-sidemenu__link" to="/candidats" style={{ padding: '0.5rem 0' }}>
+                  <div className="rf-container" style={{ padding: '0' }}>
+                    <div className="rf-grid-row rf-grid-row--end">
                       Liste des candidats
-                      </div>
                     </div>
-                  </Link>
-                </li>
+                  </div>
+                </Link>
+              </li>
+              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/admin/exports') ? 'rf-sidemenu__item--active' : ''}`}>
+                <Link className="rf-sidemenu__link" to="/admin/exports" style={{ padding: '0.5rem 0' }}>
+                  <div className="rf-container" style={{ padding: '0' }}>
+                    <div className="rf-grid-row rf-grid-row--end">
+                      Exports
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            </>
             }
             { role === 'prefet' &&
             <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
