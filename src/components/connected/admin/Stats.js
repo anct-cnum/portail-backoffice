@@ -60,7 +60,7 @@ function Stats() {
               <h4 style={{ height: '48px' }}>Nombre de structures activées</h4>
             </div>
             <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre de structures qui recrute</h4>
+              <h4 style={{ height: '48px' }}>Nombre de structures qui recrutent</h4>
             </div>
           </div>
           <div className="rf-grid-row">
@@ -74,7 +74,7 @@ function Stats() {
               <span>{stats.structuresActiveesCount}</span>
             </div>
             <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresQuiRecruteCount}</span>
+              <span>{stats.structuresQuiRecrutentCount}</span>
             </div>
           </div>
         </div> }
