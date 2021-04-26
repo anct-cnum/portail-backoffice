@@ -33,7 +33,7 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
 
   let filterType = '';
   if (type !== null) {
-    filterType = type === 'PRIVATE' ? `&type=private` : '&type[$ne]=private';
+    filterType = type === 'PRIVATE' ? `&type=PRIVATE` : '&type[$ne]=PRIVATE';
   }
   // eslint-disable-next-line max-len
   let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterDateStart}${filterDateEnd}${filterType}${filterSearch}`;
