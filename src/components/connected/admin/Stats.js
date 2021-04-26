@@ -49,6 +49,34 @@ function Stats() {
               <span>{stats.conseillersRecrutesCount}</span>
             </div>
           </div>
+          <div className="rf-grid-row rf-mb-3w">
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre de structures en attente d&apos;activation</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre de structures validées</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre de structures activées</h4>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <h4 style={{ height: '48px' }}>Nombre de structures qui recrutent</h4>
+            </div>
+          </div>
+          <div className="rf-grid-row">
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <span>{stats.structuresEnAttenteCount}</span>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <span>{stats.structuresValideesCount}</span>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <span>{stats.structuresActiveesCount}</span>
+            </div>
+            <div className="rf-col-xs-12 rf-col-md-3">
+              <span>{stats.structuresQuiRecrutentCount}</span>
+            </div>
+          </div>
         </div> }
       </div>
     </div>
