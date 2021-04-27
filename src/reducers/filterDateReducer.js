@@ -1,5 +1,5 @@
 const initialState = {
-  filterDateStart: new Date(1577836800000),
+  filterDateStart: new Date(1605571200000),
   filterDateEnd: new Date(),
 };
 
