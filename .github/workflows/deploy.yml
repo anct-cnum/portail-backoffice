@@ -34,6 +34,11 @@ jobs:
         file_name: .env
     - name: Build application
       run: yarn run build
+    - name: copy .htaccess
+      uses: canastro/copy-file-action@master
+      with:
+        source: ".htaccess"
+        target: "build/.htaccess"
     - name: Deploy on clever cloud
       uses: s0/git-publish-subdir-action@develop
       env:
