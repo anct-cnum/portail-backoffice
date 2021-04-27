@@ -14,7 +14,7 @@ function SearchBox() {
   }
 
   function handleKeyDown(e) {
-    if (e.code === 'Enter') {
+    if (e.key === 'Enter') {
       setSearchInputValue(e.target.value);
       dispatch(searchActions.updateSearch(searchInputValue));
     }
@@ -47,4 +47,3 @@ function SearchBox() {
 }
 
 export default SearchBox;
-
