@@ -115,6 +115,18 @@ function Documents() {
           </p>
         </div>
         }
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
+              className="rf-link" target="blank" title="Télécharger le kit &laquo;Bien démarrer ma mission&raquo;">
+                        Télécharger le kit &laquo;Bien démarrer ma mission&raquo; (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+            Ce document a pour objet de faciliter l’entrée en poste des Conseillers numériques France Services,
+            et contient de nombreuses informations en lien avec leur début d’activité : outils, réseaux, parcours, etc.
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
