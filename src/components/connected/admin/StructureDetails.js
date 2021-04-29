@@ -39,18 +39,22 @@ function StructureDetails({ location }) {
   const statutsLabel = [
     {
       name: 'nouvelles candidatures',
+      nameSingle: 'nouvelle candidature',
       key: 'nouvelle'
     },
     {
       name: 'candidatures pré sélectionnées',
+      nameSingle: 'candidature pré sélectionnée',
       key: 'interessee'
     },
     {
       name: 'candidatures non retenues',
+      nameSingle: 'candidature non retenue',
       key: 'nonInteressee'
     },
     {
       name: 'candidatures validées',
+      nameSingle: 'candidature validée',
       key: 'recrutee'
     }
   ];
@@ -122,7 +126,9 @@ function StructureDetails({ location }) {
             <>
               {stats.map((stat, idx) =>
                 <p key={idx}>
-                  {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
+                  {stat.count}
+                  &nbsp;{stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name}
+                  &nbsp;{stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle}
                 </p>
               )}
               <h3>Liste des candidats</h3>
@@ -132,12 +138,14 @@ function StructureDetails({ location }) {
               <div className="rf-table">
                 <table>
                   <thead>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Date de candidature</th>
-                    <th>Code postal</th>
-                    <th>Résultat Pix</th>
-                    <th></th>
+                    <tr>
+                      <th>Prénom</th>
+                      <th>Nom</th>
+                      <th>Date de candidature</th>
+                      <th>Code postal</th>
+                      <th>Résultat Pix</th>
+                      <th></th>
+                    </tr>
                   </thead>
                   <tbody>
                     {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {

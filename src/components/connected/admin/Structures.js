@@ -89,12 +89,14 @@ function Structures({ departement, region, search, start, end }) {
         <div className="rf-table">
           <table>
             <thead>
-              <th>SIRET</th>
-              <th>Nom</th>
-              <th>Statut coselec</th>
-              <th>Date de candidature</th>
-              <th>Code postal</th>
-              <th></th>
+              <tr>
+                <th>SIRET</th>
+                <th>Nom</th>
+                <th>Statut coselec</th>
+                <th>Date de candidature</th>
+                <th>Code postal</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
