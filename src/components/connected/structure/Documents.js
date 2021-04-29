@@ -117,7 +117,7 @@ function Documents() {
         }
         <div className="rf-grid-row">
           <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
+            <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
               className="rf-link" target="blank" title="Télécharger le kit &laquo;Bien démarrer ma mission&raquo;">
                         Télécharger le kit &laquo;Bien démarrer ma mission&raquo; (pdf)
             </a>
