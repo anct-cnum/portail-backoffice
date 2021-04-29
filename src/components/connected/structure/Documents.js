@@ -97,7 +97,7 @@ function Documents() {
                         Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Publique (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Appel à manifestation d’intérêt pour les collectivités territoriales et leurs groupements
+              Appel à manifestation d&rsquo;intérêt pour les collectivités territoriales et leurs groupements
             </span>
           </p>
         </div>
@@ -110,7 +110,7 @@ function Documents() {
                         Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Privé (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Appel à manifestation d’intérêt pour les acteurs à statut privé
+              Appel à manifestation d&rsquo;intérêt pour les acteurs à statut privé
             </span>
           </p>
         </div>
@@ -122,8 +122,8 @@ function Documents() {
                         Télécharger le kit &laquo;Bien démarrer ma mission&raquo; (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-            Ce document a pour objet de faciliter l’entrée en poste des Conseillers numériques France Services, <br className="br-lg"/>
-            et contient de nombreuses informations en lien avec leur début d’activité : outils, réseaux, parcours, etc.
+            Ce document a pour objet de faciliter l&rsquo;entrée en poste des Conseillers numériques France Services, <br className="br-lg"/>
+            et contient de nombreuses informations en lien avec leur début d&rsquo;activité : outils, réseaux, parcours, etc.
             </span>
           </p>
         </div>
