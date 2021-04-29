@@ -122,7 +122,7 @@ function Documents() {
                         Télécharger le kit &laquo;Bien démarrer ma mission&raquo; (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-            Ce document a pour objet de faciliter l’entrée en poste des Conseillers numériques France Services,
+            Ce document a pour objet de faciliter l’entrée en poste des Conseillers numériques France Services, <br className="br-lg"/>
             et contient de nombreuses informations en lien avec leur début d’activité : outils, réseaux, parcours, etc.
             </span>
           </p>

@@ -95,7 +95,11 @@ $blue-france:#000091;
 .react-datepicker__triangle {
   left: 120px !important;
 }
-
+@media (max-width: 865px) {
+  .br-lg {
+    display: none;
+  }
+}
 @media (max-width: 575px) {
   .filterDateBoxDebut div.react-datepicker-wrapper, .filterDateBoxFin div.react-datepicker-wrapper {
     width: 100%;
