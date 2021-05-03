@@ -7,7 +7,8 @@ export const userActions = {
   verifyToken,
   verifyPrefetToken,
   choosePassword,
-  inviteAccountsPrefet
+  inviteAccountsPrefet,
+  forgottenPassword
 };
 
 function login(username, password) {
@@ -157,5 +158,30 @@ function choosePassword(token, password) {
   }
   function failure(error) {
     return { type: 'CHOOSE_PASSWORD_FAILURE', error };
+  }
+}
+
+function forgottenPassword(username) {
+  return dispatch => {
+    dispatch(request({ username }));
+    userService.sendForgottenPasswordEmail(username)
+    .then(
+      result => {
+        dispatch(success(result.isSend));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(user) {
+    return { type: 'SEND_EMAIL_REQUEST', user };
+  }
+  function success(user) {
+    return { type: 'SEND_EMAIL_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'SEND_EMAIL_FAILURE', error };
   }
 }

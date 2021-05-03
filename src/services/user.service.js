@@ -4,6 +4,7 @@ export const userService = {
   verifyToken,
   verifyPrefetToken,
   choosePassword,
+  sendForgottenPasswordEmail,
   inviteAccountsPrefet
 };
 
@@ -84,6 +85,23 @@ function choosePassword(token, password) {
   };
 
   let uri = `${apiUrlRoot}/users/choosePassword/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function sendForgottenPasswordEmail(username) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'username': username
+    })
+  };
+
+  let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
