@@ -1,5 +1,19 @@
 $blue-france:#000091;
 
+.flashBag {
+  background-color: white;
+  color: #008941;
+  padding: 30px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid;
+  border-radius: 20px;
+}
+
+.labelError {
+  color: #FF3333;
+}
+
 .header__logo-rf {
     height: 78px;
 }
