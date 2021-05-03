@@ -3,6 +3,7 @@ import { structureService } from '../services/structure.service.js';
 export const structureActions = {
   get,
   getAll,
+  resendInscription,
 };
 
 function get(id) {
@@ -52,5 +53,27 @@ function getAll({ departement = null, region = null, search = '', start = '', en
   }
   function failure(error) {
     return { type: 'GETALL_FAILURE', error };
+  }
+}
+
+function resendInscription(id) {
+  return dispatch => {
+    dispatch(request());
+
+    structureService.resendInscription(id)
+    .then(
+      structure => dispatch(success(structure)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'RESUBMIT_INSCRIPTION_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'RESUBMIT_INSCRIPTION_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'RESUBMIT_INSCRIPTION_FAILURE', error };
   }
 }

@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment/locale/fr';
 import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
+import FlashMessage from 'react-flash-message';
 
 moment.locale('fr');
 
@@ -88,8 +89,31 @@ function StructureDetails({ location }) {
     }
   ];
 
+  const errorSendMail = useSelector(state => state.structure?.errorResendInscription);
+
+  const resendInscription = () => {
+    window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
+    dispatch(structureActions.resendInscription(id));
+  };
+
   return (
     <div className="StructureDetails">
+      { structure?.flashMessage === true &&
+      <FlashMessage duration={10000}>
+        { (errorSendMail === undefined || errorSendMail === false) &&
+        <p className="rf-label flashBag">
+          Le mail de relance d&rsquo;inscription a bien été envoyé pour cette structure
+          &nbsp;
+          <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+        </p>
+        }
+        { (errorSendMail !== undefined && errorSendMail !== false) &&
+        <p className="rf-label flashBag labelError">
+          L&rsquo;envoi du mail de relance d&rsquo;inscription a échoué, veuillez réessayer plus tard
+        </p>
+        }
+      </FlashMessage>
+      }
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -107,7 +131,7 @@ function StructureDetails({ location }) {
           SIRET {structure?.structure?.siret}
         </h3>
         <div className="rf-container-fluid">
-          <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type)).type}</p>
+          <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
@@ -118,6 +142,7 @@ function StructureDetails({ location }) {
           {structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <p>Nombre de conseillers : {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
           }
+          <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
