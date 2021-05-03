@@ -89,6 +89,7 @@ function StructureDetails({ location }) {
     }
   ];
 
+  const user = useSelector(state => state.authentication.user.user);
   const errorSendMail = useSelector(state => state.structure?.errorResendInscription);
 
   const resendInscription = () => {
@@ -142,7 +143,9 @@ function StructureDetails({ location }) {
           {structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <p>Nombre de conseillers : {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
           }
-          <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
+          { user?.role === 'admin' &&
+            <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
+          }
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
