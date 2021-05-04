@@ -11,6 +11,7 @@ import menu from './menuReducer';
 import searchReducer from './searchReducer';
 import filterDateReducer from './filterDateReducer';
 import pagination from './paginationReducer';
+import exportsReducer from './exportsReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   filterDate: filterDateReducer,
   pagination: pagination,
+  exports: exportsReducer,
 });
 
 export default rootReducer;

@@ -71,6 +71,15 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/exports') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/exports" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes exports
+                  </div>
+                </div>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

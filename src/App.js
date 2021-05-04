@@ -6,6 +6,7 @@ import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
 import ChoosePassword from './components/anonymous/createAccount/ChoosePassword';
 import InvitationPrefet from './components/anonymous/createAccount/InvitationPrefet';
+import { useSelector } from 'react-redux';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -13,8 +14,13 @@ require('dotenv').config();
 
 function App() {
 
+  const exports = useSelector(state => state.exports);
+
   return (
     <div className="App">
+      { exports?.loading === true &&
+      <div className="wrapperModal"></div>
+      }
       <Router history={history}>
         <Switch>
           <Route path="/login" component={Login} />
