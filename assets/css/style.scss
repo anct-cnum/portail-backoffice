@@ -87,6 +87,12 @@ $blue-france:#000091;
   font-size: 56px;
 }
 
+.invalid {
+  color: #e10600;
+}
+.valid {
+  color: #008941;
+}
 /* Modal Gestion */
 .modalOpened {
   opacity: 1;

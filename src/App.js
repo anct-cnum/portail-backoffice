@@ -6,6 +6,7 @@ import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
 import ChoosePassword from './components/anonymous/createAccount/ChoosePassword';
 import InvitationPrefet from './components/anonymous/createAccount/InvitationPrefet';
+import ForgottenPassword from './components/anonymous/ForgottenPassword';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -18,6 +19,8 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
+          <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <PrivateRoute exact path="*" component={Home} />

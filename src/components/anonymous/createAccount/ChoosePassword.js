@@ -38,7 +38,7 @@ function ChoosePassword({ match }) {
   function handleSubmit() {
     setSubmitted(true);
     if (password && confirmPassword === password && checkComplexity(password)) {
-      dispatch(userActions.choosePassword(token, password));
+      dispatch(userActions.choosePassword(token, password, 'bienvenue'));
     }
   }
 
