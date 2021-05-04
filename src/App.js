@@ -20,6 +20,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
+          <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <PrivateRoute exact path="*" component={Home} />

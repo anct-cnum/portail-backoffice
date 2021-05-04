@@ -133,11 +133,11 @@ function inviteAccountsPrefet(token, emails, departement) {
   }
 }
 
-function choosePassword(token, password) {
+function choosePassword(token, password, typeEmail) {
   return dispatch => {
     dispatch(request(token));
 
-    userService.choosePassword(token, password)
+    userService.choosePassword(token, password, typeEmail)
     .then(
       user => {
         user.role = user.roles[0];
@@ -166,8 +166,8 @@ function forgottenPassword(username) {
     dispatch(request({ username }));
     userService.sendForgottenPasswordEmail(username)
     .then(
-      result => {
-        dispatch(success(result.isSend));
+      user => {
+        dispatch(success(user));
       },
       error => {
         dispatch(failure(error));
