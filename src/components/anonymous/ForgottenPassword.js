@@ -30,7 +30,7 @@ function ForgottenPassword({ match = null }) {
   const errorEmail = useSelector(state => state.motDePasseOublie.error);
   const validEmail = useSelector(state => state.motDePasseOublie.user);
 
-  /* Etape 2 TODO */
+  /* Etape 2 */
   const [inputsPassword, setInputsPassword] = useState({
     password: '',
     confirmPassword: ''
