@@ -38,6 +38,7 @@ function ExportsCoselec() {
           visible={exports?.loading === true}
         />
       </div>
+      <p style={{ color: 'red' }}><strong>Important : le traitement peut durer plusieurs minutes</strong></p>
       <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier « Je recrute »</a></p>
       <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier « structures »</a></p>
       { (error !== undefined && error !== false) &&
