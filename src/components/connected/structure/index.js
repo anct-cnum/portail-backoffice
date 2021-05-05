@@ -22,11 +22,10 @@ function Structure() {
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
-
-
+console.log(process.env.CANAL_CRISP_ID);
   function crisp() {
     window.$crisp = [];
-    window.CRISP_WEBSITE_ID = 'ea669e13-e40f-40c8-be23-e43565c0e62c';
+    window.CRISP_WEBSITE_ID = process.env.CANAL_CRISP_ID;
 
     (function() {
       let d = document;
@@ -35,8 +34,6 @@ function Structure() {
       s.src = 'https://client.crisp.chat/l.js';
       s.async = 1;
       d.getElementsByTagName('head')[0].appendChild(s);
-      console.log(window.$crisp);
-
     })();
 
     window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
