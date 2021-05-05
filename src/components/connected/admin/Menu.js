@@ -68,15 +68,6 @@ function Menu() {
                   </div>
                 </Link>
               </li>
-              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/admin/exports') ? 'rf-sidemenu__item--active' : ''}`}>
-                <Link className="rf-sidemenu__link" to="/admin/exports" style={{ padding: '0.5rem 0' }}>
-                  <div className="rf-container" style={{ padding: '0' }}>
-                    <div className="rf-grid-row rf-grid-row--end">
-                      Exports
-                    </div>
-                  </div>
-                </Link>
-              </li>
             </>
             }
             { role === 'prefet' &&
@@ -88,7 +79,17 @@ function Menu() {
                   </div>
                 </div>
               </Link>
-            </li> }
+            </li>
+            }
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/admin/exports') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/admin/exports" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Exports
+                  </div>
+                </div>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
