@@ -9,6 +9,7 @@ import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
 
+import Exports from './Exports';
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
 
@@ -71,6 +72,7 @@ console.log(process.env.CANAL_CRISP_ID);
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
+            <Route path={`/structure/exports`} component={Exports} />
           </div>
         </div>
       </div>

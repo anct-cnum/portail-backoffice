@@ -6,6 +6,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 export const structureService = {
   get,
   getAll,
+  resendInscription,
 };
 
 function get(id) {
@@ -44,6 +45,15 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
   }
 
   return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function resendInscription(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/structures/${id}/relance-inscription`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
