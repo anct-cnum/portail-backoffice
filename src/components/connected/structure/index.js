@@ -15,11 +15,14 @@ import Header from '../../common/Header';
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const user = useSelector(state => state.authentication.user?.user);
+
   const menu = useSelector(state => state.menu);
 
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
+
 
   function crisp() {
     window.$crisp = [];
@@ -37,6 +40,7 @@ function Structure() {
     })();
 
     window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
+    window.$crisp.push(['set', 'user:email', [user.name]]);
   }
 
 
