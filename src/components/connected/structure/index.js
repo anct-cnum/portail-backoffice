@@ -8,7 +8,6 @@ import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
-import Contact from './Contact';
 
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
@@ -33,12 +32,17 @@ function Structure() {
       s.src = 'https://client.crisp.chat/l.js';
       s.async = 1;
       d.getElementsByTagName('head')[0].appendChild(s);
+      console.log(window.$crisp);
+
     })();
+
+    window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
   }
+
 
   return (
     <div className="structure rf-pb-md-3w">
-      {crisp()}
+      { crisp() }
       <Header connected />
       <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
         <h2>
@@ -66,7 +70,6 @@ function Structure() {
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
-            <Route path={`/structure/contactez-nous`} component={Contact} />
           </div>
         </div>
       </div>
