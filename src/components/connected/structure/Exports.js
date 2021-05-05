@@ -15,7 +15,7 @@ function Exports() {
 
   useEffect(() => {
     if (exports?.blob !== null && exports?.blob !== undefined && (error === undefined || error === false)) {
-      const url = window.URL.createObjectURL(new Blob([exports?.blob], { type: 'text/plain' }));
+      const url = window.URL.createObjectURL(new Blob(['\ufeff', exports?.blob], { type: 'text/plain' })); //ufeff pour BOM UTF-8
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `${exports?.nameFile}.csv`);
@@ -42,7 +42,6 @@ function Exports() {
           visible={exports?.loading === true}
         />
       </div>
-      <p style={{ color: 'red' }}><strong>Important : le traitement peut durer plusieurs minutes</strong></p>
       <p>
         <a className="rf-link" onClick={() => getFile('candidatsByStructure')}>Export des candidats</a>
         <span className="rf-footer__bottom-link" style={{ display: 'block' }}>

@@ -9,9 +9,12 @@ function ExportsCoselec() {
   const exports = useSelector(state => state.exports);
   const error = useSelector(state => state.exports?.error);
 
+  const user = useSelector(state => state.authentication.user.user);
+  const role = user.role;
+
   useEffect(() => {
     if (exports?.blob !== null && exports?.blob !== undefined && (error === undefined || error === false)) {
-      const url = window.URL.createObjectURL(new Blob([exports?.blob], { type: 'text/plain' }));
+      const url = window.URL.createObjectURL(new Blob(['\ufeff', exports?.blob], { type: 'text/plain' })); //ufeff pour BOM UTF-8
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `${exports?.nameFile}.csv`);
@@ -38,9 +41,20 @@ function ExportsCoselec() {
           visible={exports?.loading === true}
         />
       </div>
-      <p style={{ color: 'red' }}><strong>Important : le traitement peut durer plusieurs minutes</strong></p>
-      <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier « Je recrute »</a></p>
-      <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier « structures »</a></p>
+      { role === 'admin' &&
+      <>
+        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier « Je recrute »</a></p>
+        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier « structures »</a></p>
+      </>
+      }
+      { role === 'prefet' &&
+      <>
+        <a className="rf-link" onClick={() => getFile('structuresPrefet')}>Export des structures</a>
+        <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+          Export de la liste des structures
+        </span>
+      </>
+      }
       { (error !== undefined && error !== false) &&
         <span className="labelError">Une erreur est survenue : {error?.toString()}</span>
       }
