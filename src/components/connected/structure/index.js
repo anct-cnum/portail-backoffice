@@ -23,7 +23,7 @@ function Structure() {
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
-console.log(process.env.REACT_APP_CANAL_CRISP_ID);
+
   function crisp() {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
