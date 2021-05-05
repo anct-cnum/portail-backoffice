@@ -7,11 +7,13 @@ import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
+import FlashMessage from 'react-flash-message';
 
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
+  const errorUpdStatus = useSelector(state => state.conseiller?.errorUpdStatus);
   let { id } = useParams();
 
   const updateStatut = statut => {
@@ -53,8 +55,21 @@ function ConseillerDetails({ location }) {
     }
   };
 
+  useEffect(() => {
+    if (errorUpdStatus !== undefined && errorUpdStatus !== false) {
+      window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
+    }
+  }, [errorUpdStatus]);
+
   return (
     <div className="ConseillerDetails">
+      { (errorUpdStatus !== undefined && errorUpdStatus !== false) &&
+      <FlashMessage duration={20000}>
+        <p className="rf-label flashBag labelError">
+          { errorUpdStatus.toString() }
+        </p>
+      </FlashMessage>
+      }
       <Link
         style={{ boxShadow: 'none' }}
         to={{
