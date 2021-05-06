@@ -8,7 +8,6 @@ import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
-
 import Exports from './Exports';
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
@@ -25,20 +24,22 @@ function Structure() {
   }, []);
 
   function crisp() {
-    window.$crisp = [];
-    window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
+    if (window.$crisp === undefined) {
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
 
-    (function() {
-      let d = document;
-      let s = d.createElement('script');
+      (function() {
+        let d = document;
+        let s = d.createElement('script');
 
-      s.src = 'https://client.crisp.chat/l.js';
-      s.async = 1;
-      d.getElementsByTagName('head')[0].appendChild(s);
-    })();
+        s.src = 'https://client.crisp.chat/l.js';
+        s.async = 1;
+        d.getElementsByTagName('head')[0].appendChild(s);
+      })();
 
-    window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
-    window.$crisp.push(['set', 'user:email', [user.name]]);
+      window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
+      window.$crisp.push(['set', 'user:email', [user.name]]);
+    }
   }
 
 
