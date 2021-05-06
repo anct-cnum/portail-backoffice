@@ -75,7 +75,11 @@ $blue-france:#000091;
 .Menu .rf-sidemenu__item--active [class^="rf-fi"] {
     color: $blue-france;
 }
-
+.menu-contact {
+  display: inline-block;
+  padding: 0.5rem;
+  padding-right: 0;
+}
 /** style custom **/
 .alignRight {
     text-align: right;

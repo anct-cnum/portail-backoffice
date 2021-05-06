@@ -80,6 +80,13 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item`}>
+              <a className="rf-sidemenu__link menu-contact" href="mailto:contact+espace_structure@support.conseiller-numerique.gouv.fr">
+                <div className="rf-grid-row rf-grid-row--end">
+                    Nous Contacter
+                </div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
