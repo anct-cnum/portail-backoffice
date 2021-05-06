@@ -1,10 +1,12 @@
 import { conseillerService } from '../services/conseiller.service.js';
+import { statsActions, searchActions } from '../actions';
 
 export const conseillerActions = {
   get,
   getAll,
   updateStatus,
   updateDateRecrutement,
+  preSelectionner,
 };
 
 function get(id) {
@@ -46,20 +48,28 @@ function getAll({
   return dispatch => {
     dispatch(request());
 
-    let promise;
+    let promises = [];
     if (misesEnRelation) {
-      promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters);
-    } else {
-      promise = conseillerService.getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters);
+      let promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters);
+      promises.push(promise);
     }
 
-    promise
-    .then(
-      conseillers => dispatch(success(conseillers)),
-      error => {
-        dispatch(failure(error));
+    let isSearch = search.length > 0;
+    if (!misesEnRelation || isSearch) {
+      let promise = conseillerService.getAll(departement, region, search, page, isSearch ? '' : 'filter', sortData, sortOrder, persoFilters);
+      promises.push(promise);
+    }
+
+    let conseillers = null;
+    Promise.all(promises).then(items => {
+      conseillers = items[0];
+      if (items.length > 1) {
+        conseillers.data = [...items[0].data, ...items[1].data];
       }
-    );
+      dispatch(success(conseillers));
+    }).catch(error => {
+      dispatch(failure(error));
+    });
   };
 
   function request() {
@@ -119,4 +129,32 @@ function updateDateRecrutement({ id, date }) {
   function failure(error) {
     return { type: 'UPDATE_DATE_FAILURE', error };
   }
+}
+
+function preSelectionner({ conseillerId, structureId }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.preSelectionner(conseillerId, structureId)
+    .then(() => {
+      dispatch(searchActions.updateSearch(''));
+      dispatch(statsActions.getMisesEnRelationStats());
+      dispatch(success());
+    },
+    error => {
+      dispatch(failure(error));
+    }
+    );
+  };
+
+  function request() {
+    return { type: 'PRESELECTIONNER_CONSEILLER_REQUEST' };
+  }
+  function success() {
+    return { type: 'PRESELECTIONNER_CONSEILLER_SUCCESS' };
+  }
+  function failure(error) {
+    return { type: 'PRESELECTIONNER_CONSEILLER_FAILURE', error };
+  }
+
 }

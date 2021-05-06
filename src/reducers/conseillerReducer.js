@@ -23,6 +23,19 @@ export default function conseiller(state = null, action) {
         ...state,
         miseEnRelation: action.miseEnRelation
       };
+    case 'PRESELECTIONNER_CONSEILLER_REQUEST':
+      return {
+        loading: true
+      };
+    case 'PRESELECTIONNER_CONSEILLER_SUCCESS':
+      return {
+        ...state,
+        preSelectionne: true
+      };
+    case 'PRESELECTIONNER_CONSEILLER_FAILURE':
+      return {
+        error: action.error
+      };
     default:
       return state;
   }
