@@ -180,7 +180,7 @@ function StructureDetails({ location }) {
                   <tbody>
                     {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
                       // TODO: non conservation de la page car retour à la liste des conseillers
-                      return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} />);
+                      return (<Conseiller key={idx} conseiller={miseEnRelation.conseillerObj} />);
                     })
                     }
                   </tbody>
