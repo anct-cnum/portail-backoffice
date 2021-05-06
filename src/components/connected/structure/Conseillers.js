@@ -171,7 +171,7 @@ function Conseillers({ location }) {
       }
 
       { search !== '' && conseillers?.items?.data.length > 100 &&
-        <p className="rf-mt-2w">Seul les 100 premiers résultats sont affichés</p>
+        <p className="rf-mt-2w">Seuls les 100 premiers résultats sont affichés</p>
       }
 
       {search.length === 0 &&
