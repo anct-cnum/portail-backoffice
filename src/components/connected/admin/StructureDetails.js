@@ -39,8 +39,8 @@ function StructureDetails({ location }) {
 
   const statutsLabel = [
     {
-      name: 'nouvelles candidatures',
-      nameSingle: 'nouvelle candidature',
+      name: 'candidatures',
+      nameSingle: 'candidature',
       key: 'nouvelle'
     },
     {
