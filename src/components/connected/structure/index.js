@@ -8,6 +8,7 @@ import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
+
 import Exports from './Exports';
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
@@ -15,14 +16,35 @@ import Header from '../../common/Header';
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const user = useSelector(state => state.authentication.user?.user);
+
   const menu = useSelector(state => state.menu);
 
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
 
+  function crisp() {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
+
+    (function() {
+      let d = document;
+      let s = d.createElement('script');
+
+      s.src = 'https://client.crisp.chat/l.js';
+      s.async = 1;
+      d.getElementsByTagName('head')[0].appendChild(s);
+    })();
+
+    window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
+    window.$crisp.push(['set', 'user:email', [user.name]]);
+  }
+
+
   return (
     <div className="structure rf-pb-md-3w">
+      { crisp() }
       <Header connected />
       <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
         <h2>
