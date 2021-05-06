@@ -56,7 +56,7 @@ function getAll({
 
     let isSearch = search.length > 0;
     if (!misesEnRelation || isSearch) {
-      let promise = conseillerService.getAll(departement, region, search, page, isSearch ? '' : 'filter', sortData, sortOrder, persoFilters);
+      let promise = conseillerService.getAll(departement, region, search, page, isSearch ? '' : filter, sortData, sortOrder, persoFilters);
       promises.push(promise);
     }
 
