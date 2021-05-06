@@ -13,7 +13,7 @@ function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
-  const errorUpdStatus = useSelector(state => state.conseiller?.errorUpdStatus);
+  const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
   let { id } = useParams();
 
   const updateStatut = statut => {
@@ -56,17 +56,17 @@ function ConseillerDetails({ location }) {
   };
 
   useEffect(() => {
-    if (errorUpdStatus !== undefined && errorUpdStatus !== false) {
+    if (errorUpdateStatus !== undefined && errorUpdateStatus !== false) {
       window.scrollTo(0, 100); //remonte la page pour visualiser le message flash
     }
-  }, [errorUpdStatus]);
+  }, [errorUpdateStatus]);
 
   return (
     <div className="ConseillerDetails">
-      { (errorUpdStatus !== undefined && errorUpdStatus !== false) &&
+      { (errorUpdateStatus !== undefined && errorUpdateStatus !== false) &&
       <FlashMessage duration={20000}>
         <p className="rf-label flashBag labelError">
-          { errorUpdStatus.toString() }
+          { errorUpdateStatus.toString() }
         </p>
       </FlashMessage>
       }

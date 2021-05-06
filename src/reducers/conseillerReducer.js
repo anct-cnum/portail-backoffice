@@ -16,18 +16,18 @@ export default function conseiller(state = null, action) {
     case 'UPDATE_STATUS_REQUEST':
       return {
         ...state,
-        errorUpdStatus: false
+        errorUpdateStatus: false
       };
     case 'UPDATE_STATUS_SUCCESS':
       return {
         ...state,
         miseEnRelation: action.miseEnRelation,
-        errorUpdStatus: false
+        errorUpdateStatus: false
       };
     case 'UPDATE_STATUS_FAILURE':
       return {
         ...state,
-        errorUpdStatus: action.error
+        errorUpdateStatus: action.error
       };
     case 'UPDATE_DATE_SUCCESS':
       return {
