@@ -142,7 +142,7 @@ function StructureDetails({ location }) {
           {/* eslint-disable-next-line max-len */}
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
           </p>
-          { structure?.structure?.dernierCoselec !== null &&
+          {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>Nombre de conseillers : {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}</p>
           }
           { user?.role === 'admin' &&
