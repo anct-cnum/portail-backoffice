@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   const structure = useSelector(state => state.structure);
-  const c = useSelector(state => state.conseiller);
   const dispatch = useDispatch();
 
   const select = () => {
