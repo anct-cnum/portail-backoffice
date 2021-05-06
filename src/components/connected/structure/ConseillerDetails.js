@@ -57,7 +57,7 @@ function ConseillerDetails({ location }) {
 
   useEffect(() => {
     if (errorUpdStatus !== undefined && errorUpdStatus !== false) {
-      window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
+      window.scrollTo(0, 100); //remonte la page pour visualiser le message flash
     }
   }, [errorUpdStatus]);
 

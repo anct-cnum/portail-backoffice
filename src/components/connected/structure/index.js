@@ -16,6 +16,7 @@ function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const menu = useSelector(state => state.menu);
+  const nombreConseillersCoselec = structure?.structure?.dernierCoselec?.nombreConseillersCoselec;
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -31,13 +32,15 @@ function Structure() {
             SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
           </span>
         </h2>
-        <span style={{ fontWeight: 'normal' }}>
-          <Pluralize
-            singular={'conseiller validé'}
-            plural={'conseillers validés'}
-            count={structure?.structure?.nombreConseillersCoselec} />
-          &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
-        </span>
+        { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
+          <span style={{ fontWeight: 'normal' }}>
+            <Pluralize
+              singular={'conseiller validé'}
+              plural={'conseillers validés'}
+              count={nombreConseillersCoselec} />
+            &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
+          </span>
+        }
       </div>
       <div className="rf-container-fluid rf-mb-5w">
         <div className="rf-grid-row">

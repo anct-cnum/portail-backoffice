@@ -10,7 +10,8 @@ function Structure({ structure, currentPage }) {
     <tr>
       <td>{structure.siret !== null ? structure.siret : 'non renseigné' }</td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
-      <td>{structure.avisCoselec}</td>
+      {/* eslint-disable-next-line max-len */}
+      <td>{structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null ? structure.dernierCoselec?.avisCoselec : 'en attente de passage'}</td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
       <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
