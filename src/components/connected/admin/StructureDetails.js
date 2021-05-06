@@ -143,7 +143,7 @@ function StructureDetails({ location }) {
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
-            <p>Nombre de conseillers : {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}</p>
+            <p>Nombre de poste validé : {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}</p>
           }
           { user?.role === 'admin' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
