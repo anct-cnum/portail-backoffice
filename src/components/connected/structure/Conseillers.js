@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Conseiller from './Conseiller';
+import ConseillerNonMisEnRelation from './ConseillerNonMisEnRelation';
 import { conseillerActions, statsActions, searchActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import FiltersAndSorts from './FiltersAndSorts';
@@ -10,6 +11,8 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBox from '../../common/SearchBox';
+
+import './Conseillers.css';
 
 function Conseillers({ location }) {
   const dispatch = useDispatch();
@@ -130,31 +133,50 @@ function Conseillers({ location }) {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span> }
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 &&
+        <span>{`${search === '' ? 'Aucun conseiller pour le moment.' : 'Aucun résultat de recherche'}`}</span>
+      }
 
-      <div className="rf-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Prénom</th>
-              <th>Nom</th>
-              <th>Statut</th>
-              <th>Date de candidature</th>
-              <th>Code postal</th>
-              <th>Résultat Pix</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-              return (<Conseiller key={idx} miseEnRelation={conseiller} update={update} currentPage={page} currentFilter={filter} />);
-            })
-            }
-          </tbody>
-        </table>
-      </div>
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
+        <h2>{`${search !== '' ? 'Résultats de recherche' : 'Liste des mises en relation'}`}</h2>
+      }
 
-      <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
+        <div className="rf-table fr-table--layout-fixed">
+          <table className="table-conseillers">
+            <thead>
+              <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                { search !== '' && <th style={{ minWidth: '200px' }}>Email</th>}
+                <th>Statut</th>
+                <th>Date de candidature</th>
+                <th>Code postal</th>
+                { search === '' && <th>Résultat Pix</th> }
+                <th style={{ minWidth: search !== '' ? '200px' : '' }}>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+                return (
+                  conseiller.conseillerObj ?
+                    <Conseiller key={idx} miseEnRelation={conseiller} currentPage={page} currentFilter={filter} search={search !== ''} /> :
+                    <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
+                );
+              })
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+
+      { search !== '' && conseillers?.items?.data.length > 100 &&
+        <p className="rf-mt-2w">Seuls les 100 premiers résultats sont affichés</p>
+      }
+
+      {search.length === 0 &&
+        <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+      }
 
     </div>
   );

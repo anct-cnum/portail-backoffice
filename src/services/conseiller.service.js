@@ -10,6 +10,7 @@ export const conseillerService = {
   getAllMisesEnRelation,
   updateStatus,
   updateDateRecrutement,
+  preSelectionner,
 };
 
 function get(id) {
@@ -28,13 +29,13 @@ function getAll(departement, region, search, page, filter, sortData, sortOrder) 
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
-  const filterSearch = search !== '' ? `&$search=${search}` : '';
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterSearch}`;
+  const filterSearch = search !== '' ? `&$search=${search}&$limit=100` : '';
+  const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
 
   if (filter) {
     uri += `&filter=${filter}`;
   }
-
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -46,8 +47,9 @@ function getAllMisesEnRelation(departement, region, structureId, search, page, f
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
   const filterSearch = search !== '' ? `&$search=${search}` : '';
+  const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
   let uri = `${apiUrlRoot}/structures/${structureId ? structureId : userEntityId()}/misesEnRelation?\
-$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterSearch}`;
+$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
 
   if (filter) {
     uri += `&filter=${filter}`;
@@ -62,7 +64,6 @@ $skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}
       uri += `&diplome=${persoFilters?.diplome}`;
     }
   }
-
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -76,6 +77,15 @@ function updateStatus(id, statut) {
   };
 
   return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
+}
+
+function preSelectionner(conseillerId, structureId) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' })
+  };
+
+  return fetch(`${apiUrlRoot}/structures/${structureId}/preSelectionner/${conseillerId}`, requestOptions).then(handleResponse);
 }
 
 function updateDateRecrutement(id, date) {
