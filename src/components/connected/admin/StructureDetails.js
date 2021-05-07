@@ -91,7 +91,7 @@ function StructureDetails({ location }) {
 
   const user = useSelector(state => state.authentication.user.user);
   const errorSendMail = useSelector(state => state.structure?.errorResendInscription);
-
+console.log(user.role);
   const resendInscription = () => {
     window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
     dispatch(structureActions.resendInscription(id));
@@ -133,6 +133,9 @@ function StructureDetails({ location }) {
         </h3>
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
+          {structure?.structure?.estZRR && structure?.structure?.estZRR === true && user.role === 'prefet' &&
+            <p>Statut : Zone rurale</p>
+          }
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
