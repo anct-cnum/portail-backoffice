@@ -31,7 +31,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
           </div>
         }
       </td> }
-      <td>
+      <td className="td-preselection">
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}
           onClick={select} >
