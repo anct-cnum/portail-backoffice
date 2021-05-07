@@ -91,7 +91,7 @@ function StructureDetails({ location }) {
 
   const user = useSelector(state => state.authentication.user.user);
   const errorSendMail = useSelector(state => state.structure?.errorResendInscription);
-console.log(user.role);
+
   const resendInscription = () => {
     window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
     dispatch(structureActions.resendInscription(id));
