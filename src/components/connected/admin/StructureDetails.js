@@ -146,10 +146,12 @@ function StructureDetails({ location }) {
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>
               <Pluralize
-                singular={'Nombre de poste validé'}
-                plural={'Nombre de postes validés'}
+                singular={'Nombre de poste validé : '}
+                plural={'Nombre de postes validés : '}
                 count={structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
+                showCount={false}
               />
+              {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
             </p>
           }
           { user?.role === 'admin' &&
