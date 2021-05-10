@@ -22,10 +22,10 @@ function Demarches() {
           </p>
           <p>Associations :
             <br/>
-            <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations"
+            <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-associations"
               title="cnfs-sa-associations"
               className="rf-link"
-              target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-associations</a>
+              target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-associations</a>
           </p>
         </div>
       </div>

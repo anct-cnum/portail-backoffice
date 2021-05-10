@@ -8,17 +8,32 @@ function Documents() {
   return (
     <div className="documents">
       <div className="rf-container-fluid">
+        { structure?.type !== 'PRIVATE' &&
         <div className="rf-grid-row">
           <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20de%20l%27employeur%20-%20Public%20-%20V3.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20public.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Public">
                         Télécharger le guide de l&rsquo;employeur (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Détails du dispositif pour la structure accueillante
+              Détails du dispositif pour la structure accueillante publique
             </span>
           </p>
         </div>
+        }
+        { structure?.type === 'PRIVATE' &&
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20prive.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Privé">
+                        Télécharger le guide de l&rsquo;employeur (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Détails du dispositif pour la structure accueillante (entreprises et associations)
+            </span>
+          </p>
+        </div>
+        }
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Fiche%20de%20poste%20type.pdf"
@@ -43,17 +58,6 @@ function Documents() {
         </div>
         <div className="rf-grid-row">
           <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/Mod%C3%A8le%20de%20d%C3%A9lib%C3%A9ration%20contrat%20de%20projet.pdf"
-              className="rf-link" target="blank" title="Télécharger le modèle de délibération">
-                        Télécharger le modèle de délibération (pdf)
-            </a>
-            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Document pour la création d&rsquo;un poste non permanent
-            </span>
-          </p>
-        </div>
-        <div className="rf-grid-row">
-          <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Modele_de_convention.pdf"
               className="rf-link" target="blank" title="Télécharger la convention de subvention">
                         Télécharger la convention de subvention (pdf)
@@ -64,17 +68,30 @@ function Documents() {
           </p>
         </div>
         { structure?.type !== 'PRIVATE' &&
-        <div className="rf-grid-row">
-          <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/Contrat%20de%20projet%20type.pdf"
-              className="rf-link" target="blank" title="Télécharger le contrat de projet type">
-                        Télécharger le contrat de projet type (pdf)
-            </a>
-            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Contrat de travail à durée déterminée
-            </span>
-          </p>
-        </div>
+        <>
+          <div className="rf-grid-row">
+            <p>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/Mod%C3%A8le%20de%20d%C3%A9lib%C3%A9ration%20contrat%20de%20projet.pdf"
+                className="rf-link" target="blank" title="Télécharger le modèle de délibération">
+                          Télécharger le modèle de délibération (pdf)
+              </a>
+              <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                Document pour la création d&rsquo;un poste non permanent
+              </span>
+            </p>
+          </div>
+          <div className="rf-grid-row">
+            <p>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/Contrat%20de%20projet%20type.pdf"
+                className="rf-link" target="blank" title="Télécharger le contrat de projet type">
+                          Télécharger le contrat de projet type (pdf)
+              </a>
+              <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                Contrat de travail à durée déterminée
+              </span>
+            </p>
+          </div>
+        </>
         }
         { structure?.type === 'PRIVATE' &&
         <div className="rf-grid-row">
@@ -124,6 +141,17 @@ function Documents() {
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
             Ce document a pour objet de faciliter l&rsquo;entrée en poste des Conseillers numériques France Services, <br className="br-lg"/>
             et contient de nombreuses informations en lien avec leur début d&rsquo;activité : outils, réseaux, parcours, etc.
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Articulation_des_dispositifs_Pass_numeriques_et_Conseillers_numeriques_France_Services.pdf"
+              className="rf-link" target="blank" title="Télécharger le document articulation des dispositifs">
+                        Télécharger le document d&rsquo;articulation des dispositifs (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Ce document présente l&rsquo;articulation des dispositifs Pass numériques et Conseillers numériques France Services
             </span>
           </p>
         </div>
