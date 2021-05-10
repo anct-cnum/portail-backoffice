@@ -151,8 +151,8 @@ function preSelectionner({ conseillerId, structureId }) {
   function request() {
     return { type: 'PRESELECTIONNER_CONSEILLER_REQUEST' };
   }
-  function success() {
-    return { type: 'PRESELECTIONNER_CONSEILLER_SUCCESS' };
+  function success(miseEnRelation) {
+    return { type: 'PRESELECTIONNER_CONSEILLER_SUCCESS', miseEnRelation };
   }
   function failure(error) {
     return { type: 'PRESELECTIONNER_CONSEILLER_FAILURE', error };

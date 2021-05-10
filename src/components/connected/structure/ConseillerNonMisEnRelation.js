@@ -9,16 +9,14 @@ import PropTypes from 'prop-types';
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   const structure = useSelector(state => state.structure);
-  const conseillerMisEnRelation = useSelector(state => state.miseEnRelation);
+  const conseillerMisEnRelation = useSelector(state => state?.conseiller?.miseEnRelation);
 
   const dispatch = useDispatch();
 
   const select = () => {
     update();
     dispatch(conseillerActions.preSelectionner({ conseillerId: conseiller._id, structureId: structure?.structure._id }));
-    console.log(conseillerMisEnRelation);
   };
-
 
   useEffect(() => {
     history.push(`/structure/candidat/${conseiller._id}`);
