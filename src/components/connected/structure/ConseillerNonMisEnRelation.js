@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
+import { history } from '../../../helpers';
 
 import PropTypes from 'prop-types';
 
@@ -13,6 +14,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
   const select = () => {
     update();
     dispatch(conseillerActions.preSelectionner({ conseillerId: conseiller._id, structureId: structure?.structure._id }));
+    history.push(`/structure/candidat/${conseiller._id}`);
   };
 
   return (
