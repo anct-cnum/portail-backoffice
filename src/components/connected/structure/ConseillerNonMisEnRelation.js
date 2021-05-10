@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   const structure = useSelector(state => state.structure);
+  const conseillerMisEnRelation = useSelector(state => state.conseiller);
   const dispatch = useDispatch();
 
   const select = () => {
@@ -32,11 +34,16 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
         }
       </td> }
       <td className="td-preselection">
-        <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
-          style={{ boxShadow: 'none' }}
-          onClick={select} >
+        <Link className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+          onClick={select}
+          to={{ pathname: `/structure/candidat/${conseiller._id}`,
+            miseEnRelation: conseillerMisEnRelation?.miseEnRelation,
+            currentPage: 1, currentFilter: 'interessee' }
+          }
+        >
             Pré sélectionner
-        </button>
+        </Link>
+
       </td>
     </tr>
   );

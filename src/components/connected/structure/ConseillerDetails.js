@@ -10,7 +10,7 @@ import PopinRecrutee from './popins/popinRecrutee';
 import FlashMessage from 'react-flash-message';
 
 function ConseillerDetails({ location }) {
-
+  console.log(location);
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
   const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);

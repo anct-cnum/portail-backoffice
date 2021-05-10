@@ -136,14 +136,15 @@ function preSelectionner({ conseillerId, structureId }) {
     dispatch(request());
 
     conseillerService.preSelectionner(conseillerId, structureId)
-    .then(() => {
-      dispatch(searchActions.updateSearch(''));
-      dispatch(statsActions.getMisesEnRelationStats());
-      dispatch(success());
-    },
-    error => {
-      dispatch(failure(error));
-    }
+    .then(
+      miseEnRelation => {
+        dispatch(searchActions.updateSearch(''));
+        dispatch(statsActions.getMisesEnRelationStats());
+        dispatch(success(miseEnRelation));
+      },
+      error => {
+        dispatch(failure(error));
+      }
     );
   };
 
