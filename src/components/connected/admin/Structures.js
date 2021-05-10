@@ -90,6 +90,7 @@ function Structures({ departement, region, search, start, end }) {
           <table>
             <thead>
               <tr>
+                <th>Id</th>
                 <th>SIRET</th>
                 <th>Nom</th>
                 <th>Statut coselec</th>
