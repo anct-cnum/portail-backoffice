@@ -51,12 +51,23 @@ function Documents() {
         </div>
         <div className="rf-grid-row">
           <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20de%20l%27employeur%20-%20Public%20-%20V3.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide de l'employeur">
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20public.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Public">
                         Télécharger le guide de l&rsquo;employeur (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Détails du dispositif pour la structure accueillante
+              Détails du dispositif pour la structure accueillante publique
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20prive.pdf"
+              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Privé">
+                        Télécharger le guide de l&rsquo;employeur (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Détails du dispositif pour la structure accueillante (entreprises et associations)
             </span>
           </p>
         </div>
