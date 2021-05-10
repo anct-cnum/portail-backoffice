@@ -134,7 +134,7 @@ function StructureDetails({ location }) {
         </h3>
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
-          {['prefet', 'admin'].indexOf(user.role) > -1 &&
+          {['prefet', 'admin'].indexOf(user.role) !== -1 &&
             <p>Zone rurale : {structure?.structure?.estZRR ? 'Oui' : 'Non'}</p>
           }
           <p>Code postal : {structure?.structure?.codePostal}</p>
