@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions, statsActions, conseillerActions, paginationActions } from '../../../actions';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 import moment from 'moment';
 import 'moment/locale/fr';
 import Pagination from '../../common/Pagination';
@@ -143,7 +144,15 @@ function StructureDetails({ location }) {
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
-            <p>Nombre de conseillers : {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}</p>
+            <p>
+              <Pluralize
+                singular={'Nombre de poste validé : '}
+                plural={'Nombre de postes validés : '}
+                count={structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
+                showCount={false}
+              />
+              {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
+            </p>
           }
           { user?.role === 'admin' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
