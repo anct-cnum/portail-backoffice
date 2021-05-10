@@ -134,6 +134,9 @@ function StructureDetails({ location }) {
         </h3>
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
+          {user.role === 'prefet' &&
+            <p>Zone rurale : {structure?.structure?.estZRR ? 'Oui' : 'Non'}</p>
+          }
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
