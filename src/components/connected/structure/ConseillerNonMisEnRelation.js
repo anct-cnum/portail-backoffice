@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   const structure = useSelector(state => state.structure);
-  const conseillerMisEnRelation = useSelector(state => state?.conseiller?.miseEnRelation);
+  const conseillerMisEnRelation = useSelector(state => state?.conseiller?.misEnRelation?.misEnRelation);
 
   const dispatch = useDispatch();
 
@@ -19,8 +19,17 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
   };
 
   useEffect(() => {
-    history.push(`/structure/candidat/${conseiller._id}`);
-  }, [conseillerMisEnRelation]);
+    if (conseillerMisEnRelation !== undefined && conseillerMisEnRelation?.conseillerObj?._id === conseiller._id) {
+      history.push(
+        {
+          pathname: `/structure/candidat/${conseiller._id}`,
+          miseEnRelation: conseillerMisEnRelation,
+          currentPage: 1,
+          currentFilter: 'interessee'
+        }
+      );
+    }
+  }, [conseillerMisEnRelation, conseiller]);
 
   return (
     <tr className="conseiller">
