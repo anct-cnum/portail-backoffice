@@ -1,19 +1,35 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
+import { history } from '../../../helpers';
 
 import PropTypes from 'prop-types';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   const structure = useSelector(state => state.structure);
+  const conseillerMisEnRelation = useSelector(state => state?.conseiller?.misEnRelation?.misEnRelation);
+
   const dispatch = useDispatch();
 
   const select = () => {
     update();
     dispatch(conseillerActions.preSelectionner({ conseillerId: conseiller._id, structureId: structure?.structure._id }));
   };
+
+  useEffect(() => {
+    if (conseillerMisEnRelation !== undefined && conseillerMisEnRelation?.conseillerObj?._id === conseiller._id) {
+      history.push(
+        {
+          pathname: `/structure/candidat/${conseiller._id}`,
+          miseEnRelation: conseillerMisEnRelation,
+          currentPage: 1,
+          currentFilter: 'interessee'
+        }
+      );
+    }
+  }, [conseillerMisEnRelation, conseiller]);
 
   return (
     <tr className="conseiller">
@@ -35,7 +51,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}
           onClick={select} >
-            Pré sélectionner
+          Pré sélectionner
         </button>
       </td>
     </tr>

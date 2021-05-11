@@ -136,22 +136,23 @@ function preSelectionner({ conseillerId, structureId }) {
     dispatch(request());
 
     conseillerService.preSelectionner(conseillerId, structureId)
-    .then(() => {
-      dispatch(searchActions.updateSearch(''));
-      dispatch(statsActions.getMisesEnRelationStats());
-      dispatch(success());
-    },
-    error => {
-      dispatch(failure(error));
-    }
+    .then(
+      miseEnRelation => {
+        dispatch(searchActions.updateSearch(''));
+        dispatch(statsActions.getMisesEnRelationStats());
+        dispatch(success(miseEnRelation));
+      },
+      error => {
+        dispatch(failure(error));
+      }
     );
   };
 
   function request() {
     return { type: 'PRESELECTIONNER_CONSEILLER_REQUEST' };
   }
-  function success() {
-    return { type: 'PRESELECTIONNER_CONSEILLER_SUCCESS' };
+  function success(miseEnRelation) {
+    return { type: 'PRESELECTIONNER_CONSEILLER_SUCCESS', miseEnRelation };
   }
   function failure(error) {
     return { type: 'PRESELECTIONNER_CONSEILLER_FAILURE', error };

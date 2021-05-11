@@ -89,7 +89,7 @@ ButtonsAction.propTypes = {
   statut: PropTypes.string,
   updateStatut: PropTypes.func,
   miseEnRelationId: PropTypes.string,
-  dateRecrutement: PropTypes.date
+  dateRecrutement: PropTypes.instanceOf(Date)
 };
 
 export default ButtonsAction;

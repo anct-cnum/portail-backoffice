@@ -41,7 +41,7 @@ export default function conseiller(state = null, action) {
     case 'PRESELECTIONNER_CONSEILLER_SUCCESS':
       return {
         ...state,
-        preSelectionne: true
+        misEnRelation: action.miseEnRelation
       };
     case 'PRESELECTIONNER_CONSEILLER_FAILURE':
       return {
