@@ -19,7 +19,7 @@ function ConseillerDetails({ location }) {
   const updateStatut = statut => {
     dispatch(conseillerActions.updateStatus({ id: location.miseEnRelation?._id, statut }));
   };
-  console.log(location);
+
   useEffect(() => {
     dispatch(conseillerActions.get(id));
   }, []);
