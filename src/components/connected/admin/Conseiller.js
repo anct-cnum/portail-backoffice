@@ -8,10 +8,10 @@ function Conseiller({ conseiller, currentPage }) {
 
   return (
     <tr className="conseiller">
-      <td>{conseiller.prenom}</td>
-      <td>{conseiller.nom}</td>
-      <td>{dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</td>
-      <td>{conseiller.codePostal}</td>
+      <td>{conseiller?.prenom}</td>
+      <td>{conseiller?.nom}</td>
+      <td>{dayjs(conseiller?.createdAt).format('DD/MM/YYYY')}</td>
+      <td>{conseiller?.codePostal}</td>
       <td>
         { conseiller?.pix?.partage &&
           <div className="tooltip">
@@ -22,7 +22,7 @@ function Conseiller({ conseiller, currentPage }) {
       </td>
       <td>
         <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/candidat/${conseiller._id}`,
+          pathname: `/candidat/${conseiller?._id}`,
           currentPage: currentPage }}>
             Détails
         </Link>
