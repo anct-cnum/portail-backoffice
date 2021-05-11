@@ -7,11 +7,13 @@ import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
+import FlashMessage from 'react-flash-message';
 
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
+  const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
   let { id } = useParams();
 
   const updateStatut = statut => {
@@ -53,8 +55,21 @@ function ConseillerDetails({ location }) {
     }
   };
 
+  useEffect(() => {
+    if (errorUpdateStatus !== undefined && errorUpdateStatus !== false) {
+      window.scrollTo(0, 100); //remonte la page pour visualiser le message flash
+    }
+  }, [errorUpdateStatus]);
+
   return (
     <div className="ConseillerDetails">
+      { (errorUpdateStatus !== undefined && errorUpdateStatus !== false) &&
+      <FlashMessage duration={20000}>
+        <p className="rf-label flashBag labelError">
+          { errorUpdateStatus.toString() }
+        </p>
+      </FlashMessage>
+      }
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -81,6 +96,7 @@ function ConseillerDetails({ location }) {
               }
               <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
               <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
+              <p>Mobilité géographique : { conseiller?.conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.conseiller?.distanceMax} Km` }</p>
               <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>

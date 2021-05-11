@@ -8,20 +8,45 @@ import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
+import Exports from './Exports';
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
 
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const user = useSelector(state => state.authentication.user?.user);
+
   const menu = useSelector(state => state.menu);
+  const nombreConseillersCoselec = structure?.structure?.dernierCoselec?.nombreConseillersCoselec;
 
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
 
+  function crisp() {
+    if (window.$crisp === undefined) {
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
+
+      (function() {
+        let d = document;
+        let s = d.createElement('script');
+
+        s.src = 'https://client.crisp.chat/l.js';
+        s.async = 1;
+        d.getElementsByTagName('head')[0].appendChild(s);
+      })();
+
+      window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
+      window.$crisp.push(['set', 'user:email', [user.name]]);
+    }
+  }
+
+
   return (
     <div className="structure rf-pb-md-3w">
+      { crisp() }
       <Header connected />
       <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
         <h2>
@@ -30,13 +55,15 @@ function Structure() {
             SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
           </span>
         </h2>
-        <span style={{ fontWeight: 'normal' }}>
-          <Pluralize
-            singular={'conseiller validé'}
-            plural={'conseillers validés'}
-            count={structure?.structure?.nombreConseillersCoselec} />
-          &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
-        </span>
+        { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
+          <span style={{ fontWeight: 'normal' }}>
+            <Pluralize
+              singular={'conseiller validé'}
+              plural={'conseillers validés'}
+              count={nombreConseillersCoselec} />
+            &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
+          </span>
+        }
       </div>
       <div className="rf-container-fluid rf-mb-5w">
         <div className="rf-grid-row">
@@ -49,6 +76,7 @@ function Structure() {
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
+            <Route path={`/structure/exports`} component={Exports} />
           </div>
         </div>
       </div>

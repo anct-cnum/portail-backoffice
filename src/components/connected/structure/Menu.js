@@ -71,6 +71,22 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/exports') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/exports" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes exports
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li className={`rf-sidemenu__item`}>
+              <a className="rf-sidemenu__link menu-contact" href="mailto:contact+espace_structure@support.conseiller-numerique.gouv.fr">
+                <div className="rf-grid-row rf-grid-row--end">
+                    Nous contacter
+                </div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

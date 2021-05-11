@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation, currentPage, currentFilter }) {
+function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -23,22 +23,23 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter }) {
 
   return (
     <tr className="conseiller">
-      <td>{miseEnRelation.conseiller.prenom}</td>
-      <td>{miseEnRelation.conseiller.nom}</td>
+      <td>{miseEnRelation.conseillerObj.prenom}</td>
+      <td>{miseEnRelation.conseillerObj.nom}</td>
+      { search && <td>{miseEnRelation.conseillerObj.email}</td>}
       <td>{statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
-      <td>{dayjs(miseEnRelation.conseiller.createdAt).format('DD/MM/YYYY')}</td>
-      <td>{miseEnRelation.conseiller.codePostal}</td>
-      <td>
+      <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
+      <td>{miseEnRelation.conseillerObj.codePostal}</td>
+      { !search && <td>
         { miseEnRelation.conseiller?.pix?.partage &&
           <div className="tooltip">
             <img src="/logos/logo-pix.svg" alt="logo Pix" style={{ height: '36px' }}/>
             <span className="tooltiptext">A partagé ses résultats Pix</span>
           </div>
         }
-      </td>
+      </td> }
       <td>
         <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/candidat/${miseEnRelation.conseiller._id}`,
+          pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
           miseEnRelation: miseEnRelation,
           currentPage: currentPage,
           currentFilter: currentFilter }}>
@@ -52,7 +53,8 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter }) {
 Conseiller.propTypes = {
   miseEnRelation: PropTypes.object,
   currentPage: PropTypes.number,
-  currentFilter: PropTypes.string
+  currentFilter: PropTypes.string,
+  search: PropTypes.bool
 };
 
 export default Conseiller;

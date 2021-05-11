@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import { exportsActions } from '../../../actions';
+import { exportsActions, structureActions } from '../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-loader-spinner';
 
-function ExportsCoselec() {
+function Exports() {
 
   const dispatch = useDispatch();
   const exports = useSelector(state => state.exports);
   const error = useSelector(state => state.exports?.error);
 
-  const user = useSelector(state => state.authentication.user.user);
-  const role = user.role;
+  useEffect(() => {
+    dispatch(structureActions.get());
+  }, []);
 
   useEffect(() => {
     if (exports?.blob !== null && exports?.blob !== undefined && (error === undefined || error === false)) {
@@ -31,7 +32,7 @@ function ExportsCoselec() {
   };
 
   return (
-    <div className="exportsCoselec" style={{ position: 'relative' }}>
+    <div className="exports" style={{ position: 'relative' }}>
       <div className="spinnerCustom">
         <Spinner
           type="Oval"
@@ -41,25 +42,17 @@ function ExportsCoselec() {
           visible={exports?.loading === true}
         />
       </div>
-      { role === 'admin' &&
-      <>
-        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier « Je recrute »</a></p>
-        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier « structures »</a></p>
-      </>
-      }
-      { role === 'prefet' &&
-      <>
-        <a className="rf-link" onClick={() => getFile('structuresPrefet')}>Export des structures</a>
+      <p>
+        <a className="rf-link" onClick={() => getFile('candidatsByStructure')}>Export des candidats</a>
         <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-          Export de la liste des structures
+          Export des emails, noms, prénoms de la liste des candidats
         </span>
-      </>
-      }
-      { (error !== undefined && error !== false) &&
-        <span className="labelError">Une erreur est survenue : {error?.toString()}</span>
-      }
+        { (error !== undefined && error !== false) &&
+          <span className="labelError">Une erreur est survenue : {error?.toString()}</span>
+        }
+      </p>
     </div>
   );
 }
 
-export default ExportsCoselec;
+export default Exports;

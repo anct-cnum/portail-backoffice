@@ -3,10 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions, statsActions, conseillerActions, paginationActions } from '../../../actions';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 import moment from 'moment';
 import 'moment/locale/fr';
 import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
+import FlashMessage from 'react-flash-message';
 
 moment.locale('fr');
 
@@ -38,19 +40,23 @@ function StructureDetails({ location }) {
 
   const statutsLabel = [
     {
-      name: 'nouvelles candidatures',
+      name: 'candidatures',
+      nameSingle: 'candidature',
       key: 'nouvelle'
     },
     {
       name: 'candidatures pré sélectionnées',
+      nameSingle: 'candidature pré sélectionnée',
       key: 'interessee'
     },
     {
       name: 'candidatures non retenues',
+      nameSingle: 'candidature non retenue',
       key: 'nonInteressee'
     },
     {
       name: 'candidatures validées',
+      nameSingle: 'candidature validée',
       key: 'recrutee'
     }
   ];
@@ -84,8 +90,32 @@ function StructureDetails({ location }) {
     }
   ];
 
+  const user = useSelector(state => state.authentication.user.user);
+  const errorSendMail = useSelector(state => state.structure?.errorResendInscription);
+
+  const resendInscription = () => {
+    window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
+    dispatch(structureActions.resendInscription(id));
+  };
+
   return (
     <div className="StructureDetails">
+      { structure?.flashMessage === true &&
+      <FlashMessage duration={10000}>
+        { (errorSendMail === undefined || errorSendMail === false) &&
+        <p className="rf-label flashBag">
+          Le mail de relance d&rsquo;inscription a bien été envoyé pour cette structure
+          &nbsp;
+          <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+        </p>
+        }
+        { (errorSendMail !== undefined && errorSendMail !== false) &&
+        <p className="rf-label flashBag labelError">
+          L&rsquo;envoi du mail de relance d&rsquo;inscription a échoué, veuillez réessayer plus tard
+        </p>
+        }
+      </FlashMessage>
+      }
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -103,16 +133,32 @@ function StructureDetails({ location }) {
           SIRET {structure?.structure?.siret}
         </h3>
         <div className="rf-container-fluid">
-          <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type)).type}</p>
+          <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
+          {['prefet', 'admin'].indexOf(user.role) !== -1 &&
+            <p>Zone rurale : {structure?.structure?.estZRR ? 'Oui' : 'Non'}</p>
+          }
           <p>Code postal : {structure?.structure?.codePostal}</p>
           <p>{structure?.structure?.nombreConseillersSouhaites} conseillers numériques France Services souhaités</p>
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
           <p>Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a></p>
-          <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' ? structure?.structure?.avisCoselec : 'en attente de passage'}</p>
-          {structure?.structure?.statut === 'VALIDATION_COSELEC' &&
-            <p>Nombre de conseillers : {[...structure?.structure?.coselec].pop().nombreConseillersCoselec}</p>
+          {/* eslint-disable-next-line max-len */}
+          <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
+          </p>
+          {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
+            <p>
+              <Pluralize
+                singular={'Nombre de poste validé : '}
+                plural={'Nombre de postes validés : '}
+                count={structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
+                showCount={false}
+              />
+              {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
+            </p>
+          }
+          { user?.role === 'admin' &&
+            <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
@@ -122,7 +168,9 @@ function StructureDetails({ location }) {
             <>
               {stats.map((stat, idx) =>
                 <p key={idx}>
-                  {stat.count} {statutsLabel.find(label => label.key === stat.statut).name}
+                  {stat.count}
+                  &nbsp;{stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name}
+                  &nbsp;{stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle}
                 </p>
               )}
               <h3>Liste des candidats</h3>
@@ -132,17 +180,19 @@ function StructureDetails({ location }) {
               <div className="rf-table">
                 <table>
                   <thead>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Date de candidature</th>
-                    <th>Code postal</th>
-                    <th>Résultat Pix</th>
-                    <th></th>
+                    <tr>
+                      <th>Prénom</th>
+                      <th>Nom</th>
+                      <th>Date de candidature</th>
+                      <th>Code postal</th>
+                      <th>Résultat Pix</th>
+                      <th></th>
+                    </tr>
                   </thead>
                   <tbody>
                     {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
                       // TODO: non conservation de la page car retour à la liste des conseillers
-                      return (<Conseiller key={idx} conseiller={miseEnRelation.conseiller} />);
+                      return (<Conseiller key={idx} conseiller={miseEnRelation.conseillerObj} />);
                     })
                     }
                   </tbody>
