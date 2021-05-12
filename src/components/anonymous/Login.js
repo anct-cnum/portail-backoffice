@@ -40,7 +40,7 @@ function Login() {
   return (
     <div>
       <Header/>
-      <div className="rf-container rf-mt-3w rf-mb-5w">
+      <div className="rf-container rf-mt-3w rf-mb-5w questionnaire">
         <div className="rf-grid-row rf-grid-row--center rf-p-2w">
           <span style={{ textAlign: 'center' }}>
             { role === 'structure' &&

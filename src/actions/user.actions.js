@@ -6,6 +6,7 @@ export const userActions = {
   logout,
   verifyToken,
   verifyPrefetToken,
+  verifyCandidateToken,
   choosePassword,
   inviteAccountsPrefet,
   forgottenPassword
@@ -104,6 +105,32 @@ function verifyPrefetToken(token) {
   }
   function failure(error) {
     return { type: 'VERIFY_PREFET_TOKEN_FAILURE', error };
+  }
+}
+
+function verifyCandidateToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.verifyCandidateToken(token)
+    .then(
+      result => {
+        dispatch(success(result.isValid));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_REQUEST', token };
+  }
+  function success(isValid) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_SUCCESS', isValid };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_FAILURE', error };
   }
 }
 

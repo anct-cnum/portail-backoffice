@@ -3,6 +3,7 @@ export const userService = {
   logout,
   verifyToken,
   verifyPrefetToken,
+  verifyCandidateToken,
   choosePassword,
   sendForgottenPasswordEmail,
   inviteAccountsPrefet
@@ -68,6 +69,16 @@ function verifyPrefetToken(token) {
   };
 
   let uri = `${apiUrlRoot}/users/verifyPrefetToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function verifyCandidateToken(token) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  let uri = `${apiUrlRoot}/users/verifyCandidateToken/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 

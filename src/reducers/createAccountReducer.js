@@ -59,6 +59,19 @@ export default function authentication(state = {}, action) {
         passwordChoosen: false,
         error: action.error
       };
+    case 'VERIFY_CANDIDATE_TOKEN_REQUEST':
+      return {
+        verifyingToken: true
+      };
+    case 'VERIFY_CANDIDATE_TOKEN_SUCCESS':
+      return {
+        tokenVerified: true
+      };
+    case 'VERIFY_CANDIDATE_TOKEN_FAILURE':
+      return {
+        tokenVerified: false,
+        error: action.error
+      };
     default:
       return state;
   }
