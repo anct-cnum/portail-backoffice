@@ -9,7 +9,8 @@ export const userActions = {
   verifyCandidateToken,
   choosePassword,
   inviteAccountsPrefet,
-  forgottenPassword
+  forgottenPassword,
+  sendSurvey
 };
 
 function login(username, password) {
@@ -212,3 +213,29 @@ function forgottenPassword(username) {
     return { type: 'SEND_EMAIL_FAILURE', error };
   }
 }
+
+function sendSurvey(token, survey) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.sendSurvey(token, survey)
+    .then(
+      () => {
+        dispatch(success());
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'SEND_SURVEY_REQUEST' };
+  }
+  function success() {
+    return { type: 'SEND_SURVEY_SUCCESS' };
+  }
+  function failure(error) {
+    return { type: 'SEND_SURVEY_FAILURE', error };
+  }
+}
+

@@ -16,9 +16,6 @@ function CandidateSurveyForm({ match }) {
 
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
-  console.log(verifyingToken);
-  console.log(tokenVerified);
-
   const [isActive, setActive] = useState(false);
   const [disponible, setDisponible] = useState(false);
   const [contact, setContact] = useState(false);
@@ -31,44 +28,57 @@ function CandidateSurveyForm({ match }) {
   const [avis, setAvis] = useState('');
   const [precisionAvis, setPrecisionAvis] = useState('');
 
+
   function handleDisponible(e) {
-    setDisponible(e.target.value);
+    const { value } = e.target;
+    setDisponible(value);
   }
   function handleContact(e) {
-    setContact(e.target.value);
+    const { value } = e.target;
+    setContact(value);
     let activation = false;
-    if (e.target.value === 'Oui') {
+    if (value === 'Oui') {
       activation = true;
     }
     setActive(activation);
   }
   function handleNumber(e) {
-    setNumberContact(e.target.value);
+    const { value } = e.target;
+    setNumberContact(value);
   }
   function handleStructureContact(e) {
-    setStructureContact(e.target.value);
+    const { value } = e.target;
+    setStructureContact(value);
   }
   function handleStructuresContact() {
-    setStructuresContact([...structuresContact, structureContact]);
+    if (structureContact.length > 5) {
+      setStructuresContact([...structuresContact, structureContact]);
+      setStructureContact('');
+    }
   }
   const handleRemoveStructure = name => {
     const structures = structuresContact.filter(structure => structure !== name);
     setStructuresContact(structures);
   };
   function handleEntretien(e) {
-    setEntretien(e.target.value);
+    const { value } = e.target;
+    setEntretien(value);
   }
   function handleAxeAmelioration(e) {
-    setAxeAmelioration(e.target.value);
+    const { value } = e.target;
+    setAxeAmelioration(value);
   }
   function handlePrecisionAxeAmelioration(e) {
-    setPrecisionAxeAmelioration(e.target.value);
+    const { value } = e.target;
+    setPrecisionAxeAmelioration(value);
   }
   function handleAvis(e) {
-    setAvis(e.target.value);
+    const { value } = e.target;
+    setAvis(value);
   }
   function handlePrecisionAvis(e) {
-    setPrecisionAvis(e.target.value);
+    const { value } = e.target;
+    setPrecisionAvis(value);
   }
 
   /* V2 ?-> recherche de la structure
@@ -99,13 +109,16 @@ function CandidateSurveyForm({ match }) {
         const survey = {
           'disponible': disponible,
           'contact': contact,
-          'numberContact': numberContact,
+          'nombreContact': numberContact,
+          'structureEnContact': structuresContact,
           'entretien': entretien,
           'axeAmelioration': axeAmelioration,
           'precisionAxeAmelioration': precisionAxeAmelioration,
           'avis': avis,
           'precisionAvis': precisionAvis
         };
+        console.log(survey);
+        dispatch(userActions.sendSurvey(token, survey));
       }
     }
   }
@@ -189,10 +202,9 @@ function CandidateSurveyForm({ match }) {
                 {structuresContact !== [] &&
                   <div className="rf-mb-6w rf-mt-2w">
                     { structuresContact.map((structure, id) =>
-                      <div key={id}> {structure}
-                        <span onClick={() => handleRemoveStructure(structure)}>
-                          <span className="structure-btn rf-fi-close-circle-line" aria-hidden="true"></span>
-                        </span>
+                      <div key={id}>
+                        <span className="structure-nom">{structure}</span>
+                        <span className="structure-btn rf-fi-close-circle-line" aria-hidden="true" onClick={() => handleRemoveStructure(structure)}></span>
                       </div>
                     )}
                   </div>
