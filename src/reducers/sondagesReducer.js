@@ -3,7 +3,7 @@ const initialState = {
   errorsRequired: {
     disponible: true,
     contact: true,
-    numberContact: false
+    nombreContact: false
   },
 };
 
@@ -26,14 +26,14 @@ export default function sondage(state = initialState, action) {
         errorsRequired: {
           ...state.errorsRequired,
           contact: false,
-          numberContact: number },
+          nombreContact: number },
       };
     case 'UPDATE_NUMBER_CONTACT':
       return {
         ...state,
         errorsRequired: {
           ...state.errorsRequired,
-          numberContact: false },
+          nombreContact: false },
       };
     case 'VERIFY_SONDAGE':
       return {

@@ -22,72 +22,50 @@ function CandidateSurveyForm({ match }) {
   const submitedSondage = useSelector(state => state.sondages?.submited);
 
   const [isActive, setActive] = useState(false);
-  const [disponible, setDisponible] = useState(false);
-  const [contact, setContact] = useState(false);
-  const [numberContact, setNumberContact] = useState(0);
-  const [structureContact, setStructureContact] = useState('');
-  const [structuresContact, setStructuresContact] = useState([]);
-  const [entretien, setEntretien] = useState('');
-  const [axeAmelioration, setAxeAmelioration] = useState('');
-  const [precisionAxeAmelioration, setPrecisionAxeAmelioration] = useState(false);
-  const [avis, setAvis] = useState('');
-  const [precisionAvis, setPrecisionAvis] = useState('');
+  const [structures, setStructures] = useState([]);
+  const [survey, setSurvey] = useState({
+    disponible: '',
+    contact: '',
+    nombreContact: 0,
+    structuresContact: [],
+    entretien: '',
+    axeAmelioration: '',
+    precisionAxeAmelioration: '',
+    avis: '',
+    precisionAvis: '',
+  });
 
+  const { nombreContact } = survey;
 
-  function handleDisponible(e) {
-    const { value } = e.target;
-    setDisponible(value);
-    dispatch(sondageActions.updateDisponibilite(e.target.getAttribute('value')));
-  }
-  function handleContact(e) {
-    const { value } = e.target;
-    setContact(value);
-    let activation = false;
-    if (value === 'Oui') {
-      activation = true;
+  function handleChange(e) {
+    const { name, value } = e.target;
+    if (name === 'disponible') {
+      dispatch(sondageActions.updateDisponibilite(value));
     }
-    setActive(activation);
-    dispatch(sondageActions.updateConcate(e.target.getAttribute('value')));
+    if (name === 'contact' && value === 'Oui') {
+      dispatch(sondageActions.updateConcate(value));
+      setActive(true);
+    }
+    if (name === 'contact' && value === 'Non') {
+      dispatch(sondageActions.updateConcate(value));
+      setActive(false);
+    }
+    if (name === 'nombreContact') {
+      dispatch(sondageActions.updateConcate(value));
+    }
+    setSurvey(inputs => ({ ...inputs, [name]: value }));
   }
-  function handleNumber(e) {
-    const { value } = e.target;
-    setNumberContact(value);
-    dispatch(sondageActions.updateNumberContact(e.target.getAttribute('value')));
-  }
-  function handleStructureContact(e) {
-    const { value } = e.target;
-    setStructureContact(value);
-  }
+
   function handleStructuresContact() {
-    if (structureContact.length > 5) {
-      setStructuresContact([...structuresContact, structureContact]);
-      setStructureContact('');
-    }
+    structures.push(survey.structureContact);
+    setSurvey(inputs => ({ ...inputs, ['structuresContact']: structures, ['structureContact']: '' }));
+
   }
   const handleRemoveStructure = name => {
-    const structures = structuresContact.filter(structure => structure !== name);
-    setStructuresContact(structures);
+    const less = structures.filter(structure => structure !== name);
+    setStructures(less);
+    setSurvey(inputs => ({ ...inputs, ['structuresContact']: less, ['structureContact']: '' }));
   };
-  function handleEntretien(e) {
-    const { value } = e.target;
-    setEntretien(value);
-  }
-  function handleAxeAmelioration(e) {
-    const { value } = e.target;
-    setAxeAmelioration(value);
-  }
-  function handlePrecisionAxeAmelioration(e) {
-    const { value } = e.target;
-    setPrecisionAxeAmelioration(value);
-  }
-  function handleAvis(e) {
-    const { value } = e.target;
-    setAvis(value);
-  }
-  function handlePrecisionAvis(e) {
-    const { value } = e.target;
-    setPrecisionAvis(value);
-  }
 
   //Pour la maj de printError quand errorsRequired change
   useEffect(() => {
@@ -98,26 +76,14 @@ function CandidateSurveyForm({ match }) {
 
   function handleSubmit() {
     let hasErrors = false;
-    Object.values(sondageError).forEach(error => {
-      if (error === true) {
-        hasErrors = true;
-      }
+    hasErrors = Object.values(sondageError).find(function(error) {
+      return error === true;
     });
     if (hasErrors) {
       dispatch(sondageActions.verifySondage(Object.values(sondageError)));
     } else {
-      const sondage = {
-        'disponible': disponible,
-        'contact': contact,
-        'nombreContact': numberContact,
-        'structureEnContact': structuresContact,
-        'entretien': entretien,
-        'axeAmelioration': axeAmelioration,
-        'precisionAxeAmelioration': precisionAxeAmelioration,
-        'avis': avis,
-        'precisionAvis': precisionAvis
-      };
-      dispatch(sondageActions.createSondage(conseiller, sondage));
+      console.log(survey);
+      dispatch(sondageActions.createSondage(conseiller, survey));
     }
   }
 
@@ -153,11 +119,11 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className = "rf-radio-group">
-                      <input type="radio" id="disponible-oui" name="disponible" value="Oui" onClick={handleDisponible}/>
+                      <input type="radio" id="disponible-oui" name="disponible" value="Oui" onClick={handleChange}/>
                       <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-oui">Oui</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="disponible-non" name="disponible" value="Non" onClick={handleDisponible}/>
+                      <input type="radio" id="disponible-non" name="disponible" value="Non" onClick={handleChange}/>
                       <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-non">Non</label>
                     </div>
                   </div>
@@ -174,11 +140,11 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="contact-oui" name="contact" value="Oui" onClick={handleContact} />
+                      <input type="radio" id="contact-oui" name="contact" value="Oui" onClick={handleChange} />
                       <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-oui">Oui</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="contact-non" name="contact" value="Non" onClick={handleContact}/>
+                      <input type="radio" id="contact-non" name="contact" value="Non" onClick={handleChange}/>
                       <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-non">Non</label>
                     </div>
                   </div>
@@ -187,24 +153,24 @@ function CandidateSurveyForm({ match }) {
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
                 <label className = {sondagePrintError &&
-                  sondageError?.numberContact ? 'rf-label invalid' : 'rf-label' } htmlFor="nombre-contact">
+                  sondageError?.nombreContact ? 'rf-label invalid' : 'rf-label' } htmlFor="nombre-contact">
                   Combien en avez-vous eu ? *
                 </label>
-                <input type="number" name="nombre-contact" id="nombre-contact" onChange={handleNumber}
-                  className={sondagePrintError && sondageError?.numberContact ? 'rf-input invalid' : 'rf-input' } />
+                <input type="number" name="nombreContact" id="nombre-contact" onChange={handleChange}
+                  className={sondagePrintError && sondageError?.nombreContact ? 'rf-input invalid' : 'rf-input' } />
               </div>
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
                 <label className="rf-label" htmlFor="structure-contact">
-                  { numberContact >= 1 &&
+                  { nombreContact >= 1 &&
                   <span>Lesquelles :</span>
                   }
-                  { numberContact <= 1 &&
+                  { nombreContact <= 1 &&
                     <span> Laquelle :</span>
                   }
                 </label>
                 <label className="rf-search-bar center">
-                  <input type="text" name="structure-contact" id="structure-contact" className="rf-input" onKeyUp={handleStructureContact}/>
+                  <input type="text" name="structureContact" id="structure-contact" className="rf-input" onKeyUp={handleChange}/>
 
                   <span className="tooltip">
                     <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleStructuresContact}></button>
@@ -213,9 +179,9 @@ function CandidateSurveyForm({ match }) {
                 </label>
               </div>
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
-                {structuresContact !== [] &&
+                {structures !== [] &&
                   <div className="rf-mb-6w rf-mt-2w">
-                    { structuresContact.map((structure, id) =>
+                    { structures.map((structure, id) =>
                       <div key={id}>
                         <span className="structure-nom">{structure}</span>
                         <span className="structure-btn rf-fi-close-circle-line" aria-hidden="true" onClick={() => handleRemoveStructure(structure)}></span>
@@ -232,11 +198,11 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="entretien-oui" name="entretien" value="Oui" onClick={handleEntretien}/>
+                      <input type="radio" id="entretien-oui" name="entretien" value="Oui" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="entretien-oui">Oui</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="entretien-non" name="entretien" value="Non" onClick={handleEntretien}/>
+                      <input type="radio" id="entretien-non" name="entretien" value="Non" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="entretien-non">Non</label>
                     </div>
                   </div>
@@ -247,14 +213,14 @@ function CandidateSurveyForm({ match }) {
                 <label className="rf-label" htmlFor="axe-amelioration">
                   Quels axes d amélioration souhaiteriez-vous apporter au dispositif ?
                 </label>
-                <input type="text" name="axe-amelioration" id="axe-amelioration" className="rf-input" onChange={handleAxeAmelioration}/>
+                <input type="text" name="axe-amelioration" id="axe-amelioration" className="rf-input" onChange={handleChange}/>
               </div>
 
               <div className="rf-col-12 rf-col-md-7 rf-mb-6w center">
                 <label className="rf-label" htmlFor="precision-amelioration">
                   Précisez votre réponse :
                 </label>
-                <textarea className="rf-input" id="precision-amelioration" name="precision-amelioration" onChange={handlePrecisionAxeAmelioration}></textarea>
+                <textarea className="rf-input" id="precision-amelioration" name="precision-amelioration" onChange={handleChange}></textarea>
               </div>
 
               <div className="rf-form-group rf-col-12 rf-col-md-7 center">
@@ -264,27 +230,27 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-5" name="avis" value="TRES BON" onClick={handleAvis}/>
+                      <input type="radio" id="avis-5" name="avis" value="TRES BON" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-5">TRES BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-4" name="avis" value="BON" onClick={handleAvis}/>
+                      <input type="radio" id="avis-4" name="avis" value="BON" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-4">BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-3" name="avis" value="MOYEN" onClick={handleAvis}/>
+                      <input type="radio" id="avis-3" name="avis" value="MOYEN" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-3">MOYEN</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-2" name="avis" value="MAUVAIS" onClick={handleAvis}/>
+                      <input type="radio" id="avis-2" name="avis" value="MAUVAIS" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-2">MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-1" name="avis" value="TRES MAUVAIS" onClick={handleAvis}/>
+                      <input type="radio" id="avis-1" name="avis" value="TRES MAUVAIS" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-1">TRES MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-0" name="avis" value="SANS AVIS" onClick={handleAvis}/>
+                      <input type="radio" id="avis-0" name="avis" value="SANS AVIS" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-0">SANS AVIS</label>
                     </div>
                   </div>
@@ -294,7 +260,7 @@ function CandidateSurveyForm({ match }) {
                 <label className="rf-label" htmlFor="precision-avis">
                   Précisez votre réponse :
                 </label>
-                <textarea className="rf-input" id="precision-avis" name="precision-avis" onChange={handlePrecisionAvis}></textarea>
+                <textarea className="rf-input" id="precision-avis" name="precision-avis" onChange={handleChange}></textarea>
               </div>
               { sondagePrintError &&
                 <div className="rf-col-12 rf-col-md-7 rf-mb-3w center">

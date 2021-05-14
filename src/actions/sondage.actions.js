@@ -16,8 +16,8 @@ function updateConcate(contact) {
   return { type: 'UPDATE_CONTACT', contact };
 }
 
-function updateNumberContact(numberContact) {
-  return { type: 'UPDATE_NUMBER_CONTACT', numberContact };
+function updateNumberContact(nombreContact) {
+  return { type: 'UPDATE_NUMBER_CONTACT', nombreContact };
 }
 
 function verifySondage(errors) {
