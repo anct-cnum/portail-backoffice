@@ -3,11 +3,9 @@ export const userService = {
   logout,
   verifyToken,
   verifyPrefetToken,
-  verifyCandidateToken,
   choosePassword,
   sendForgottenPasswordEmail,
-  inviteAccountsPrefet,
-  sendSurvey
+  inviteAccountsPrefet
 };
 
 function login(username, password) {
@@ -73,16 +71,6 @@ function verifyPrefetToken(token) {
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function verifyCandidateToken(token) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET'
-  };
-
-  let uri = `${apiUrlRoot}/users/verifyCandidateToken/${token}`;
-  return fetch(uri, requestOptions).then(handleResponse);
-}
-
 function choosePassword(token, password, typeEmail) {
   const apiUrlRoot = process.env.REACT_APP_API;
 
@@ -115,22 +103,6 @@ function sendForgottenPasswordEmail(username) {
   };
 
   let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
-  return fetch(uri, requestOptions).then(handleResponse);
-}
-
-function sendSurvey(token, survey) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      'survey': survey
-    })
-  };
-
-  let uri = `${apiUrlRoot}/users/sendSurvey/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 

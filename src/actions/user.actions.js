@@ -6,11 +6,9 @@ export const userActions = {
   logout,
   verifyToken,
   verifyPrefetToken,
-  verifyCandidateToken,
   choosePassword,
   inviteAccountsPrefet,
-  forgottenPassword,
-  sendSurvey
+  forgottenPassword
 };
 
 function login(username, password) {
@@ -109,32 +107,6 @@ function verifyPrefetToken(token) {
   }
 }
 
-function verifyCandidateToken(token) {
-  return dispatch => {
-    dispatch(request(token));
-
-    userService.verifyCandidateToken(token)
-    .then(
-      result => {
-        dispatch(success(result.isValid));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request(token) {
-    return { type: 'VERIFY_CANDIDATE_TOKEN_REQUEST', token };
-  }
-  function success(isValid) {
-    return { type: 'VERIFY_CANDIDATE_TOKEN_SUCCESS', isValid };
-  }
-  function failure(error) {
-    return { type: 'VERIFY_CANDIDATE_TOKEN_FAILURE', error };
-  }
-}
-
 function inviteAccountsPrefet(token, emails, departement) {
   return dispatch => {
     dispatch(request());
@@ -213,29 +185,3 @@ function forgottenPassword(username) {
     return { type: 'SEND_EMAIL_FAILURE', error };
   }
 }
-
-function sendSurvey(token, survey) {
-  return dispatch => {
-    dispatch(request(token));
-
-    userService.sendSurvey(token, survey)
-    .then(
-      () => {
-        dispatch(success());
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-  function request() {
-    return { type: 'SEND_SURVEY_REQUEST' };
-  }
-  function success() {
-    return { type: 'SEND_SURVEY_SUCCESS' };
-  }
-  function failure(error) {
-    return { type: 'SEND_SURVEY_FAILURE', error };
-  }
-}
-

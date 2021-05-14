@@ -11,6 +11,7 @@ export const conseillerService = {
   updateStatus,
   updateDateRecrutement,
   preSelectionner,
+  verifyCandidateToken,
 };
 
 function get(id) {
@@ -98,6 +99,16 @@ function updateDateRecrutement(id, date) {
   };
 
   return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
+}
+
+function verifyCandidateToken(token) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  let uri = `${apiUrlRoot}/conseillers/verifyCandidateToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

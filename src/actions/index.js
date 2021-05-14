@@ -9,3 +9,4 @@ export * from './search.actions';
 export * from './filterDate.actions';
 export * from './pagination.actions';
 export * from './exports.actions';
+export * from './sondage.actions';

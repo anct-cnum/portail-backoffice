@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../common/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { userActions, structureActions, searchActions } from '../../actions';
+import { conseillerActions, sondageActions } from '../../actions';
 
 function CandidateSurveyForm({ match }) {
 
@@ -11,11 +11,16 @@ function CandidateSurveyForm({ match }) {
   const token = match.params.token;
 
   useEffect(() => {
-    dispatch(userActions.verifyCandidateToken(token));
+    dispatch(conseillerActions.verifyCandidateToken(token));
   }, []);
 
-  const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
-  const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
+  const verifyingToken = useSelector(state => state.conseiller?.verifyingToken);
+  const tokenVerified = useSelector(state => state.conseiller?.tokenVerified);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  let sondageError = useSelector(state => state.sondages.errorsRequired);
+  let sondagePrintError = useSelector(state => state.sondages?.printError);
+  const submitedSondage = useSelector(state => state.sondages?.submited);
+
   const [isActive, setActive] = useState(false);
   const [disponible, setDisponible] = useState(false);
   const [contact, setContact] = useState(false);
@@ -32,6 +37,7 @@ function CandidateSurveyForm({ match }) {
   function handleDisponible(e) {
     const { value } = e.target;
     setDisponible(value);
+    dispatch(sondageActions.updateDisponibilite(e.target.getAttribute('value')));
   }
   function handleContact(e) {
     const { value } = e.target;
@@ -41,10 +47,12 @@ function CandidateSurveyForm({ match }) {
       activation = true;
     }
     setActive(activation);
+    dispatch(sondageActions.updateConcate(e.target.getAttribute('value')));
   }
   function handleNumber(e) {
     const { value } = e.target;
     setNumberContact(value);
+    dispatch(sondageActions.updateNumberContact(e.target.getAttribute('value')));
   }
   function handleStructureContact(e) {
     const { value } = e.target;
@@ -81,45 +89,35 @@ function CandidateSurveyForm({ match }) {
     setPrecisionAvis(value);
   }
 
-  /* V2 ?-> recherche de la structure
-
-  const [searchInputContact, setSearchInputContact] = useState('');
-  const { search } = useSelector(state => state.search);
-  function handleChangeContact(e) {
-    setSearchInputContact(e.target.value);
-  }
-
-  function handleKeyDownContact(e) {
-    if (e.key === 'Enter') {
-      setSearchInputContact(e.target.value);
-      dispatch(searchActions.updateSearch(searchInputContact));
-    }
-  }
-
+  //Pour la maj de printError quand errorsRequired change
   useEffect(() => {
-    setSearchInputContact(search);
-  }, [search]);
-*/
+    if (sondagePrintError) {
+      dispatch(sondageActions.verifySondage(Object.values(sondageError)));
+    }
+  }, [sondagePrintError, sondageError]);
 
   function handleSubmit() {
-    if (disponible && contact) {
-      if (contact === 'Oui' && numberContact === 0) {
-
-      } else {
-        const survey = {
-          'disponible': disponible,
-          'contact': contact,
-          'nombreContact': numberContact,
-          'structureEnContact': structuresContact,
-          'entretien': entretien,
-          'axeAmelioration': axeAmelioration,
-          'precisionAxeAmelioration': precisionAxeAmelioration,
-          'avis': avis,
-          'precisionAvis': precisionAvis
-        };
-        console.log(survey);
-        dispatch(userActions.sendSurvey(token, survey));
+    let hasErrors = false;
+    Object.values(sondageError).forEach(error => {
+      if (error === true) {
+        hasErrors = true;
       }
+    });
+    if (hasErrors) {
+      dispatch(sondageActions.verifySondage(Object.values(sondageError)));
+    } else {
+      const sondage = {
+        'disponible': disponible,
+        'contact': contact,
+        'nombreContact': numberContact,
+        'structureEnContact': structuresContact,
+        'entretien': entretien,
+        'axeAmelioration': axeAmelioration,
+        'precisionAxeAmelioration': precisionAxeAmelioration,
+        'avis': avis,
+        'precisionAvis': precisionAvis
+      };
+      dispatch(sondageActions.createSondage(conseiller, sondage));
     }
   }
 
@@ -135,25 +133,32 @@ function CandidateSurveyForm({ match }) {
             { tokenVerified === false &&
                 <span>Désolé mais le lien est invalide.</span>
             }
-
-            { tokenVerified && !verifyingToken &&
+            { submitedSondage &&
+              <div className="rf-col-12 rf-p-5w">
+                <h2 className="center">Merci pour votre participation !</h2>
+              </div>
+            }
+            { !submitedSondage && tokenVerified && !verifyingToken &&
             <>
               <div className="rf-col-12 rf-p-5w">
                 <h2 className="center">Les recrutements ont démarré, dîtes nous en plus sur vous !</h2>
               </div>
               <div className="rf-form-group rf-col-12 rf-col-md-7 center">
                 <fieldset className="rf-fieldset rf-fieldset--inline">
-                  <label className="rf-fieldset__legend rf-text--regular rf-label" id="radio-inline-legend">
+                  <label className = {sondagePrintError &&
+                    sondageError?.disponible ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
+                  }
+                  id="radio-inline-legend">
                     Etes vous toujours disponible pour un emploi ? *
                   </label>
                   <div className="rf-fieldset__content">
-                    <div className="rf-radio-group">
+                    <div className = "rf-radio-group">
                       <input type="radio" id="disponible-oui" name="disponible" value="Oui" onClick={handleDisponible}/>
-                      <label className="rf-label" htmlFor="disponible-oui">Oui</label>
+                      <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-oui">Oui</label>
                     </div>
                     <div className="rf-radio-group">
                       <input type="radio" id="disponible-non" name="disponible" value="Non" onClick={handleDisponible}/>
-                      <label className="rf-label" htmlFor="disponible-non">Non</label>
+                      <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-non">Non</label>
                     </div>
                   </div>
                 </fieldset>
@@ -161,27 +166,32 @@ function CandidateSurveyForm({ match }) {
 
               <div className="rf-form-group rf-col-12 rf-col-md-7 center">
                 <fieldset className="rf-fieldset rf-fieldset--inline">
-                  <label className="rf-fieldset__legend rf-text--regular rf-label" id="radio-inline-legend">
+                  <label className = {sondagePrintError &&
+                    sondageError?.contact ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
+                  }
+                  id="radio-inline-legend">
                     Avez vous été contacté(e) par une ou plusieurs structures ? *
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
                       <input type="radio" id="contact-oui" name="contact" value="Oui" onClick={handleContact} />
-                      <label className="rf-label" htmlFor="contact-oui">Oui</label>
+                      <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-oui">Oui</label>
                     </div>
                     <div className="rf-radio-group">
                       <input type="radio" id="contact-non" name="contact" value="Non" onClick={handleContact}/>
-                      <label className="rf-label" htmlFor="contact-non">Non</label>
+                      <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-non">Non</label>
                     </div>
                   </div>
                 </fieldset>
               </div>
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
-                <label className="rf-label" htmlFor="nombre-contact">
+                <label className = {sondagePrintError &&
+                  sondageError?.numberContact ? 'rf-label invalid' : 'rf-label' } htmlFor="nombre-contact">
                   Combien en avez-vous eu ? *
                 </label>
-                <input type="number" name="nombre-contact" id="nombre-contact" className="rf-input" onChange={handleNumber}/>
+                <input type="number" name="nombre-contact" id="nombre-contact" onChange={handleNumber}
+                  className={sondagePrintError && sondageError?.numberContact ? 'rf-input invalid' : 'rf-input' } />
               </div>
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
@@ -195,7 +205,11 @@ function CandidateSurveyForm({ match }) {
                 </label>
                 <label className="rf-search-bar center">
                   <input type="text" name="structure-contact" id="structure-contact" className="rf-input" onKeyUp={handleStructureContact}/>
-                  <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleStructuresContact}></button>
+
+                  <span className="tooltip">
+                    <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleStructuresContact}></button>
+                    <span className="tooltiptext">Cliquez pour valider la structure</span>
+                  </span>
                 </label>
               </div>
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
@@ -276,13 +290,19 @@ function CandidateSurveyForm({ match }) {
                   </div>
                 </fieldset>
               </div>
-              <div className="rf-col-12 rf-col-md-7 rf-mb-6w center">
+              <div className="rf-col-12 rf-col-md-7 rf-mb-3w center">
                 <label className="rf-label" htmlFor="precision-avis">
                   Précisez votre réponse :
                 </label>
                 <textarea className="rf-input" id="precision-avis" name="precision-avis" onChange={handlePrecisionAvis}></textarea>
               </div>
-
+              { sondagePrintError &&
+                <div className="rf-col-12 rf-col-md-7 rf-mb-3w center">
+                  <span className="labelError">
+                    Erreur&nbsp;: veuillez remplir tous les champs obligatoires (*) du formulaire.
+                  </span>
+                </div>
+              }
               <div className="rf-col-12 rf-col-md-7 center">
                 <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleSubmit} >Envoyer</button>
               </div>
