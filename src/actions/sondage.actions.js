@@ -30,11 +30,10 @@ function verifySondage(errors) {
   return { type: 'VERIFY_SONDAGE', hasErrors };
 }
 
-function createSondage(token, survey) {
+function createSondage(survey) {
   return dispatch => {
-    dispatch(request(token));
-
-    sondagesService.createSondage(token, survey)
+    dispatch(request());
+    sondagesService.createSondage(survey)
     .then(
       () => {
         dispatch(success());

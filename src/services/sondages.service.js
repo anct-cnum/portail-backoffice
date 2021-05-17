@@ -4,7 +4,7 @@ export const sondagesService = {
   createSondage,
 };
 
-function createSondage(conseiller, sondage) {
+function createSondage(sondage) {
   const apiUrlRoot = process.env.REACT_APP_API;
 
   const requestOptions = {
@@ -13,8 +13,7 @@ function createSondage(conseiller, sondage) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      sondage: sondage,
-      conseiller: conseiller,
+      sondage,
     })
   };
 

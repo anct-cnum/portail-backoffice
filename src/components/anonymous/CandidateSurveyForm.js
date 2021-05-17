@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../common/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, sondageActions } from '../../actions';
+import FlashMessage from 'react-flash-message';
 
 function CandidateSurveyForm({ match }) {
 
@@ -82,9 +83,10 @@ function CandidateSurveyForm({ match }) {
     if (hasErrors) {
       dispatch(sondageActions.verifySondage(Object.values(sondageError)));
     } else {
-      console.log(survey);
-      dispatch(sondageActions.createSondage(conseiller, survey));
+      survey.idConseiller = conseiller?._id;
+      dispatch(sondageActions.createSondage(survey));
     }
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -97,18 +99,34 @@ function CandidateSurveyForm({ match }) {
               <span>Chargement...</span>
             }
             { tokenVerified === false &&
-                <span>Désolé mais le lien est invalide.</span>
-            }
-            { submitedSondage &&
-              <div className="rf-col-12 rf-p-5w">
-                <h2 className="center">Merci pour votre participation !</h2>
+              <div className="rf-col-12 rf-col-md-7 rf-mt-12w labelError flashBag">
+                <span>
+                Désolé mais le lien est invalide.
+                </span>
               </div>
             }
+            { submitedSondage &&
+              <div className="rf-col-12 rf-col-md-7 rf-mt-10w flashBag">
+                Merci pour votre participation !&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+              </div>
+            }
+
             { !submitedSondage && tokenVerified && !verifyingToken &&
             <>
               <div className="rf-col-12 rf-p-5w">
                 <h2 className="center">Les recrutements ont démarré, dîtes nous en plus sur vous !</h2>
               </div>
+
+              { sondagePrintError &&
+                <FlashMessage duration={10000}>
+                  <div className="rf-col-12 rf-mb-3w flashBag labelError">
+                    <span>
+                      Erreur&nbsp;: veuillez remplir tous les champs obligatoires (*) du formulaire.
+                    </span>
+                  </div>
+                </FlashMessage>
+              }
+
               <div className="rf-form-group rf-col-12 rf-col-md-7 center">
                 <fieldset className="rf-fieldset rf-fieldset--inline">
                   <label className = {sondagePrintError &&
@@ -262,13 +280,7 @@ function CandidateSurveyForm({ match }) {
                 </label>
                 <textarea className="rf-input" id="precision-avis" name="precision-avis" onChange={handleChange}></textarea>
               </div>
-              { sondagePrintError &&
-                <div className="rf-col-12 rf-col-md-7 rf-mb-3w center">
-                  <span className="labelError">
-                    Erreur&nbsp;: veuillez remplir tous les champs obligatoires (*) du formulaire.
-                  </span>
-                </div>
-              }
+
               <div className="rf-col-12 rf-col-md-7 center">
                 <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleSubmit} >Envoyer</button>
               </div>
