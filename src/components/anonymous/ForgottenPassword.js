@@ -154,7 +154,7 @@ function ForgottenPassword({ match = null }) {
                 </div>
               }
               { passwordChoosen &&
-                <span>Votre compte a été créé avec succès. <Link to={`/login?role=${user?.role}`}>Vous pouvez vous connecter</Link>.</span>
+                <span>Votre mot de passe a été renouvelé avec succès. <Link to={`/login?role=${user?.role}`}>Vous pouvez vous connecter</Link>.</span>
               }
 
               <div className="rf-col-3"></div>
