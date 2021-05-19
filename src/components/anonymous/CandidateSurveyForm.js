@@ -22,7 +22,7 @@ function CandidateSurveyForm({ match }) {
   let sondagePrintError = useSelector(state => state.sondages?.printError);
   const submitedSondage = useSelector(state => state.sondages?.submited);
   const submitedError = useSelector(state => state.sondages?.error);
-console.log(submitedError);
+
   const [isActive, setActive] = useState(false);
   const [structures, setStructures] = useState([]);
   const [survey, setSurvey] = useState({
