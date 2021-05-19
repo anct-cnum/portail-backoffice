@@ -21,7 +21,8 @@ function CandidateSurveyForm({ match }) {
   let sondageError = useSelector(state => state.sondages.errorsRequired);
   let sondagePrintError = useSelector(state => state.sondages?.printError);
   const submitedSondage = useSelector(state => state.sondages?.submited);
-
+  const submitedError = useSelector(state => state.sondages?.error);
+console.log(submitedError);
   const [isActive, setActive] = useState(false);
   const [structures, setStructures] = useState([]);
   const [survey, setSurvey] = useState({
@@ -105,13 +106,18 @@ function CandidateSurveyForm({ match }) {
                 </span>
               </div>
             }
+            { submitedError &&
+              <div className="rf-col-12 rf-col-md-7 rf-mt-12w labelError flashBag">
+                <span>{ submitedError }</span>
+              </div>
+            }
             { submitedSondage &&
               <div className="rf-col-12 rf-col-md-7 rf-mt-10w flashBag">
                 Merci pour votre participation !&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
               </div>
             }
 
-            { !submitedSondage && tokenVerified && !verifyingToken &&
+            { !submitedSondage && tokenVerified && !submitedError && !verifyingToken &&
             <>
               <div className="rf-col-12 rf-p-5w">
                 <h2 className="center">Les recrutements ont démarré, dîtes nous en plus sur vous !</h2>
