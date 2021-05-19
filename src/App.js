@@ -45,7 +45,7 @@ function App() {
                     <div>
                       <div>
                         <div className="rf-footer__brand">
-                          <a className="rf-footer__brand-link" href="/">
+                          <a className="rf-footer__brand-link">
                             <div style={{ display: 'inline-block' }} >
                               <img src="/logos/logoRF.svg" alt="logo République Française" style={{ height: '80px', marginRight: '28px' }}/>
                             </div>
