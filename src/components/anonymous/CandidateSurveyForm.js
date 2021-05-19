@@ -229,7 +229,7 @@ function CandidateSurveyForm({ match }) {
 
               <div className="rf-col-12 rf-col-md-7 rf-mb-6w center">
                 <label className="rf-label" htmlFor="axe-amelioration">
-                  Quels axes d amélioration souhaiteriez-vous apporter au dispositif ?
+                  Quels axes d&rsquo;amélioration souhaiteriez-vous apporter au dispositif ?
                 </label>
                 <input type="text" name="axe-amelioration" id="axe-amelioration" className="rf-input" onChange={handleChange}/>
               </div>
@@ -248,8 +248,8 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-5" name="avis" value="TRES BON" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-5">TRES BON</label>
+                      <input type="radio" id="avis-5" name="avis" value="TR&Egrave;S BON" onClick={handleChange}/>
+                      <label className="rf-label" htmlFor="avis-5">TR&Egrave;S BON</label>
                     </div>
                     <div className="rf-radio-group">
                       <input type="radio" id="avis-4" name="avis" value="BON" onClick={handleChange}/>
@@ -264,8 +264,8 @@ function CandidateSurveyForm({ match }) {
                       <label className="rf-label" htmlFor="avis-2">MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-1" name="avis" value="TRES MAUVAIS" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-1">TRES MAUVAIS</label>
+                      <input type="radio" id="avis-1" name="avis" value="TR&Egrave;S MAUVAIS" onClick={handleChange}/>
+                      <label className="rf-label" htmlFor="avis-1">TR&Egrave;S MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
                       <input type="radio" id="avis-0" name="avis" value="SANS AVIS" onClick={handleChange}/>
