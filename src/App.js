@@ -8,7 +8,7 @@ import ChoosePassword from './components/anonymous/createAccount/ChoosePassword'
 import InvitationPrefet from './components/anonymous/createAccount/InvitationPrefet';
 import { useSelector } from 'react-redux';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
-
+import CandidateSurveyForm from './components/anonymous/CandidateSurveyForm';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -30,6 +30,7 @@ function App() {
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
+          <Route path="/dites-nous-en-plus-sur-vous/:token" component={CandidateSurveyForm} />
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
@@ -44,7 +45,7 @@ function App() {
                     <div>
                       <div>
                         <div className="rf-footer__brand">
-                          <a className="rf-footer__brand-link" href="/">
+                          <a className="rf-footer__brand-link">
                             <div style={{ display: 'inline-block' }} >
                               <img src="/logos/logoRF.svg" alt="logo République Française" style={{ height: '80px', marginRight: '28px' }}/>
                             </div>

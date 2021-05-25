@@ -71,6 +71,10 @@ $blue-france:#000091;
   background-color: #D5DBEF;
 }
 
+.hidden {
+  display: none;
+}
+
 /** Icones menu gauche **/
 .Menu .rf-sidemenu__item--active [class^="rf-fi"] {
     color: $blue-france;

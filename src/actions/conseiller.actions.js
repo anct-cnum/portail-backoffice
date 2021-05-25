@@ -7,6 +7,7 @@ export const conseillerActions = {
   updateStatus,
   updateDateRecrutement,
   preSelectionner,
+  verifyCandidateToken
 };
 
 function get(id) {
@@ -158,4 +159,30 @@ function preSelectionner({ conseillerId, structureId }) {
     return { type: 'PRESELECTIONNER_CONSEILLER_FAILURE', error };
   }
 
+}
+
+function verifyCandidateToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    conseillerService.verifyCandidateToken(token)
+    .then(
+      result => {
+        dispatch(success(result.isValid, result.conseiller));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_REQUEST', token };
+  }
+  function success(isValid, conseiller) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_SUCCESS', isValid, conseiller };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_CANDIDATE_TOKEN_FAILURE', error };
+  }
 }
