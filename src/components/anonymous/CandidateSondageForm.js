@@ -120,7 +120,7 @@ function CandidateSondageForm({ match }) {
             { !submitedSondage && tokenVerified && !submitedError && !verifyingToken &&
             <>
               <div className="rf-col-12 rf-p-5w">
-                <h2 className="center">Les recrutements ont démarré, dîtes nous en plus sur vous !</h2>
+                <h2 className="center">Les recrutements ont démarré, dites-nous en plus sur vous !</h2>
               </div>
 
               { sondagePrintError &&
@@ -139,7 +139,7 @@ function CandidateSondageForm({ match }) {
                     sondageError?.disponible ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
                   }
                   id="radio-inline-legend">
-                    Etes vous toujours disponible pour un emploi ? *
+                    Etes-vous toujours disponible pour un emploi ? *
                   </label>
                   <div className="rf-fieldset__content">
                     <div className = "rf-radio-group">
@@ -160,7 +160,7 @@ function CandidateSondageForm({ match }) {
                     sondageError?.contact ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
                   }
                   id="radio-inline-legend">
-                    Avez vous été contacté(e) par une ou plusieurs structures ? *
+                    Avez-vous été contacté(e) par une ou plusieurs structures ? *
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
