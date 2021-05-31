@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, sondageActions } from '../../actions';
 import FlashMessage from 'react-flash-message';
 
-function CandidateSurveyForm({ match }) {
+function CandidateSondageForm({ match }) {
 
   const dispatch = useDispatch();
   const token = match.params.token;
 
   useEffect(() => {
-    dispatch(conseillerActions.verifyCandidateToken(token));
+    dispatch(conseillerActions.verifySondageToken(token));
   }, []);
 
   const verifyingToken = useSelector(state => state.conseiller?.verifyingToken);
@@ -25,7 +25,7 @@ function CandidateSurveyForm({ match }) {
 
   const [isActive, setActive] = useState(false);
   const [structures, setStructures] = useState([]);
-  const [survey, setSurvey] = useState({
+  const [sondage, setSondage] = useState({
     disponible: '',
     contact: '',
     nombreContact: 0,
@@ -37,7 +37,7 @@ function CandidateSurveyForm({ match }) {
     precisionAvis: '',
   });
 
-  const { nombreContact } = survey;
+  const { nombreContact } = sondage;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -55,18 +55,18 @@ function CandidateSurveyForm({ match }) {
     if (name === 'nombreContact') {
       dispatch(sondageActions.updateConcate(value));
     }
-    setSurvey(inputs => ({ ...inputs, [name]: value }));
+    setSondage(inputs => ({ ...inputs, [name]: value }));
   }
 
   function handleStructuresContact() {
-    structures.push(survey.structureContact);
-    setSurvey(inputs => ({ ...inputs, ['structuresContact']: structures, ['structureContact']: '' }));
+    structures.push(sondage.structureContact);
+    setSondage(inputs => ({ ...inputs, ['structuresContact']: structures, ['structureContact']: '' }));
 
   }
   const handleRemoveStructure = name => {
     const less = structures.filter(structure => structure !== name);
     setStructures(less);
-    setSurvey(inputs => ({ ...inputs, ['structuresContact']: less, ['structureContact']: '' }));
+    setSondage(inputs => ({ ...inputs, ['structuresContact']: less, ['structureContact']: '' }));
   };
 
   //Pour la maj de printError quand errorsRequired change
@@ -84,8 +84,8 @@ function CandidateSurveyForm({ match }) {
     if (hasErrors) {
       dispatch(sondageActions.verifySondage(Object.values(sondageError)));
     } else {
-      survey.idConseiller = conseiller?._id;
-      dispatch(sondageActions.createSondage(survey));
+      sondage.idConseiller = conseiller?._id;
+      dispatch(sondageActions.createSondage(sondage));
     }
     window.scrollTo(0, 0);
   }
@@ -299,8 +299,8 @@ function CandidateSurveyForm({ match }) {
   );
 }
 
-CandidateSurveyForm.propTypes = {
+CandidateSondageForm.propTypes = {
   match: PropTypes.object
 };
 
-export default CandidateSurveyForm;
+export default CandidateSondageForm;
