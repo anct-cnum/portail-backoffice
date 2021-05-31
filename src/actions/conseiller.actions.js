@@ -189,7 +189,6 @@ function verifyCandidateToken(token) {
 }
 
 function verifySondageToken(token) {
-  console.log("coucou");
   return dispatch => {
     dispatch(request(token));
 
