@@ -61,6 +61,20 @@ export default function conseiller(state = null, action) {
         tokenVerified: false,
         error: action.error
       };
+    case 'VERIFY_SONDAGE_TOKEN_REQUEST':
+      return {
+        verifyingToken: true
+      };
+    case 'VERIFY_SONDAGE_TOKEN_SUCCESS':
+      return {
+        tokenVerified: true,
+        conseiller: action.conseiller
+      };
+    case 'VERIFY_SONDAGE_TOKEN_FAILURE':
+      return {
+        tokenVerified: false,
+        error: action.error
+      };
     default:
       return state;
   }

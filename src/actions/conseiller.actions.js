@@ -7,7 +7,8 @@ export const conseillerActions = {
   updateStatus,
   updateDateRecrutement,
   preSelectionner,
-  verifyCandidateToken
+  verifyCandidateToken,
+  verifySondageToken
 };
 
 function get(id) {
@@ -184,5 +185,31 @@ function verifyCandidateToken(token) {
   }
   function failure(error) {
     return { type: 'VERIFY_CANDIDATE_TOKEN_FAILURE', error };
+  }
+}
+
+function verifySondageToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    conseillerService.verifySondageToken(token)
+    .then(
+      result => {
+        dispatch(success(result.isValid, result.conseiller));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'VERIFY_SONDAGE_TOKEN_REQUEST', token };
+  }
+  function success(isValid, conseiller) {
+    return { type: 'VERIFY_SONDAGE_TOKEN_SUCCESS', isValid, conseiller };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_SONDAGE_TOKEN_FAILURE', error };
   }
 }

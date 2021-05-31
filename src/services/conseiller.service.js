@@ -12,6 +12,7 @@ export const conseillerService = {
   updateDateRecrutement,
   preSelectionner,
   verifyCandidateToken,
+  verifySondageToken
 };
 
 function get(id) {
@@ -108,6 +109,16 @@ function verifyCandidateToken(token) {
   };
 
   let uri = `${apiUrlRoot}/conseillers/verifyCandidateToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function verifySondageToken(token) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  let uri = `${apiUrlRoot}/conseillers/verifySondageToken/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
