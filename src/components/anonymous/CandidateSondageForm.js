@@ -24,12 +24,11 @@ function CandidateSondageForm({ match }) {
   const submitedError = useSelector(state => state.sondages?.error);
 
   const [isActive, setActive] = useState(false);
-  const [structures, setStructures] = useState([]);
   const [sondage, setSondage] = useState({
     disponible: '',
     contact: '',
     nombreContact: 0,
-    structuresContact: [],
+    structureContact: '',
     entretien: '',
     axeAmelioration: '',
     precisionAxeAmelioration: '',
@@ -57,17 +56,6 @@ function CandidateSondageForm({ match }) {
     }
     setSondage(inputs => ({ ...inputs, [name]: value }));
   }
-
-  function handleStructuresContact() {
-    structures.push(sondage.structureContact);
-    setSondage(inputs => ({ ...inputs, ['structuresContact']: structures, ['structureContact']: '' }));
-
-  }
-  const handleRemoveStructure = name => {
-    const less = structures.filter(structure => structure !== name);
-    setStructures(less);
-    setSondage(inputs => ({ ...inputs, ['structuresContact']: less, ['structureContact']: '' }));
-  };
 
   //Pour la maj de printError quand errorsRequired change
   useEffect(() => {
@@ -186,33 +174,16 @@ function CandidateSondageForm({ match }) {
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
                 <label className="rf-label" htmlFor="structure-contact">
-                  { nombreContact >= 1 &&
+                  { nombreContact > 1 &&
                   <span>Lesquelles :</span>
                   }
                   { nombreContact <= 1 &&
                     <span> Laquelle :</span>
                   }
                 </label>
-                <label className="rf-search-bar center">
-                  <input type="text" name="structureContact" id="structure-contact" className="rf-input" onKeyUp={handleChange}/>
-
-                  <span className="tooltip">
-                    <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleStructuresContact}></button>
-                    <span className="tooltiptext">Cliquez pour valider la structure</span>
-                  </span>
+                <label className="center">
+                  <textarea name="structureContact" id="structure-contact" className="rf-input rf-mb-6w" onKeyUp={handleChange}/>
                 </label>
-              </div>
-              <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
-                {structures !== [] &&
-                  <div className="rf-mb-6w rf-mt-2w">
-                    { structures.map((structure, id) =>
-                      <div key={id}>
-                        <span className="structure-nom">{structure}</span>
-                        <span className="structure-btn rf-fi-close-circle-line" aria-hidden="true" onClick={() => handleRemoveStructure(structure)}></span>
-                      </div>
-                    )}
-                  </div>
-                }
               </div>
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
@@ -254,27 +225,27 @@ function CandidateSondageForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-5" name="avis" value="TR&Egrave;S BON" onClick={handleChange}/>
+                      <input type="radio" id="avis-5" name="avis" value="5" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-5">TR&Egrave;S BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-4" name="avis" value="BON" onClick={handleChange}/>
+                      <input type="radio" id="avis-4" name="avis" value="4" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-4">BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-3" name="avis" value="MOYEN" onClick={handleChange}/>
+                      <input type="radio" id="avis-3" name="avis" value="3" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-3">MOYEN</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-2" name="avis" value="MAUVAIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-2" name="avis" value="2" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-2">MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-1" name="avis" value="TR&Egrave;S MAUVAIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-1" name="avis" value="1" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-1">TR&Egrave;S MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-0" name="avis" value="SANS AVIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-0" name="avis" value="" defaultChecked onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-0">SANS AVIS</label>
                     </div>
                   </div>
