@@ -174,7 +174,7 @@ function CandidateSondageForm({ match }) {
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
                 <label className="rf-label" htmlFor="structure-contact">
-                  { nombreContact >= 1 &&
+                  { nombreContact > 1 &&
                   <span>Lesquelles :</span>
                   }
                   { nombreContact <= 1 &&
