@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, sondageActions } from '../../actions';
 import FlashMessage from 'react-flash-message';
 
-function CandidateSurveyForm({ match }) {
+function CandidateSondageForm({ match }) {
 
   const dispatch = useDispatch();
   const token = match.params.token;
 
   useEffect(() => {
-    dispatch(conseillerActions.verifyCandidateToken(token));
+    dispatch(conseillerActions.verifySondageToken(token));
   }, []);
 
   const verifyingToken = useSelector(state => state.conseiller?.verifyingToken);
@@ -24,12 +24,11 @@ function CandidateSurveyForm({ match }) {
   const submitedError = useSelector(state => state.sondages?.error);
 
   const [isActive, setActive] = useState(false);
-  const [structures, setStructures] = useState([]);
-  const [survey, setSurvey] = useState({
+  const [sondage, setSondage] = useState({
     disponible: '',
     contact: '',
     nombreContact: 0,
-    structuresContact: [],
+    structureContact: '',
     entretien: '',
     axeAmelioration: '',
     precisionAxeAmelioration: '',
@@ -37,7 +36,7 @@ function CandidateSurveyForm({ match }) {
     precisionAvis: '',
   });
 
-  const { nombreContact } = survey;
+  const { nombreContact } = sondage;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -55,19 +54,8 @@ function CandidateSurveyForm({ match }) {
     if (name === 'nombreContact') {
       dispatch(sondageActions.updateConcate(value));
     }
-    setSurvey(inputs => ({ ...inputs, [name]: value }));
+    setSondage(inputs => ({ ...inputs, [name]: value }));
   }
-
-  function handleStructuresContact() {
-    structures.push(survey.structureContact);
-    setSurvey(inputs => ({ ...inputs, ['structuresContact']: structures, ['structureContact']: '' }));
-
-  }
-  const handleRemoveStructure = name => {
-    const less = structures.filter(structure => structure !== name);
-    setStructures(less);
-    setSurvey(inputs => ({ ...inputs, ['structuresContact']: less, ['structureContact']: '' }));
-  };
 
   //Pour la maj de printError quand errorsRequired change
   useEffect(() => {
@@ -84,8 +72,8 @@ function CandidateSurveyForm({ match }) {
     if (hasErrors) {
       dispatch(sondageActions.verifySondage(Object.values(sondageError)));
     } else {
-      survey.idConseiller = conseiller?._id;
-      dispatch(sondageActions.createSondage(survey));
+      sondage.idConseiller = conseiller?._id;
+      dispatch(sondageActions.createSondage(sondage));
     }
     window.scrollTo(0, 0);
   }
@@ -120,7 +108,7 @@ function CandidateSurveyForm({ match }) {
             { !submitedSondage && tokenVerified && !submitedError && !verifyingToken &&
             <>
               <div className="rf-col-12 rf-p-5w">
-                <h2 className="center">Les recrutements ont démarré, dîtes nous en plus sur vous !</h2>
+                <h2 className="center">Les recrutements ont démarré, dites-nous en plus sur vous !</h2>
               </div>
 
               { sondagePrintError &&
@@ -139,7 +127,7 @@ function CandidateSurveyForm({ match }) {
                     sondageError?.disponible ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
                   }
                   id="radio-inline-legend">
-                    Etes vous toujours disponible pour un emploi ? *
+                    Etes-vous toujours disponible pour un emploi ? *
                   </label>
                   <div className="rf-fieldset__content">
                     <div className = "rf-radio-group">
@@ -160,7 +148,7 @@ function CandidateSurveyForm({ match }) {
                     sondageError?.contact ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
                   }
                   id="radio-inline-legend">
-                    Avez vous été contacté(e) par une ou plusieurs structures ? *
+                    Avez-vous été contacté(e) par une ou plusieurs structures ? *
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
@@ -186,33 +174,16 @@ function CandidateSurveyForm({ match }) {
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
                 <label className="rf-label" htmlFor="structure-contact">
-                  { nombreContact >= 1 &&
+                  { nombreContact > 1 &&
                   <span>Lesquelles :</span>
                   }
                   { nombreContact <= 1 &&
                     <span> Laquelle :</span>
                   }
                 </label>
-                <label className="rf-search-bar center">
-                  <input type="text" name="structureContact" id="structure-contact" className="rf-input" onKeyUp={handleChange}/>
-
-                  <span className="tooltip">
-                    <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleStructuresContact}></button>
-                    <span className="tooltiptext">Cliquez pour valider la structure</span>
-                  </span>
+                <label className="center">
+                  <textarea name="structureContact" id="structure-contact" className="rf-input rf-mb-6w" onKeyUp={handleChange}/>
                 </label>
-              </div>
-              <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
-                {structures !== [] &&
-                  <div className="rf-mb-6w rf-mt-2w">
-                    { structures.map((structure, id) =>
-                      <div key={id}>
-                        <span className="structure-nom">{structure}</span>
-                        <span className="structure-btn rf-fi-close-circle-line" aria-hidden="true" onClick={() => handleRemoveStructure(structure)}></span>
-                      </div>
-                    )}
-                  </div>
-                }
               </div>
 
               <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
@@ -254,27 +225,27 @@ function CandidateSurveyForm({ match }) {
                   </label>
                   <div className="rf-fieldset__content">
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-5" name="avis" value="TR&Egrave;S BON" onClick={handleChange}/>
+                      <input type="radio" id="avis-5" name="avis" value="5" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-5">TR&Egrave;S BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-4" name="avis" value="BON" onClick={handleChange}/>
+                      <input type="radio" id="avis-4" name="avis" value="4" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-4">BON</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-3" name="avis" value="MOYEN" onClick={handleChange}/>
+                      <input type="radio" id="avis-3" name="avis" value="3" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-3">MOYEN</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-2" name="avis" value="MAUVAIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-2" name="avis" value="2" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-2">MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-1" name="avis" value="TR&Egrave;S MAUVAIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-1" name="avis" value="1" onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-1">TR&Egrave;S MAUVAIS</label>
                     </div>
                     <div className="rf-radio-group">
-                      <input type="radio" id="avis-0" name="avis" value="SANS AVIS" onClick={handleChange}/>
+                      <input type="radio" id="avis-0" name="avis" value="" defaultChecked onClick={handleChange}/>
                       <label className="rf-label" htmlFor="avis-0">SANS AVIS</label>
                     </div>
                   </div>
@@ -299,8 +270,8 @@ function CandidateSurveyForm({ match }) {
   );
 }
 
-CandidateSurveyForm.propTypes = {
+CandidateSondageForm.propTypes = {
   match: PropTypes.object
 };
 
-export default CandidateSurveyForm;
+export default CandidateSondageForm;
