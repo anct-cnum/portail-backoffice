@@ -8,6 +8,31 @@ function Documents() {
   return (
     <div className="documents">
       <div className="rf-container-fluid">
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://www.conseiller-numerique.gouv.fr/kit-communication"
+              id="btn-kit-communication"
+              target="blank"
+              className="rf-btn big-btn rf-text--lg rf-text--bold"
+              title="Kit de communication">
+                kit de communication
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Accéder au kit de communication&nbsp;: charte graphique, logotypes, gabarits, modèle de carte de visite...)
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Flyer_CNFS.pdf"
+              className="rf-link" target="blank" title="Télécharger le flyer">
+                Télécharger le flyer (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Ce flyer présente le dispositif Conseiller numérique France Services
+            </span>
+          </p>
+        </div>
         { structure?.type !== 'PRIVATE' &&
         <div className="rf-grid-row">
           <p>
