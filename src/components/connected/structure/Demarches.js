@@ -6,6 +6,22 @@ function Demarches() {
     <div className="demarches">
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
+          <div>
+            Vous retrouverez ci-dessous le lien vous permettant de déposer votre dossier de demande de subvention via l&rsquo;outil Démarches Simplifiées.
+            <br/>
+            Avant de déposer votre dossier de demande de subvention, vous devez d&rsquo;abord&nbsp;:
+            <ul>
+              <li>
+                Arrêter votre choix sur un ou plusieurs Conseiller(s) numérique(s) France Services
+                en cliquant sur le bouton &quot;Valider cette candidature&quot;,
+              </li>
+              <li>
+                Sélectionner la date d&rsquo;embauche du ou des candidat(s) retenu(s).
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="rf-grid-row">
           <p>Structures publiques :
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques"
@@ -13,6 +29,8 @@ function Demarches() {
               className="rf-link"
               target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
           </p>
+        </div>
+        <div className="rf-grid-row">
           <p>Entreprises :
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises"
@@ -20,6 +38,8 @@ function Demarches() {
               className="rf-link"
               target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
           </p>
+        </div>
+        <div className="rf-grid-row">
           <p>Associations :
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-associations"
