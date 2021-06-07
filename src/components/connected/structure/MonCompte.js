@@ -1,10 +1,16 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { structureActions } from '../../../actions';
 
 
 function MonCompte() {
-  
-  useEffect(() => {
+  const dispatch = useDispatch();
+  const structure = useSelector(state => state.structure);
+  console.log('structure:', structure.structure);
 
+
+  useEffect(() => {
+    dispatch(structureActions.get());
   }, []);
 
   return (
