@@ -135,8 +135,8 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
-              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Publique">
-                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Publique (pdf)
+              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Public">
+                        Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Public (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Appel à manifestation d&rsquo;intérêt pour les collectivités territoriales et leurs groupements
