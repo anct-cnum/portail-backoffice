@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 
 function MonCompte() {
+  
+  useEffect(() => {
+
+  }, []);
+
   return (
-    <div>
+    <div className="monCompte">
+      <h2>
+        Mon compte
+      </h2>
 
     </div>
   );
