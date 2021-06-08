@@ -16,22 +16,10 @@ function MonCompte() {
       <h2>
         Mon compte
       </h2>
-      <div>
-        <p>Nom : { structure?.structure?.contact.nom }</p>
-        <span className="fr-fi-edit-line" aria-hidden="true"></span>
-      </div>
-      <div>
-        <p>Prénom : { structure?.structure?.contact.prenom }</p>
-        <span className="fr-fi-edit-line" aria-hidden="true"></span>
-      </div>
-      <div>
-        <p>Prénom : { structure?.structure?.contact.fonction }</p>
-        <span className="fr-fi-edit-line" aria-hidden="true"></span>
-      </div>
-      <div>
-        <p>Téléphone : { structure?.structure?.contact.telephone }</p>
-        <span className="fr-fi-edit-line" aria-hidden="true"></span>
-      </div>
+      <p>Nom : { structure?.structure?.contact.nom }</p>
+      <p>Prénom : { structure?.structure?.contact.prenom }</p>
+      <p>Fonction : { structure?.structure?.contact.fonction }</p>
+      <p>Téléphone : { structure?.structure?.contact.telephone }</p>
     </div>
   );
 }
