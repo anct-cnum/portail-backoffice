@@ -12,7 +12,7 @@ function MonCompte() {
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
-  
+
   const patch = () => {
     dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
     setForm(false);
@@ -23,19 +23,21 @@ function MonCompte() {
       <h2>
         Mon compte
       </h2>
-      <div className="rf-grid-row container">
-        <div className="rf-col-6">
+      <div className="rf-grid-row">
+        <div className="rf-col-n rf-col-lg-5">
           <p>Nom : { structure?.structure?.contact.nom }</p>
           <p>Prénom : { structure?.structure?.contact.prenom }</p>
           <p>Fonction : { structure?.structure?.contact.fonction }</p>
           <p>Téléphone : { structure?.structure?.contact.telephone }</p>
-          <button className="rf-btn" onClick={() => setForm(true)}>
+          <div className="rf-mt-10w">
+            <button className="rf-btn" onClick={() => setForm(true)}>
             Modifier mes informations
-            <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
-          </button>
+              <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
+            </button>
+          </div>
         </div>
         {form === true ?
-          <div className="rf-col-4">
+          <div className="rf-col-n rf-col-lg-5">
             <InfoAModifier structure={structure?.structure?.contact} infoForm={infoForm} setInfoForm={setInfoForm} onClick={patch}/>
           </div> :
           ''

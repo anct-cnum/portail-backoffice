@@ -10,7 +10,7 @@ function InfoAModifier({ infoForm, setInfoForm, onClick }) {
 
   return (
     <div>
-      <div className="rf-my-3w rf-mb-10w">
+      <div className="rf-my-3w">
         <label className="rf-label">Nom</label>
         <input className="rf-input" type="text" id="text-input-text" name="nom" placeholder={infoForm?.nom} onChange={handleForm} />
         <label className="rf-label rf-mt-5v">Prénom</label>
@@ -20,7 +20,7 @@ function InfoAModifier({ infoForm, setInfoForm, onClick }) {
         <label className="rf-label rf-mt-5v">Téléphone</label>
         <input className="rf-input" type="text" id="text-input-text" name="telephone" placeholder={infoForm?.telephone} onChange={handleForm}/>
       </div>
-      <button className="rf-btn" onClick={onClick}>Valider</button>
+      <button style={{ float: 'right' }} className="rf-btn" onClick={onClick}>Valider</button>
     </div>
   );
 }
