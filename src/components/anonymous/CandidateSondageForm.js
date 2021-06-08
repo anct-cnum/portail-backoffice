@@ -16,6 +16,7 @@ function CandidateSondageForm({ match }) {
   }, []);
 
   const verifyingToken = useSelector(state => state.conseiller?.verifyingToken);
+  const messageVerifyingToken = useSelector(state => state.conseiller?.error);
   const tokenVerified = useSelector(state => state.conseiller?.tokenVerified);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   let sondageError = useSelector(state => state.sondages.errorsRequired);
@@ -90,7 +91,7 @@ function CandidateSondageForm({ match }) {
             { tokenVerified === false &&
               <div className="rf-col-12 rf-col-md-7 rf-mt-12w labelError flashBag">
                 <span>
-                Désolé mais le lien est invalide.
+                  {messageVerifyingToken}
                 </span>
               </div>
             }
