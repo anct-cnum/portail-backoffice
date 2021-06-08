@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function InfoAModifier({ infoForm, setInfoForm }) {
+function InfoAModifier({ infoForm, setInfoForm, onClick }) {
 
   const handleForm = async event => {
     infoForm[event.target.name] = event.target.value;
@@ -20,7 +20,7 @@ function InfoAModifier({ infoForm, setInfoForm }) {
         <label className="rf-label rf-mt-5v">Téléphone</label>
         <input className="rf-input" type="text" id="text-input-text" name="telephone" placeholder={infoForm?.telephone} onChange={handleForm}/>
       </div>
-      <button className="rf-btn">Valider</button>
+      <button className="rf-btn" onClick={onClick}>Valider</button>
     </div>
   );
 }
@@ -28,7 +28,8 @@ function InfoAModifier({ infoForm, setInfoForm }) {
 InfoAModifier.propTypes = {
   structure: PropTypes.object,
   infoForm: PropTypes.object,
-  setInfoForm: PropTypes.func
+  setInfoForm: PropTypes.func,
+  onClick: PropTypes.func
 };
 export default InfoAModifier;
 

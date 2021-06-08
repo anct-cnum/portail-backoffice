@@ -12,6 +12,11 @@ function MonCompte() {
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
+  
+  const patch = () => {
+    dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
+    setForm(false);
+  };
 
   return (
     <div className="monCompte">
@@ -31,7 +36,7 @@ function MonCompte() {
         </div>
         {form === true ?
           <div className="rf-col-4">
-            <InfoAModifier structure={structure?.structure?.contact} infoForm={infoForm} setInfoForm={setInfoForm} />
+            <InfoAModifier structure={structure?.structure?.contact} infoForm={infoForm} setInfoForm={setInfoForm} onClick={patch}/>
           </div> :
           ''
         }
