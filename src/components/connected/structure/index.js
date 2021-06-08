@@ -41,6 +41,7 @@ function Structure() {
 
       window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
       window.$crisp.push(['set', 'user:email', [user.name]]);
+      window.$crisp.push(['safe', 'true']);
     }
   }
 
