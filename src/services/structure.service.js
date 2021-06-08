@@ -7,6 +7,7 @@ export const structureService = {
   get,
   getAll,
   resendInscription,
+  patch
 };
 
 function get(id) {
@@ -54,6 +55,17 @@ function resendInscription(id) {
   };
 
   return fetch(`${apiUrlRoot}/structures/${id}/relance-inscription`, requestOptions).then(handleResponse);
+}
+
+function patch({ id, contact }) {
+  const obj = Object.assign({ 'Content-Type': 'application/json' }, authHeader());
+  const requestOptions = {
+    method: 'PATCH',
+    headers: obj,
+    body: JSON.stringify({ contact })
+  };
+
+  return fetch(`${apiUrlRoot}/structures/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
