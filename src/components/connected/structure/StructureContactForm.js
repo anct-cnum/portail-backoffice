@@ -12,9 +12,13 @@ function StructureContactForm({ setForm }) {
     dispatch(structureActions.get());
   }, []);
 
-  const handleForm = async event => {
-    infoForm[event.target.name] = event.target.value;
-    await setInfoForm(infoForm);
+  const handleForm = event => {
+    const { name, value } = event.target;
+    console.log('infoForm:', infoForm);
+    setInfoForm({
+      ...infoForm,
+      [name]: value
+    });
   };
   const updateInfo = () => {
     dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
