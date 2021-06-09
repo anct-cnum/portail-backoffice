@@ -14,7 +14,6 @@ function StructureContactForm({ setForm }) {
 
   const handleForm = event => {
     const { name, value } = event.target;
-    console.log('infoForm:', infoForm);
     setInfoForm({
       ...infoForm,
       [name]: value
