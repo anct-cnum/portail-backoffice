@@ -8,17 +8,11 @@ function MonCompte() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const [form, setForm] = useState(false);
-  const [infoForm, setInfoForm] = useState(structure?.structure?.contact);
   const error = useSelector(state => state.structure?.patchError);
 
   useEffect(() => {
     dispatch(structureActions.get());
   }, []);
-
-  const patch = () => {
-    dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
-    setForm(false);
-  };
 
   return (
     <div className="monCompte">
@@ -32,7 +26,7 @@ function MonCompte() {
             <p>Prénom : { structure?.structure?.contact.prenom }</p>
             <p>Fonction : { structure?.structure?.contact.fonction }</p>
             <p>Téléphone : { structure?.structure?.contact.telephone }</p>
-            <div className="rf-mt-10w">
+            <div className="rf-mt-5w">
               <button className="rf-btn" onClick={() => setForm(true)}>
           Modifier mes informations
                 <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
@@ -42,7 +36,7 @@ function MonCompte() {
         }
         {form === true ?
           <div className="rf-col-n rf-col-lg-5">
-            <StructureContactForm structure={structure?.structure?.contact} infoForm={infoForm} setForm={setForm} setInfoForm={setInfoForm} onClick={patch} />
+            <StructureContactForm setForm={setForm} />
           </div> : ''
         }
         {structure?.flashMessage === true ?
