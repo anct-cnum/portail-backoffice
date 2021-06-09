@@ -34,7 +34,7 @@ export default function structure(state = null, action) {
     case 'PATCH_STRUCTURE_REQUEST':
       return {
         loading: true,
-        flashMessage: false
+        flashMessage: true
       };
     case 'PATCH_STRUCTURE_SUCCESS':
       return {
@@ -43,7 +43,8 @@ export default function structure(state = null, action) {
       };
     case 'PATCH_STRUCTURE_FAILURE':
       return {
-        error: action.error
+        patchError: action.error,
+        flashMessage: true
       };
     default:
       return state;

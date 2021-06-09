@@ -58,10 +58,9 @@ function resendInscription(id) {
 }
 
 function patch({ id, contact }) {
-  const obj = Object.assign({ 'Content-Type': 'application/json' }, authHeader());
   const requestOptions = {
     method: 'PATCH',
-    headers: obj,
+    headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
     body: JSON.stringify({ contact })
   };
 

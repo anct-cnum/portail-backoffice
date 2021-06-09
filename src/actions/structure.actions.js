@@ -80,7 +80,6 @@ function resendInscription(id) {
 }
 
 function patch(info) {
-  console.log('info:', info);
   return dispatch => {
     dispatch(request());
 
