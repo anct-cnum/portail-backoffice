@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions } from '../../../actions';
 import InfoAModifier from './InfoAModifier';
+import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const [form, setForm] = useState(false);
   const [infoForm, setInfoForm] = useState(structure?.structure?.contact);
+  const error = useSelector(state => state.patchError);
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -16,6 +19,7 @@ function MonCompte() {
   const patch = () => {
     dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
     setForm(false);
+    setMessage(true);
   };
 
   return (
@@ -36,6 +40,22 @@ function MonCompte() {
             </button>
           </div>
         </div>
+        {message === true ?
+          <div className="rf-col-n rf-col-lg-5">
+            <FlashMessage duration={10000}>
+              { (error === undefined || error === false) &&
+              <p className="rf-label flashBag">
+                Mise à jour OK
+              </p>
+              }
+              { (error !== undefined && error !== false) &&
+              <p className="rf-label flashBag labelError">
+                Mise à jour KO
+              </p>
+              }
+            </FlashMessage>
+          </div> : ''
+        }
         {form === true ?
           <div className="rf-col-n rf-col-lg-5">
             <InfoAModifier structure={structure?.structure?.contact} infoForm={infoForm} setInfoForm={setInfoForm} onClick={patch}/>
