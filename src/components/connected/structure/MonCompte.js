@@ -9,8 +9,7 @@ function MonCompte() {
   const structure = useSelector(state => state.structure);
   const [form, setForm] = useState(false);
   const [infoForm, setInfoForm] = useState(structure?.structure?.contact);
-  const error = useSelector(state => state.patchError);
-  const [message, setMessage] = useState(false);
+  const error = useSelector(state => state.structure?.patchError);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -19,7 +18,6 @@ function MonCompte() {
   const patch = () => {
     dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
     setForm(false);
-    setMessage(true);
   };
 
   return (
@@ -40,17 +38,17 @@ function MonCompte() {
             </button>
           </div>
         </div>
-        {message === true ?
+        {structure?.flashMessage === true ?
           <div className="rf-col-n rf-col-lg-5">
             <FlashMessage duration={10000}>
               { (error === undefined || error === false) &&
               <p className="rf-label flashBag">
-                Mise à jour OK
+                La mise à jour a été effectuée avec succès
               </p>
               }
               { (error !== undefined && error !== false) &&
               <p className="rf-label flashBag labelError">
-                Mise à jour KO
+                 La mise à jour a échoué, veuillez réessayer plus tard
               </p>
               }
             </FlashMessage>

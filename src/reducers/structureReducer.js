@@ -39,7 +39,8 @@ export default function structure(state = null, action) {
     case 'PATCH_STRUCTURE_SUCCESS':
       return {
         ...state,
-        structure: action.structure
+        structure: action.structure,
+        flashMessage: true
       };
     case 'PATCH_STRUCTURE_FAILURE':
       return {
