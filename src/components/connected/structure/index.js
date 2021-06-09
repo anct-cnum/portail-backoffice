@@ -11,6 +11,7 @@ import Demarches from './Demarches';
 import Exports from './Exports';
 import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
+import MonCompte from './MonCompte';
 
 function Structure() {
   const dispatch = useDispatch();
@@ -77,6 +78,7 @@ function Structure() {
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
             <Route path={`/structure/exports`} component={Exports} />
+            <Route path={`/structure/mon-compte`} component={MonCompte} />
           </div>
         </div>
       </div>

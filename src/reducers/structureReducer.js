@@ -31,6 +31,22 @@ export default function structure(state = null, action) {
         errorResendInscription: action.error,
         flashMessage: true
       };
+    case 'PATCH_STRUCTURE_REQUEST':
+      return {
+        loading: true,
+        flashMessage: true
+      };
+    case 'PATCH_STRUCTURE_SUCCESS':
+      return {
+        ...state,
+        structure: action.structure,
+        flashMessage: true
+      };
+    case 'PATCH_STRUCTURE_FAILURE':
+      return {
+        patchError: action.error,
+        flashMessage: true
+      };
     default:
       return state;
   }
