@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions } from '../../../actions';
-import InfoAModifier from './InfoAModifier';
+import StructureContactForm from './StructureContactForm';
 import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
@@ -42,7 +42,7 @@ function MonCompte() {
         }
         {form === true ?
           <div className="rf-col-n rf-col-lg-5">
-            <InfoAModifier structure={structure?.structure?.contact} infoForm={infoForm} setForm={setForm} setInfoForm={setInfoForm} onClick={patch} />
+            <StructureContactForm structure={structure?.structure?.contact} infoForm={infoForm} setForm={setForm} setInfoForm={setInfoForm} onClick={patch} />
           </div> : ''
         }
         {structure?.flashMessage === true ?
