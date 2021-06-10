@@ -17,6 +17,7 @@ function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
+
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
@@ -58,6 +59,11 @@ function StructureDetails({ location }) {
       name: 'candidatures validées',
       nameSingle: 'candidature validée',
       key: 'recrutee'
+    },
+    {
+      name: 'recrutements finalisés',
+      nameSingle: 'recrutement finalisé',
+      key: 'finalisee'
     }
   ];
 

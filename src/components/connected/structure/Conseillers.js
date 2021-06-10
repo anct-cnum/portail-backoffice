@@ -97,6 +97,10 @@ function Conseillers({ location }) {
       filter: 'recrutee'
     },
     {
+      name: 'Recrutements finalisés',
+      filter: 'finalisee'
+    },
+    {
       name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }

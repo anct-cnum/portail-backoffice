@@ -73,7 +73,7 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/structure/candidats/${location.currentFilter}`,
+          pathname: `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
@@ -150,7 +150,7 @@ function ConseillerDetails({ location }) {
         miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
         updateStatut={updateStatut}
         dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ?
-          conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
+          conseiller?.miseEnRelation?.dateRecrutement : new Date(location.miseEnRelation?.dateRecrutement)} />
     </div>
   );
 }
