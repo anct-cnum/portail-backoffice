@@ -20,7 +20,7 @@ function StructureContactForm({ setForm }) {
     });
   };
   const updateInfo = () => {
-    dispatch(structureActions.patch({ id: structure?.structure?._id, contact: infoForm }));
+    dispatch(structureActions.patch({ id: structure?.structure?._id, idPG: structure?.structure?.idPG, contact: infoForm }));
     setForm(false);
   };
   return (

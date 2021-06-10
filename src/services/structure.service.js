@@ -57,11 +57,11 @@ function resendInscription(id) {
   return fetch(`${apiUrlRoot}/structures/${id}/relance-inscription`, requestOptions).then(handleResponse);
 }
 
-function patch({ id, contact }) {
+function patch({ id, idPG, contact }) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
-    body: JSON.stringify({ contact })
+    body: JSON.stringify({ idPG, contact })
   };
 
   return fetch(`${apiUrlRoot}/structures/${id}`, requestOptions).then(handleResponse);
