@@ -61,8 +61,8 @@ function StructureDetails({ location }) {
       key: 'recrutee'
     },
     {
-      name: 'recrutements finalisés',
-      nameSingle: 'recrutement finalisé',
+      name: 'candidats recrutés',
+      nameSingle: 'candidat recruté',
       key: 'finalisee'
     }
   ];

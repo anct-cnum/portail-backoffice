@@ -20,7 +20,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidature validée'
   }, {
     key: 'finalisee',
-    label: 'Recrutment finalisé'
+    label: 'Candidat recruté'
   },
   ];
 

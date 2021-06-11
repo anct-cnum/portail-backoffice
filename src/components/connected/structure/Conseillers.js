@@ -97,7 +97,7 @@ function Conseillers({ location }) {
       filter: 'recrutee'
     },
     {
-      name: 'Recrutements finalisés',
+      name: 'Candidats recrutés',
       filter: 'finalisee'
     },
     {
