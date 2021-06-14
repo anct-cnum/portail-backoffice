@@ -17,7 +17,6 @@ function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
-
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
@@ -166,6 +165,7 @@ function StructureDetails({ location }) {
           { user?.role === 'admin' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
+
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
@@ -179,6 +179,27 @@ function StructureDetails({ location }) {
                   &nbsp;{stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle}
                 </p>
               )}
+
+              {stats.map((stat, idx) =>
+                <div key={idx}>
+                  {stat.statut === 'finalisee' &&
+                   <>
+                     <h3>
+                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name.charAt(0).toUpperCase() +
+                        statutsLabel.find(label => label.key === stat.statut).nameSingle.slice(1)}
+                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle.charAt(0).toUpperCase() +
+                       statutsLabel.find(label => label.key === stat.statut).nameSingle.slice(1)}
+                     </h3>
+                     {stat.candidats.map((candidat, idx) =>
+                       <p key={idx}>
+                         {candidat}
+                       </p>
+                     )}
+                   </>
+                  }
+                </div>
+              )}
+
               <h3>Liste des candidats</h3>
 
               {conseillers && conseillers.loading && <span>Chargement...</span>}
