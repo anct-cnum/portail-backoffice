@@ -184,11 +184,9 @@ function StructureDetails({ location }) {
                 <div key={idx}>
                   {stat.statut === 'finalisee' &&
                    <>
-                     <h3>
-                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name.charAt(0).toUpperCase() +
-                        statutsLabel.find(label => label.key === stat.statut).nameSingle.slice(1)}
-                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle.charAt(0).toUpperCase() +
-                       statutsLabel.find(label => label.key === stat.statut).nameSingle.slice(1)}
+                     <h3 className="capitalizeFirstLetter">
+                       {stat.count > 1 && statutsLabel[4].name }
+                       {stat.count <= 1 && statutsLabel[4].nameSingle }
                      </h3>
                      {stat.candidats.map((candidat, idx) =>
                        <p key={idx}>
