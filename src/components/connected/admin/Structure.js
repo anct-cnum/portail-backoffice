@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 function Structure({ structure, currentPage }) {
 
   return (
+    <>
+      {structure?.statut !== 'ANNULEE' &&
     <tr>
       <td>{structure.idPG}</td>
       <td>{structure.siret !== null ? structure.siret : 'non renseigné' }</td>
@@ -21,6 +23,9 @@ function Structure({ structure, currentPage }) {
           currentPage: currentPage
         }}>Détails</Link></td>
     </tr>
+      }
+    </>
+
   );
 }
 
