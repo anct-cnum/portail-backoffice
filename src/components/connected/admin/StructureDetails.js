@@ -17,6 +17,7 @@ function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
+
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
@@ -188,11 +189,14 @@ function StructureDetails({ location }) {
                        {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name }
                        {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle }
                      </h3>
-                     {stat.candidats.map((candidat, idx) =>
+                     {stat.candidats && stat.candidats.map((candidat, idx) =>
                        <p key={idx}>
                          {candidat}
                        </p>
                      )}
+                     {!stat.candidats &&
+                      <p>Aucun candidat trouvé</p>
+                     }
                    </>
                   }
                 </div>
