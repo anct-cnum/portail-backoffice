@@ -35,6 +35,15 @@ function Menu() {
         }
         <div className={`rf-sidemenu__wrapper ${menu.expandNav && !menu.hiddenMenu ? 'rf-sidemenu__wrapper--expanded' : ''}`} id="rf-sidemenu-wrapper">
           <ul className="rf-sidemenu__list">
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/mon-compte') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/mon-compte" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mon compte
+                  </div>
+                </div>
+              </Link>
+            </li>
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/candidats/nouvelle" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
@@ -76,15 +85,6 @@ function Menu() {
                 <div className="rf-container" style={{ padding: '0' }}>
                   <div className="rf-grid-row rf-grid-row--end">
                     Mes exports
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/mon-compte') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/mon-compte" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
-                    Mon compte
                   </div>
                 </div>
               </Link>
