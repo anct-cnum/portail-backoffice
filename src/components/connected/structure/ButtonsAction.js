@@ -16,71 +16,89 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
     date = moment(date);
     dispatch(conseillerActions.updateDateRecrutement({ id: miseEnRelationId, date }));
   };
-
+console.log(dateRecrutement);
   return (
 
-    <div>
-      {statut === 'nouvelle' &&
-        <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" title="Pré sélectionner">
-          Pré sélectionner
-        </button>
-      }
-      {statut === 'nouvelle' &&
-        <button onClick={updateStatut.bind(this, 'nonInteressee')}
-          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-          title="Ce profil ne correspond pas">
-          Ce profil ne correspond pas
-        </button>
-      }
-      {statut === 'interessee' &&
-        <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-mx-1w rf-btn--icon-left" title="Valider cette candidature">
-          <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
-        </button>
-      }
-      { statut === 'interessee' &&
-        <button onClick={updateStatut.bind(this, 'nouvelle')}
-          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-          title="Annuler">
-          Annuler
-        </button>
-      }
-      { statut === 'nonInteressee' &&
-        <button onClick={updateStatut.bind(this, 'nouvelle')}
-          className="rf-btn rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-          title="Annuler">
-          Annuler
-        </button>
-      }
-      {statut === 'recrutee' &&
-        <div>
-          <label
-            className="rf-label rf-mx-1w"
-            style={{ fontSize: 'unset' }}
-            htmlFor="datePicker">
-            <strong>Veuillez sélectionner la date d&rsquo;embauche du ou de la candidate retenu(e) :</strong>
-          </label>
-          <DatePicker
-            id="datePicker"
-            name="datePicker"
-            className="rf-input rf-mx-1w"
-            dateFormat="dd/MM/yyyy"
-            locale="fr"
-            selected={dateRecrutement ? new Date(dateRecrutement) : ''}
-            onChange={date => updateDateRecrutement(date)} />
-        </div>
-      }
-      {statut === 'recrutee' &&
-        <p>
-          <button onClick={() => {
-            updateStatut('interessee');
-            updateDateRecrutement(null);
-          }}
-          className="rf-btn rf-btn--secondary rf-mx-1w rf-fi-close-circle-line rf-btn--icon-left"
-          title="Annuler le recrutement">
-          Annuler le recrutement
-          </button>
-        </p>
-      }
+    <div className="rf-container-fluid">
+      <div className="rf-grid-row">
+        {statut === 'nouvelle' &&
+          <div className="rf-col-3">
+            <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" title="Pré sélectionner">
+              Pré sélectionner
+            </button>
+          </div>
+        }
+        {statut === 'nouvelle' &&
+          <div className="rf-col-3">
+            <button onClick={updateStatut.bind(this, 'nonInteressee')}
+              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              title="Ce profil ne correspond pas">
+              Ce profil ne correspond pas
+            </button>
+          </div>
+        }
+        {statut === 'interessee' &&
+        <>
+          <div className="rf-col-12">
+            <label
+              className="rf-label"
+              style={{ fontSize: 'unset' }}
+              htmlFor="datePicker">
+              <strong>Après avoir pr&eacute;-selectionn&eacute; votre candidat vous devez mettre une date de recrutement avant de
+                  cliquer sur le bouton &quot;valider cette candidature&quot;
+              </strong>
+            </label>
+          </div>
+
+          <div className="rf-col-12">
+            <DatePicker
+              id="datePicker"
+              name="datePicker"
+              className="rf-input rf-my-2w rf-mr-6w"
+              dateFormat="dd/MM/yyyy"
+              locale="fr"
+              selected={dateRecrutement ? new Date(dateRecrutement) : ''}
+              onChange={date => updateDateRecrutement(date)} />
+          </div>
+
+          <div className="rf-col-3">
+            <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-btn--icon-left" title="Valider cette candidature">
+              <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
+            </button>
+          </div>
+        </>
+        }
+        { statut === 'interessee' &&
+          <div className="rf-col-3">
+            <button onClick={updateStatut.bind(this, 'nouvelle')}
+              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              title="Annuler">
+              Annuler
+            </button>
+          </div>
+        }
+        { statut === 'nonInteressee' &&
+          <div className="rf-col-3">
+            <button onClick={updateStatut.bind(this, 'nouvelle')}
+              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              title="Annuler">
+              Annuler
+            </button>
+          </div>
+        }
+        {statut === 'recrutee' &&
+          <p className="rf-col-3">
+            <button onClick={() => {
+              updateStatut('interessee');
+              updateDateRecrutement(null);
+            }}
+            className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
+            title="Annuler le recrutement">
+            Annuler le recrutement
+            </button>
+          </p>
+        }
+      </div>
     </div>
   );
 }
