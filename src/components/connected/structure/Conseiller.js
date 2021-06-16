@@ -30,7 +30,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
-        { miseEnRelation.conseillerObj?.pix?.partage &&
+        { miseEnRelation.conseiller?.pix?.partage &&
           <div className="tooltip">
             <img src="/logos/logo-pix.svg" alt="logo Pix" style={{ height: '36px' }}/>
             <span className="tooltiptext">A partagé ses résultats Pix</span>
