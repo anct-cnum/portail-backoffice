@@ -21,7 +21,6 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
   };
 
   return (
-
     <div className="rf-container-fluid">
       <div className="rf-grid-row">
         {statut === 'nouvelle' &&
