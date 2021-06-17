@@ -46,7 +46,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
               className="rf-label"
               style={{ fontSize: 'unset' }}
               htmlFor="datePicker">
-              <strong>Indiquer la date de recrutement de ce candidat (obligatoire) :</strong>
+              <strong className="important">Indiquer la date de recrutement de ce candidat (obligatoire) :</strong>
             </label>
           </div>
 

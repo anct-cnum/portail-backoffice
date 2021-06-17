@@ -150,7 +150,7 @@ function ConseillerDetails({ location }) {
         miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
         updateStatut={updateStatut}
         dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ?
-          conseiller?.miseEnRelation?.dateRecrutement : new Date(location.miseEnRelation?.dateRecrutement)} />
+          conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
     </div>
   );
 }
