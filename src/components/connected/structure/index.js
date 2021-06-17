@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Pluralize from 'react-pluralize';
 import Menu from './Menu';
 import Conseillers from './Conseillers';
-import Informations from './Informations';
 import conseillerDetails from './ConseillerDetails';
 import Documents from './Documents';
 import Demarches from './Demarches';
@@ -72,7 +71,6 @@ function Structure() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-8' : 'rf-col-xs-7 rf-col-sm-9'}`}>
-            <Route path={`/structure/informations`} component={Informations} />
             <Route path={`/structure/candidats/:filter`} component={Conseillers} />
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />
