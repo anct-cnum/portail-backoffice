@@ -4,6 +4,7 @@ const initialState = {
     'interessee': 0,
     'nonInteressee': 0,
     'recrutee': 0,
+    'finalisee': 0,
     'toutes': 0,
   }
 };

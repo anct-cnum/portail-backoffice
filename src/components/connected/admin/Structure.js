@@ -15,6 +15,7 @@ function Structure({ structure, currentPage }) {
       <td>{structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null ? structure.dernierCoselec?.avisCoselec : 'en attente de passage'}</td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
+      <td> {structure.nbCandidatsRecrutes}</td>
       <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
         to={{
           pathname: `/structure/${structure._id}`,
