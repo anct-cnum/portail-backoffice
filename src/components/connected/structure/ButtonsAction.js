@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
@@ -12,11 +12,14 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
   const dispatch = useDispatch();
 
+  const [dateValidee, setDateValidee] = useState(dateRecrutement);
+
+
   const updateDateRecrutement = date => {
     date = moment(date);
     dispatch(conseillerActions.updateDateRecrutement({ id: miseEnRelationId, date }));
   };
-console.log(dateRecrutement);
+
   return (
 
     <div className="rf-container-fluid">
@@ -44,36 +47,38 @@ console.log(dateRecrutement);
               className="rf-label"
               style={{ fontSize: 'unset' }}
               htmlFor="datePicker">
-              <strong>Après avoir pr&eacute;-selectionn&eacute; votre candidat vous devez mettre une date de recrutement avant de
-                  cliquer sur le bouton &quot;valider cette candidature&quot;
-              </strong>
+              <strong>Indiquer la date de recrutement de ce candidat (obligatoire) :</strong>
             </label>
           </div>
 
-          <div className="rf-col-12">
+          <div className="rf-col-3">
             <DatePicker
               id="datePicker"
               name="datePicker"
               className="rf-input rf-my-2w rf-mr-6w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
-              selected={dateRecrutement ? new Date(dateRecrutement) : ''}
-              onChange={date => updateDateRecrutement(date)} />
+              selected={dateValidee ? new Date(dateValidee) : ''}
+              onChange={date => setDateValidee(date)}
+            />
           </div>
 
-          <div className="rf-col-3">
-            <button onClick={updateStatut.bind(this, 'recrutee')} className="rf-btn rf-btn--icon-left" title="Valider cette candidature">
+          <div className="rf-col-3 rf-my-2w">
+            <button onClick={() => {
+              updateStatut('recrutee');
+              updateDateRecrutement(dateValidee);
+            }} disabled={ !dateValidee } className="rf-btn rf-btn--icon-left" title="Valider cette candidature">
               <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
             </button>
           </div>
         </>
         }
         { statut === 'interessee' &&
-          <div className="rf-col-3">
+          <div className="rf-col-3 rf-my-2w">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
               className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-              title="Annuler">
-              Annuler
+              title="Annuler la pré-sélection">
+              Annuler la pré-sélection
             </button>
           </div>
         }
@@ -81,8 +86,8 @@ console.log(dateRecrutement);
           <div className="rf-col-3">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
               className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
-              title="Annuler">
-              Annuler
+              title="Annuler le désintérêt">
+              Annuler le désintérêt
             </button>
           </div>
         }
@@ -107,7 +112,7 @@ ButtonsAction.propTypes = {
   statut: PropTypes.string,
   updateStatut: PropTypes.func,
   miseEnRelationId: PropTypes.string,
-  dateRecrutement: PropTypes.instanceOf(Date)
+  dateRecrutement: PropTypes.string
 };
 
 export default ButtonsAction;
