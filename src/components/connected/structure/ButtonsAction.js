@@ -96,6 +96,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             <button onClick={() => {
               updateStatut('interessee');
               updateDateRecrutement(null);
+              setDateValidee(null);
             }}
             className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
             title="Annuler le recrutement">
