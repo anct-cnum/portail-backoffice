@@ -24,16 +24,16 @@ function MonCompte() {
             <div>
               <FlashMessage duration={10000}>
                 { (error === undefined || error === false) &&
-            <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-              La mise à jour a été effectuée avec succès
-              &nbsp;
-              <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-            </p>
+                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                  La mise à jour a été effectuée avec succès
+                  &nbsp;
+                  <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                </p>
                 }
                 { (error !== undefined && error !== false) &&
-            <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-               La mise à jour a échoué, veuillez réessayer plus tard
-            </p>
+                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                  La mise à jour a échoué, veuillez réessayer plus tard
+                </p>
                 }
               </FlashMessage>
             </div>
@@ -50,7 +50,7 @@ function MonCompte() {
         </div>
         <div className="rf-col">
           <h2 style={{ marginTop: '0' }}>
-        Mes informations
+            Mes informations
           </h2>
           { form === false ?
             <div className="">
@@ -60,7 +60,7 @@ function MonCompte() {
               <p>Téléphone : { structure?.structure?.contact.telephone }</p>
               <div className="rf-mt-5w">
                 <button className="rf-btn" onClick={() => setForm(true)}>
-          Modifier mes informations
+                    Modifier mes informations
                   <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
                 </button>
               </div>
