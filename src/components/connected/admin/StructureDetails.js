@@ -93,6 +93,9 @@ function StructureDetails({ location }) {
     }, {
       key: 'REGION',
       type: 'Région'
+    }, {
+      key: 'GIP',
+      type: 'GIP'
     }
   ];
 
