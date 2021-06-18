@@ -101,7 +101,9 @@ function Structures({ departement, region, search, start, end }) {
             </thead>
             <tbody>
               {!structures.error && !structures.loading && structures.items && structures.items.data.map((structure, idx) => {
-                return (<Structure key={idx} structure={structure} currentPage={page} />);
+                return (
+                  structure?.statut !== 'ANNULEE' ? <Structure key={idx} structure={structure} currentPage={page} /> : ''
+                );
               })
               }
             </tbody>
