@@ -55,10 +55,13 @@ function Structure() {
               Espace structure — {structure?.structure?.nom}&nbsp;
               <span className="rf-highlight valignMiddle"/>
             </h2>
-            <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-mr-3v rf-ml-3v rf-mt-4v" style={{ height: '70px' }}/>
-            <p style={{ fontWeight: 'normal', padding: '25px' }}>
-              SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
-            </p>
+            {structure?.structure?.estLabelliseFranceServices === 'OUI' ? <>
+              <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-ml-3v rf-mt-4v" style={{ height: '70px' }}/>
+              <p style={{ fontWeight: 'normal', padding: '30px' }}>
+                SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
+              </p>
+            </> :
+              <p style={{ fontWeight: 'normal', padding: '22px' }}> SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'} </p>}
           </div>
         </div>
         { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
