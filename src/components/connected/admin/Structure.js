@@ -11,7 +11,9 @@ function Structure({ structure, currentPage }) {
       <td>{structure.idPG}</td>
       <td> {structure.siret !== null ? structure.siret : 'non renseigné' } </td>
       <td>
-        <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-mt-5v rf-ml-4w" style={{ height: '50px' }}/>
+        {structure.estLabelliseFranceServices === 'OUI' ?
+          <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-mt-5v rf-ml-4w" style={{ height: '50px' }}/> :
+          ''}
       </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
       {/* eslint-disable-next-line max-len */}
