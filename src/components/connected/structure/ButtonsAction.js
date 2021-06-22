@@ -103,6 +103,9 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             </button>
           </p>
         }
+        {statut === 'finalisee' &&
+          <p><strong>Recrutement finalisé pour ce candidat</strong></p>
+        }
       </div>
     </div>
   );
