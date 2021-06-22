@@ -92,6 +92,7 @@ function Structures({ departement, region, search, start, end }) {
               <tr>
                 <th>Id</th>
                 <th>SIRET</th>
+                <th></th>
                 <th>Nom</th>
                 <th>Statut coselec</th>
                 <th>Date de<br/> candidature</th>

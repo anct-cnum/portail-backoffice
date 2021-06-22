@@ -49,12 +49,21 @@ function Structure() {
       { crisp() }
       <Header connected />
       <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
-        <h2>
-          Espace structure — {structure?.structure?.nom}&nbsp;
-          <span className="rf-highlight valignMiddle" style={{ fontWeight: 'normal' }}>
-            SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
-          </span>
-        </h2>
+        <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--center">
+          <div className="rf-grid-row">
+            <h2>
+              Espace structure — {structure?.structure?.nom}&nbsp;
+              <span className="rf-highlight valignMiddle"/>
+            </h2>
+            {structure?.structure?.estLabelliseFranceServices === 'OUI' ? <>
+              <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-ml-3v rf-mt-4v" style={{ height: '70px' }}/>
+              <p style={{ fontWeight: 'normal', padding: '30px' }}>
+                SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
+              </p>
+            </> :
+              <p style={{ fontWeight: 'normal', padding: '22px' }}> SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'} </p>}
+          </div>
+        </div>
         { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
           <span style={{ fontWeight: 'normal' }}>
             <Pluralize
