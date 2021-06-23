@@ -17,10 +17,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidature pré sélectionnée'
   }, {
     key: 'recrutee',
-    label: 'Candidat déjà recruté'
+    label: 'Candidat recruté'
   }, {
     key: 'finalisee',
-    label: 'Candidat recruté'
+    label: 'Candidat déjà recruté'
   },
   ];
 
@@ -41,11 +41,11 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        {miseEnRelation.statut === 'recrutee' ?
+        {miseEnRelation.statut === 'finalisee' ?
           <p className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33' }}>
             Détails
           </p> :
-          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none', marginRight: '15px' }} to={{
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
             currentPage: currentPage,
