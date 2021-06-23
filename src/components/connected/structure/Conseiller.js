@@ -17,7 +17,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidature pré sélectionnée'
   }, {
     key: 'recrutee',
-    label: 'Candidat recruté'
+    label: 'Candidature validée'
   }, {
     key: 'finalisee',
     label: 'Candidat déjà recruté'
