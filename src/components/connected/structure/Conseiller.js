@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFilter, search }) {
-  // console.log('conseillerCandidat:', conseillerCandidat);
   const statutLabel = [{
     key: 'nouvelle',
     label: 'Nouvelle candidature'
@@ -23,24 +22,6 @@ function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFi
     label: 'Candidat déjà recruté'
   },
   ];
-  // let idPGFinalisee = {};
-  // conseillersFinalisee.forEach(() => {
-  //   const i = conseillersFinalisee.map(o => {
-  //     idPGFinalisee = o;
-  //     return idPGFinalisee;
-  //   });
-  //   idPGFinalisee = i;
-  // });
-  // let idPGFinalisee = {};
-
-  //   const i = conseillersFinalisee.map(o => o);
-  //   console.log('i:', i);
-
-  // const ok = conseillersFinalisee && conseillersFinalisee.map(o => {
-  //   idPGFinalisee = o;
-  //   return idPGFinalisee;
-  // });
-  // console.log('idPGFinalisee:', idPGFinalisee);
 
   return (
     <tr className="conseiller">
