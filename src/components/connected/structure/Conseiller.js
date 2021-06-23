@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation, conseillersFinalisee, currentPage, currentFilter, search }) {
-
+function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFilter, search }) {
+  // console.log('conseillerCandidat:', conseillerCandidat);
   const statutLabel = [{
     key: 'nouvelle',
     label: 'Nouvelle candidature'
@@ -23,16 +23,31 @@ function Conseiller({ miseEnRelation, conseillersFinalisee, currentPage, current
     label: 'Candidat déjà recruté'
   },
   ];
-  let idPGFinalisee = '';
-  conseillersFinalisee.forEach(idPG => {
-    idPGFinalisee = idPG;
-  });
+  // let idPGFinalisee = {};
+  // conseillersFinalisee.forEach(() => {
+  //   const i = conseillersFinalisee.map(o => {
+  //     idPGFinalisee = o;
+  //     return idPGFinalisee;
+  //   });
+  //   idPGFinalisee = i;
+  // });
+  // let idPGFinalisee = {};
+
+  //   const i = conseillersFinalisee.map(o => o);
+  //   console.log('i:', i);
+
+  // const ok = conseillersFinalisee && conseillersFinalisee.map(o => {
+  //   idPGFinalisee = o;
+  //   return idPGFinalisee;
+  // });
+  // console.log('idPGFinalisee:', idPGFinalisee);
+
   return (
     <tr className="conseiller">
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
-      <td>{miseEnRelation.conseillerObj.idPG === idPGFinalisee ?
+      <td>{miseEnRelation.conseillerObj.idPG === conseillerCandidat.conseillerObj.idPG ?
         'Candidat déjà recruté' : statutLabel.find(item => item.key === miseEnRelation.statut).label}
       </td>
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
@@ -46,7 +61,7 @@ function Conseiller({ miseEnRelation, conseillersFinalisee, currentPage, current
         }
       </td> }
       <td>
-        {miseEnRelation.statut === 'finalisee' || miseEnRelation.conseillerObj.idPG === idPGFinalisee ?
+        {miseEnRelation.statut === 'finalisee' || miseEnRelation.conseillerObj.idPG === conseillerCandidat.conseillerObj.idPG ?
           <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#DCDCDC' }} disabled>
             Détails
           </button> :
@@ -65,7 +80,7 @@ function Conseiller({ miseEnRelation, conseillersFinalisee, currentPage, current
 
 Conseiller.propTypes = {
   miseEnRelation: PropTypes.object,
-  conseillersFinalisee: PropTypes.array,
+  conseillerCandidat: PropTypes.object,
   currentPage: PropTypes.number,
   currentFilter: PropTypes.string,
   search: PropTypes.bool

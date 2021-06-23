@@ -66,7 +66,6 @@ function Conseillers({ location }) {
       }));
     }
   };
-
   useEffect(() => {
     dispatch(statsActions.getMisesEnRelationStats());
   }, []);
@@ -113,8 +112,6 @@ function Conseillers({ location }) {
   };
   constructor();
 
-  // eslint-disable-next-line max-len
-  const conseillersFinalisee = !conseillers.loading && conseillers.items && conseillers.items.conseillerCandidat.data.map(i => i.conseillerObj.idPG);
   return (
     <div className="conseillers">
 
@@ -138,15 +135,15 @@ function Conseillers({ location }) {
 
       { conseillers && conseillers.loading && <span>Chargement...</span> }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.misesEnRelation.data.length === 0 &&
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 &&
         <span>{`${search === '' ? 'Aucun conseiller pour le moment.' : 'Aucun résultat de recherche'}`}</span>
       }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.misesEnRelation.data.length > 0 &&
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
         <h2>{`${search !== '' ? 'Résultats de recherche' : 'Liste des mises en relation'}`}</h2>
       }
 
-      { !conseillers.loading && conseillers.items && conseillers.items.misesEnRelation.data.length > 0 &&
+      { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
         <div className="rf-table fr-table--layout-fixed">
           <table className="table-conseillers">
             <thead>
@@ -162,13 +159,16 @@ function Conseillers({ location }) {
               </tr>
             </thead>
             <tbody>
-              { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.misesEnRelation.data.map((conseiller, idx) => {
-                return (
-                  conseiller.conseillerObj ?
-                    <Conseiller key={idx} miseEnRelation={conseiller} conseillersFinalisee={conseillersFinalisee}
-                      currentPage={page} currentFilter={filter} search={search !== ''} /> :
-                    <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
-                );
+              { !conseillers.loading && conseillers.items && conseillers.items.conseillerCandidat.data.map(conseillerCandidat => {
+                const p = !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+                  return (
+                    conseiller.conseillerObj ?
+                      // eslint-disable-next-line max-len
+                      <Conseiller key={idx} miseEnRelation={conseiller} conseillerCandidat={conseillerCandidat} currentPage={page} currentFilter={filter} search={search !== ''} /> :
+                      <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
+                  );
+                });
+                return p;
               })
               }
             </tbody>
@@ -176,7 +176,7 @@ function Conseillers({ location }) {
         </div>
       }
 
-      { search !== '' && conseillers?.items?.misesEnRelation?.data.length > 100 &&
+      { search !== '' && conseillers?.items?.data.length > 100 &&
         <p className="rf-mt-2w">Seuls les 100 premiers résultats sont affichés</p>
       }
 
