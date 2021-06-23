@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
+function Conseiller({ miseEnRelation, conseillersFinalisee, currentPage, currentFilter, search }) {
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -23,13 +23,18 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidat déjà recruté'
   },
   ];
-
+  let idPGFinalisee = '';
+  conseillersFinalisee.forEach(idPG => {
+    idPGFinalisee = idPG;
+  });
   return (
     <tr className="conseiller">
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
-      <td>{statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
+      <td>{miseEnRelation.conseillerObj.idPG === idPGFinalisee ?
+        'Candidat déjà recruté' : statutLabel.find(item => item.key === miseEnRelation.statut).label}
+      </td>
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
@@ -41,10 +46,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        {miseEnRelation.statut === 'finalisee' ?
-          <p className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33' }}>
+        {miseEnRelation.statut === 'finalisee' || miseEnRelation.conseillerObj.idPG === idPGFinalisee ?
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#DCDCDC' }} disabled>
             Détails
-          </p> :
+          </button> :
           <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none', marginRight: '15px' }} to={{
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
@@ -60,6 +65,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
 
 Conseiller.propTypes = {
   miseEnRelation: PropTypes.object,
+  conseillersFinalisee: PropTypes.array,
   currentPage: PropTypes.number,
   currentFilter: PropTypes.string,
   search: PropTypes.bool

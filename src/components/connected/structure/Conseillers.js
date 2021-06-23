@@ -78,7 +78,6 @@ function Conseillers({ location }) {
   useEffect(() => {
     dispatch(searchActions.updateSearch(''));
   }, [filter]);
-  console.log('................', conseillers.items);
   const tabs = [
     {
       name: 'Nouvelles candidatures',
@@ -114,6 +113,8 @@ function Conseillers({ location }) {
   };
   constructor();
 
+  // eslint-disable-next-line max-len
+  const conseillersFinalisee = !conseillers.loading && conseillers.items && conseillers.items.conseillerCandidat.data.map(i => i.conseillerObj.idPG);
   return (
     <div className="conseillers">
 
@@ -164,7 +165,8 @@ function Conseillers({ location }) {
               { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.misesEnRelation.data.map((conseiller, idx) => {
                 return (
                   conseiller.conseillerObj ?
-                    <Conseiller key={idx} miseEnRelation={conseiller} currentPage={page} currentFilter={filter} search={search !== ''} /> :
+                    <Conseiller key={idx} miseEnRelation={conseiller} conseillersFinalisee={conseillersFinalisee}
+                      currentPage={page} currentFilter={filter} search={search !== ''} /> :
                     <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
                 );
               })
