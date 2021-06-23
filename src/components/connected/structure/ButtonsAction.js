@@ -50,7 +50,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             </label>
           </div>
 
-          <div className="rf-col-3">
+          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3">
             <DatePicker
               id="datePicker"
               name="datePicker"
@@ -62,7 +62,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             />
           </div>
 
-          <div className="rf-col-3 rf-my-2w">
+          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3 rf-my-2w">
             <button onClick={() => {
               updateStatut('recrutee');
               updateDateRecrutement(dateValidee);
@@ -73,7 +73,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         </>
         }
         { statut === 'interessee' &&
-          <div className="rf-col-3 rf-my-2w">
+          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3 rf-my-2w">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
               className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
               title="Annuler la pré-sélection">
