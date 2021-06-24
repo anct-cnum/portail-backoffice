@@ -14,11 +14,20 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
   const [dateValidee, setDateValidee] = useState(dateRecrutement);
 
+  const toggleModal = boolean => {
+    let modal = document.getElementById('rf-modal-annuler');
+    if (boolean === true) {
+      modal.classList.add('modalOpened');
+    } else {
+      modal.classList.remove('modalOpened');
+    }
+  };
 
   const updateDateRecrutement = date => {
     date = moment(date);
     dispatch(conseillerActions.updateDateRecrutement({ id: miseEnRelationId, date }));
   };
+
 
   return (
     <div className="rf-container-fluid">
@@ -64,8 +73,8 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
           <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3 rf-my-2w">
             <button onClick={() => {
-              updateStatut('recrutee');
               updateDateRecrutement(dateValidee);
+              updateStatut('recrutee');
             }} disabled={ !dateValidee } className="rf-btn rf-btn--icon-left" title="Valider cette candidature">
               <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
             </button>
@@ -92,10 +101,51 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         }
         {statut === 'recrutee' &&
           <p className="rf-col-3">
-            <button onClick={() => {
-              updateStatut('interessee');
-              updateDateRecrutement(null);
-              setDateValidee(null);
+
+            <dialog aria-labelledby="rf-modal-title-modal-1" role="dialog" id="rf-modal-annuler"
+              className="rf-modal">
+              <div className="rf-container--fluid rf-container-md">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-col-md-6">
+                    <div className="rf-modal__body centrerTexte">
+                      <div className="rf-modal__header">
+                        <button id="modal-annuler-close" className="rf-link--close rf-link" title="Fermer la fenêtre modale"
+                          aria-controls="rf-modal-1" target="_self" onClick={() => {
+                            toggleModal(false);
+                          }}>
+                          Fermer
+                        </button>
+                      </div>
+                      <div className="rf-modal__content important">
+                        <p>
+                          <strong>
+                            Important : Vous êtes sur le point d&rsquo;annuler votre demande de recrutement pour ce candidat.
+                          </strong>
+                        </p>
+                        <p>
+                          <strong>
+                            Êtes-vous sûr de vouloir réaliser cette action ?
+                          </strong>
+                        </p>
+                        <button onClick={() => {
+                          updateStatut('interessee');
+                          updateDateRecrutement(null);
+                          setDateValidee(null);
+                          toggleModal(false);
+                        }}
+                        className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
+                        title="Annuler le recrutement">
+                        Je valide l&rsquo;annulation du recrutement
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dialog>
+
+            <button id="btn-annuler" onClick={() => {
+              toggleModal(true);
             }}
             className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
             title="Annuler le recrutement">
