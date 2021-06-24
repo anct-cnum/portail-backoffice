@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFilter, search }) {
+function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   const statutLabel = [{
     key: 'nouvelle',
     label: 'Nouvelle candidature'
@@ -28,9 +28,7 @@ function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFi
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
-      <td>{miseEnRelation.conseillerObj.idPG === conseillerCandidat.conseillerObj.idPG ?
-        'Candidat déjà recruté' : statutLabel.find(item => item.key === miseEnRelation.statut).label}
-      </td>
+      <td>{statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
@@ -42,7 +40,7 @@ function Conseiller({ miseEnRelation, conseillerCandidat, currentPage, currentFi
         }
       </td> }
       <td>
-        {miseEnRelation.statut === 'finalisee' || miseEnRelation.conseillerObj.idPG === conseillerCandidat.conseillerObj.idPG ?
+        {miseEnRelation.statut === 'finalisee' ?
           <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#DCDCDC' }} disabled>
             Détails
           </button> :

@@ -159,16 +159,12 @@ function Conseillers({ location }) {
               </tr>
             </thead>
             <tbody>
-              { !conseillers.loading && conseillers.items && conseillers.items.conseillerCandidat.data.map(conseillerCandidat => {
-                const p = !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-                  return (
-                    conseiller.conseillerObj ?
-                      // eslint-disable-next-line max-len
-                      <Conseiller key={idx} miseEnRelation={conseiller} conseillerCandidat={conseillerCandidat} currentPage={page} currentFilter={filter} search={search !== ''} /> :
-                      <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
-                  );
-                });
-                return p;
+              { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
+                return (
+                  conseiller.conseillerObj ?
+                    <Conseiller key={idx} miseEnRelation={conseiller} currentPage={page} currentFilter={filter} search={search !== ''} /> :
+                    <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
+                );
               })
               }
             </tbody>
