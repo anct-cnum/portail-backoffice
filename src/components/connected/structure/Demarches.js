@@ -12,11 +12,11 @@ function Demarches() {
             Avant de déposer votre dossier de demande de subvention, vous devez d&rsquo;abord&nbsp;:
             <ul>
               <li>
-                Arrêter votre choix sur un ou plusieurs Conseiller(s) numérique(s) France Services
-                en cliquant sur le bouton &quot;Valider cette candidature&quot;,
+                Sélectionner la date d&rsquo;embauche du ou des candidat(s) retenu(s).
               </li>
               <li>
-                Sélectionner la date d&rsquo;embauche du ou des candidat(s) retenu(s).
+                Arrêter votre choix sur un ou plusieurs Conseiller(s) numérique(s) France Services
+                en cliquant sur le bouton &quot;Valider cette candidature&quot;,
               </li>
             </ul>
           </div>
