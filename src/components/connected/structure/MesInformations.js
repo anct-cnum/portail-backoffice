@@ -50,7 +50,7 @@ function MesInformations() {
         </div>
         <div className="rf-col">
           <h2 style={{ marginTop: '0' }}>
-            Contact
+            Informations de contact
           </h2>
           { form === false ?
             <div className="">
