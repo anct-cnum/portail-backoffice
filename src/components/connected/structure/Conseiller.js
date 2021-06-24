@@ -41,7 +41,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       </td> }
       <td>
         {miseEnRelation.statut === 'finalisee' ?
-          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#DCDCDC' }} disabled>
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
             Détails
           </button> :
           <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none', marginRight: '15px' }} to={{
