@@ -112,11 +112,10 @@ function sendForgottenPasswordEmail(username) {
 
 function patchUser({ id, name }) {
   const apiUrlRoot = process.env.REACT_APP_API;
-
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
-    body: JSON.stringify({ name })
+    body: JSON.stringify({ name: name })
   };
 
   let uri = `${apiUrlRoot}/users/${id}`;

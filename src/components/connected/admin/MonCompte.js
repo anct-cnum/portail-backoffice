@@ -1,18 +1,59 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../../actions';
+import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
-  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
+  const [email, setEmail] = useState({ name: user?.name });
+  const error = useSelector(state => state.authentication.user?.user.patchError);
+  const flashMessage = useSelector(state => state?.user?.flashMessage);
+  console.log('flashMessage:', flashMessage);
+
+  const handleForm = event => {
+    const { name, value } = event.target;
+    setEmail({
+
+      [name]: value
+    });
+    console.log('email APRES:', email);
+  };
+  const updateEmail = () => {
+    dispatch(userActions.patchUser({ id: user?._id, name: email.name }));
+    setForm(false);
+  };
 
   return (
     <div>
+      {flashMessage === true ?
+        <div className="">
+          <div style={{ width: '50%' }}>
+            <div>
+              <FlashMessage duration={10000}>
+                { (error === undefined || error === false) &&
+                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                  La mise à jour de votre e-mail a été effectuée avec succès
+                  &nbsp;
+                  <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                </p>
+                }
+                { (error !== undefined && error !== false) &&
+                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                  La mise à jour de votre e-mail a échoué, veuillez réessayer plus tard
+                </p>
+                }
+              </FlashMessage>
+            </div>
+          </div>
+        </div> : ''
+      }
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
           <p>Email :<strong> { user?.name }</strong></p>
-          <button className={role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+          <button className={user?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
           </button>
@@ -20,11 +61,11 @@ function MonCompte() {
         <div className="rf-container--fluid">
           <div className="rf-my-3w rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <label className="rf-label">E-mail</label>
-            <input className="rf-input" type="text" id="text-input-text" name="nom" value={user?.name} />
+            <input className="rf-input" type="text" id="text-input-text" name="name" value={user?.name} onChange={handleForm}/>
           </div>
           <div className="rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <button onClick={() => setForm(false)} className="rf-btn">Annuler </button>
-            <button className="rf-btn rf-m-auto" style={{ float: 'right' }} onClick={() => setForm(false)}>Valider</button>
+            <button className="rf-btn rf-m-auto" style={{ float: 'right' }} onClick={updateEmail}>Valider</button>
           </div>
         </div>
       }
