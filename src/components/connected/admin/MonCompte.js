@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 function MonCompte() {
   const user = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
+  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
 
   return (
     <div>
@@ -11,7 +12,7 @@ function MonCompte() {
       {form === false ?
         <>
           <p>Email :<strong> { user?.name }</strong></p>
-          <button className={user.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+          <button className={role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
           </button>

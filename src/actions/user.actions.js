@@ -8,7 +8,8 @@ export const userActions = {
   verifyPrefetToken,
   choosePassword,
   inviteAccountsPrefet,
-  forgottenPassword
+  forgottenPassword,
+  patchUser
 };
 
 function login(username, password) {
@@ -183,5 +184,28 @@ function forgottenPassword(username) {
   }
   function failure(error) {
     return { type: 'SEND_EMAIL_FAILURE', error };
+  }
+}
+
+function patchUser(compte) {
+  return dispatch => {
+    dispatch(request());
+    userService.patchUser(compte)
+    .then(
+      user => dispatch(success(user)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'PATCH_USER_REQUEST' };
+  }
+  function success(user) {
+    return { type: 'PATCH_USER_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'PATCH_USER_FAILURE', error };
   }
 }
