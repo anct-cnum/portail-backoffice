@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 import FlashMessage from 'react-flash-message';
@@ -10,7 +10,6 @@ function MonCompte() {
   const [email, setEmail] = useState({ name: user?.name });
   const error = useSelector(state => state.authentication.user?.user.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
-  console.log('flashMessage:', flashMessage);
 
   const handleForm = event => {
     const { name, value } = event.target;
