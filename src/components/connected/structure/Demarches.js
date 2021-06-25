@@ -15,8 +15,8 @@ function Demarches() {
                 Sélectionner la date d&rsquo;embauche du ou des candidat(s) retenu(s).
               </li>
               <li>
-                Arrêter votre choix sur un ou plusieurs Conseiller(s) numérique(s) France Services
-                en cliquant sur le bouton &quot;Valider cette candidature&quot;,
+                Arrêter votre choix sur un ou plusieurs Conseiller(s) numérique(s) France services
+                en cliquant sur le bouton &quot;Valider cette candidature&quot;.
               </li>
             </ul>
           </div>

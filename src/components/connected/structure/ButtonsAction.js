@@ -15,9 +15,9 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
   const [dateValidee, setDateValidee] = useState(dateRecrutement);
 
-  const toggleModal = boolean => {
+  const toggleModal = visible => {
     let modal = document.getElementById('rf-modal-annuler');
-    if (boolean === true) {
+    if (visible) {
       modal.classList.add('modalOpened');
     } else {
       modal.classList.remove('modalOpened');
