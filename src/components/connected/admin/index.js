@@ -134,9 +134,7 @@ function Admin() {
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />
-            <Route path={`/admin/mon-compte`} component={MonCompte} />
-            {/* A définir pour l'url */}
-            <Route path={`/prefet/mon-compte`} component={MonCompte} />
+            <Route path={`/mon-compte`} component={MonCompte} />
 
             { user.role === 'prefet' &&
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />

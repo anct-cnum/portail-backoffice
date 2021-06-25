@@ -49,8 +49,8 @@ function Header({ connected }) {
                                 <div className="rf-collapse rf-nav--expanded" id="menu-776">
                                   <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
                                     <li>
-                                      {role === 'admin' ? <Link to={'/admin/mon-compte'}>Mon compte</Link> :
-                                        <Link to={'/prefet/mon-compte'}>Mon compte</Link>
+                                      {role === 'admin' ? <Link to={'/mon-compte'}>Mon compte</Link> :
+                                        <Link to={'/mon-compte'}>Mon compte</Link>
                                       }
                                     </li>
                                   </ul>

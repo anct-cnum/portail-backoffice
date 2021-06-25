@@ -10,17 +10,16 @@ function MonCompte() {
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
-
           <p>Email :<strong> { user?.name }</strong></p>
-          <button className="rf-btn" onClick={() => setForm(true)}>
-              Modifier mes informations
-            <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
+          <button className={user.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+              Modifier mon adresse e-mail &ensp;
+            <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
           </button>
         </> :
         <div className="rf-container--fluid">
           <div className="rf-my-3w rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <label className="rf-label">E-mail</label>
-            <input className="rf-input" type="text" id="text-input-text" name="nom" value="" />
+            <input className="rf-input" type="text" id="text-input-text" name="nom" value={user?.name} />
           </div>
           <div className="rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <button onClick={() => setForm(false)} className="rf-btn">Annuler </button>
