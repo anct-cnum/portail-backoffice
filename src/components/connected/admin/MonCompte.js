@@ -7,20 +7,15 @@ function MonCompte() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
-  const [email, setEmail] = useState({ name: user?.name });
+  const [email, setEmail] = useState(user?.name);
   const error = useSelector(state => state.authentication.user?.user.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
 
   const handleForm = event => {
-    const { name, value } = event.target;
-    setEmail({
-
-      [name]: value
-    });
-    console.log('email APRES:', email);
+    setEmail(event.target.value);
   };
   const updateEmail = () => {
-    dispatch(userActions.patchUser({ id: user?._id, name: email.name }));
+    dispatch(userActions.patchUser({ id: user?._id, name: email }));
     setForm(false);
   };
 
@@ -51,7 +46,7 @@ function MonCompte() {
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
-          <p>Email :<strong> { user?.name }</strong></p>
+          <p>Email :<strong> { email }</strong></p>
           <button className={user?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
@@ -60,7 +55,7 @@ function MonCompte() {
         <div className="rf-container--fluid">
           <div className="rf-my-3w rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <label className="rf-label">E-mail</label>
-            <input className="rf-input" type="text" id="text-input-text" name="name" value={user?.name} onChange={handleForm}/>
+            <input className="rf-input" type="text" id="text-input-text" name="name" value={email} onChange={handleForm}/>
           </div>
           <div className="rf-col-lg-3 rf-col-3 rf-col-sm-8">
             <button onClick={() => setForm(false)} className="rf-btn">Annuler </button>
