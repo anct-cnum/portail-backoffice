@@ -8,7 +8,8 @@ export const userService = {
   choosePassword,
   sendForgottenPasswordEmail,
   inviteAccountsPrefet,
-  patchUser
+  patchUser,
+  getUtilisateur
 };
 
 function login(username, password) {
@@ -124,6 +125,15 @@ function patchUser({ id, name }) {
 
 function logout() {
   localStorage.removeItem('user');
+}
+
+function getUtilisateur(_id) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+  let uri = `${apiUrlRoot}/users/connect/${_id}`;
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

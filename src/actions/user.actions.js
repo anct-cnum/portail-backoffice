@@ -9,10 +9,13 @@ export const userActions = {
   choosePassword,
   inviteAccountsPrefet,
   forgottenPassword,
-  patchUser
+  patchUser,
+  getUtilisateur
 };
 
 function login(username, password) {
+  console.log('password:', password);
+  console.log('username:', username);
   return dispatch => {
     dispatch(request({ username }));
 
@@ -207,5 +210,29 @@ function patchUser(compte) {
   }
   function failure(error) {
     return { type: 'PATCH_USER_FAILURE', error };
+  }
+}
+
+
+function getUtilisateur(_id) {
+  return dispatch => {
+    dispatch(request());
+    userService.getUtilisateur(_id)
+    .then(
+      user => dispatch(success(user)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_USER_REQUEST' };
+  }
+  function success(user) {
+    return { type: 'GET_USER_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'GET_USER_FAILURE', error };
   }
 }
