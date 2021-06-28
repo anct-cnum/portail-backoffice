@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.authentication.user?.user);
+  const { _id } = useSelector(state => state.authentication.user?.user);
+  const user = useSelector(state => state.user?.userId);
   const [form, setForm] = useState(false);
-  const [email, setEmail] = useState(user?.name);
   const error = useSelector(state => state.authentication.user?.user.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
+  const userconnect = useSelector(state => state.user?.userId);
+  const [email, setEmail] = useState(userconnect?.name);
+  useEffect(async () => {
+    await dispatch(userActions.getUtilisateur(_id));
+    setEmail(userconnect?.name);
+  }, []);
 
   const handleForm = event => {
     setEmail(event.target.value);
   };
   const updateEmail = () => {
-    dispatch(userActions.patchUser({ id: user?._id, name: email }));
-    setForm(false);
+    dispatch(userActions.patchUser({ id: _id, name: email }));
+    setTimeout(async () => {
+      setForm(false);
+      await dispatch(userActions.getUtilisateur(_id));
+    }, 0);
   };
 
   return (
@@ -46,7 +55,7 @@ function MonCompte() {
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
-          <p>Email :<strong> { email }</strong></p>
+          <p>Email :<strong> { userconnect?.name }</strong></p>
           <button className={user?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>

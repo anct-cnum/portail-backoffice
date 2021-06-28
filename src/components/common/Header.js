@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../actions';
 
-function Header({ connected }) {
-
-  const user = useSelector(state => state.authentication.user?.user);
+function Header(connected) {
+  const dispatch = useDispatch();
+  const connect = useSelector(state => state.authentication?.user?.user);
+  const user = useSelector(state => state?.user?.userId);
   const location = useLocation();
-  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
+  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : connect?.role;
+
+  useEffect(async () => {
+    await dispatch(userActions.getUtilisateur(connect?._id));
+  }, []);
 
   return (
     <header className="rf-header" role="banner">
@@ -56,7 +62,7 @@ function Header({ connected }) {
                               </li>
                             </ul> :
                             <h3 className="rf-tile__title">
-                              <span className="rf-fi-account-fill" /> {user?.name}
+                              <span className="rf-fi-account-fill" /> {connect?.name}
                             </h3>
                           }
                         </span>
