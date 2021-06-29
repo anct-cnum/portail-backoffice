@@ -26,6 +26,7 @@ function MonCompte() {
       setForm(false);
       await dispatch(userActions.getUtilisateur(_id));
     }, 0);
+    dispatch(userActions.getUtilisateur(_id));
   };
 
   return (
