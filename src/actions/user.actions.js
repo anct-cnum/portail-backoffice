@@ -14,8 +14,7 @@ export const userActions = {
 };
 
 function login(username, password) {
-  console.log('password:', password);
-  console.log('username:', username);
+
   return dispatch => {
     dispatch(request({ username }));
 
