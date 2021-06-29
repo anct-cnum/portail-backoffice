@@ -3,7 +3,7 @@ export default function user(state = null, action) {
     case 'PATCH_USER_REQUEST':
       return {
         loading: true,
-        flashMessage: false
+        flashMessage: true
       };
     case 'PATCH_USER_SUCCESS':
       return {

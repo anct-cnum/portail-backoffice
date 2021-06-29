@@ -8,7 +8,7 @@ function MonCompte() {
   const { _id } = useSelector(state => state.authentication.user?.user);
   const user = useSelector(state => state.user?.userId);
   const [form, setForm] = useState(false);
-  const error = useSelector(state => state.authentication.user?.user.patchError);
+  const error = useSelector(state => state?.user?.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
   const userconnect = useSelector(state => state.user?.userId);
   const [email, setEmail] = useState(userconnect?.name);
@@ -45,7 +45,8 @@ function MonCompte() {
                 }
                 { (error !== undefined && error !== false) &&
                 <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  La mise à jour de votre e-mail a échoué, veuillez réessayer plus tard
+                  {/* Message à définir.. */}
+                  Veuillez entrez une autre adresse e-mail car il éxiste déjà dans une autre structure
                 </p>
                 }
               </FlashMessage>
