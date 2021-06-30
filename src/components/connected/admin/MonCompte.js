@@ -45,8 +45,7 @@ function MonCompte() {
                 }
                 { (error !== undefined && error !== false) &&
                 <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  {/* Message à définir.. */}
-                  Veuillez entrez une autre adresse e-mail car il éxiste déjà dans une autre structure
+                  Cet adresse e-mail est déjà utilisée
                 </p>
                 }
               </FlashMessage>

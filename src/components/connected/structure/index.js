@@ -85,7 +85,7 @@ function Structure() {
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
             <Route path={`/structure/exports`} component={Exports} />
-            <Route path={`/structure/mes-informations`} component={MesInformations} />
+            <Route path={`/structure/informations`} component={MesInformations} />
           </div>
         </div>
       </div>
