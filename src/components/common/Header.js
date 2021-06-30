@@ -44,27 +44,25 @@ function Header(connected) {
                     <ul className="rf-shortcuts__list">
                       <li className="rf-shortcuts__item">
                         <span>
-                          {role === 'admin' || role === 'prefet' ?
-                            <ul className="rf-nav-list">
-                              <li className="rf-nav__item">
-                                <button className="rf-sidemenu__btn" aria-expanded="false" aria-controls="menu-776" aria-current="false">
-                                  <h3 className="rf-tile__title">
-                                    <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
-                                  </h3>
-                                </button>
-                                <div className="rf-collapse rf-nav--expanded" id="menu-776">
-                                  <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
-                                    <li>
-                                      <Link to={'/mon-compte'}>Mon compte</Link>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </li>
-                            </ul> :
-                            <h3 className="rf-tile__title">
-                              <span className="rf-fi-account-fill" /> {connect?.name}
-                            </h3>
-                          }
+                          <ul className="rf-nav-list">
+                            <li className="rf-nav__item">
+                              <button className="rf-sidemenu__btn" aria-expanded="false" aria-controls="menu-776" aria-current="false">
+                                <h3 className="rf-tile__title">
+                                  <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
+                                </h3>
+                              </button>
+                              <div className="rf-collapse rf-nav--expanded" id="menu-776">
+                                <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
+                                  <li>
+                                    <Link to={'/mon-compte'}>Mon compte</Link>
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+                          </ul> :
+                          <h3 className="rf-tile__title">
+                            <span className="rf-fi-account-fill" /> {connect?.name}
+                          </h3>
                         </span>
                       </li>
                       <li className="rf-shortcuts__item">
