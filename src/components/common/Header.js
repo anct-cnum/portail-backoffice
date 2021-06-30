@@ -11,8 +11,8 @@ function Header(connected) {
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : connect?.role;
 
-  useEffect(async () => {
-    await dispatch(userActions.getUtilisateur(connect?._id));
+  useEffect(() => {
+    dispatch(userActions.getUser(connect?._id));
   }, []);
 
   return (

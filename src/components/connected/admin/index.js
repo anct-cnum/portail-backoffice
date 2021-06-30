@@ -23,8 +23,8 @@ function Admin() {
   const { search } = useSelector(state => state.search);
   const userconnect = useSelector(state => state.user?.userId);
 
-  useEffect(async () => {
-    dispatch(userActions.getUtilisateur(user?._id));
+  useEffect(() => {
+    dispatch(userActions.getUser(user?._id));
   }, []);
 
   const dates = useSelector(state => state.filterDate);

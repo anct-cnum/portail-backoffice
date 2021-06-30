@@ -12,8 +12,8 @@ function MonCompte() {
   const flashMessage = useSelector(state => state?.user?.flashMessage);
   const userconnect = useSelector(state => state.user?.userId);
   const [email, setEmail] = useState(userconnect?.name);
-  useEffect(async () => {
-    await dispatch(userActions.getUser(_id));
+  useEffect(() => {
+    dispatch(userActions.getUser(_id));
     setEmail(userconnect?.name);
   }, []);
 
@@ -22,9 +22,9 @@ function MonCompte() {
   };
   const updateEmail = () => {
     dispatch(userActions.updateUserEmail({ id: _id, name: email }));
-    setTimeout(async () => {
+    setTimeout(() => {
       setForm(false);
-      await dispatch(userActions.getUser(_id));
+      dispatch(userActions.getUser(_id));
     }, 0);
     dispatch(userActions.getUser(_id));
   };
