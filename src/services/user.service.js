@@ -9,7 +9,7 @@ export const userService = {
   sendForgottenPasswordEmail,
   inviteAccountsPrefet,
   patchUser,
-  getUtilisateur
+  getUser
 };
 
 function login(username, password) {
@@ -127,7 +127,7 @@ function logout() {
   localStorage.removeItem('user');
 }
 
-function getUtilisateur(_id) {
+function getUser(_id) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET'

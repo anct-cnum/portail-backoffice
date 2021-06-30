@@ -10,7 +10,7 @@ export const userActions = {
   inviteAccountsPrefet,
   forgottenPassword,
   patchUser,
-  getUtilisateur
+  getUser
 };
 
 function login(username, password) {
@@ -213,10 +213,10 @@ function patchUser(compte) {
 }
 
 
-function getUtilisateur(_id) {
+function getUser(_id) {
   return dispatch => {
     dispatch(request());
-    userService.getUtilisateur(_id)
+    userService.getUser(_id)
     .then(
       user => dispatch(success(user)),
       error => {
