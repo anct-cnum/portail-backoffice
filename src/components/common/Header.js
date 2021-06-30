@@ -59,10 +59,7 @@ function Header(connected) {
                                 </ul>
                               </div>
                             </li>
-                          </ul> :
-                          <h3 className="rf-tile__title">
-                            <span className="rf-fi-account-fill" /> {connect?.name}
-                          </h3>
+                          </ul>
                         </span>
                       </li>
                       <li className="rf-shortcuts__item">
