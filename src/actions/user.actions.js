@@ -9,7 +9,7 @@ export const userActions = {
   choosePassword,
   inviteAccountsPrefet,
   forgottenPassword,
-  patchUser,
+  updateUserEmail,
   getUser
 };
 
@@ -189,10 +189,10 @@ function forgottenPassword(username) {
   }
 }
 
-function patchUser(compte) {
+function updateUserEmail(compte) {
   return dispatch => {
     dispatch(request());
-    userService.patchUser(compte)
+    userService.updateUserEmail(compte)
     .then(
       user => dispatch(success(user)),
       error => {

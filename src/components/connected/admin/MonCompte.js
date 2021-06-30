@@ -13,7 +13,7 @@ function MonCompte() {
   const userconnect = useSelector(state => state.user?.userId);
   const [email, setEmail] = useState(userconnect?.name);
   useEffect(async () => {
-    await dispatch(userActions.getUtilisateur(_id));
+    await dispatch(userActions.getUser(_id));
     setEmail(userconnect?.name);
   }, []);
 
@@ -21,12 +21,12 @@ function MonCompte() {
     setEmail(event.target.value);
   };
   const updateEmail = () => {
-    dispatch(userActions.patchUser({ id: _id, name: email }));
+    dispatch(userActions.updateUserEmail({ id: _id, name: email }));
     setTimeout(async () => {
       setForm(false);
-      await dispatch(userActions.getUtilisateur(_id));
+      await dispatch(userActions.getUser(_id));
     }, 0);
-    dispatch(userActions.getUtilisateur(_id));
+    dispatch(userActions.getUser(_id));
   };
 
   return (

@@ -8,7 +8,7 @@ export const userService = {
   choosePassword,
   sendForgottenPasswordEmail,
   inviteAccountsPrefet,
-  patchUser,
+  updateUserEmail,
   getUser
 };
 
@@ -111,7 +111,7 @@ function sendForgottenPasswordEmail(username) {
 }
 
 
-function patchUser({ id, name }) {
+function updateUserEmail({ id, name }) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'PATCH',
