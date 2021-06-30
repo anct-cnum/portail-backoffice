@@ -133,7 +133,7 @@ function getUser(_id) {
     method: 'GET',
     headers: authHeader()
   };
-  let uri = `${apiUrlRoot}/users/connect/${_id}`;
+  let uri = `${apiUrlRoot}/users/${_id}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
