@@ -21,7 +21,7 @@ function MonCompte() {
     setEmail(event.target.value);
   };
   const updateEmail = () => {
-    dispatch(userActions.updateUserEmail({ id: _id, name: email }));
+    dispatch(userActions.updateUserEmail({ id: _id, newEmail: email }));
     setTimeout(() => {
       setForm(false);
       dispatch(userActions.getUser(_id));

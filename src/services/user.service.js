@@ -111,12 +111,12 @@ function sendForgottenPasswordEmail(username) {
 }
 
 
-function updateUserEmail({ id, name }) {
+function updateUserEmail(id, newEmail) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
-    body: JSON.stringify({ name: name })
+    body: JSON.stringify({ name: newEmail })
   };
 
   let uri = `${apiUrlRoot}/users/${id}`;
@@ -130,7 +130,8 @@ function logout() {
 function getUser(_id) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'GET'
+    method: 'GET',
+    headers: authHeader()
   };
   let uri = `${apiUrlRoot}/users/connect/${_id}`;
   return fetch(uri, requestOptions).then(handleResponse);
