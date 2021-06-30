@@ -6,15 +6,15 @@ import FlashMessage from 'react-flash-message';
 function MonCompte() {
   const dispatch = useDispatch();
   const { _id } = useSelector(state => state.authentication.user?.user);
-  const user = useSelector(state => state.user?.userId);
+  const userId = useSelector(state => state.user?.userId);
   const [form, setForm] = useState(false);
   const error = useSelector(state => state?.user?.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
-  const userconnect = useSelector(state => state.user?.userId);
-  const [email, setEmail] = useState(userconnect?.name);
+  // const userconnect = useSelector(state => state.user?.userId);
+  const [email, setEmail] = useState(userId?.name);
   useEffect(() => {
     dispatch(userActions.getUser(_id));
-    setEmail(userconnect?.name);
+    setEmail(userId?.name);
   }, []);
 
   const handleForm = event => {
@@ -56,8 +56,8 @@ function MonCompte() {
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
-          <p>Email :<strong> { userconnect?.name }</strong></p>
-          <button className={user?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+          <p>Email :<strong> { userId?.name }</strong></p>
+          <button className={userId?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
           </button>

@@ -1,17 +1,17 @@
 export default function user(state = null, action) {
   switch (action.type) {
-    case 'PATCH_USER_REQUEST':
+    case 'UPDATE_USER_EMAIL_REQUEST':
       return {
         loading: true,
         flashMessage: true
       };
-    case 'PATCH_USER_SUCCESS':
+    case 'UPDATE_USER_EMAIL_SUCCESS':
       return {
         ...state,
         user: action.user,
         flashMessage: true
       };
-    case 'PATCH_USER_FAILURE':
+    case 'UPDATE_USER_EMAIL_FAILURE':
       return {
         patchError: action.error,
         flashMessage: true

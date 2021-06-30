@@ -6,13 +6,13 @@ import { userActions } from '../../actions';
 
 function Header(connected) {
   const dispatch = useDispatch();
-  const connect = useSelector(state => state.authentication?.user?.user);
-  const user = useSelector(state => state?.user?.userId);
+  const user = useSelector(state => state.authentication?.user?.user);
+  const userId = useSelector(state => state?.user?.userId);
   const location = useLocation();
-  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : connect?.role;
+  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
 
   useEffect(() => {
-    dispatch(userActions.getUser(connect?._id));
+    dispatch(userActions.getUser(user?._id));
   }, []);
 
   return (
@@ -48,7 +48,7 @@ function Header(connected) {
                             <li className="rf-nav__item">
                               <button className="rf-sidemenu__btn" aria-expanded="false" aria-controls="menu-776" aria-current="false">
                                 <h3 className="rf-tile__title">
-                                  <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
+                                  <span className="rf-fi-account-fill rf-ml-10v" /> {userId?.name}
                                 </h3>
                               </button>
                               <div className="rf-collapse rf-nav--expanded" id="menu-776">

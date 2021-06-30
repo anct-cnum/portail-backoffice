@@ -202,13 +202,13 @@ function updateUserEmail({ id, newEmail }) {
   };
 
   function request() {
-    return { type: 'PATCH_USER_REQUEST' };
+    return { type: 'UPDATE_USER_EMAIL_REQUEST' };
   }
   function success(user) {
-    return { type: 'PATCH_USER_SUCCESS', user };
+    return { type: 'UPDATE_USER_EMAIL_SUCCESS', user };
   }
   function failure(error) {
-    return { type: 'PATCH_USER_FAILURE', error };
+    return { type: 'UPDATE_USER_EMAIL_FAILURE', error };
   }
 }
 
