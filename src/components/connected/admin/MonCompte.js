@@ -5,7 +5,7 @@ import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
   const dispatch = useDispatch();
-  const { _id } = useSelector(state => state.authentication.user?.user);
+  const { _id, name } = useSelector(state => state.authentication.user?.user);
   const userId = useSelector(state => state.user?.userId);
   const [form, setForm] = useState(false);
   const error = useSelector(state => state?.user?.patchError);
@@ -23,9 +23,11 @@ function MonCompte() {
   const updateEmail = () => {
     dispatch(userActions.updateUserEmail({ id: _id, newEmail: email }));
     setTimeout(() => {
+      // dispatch(userActions.getUser(_id));
       setForm(false);
-      dispatch(userActions.getUser(_id));
-    }, 0);
+      // dispatch(userActions.getUser(_id));
+
+    }, 1000);
     dispatch(userActions.getUser(_id));
   };
 
@@ -56,7 +58,7 @@ function MonCompte() {
       <h2 style={{ marginTop: '0' }}>Mon compte</h2>
       {form === false ?
         <>
-          <p>Email :<strong> { userId?.name }</strong></p>
+          <p>Email :<strong> { name }</strong></p>
           <button className={userId?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>

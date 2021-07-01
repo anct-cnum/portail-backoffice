@@ -48,7 +48,7 @@ function Header(connected) {
                             <li className="rf-nav__item">
                               <button className="rf-sidemenu__btn" aria-expanded="false" aria-controls="menu-776" aria-current="false">
                                 <h3 className="rf-tile__title">
-                                  <span className="rf-fi-account-fill rf-ml-10v" /> {userId?.name}
+                                  <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
                                 </h3>
                               </button>
                               <div className="rf-collapse rf-nav--expanded" id="menu-776">
