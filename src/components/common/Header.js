@@ -53,20 +53,13 @@ function Header({ connected }) {
                                   <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
                                 </h3>
                               </button>
-                              {menu === true ? <div className="rf-collapse--expanded" id="menu-776">
+                              <div className={ menu === true ? 'rf-collapse--expanded' : 'rf-collapse rf-nav--expanded'} id="menu-776">
                                 <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
                                   <li>
                                     <Link to={'/mon-compte'}>Mon compte</Link>
                                   </li>
                                 </ul>
-                              </div> :
-                                <div className="rf-collapse rf-nav--expanded" id="menu-776">
-                                  <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
-                                    <li>
-                                      <Link to={'/mon-compte'}>Mon compte</Link>
-                                    </li>
-                                  </ul>
-                                </div>}
+                              </div>
                             </li>
                           </ul>
                         </span>
