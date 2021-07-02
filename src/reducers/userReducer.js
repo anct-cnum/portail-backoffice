@@ -22,7 +22,6 @@ export default function user(state = null, action) {
         flashMessage: true
       };
     case 'UPDATE_CONFIRME_USER_EMAIL_SUCCESS':
-      console.log('Reducer: SUCCES : ', action.user);
       return {
         ...state,
         userConnected: action.user,
