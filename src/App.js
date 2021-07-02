@@ -34,7 +34,6 @@ function App() {
           <Route path="/dites-nous-en-plus-sur-vous/:token" component={CandidateSondageForm} />
           <Route path="/confirmer-email/:token" component={CandidateSondageForm} />
           <Route path="/confirmation-email/:token" component={EmailConfirmer} />
-          {/* <Route path="/email-confirmer" component={EmailConfirmer} /> */}
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>

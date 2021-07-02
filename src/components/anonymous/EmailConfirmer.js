@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../actions';
 import PropTypes from 'prop-types';
 import Header from '../common/Header';
+import { useHistory } from 'react-router-dom';
 
 function EmailConfirmer({ match }) {
-
+  let history = useHistory();
   const token = match.params.token;
   const dispatch = useDispatch();
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
+  const role = useSelector(state => state?.user?.userConnected?.role);
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
 
@@ -17,20 +19,26 @@ function EmailConfirmer({ match }) {
     if (tokenVerified === true) {
       dispatch(userActions.confirmeUserEmail(token));
     }
-  }, 1000);
+    setTimeout(() => {
+      history.push(`/login?role=${role}`);
+    }, 7000);
+  }, 0);
+
   return (
     <div>
       <Header/>
-      <div className="rf-container rf-mt-3w">
-        <div className="rf-grid-row rf-grid-row--center">
-
+      <div className="">
+        <div className="rf-grid-row rf-grid-row--center rf-mt-3w">
           <div style={{ width: '50%', textAlign: 'center' }}>
             {tokenVerified === true &&
-                  <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                  <div>
+                    <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
                   La confirmation de votre e-mail a été effectuée avec succès
                   &nbsp;
-                    <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                  </p>
+                      <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                    </p>
+                    <h3>Nous allons vous rediriger sur la page de connexion...</h3>
+                  </div>
             }
             {tokenVerified === false &&
                   <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
