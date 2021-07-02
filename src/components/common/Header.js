@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from '../../actions';
+import { useSelector } from 'react-redux';
 
 function Header(connected) {
-  const dispatch = useDispatch();
   const user = useSelector(state => state.authentication?.user?.user);
-  const userId = useSelector(state => state?.user?.userId);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
-
-  useEffect(() => {
-    dispatch(userActions.getUser(user?._id));
-  }, []);
 
   return (
     <header className="rf-header" role="banner">

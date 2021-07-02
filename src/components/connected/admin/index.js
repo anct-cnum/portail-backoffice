@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { searchActions, paginationActions, userActions } from '../../../actions';
+import { searchActions, paginationActions } from '../../../actions';
 import Menu from './Menu';
 import Structures from './Structures';
 import StructureDetails from './StructureDetails';
@@ -21,12 +21,6 @@ function Admin() {
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
-  const userconnect = useSelector(state => state.user?.userId);
-
-  useEffect(() => {
-    dispatch(userActions.getUser(user?._id));
-  }, []);
-
   const dates = useSelector(state => state.filterDate);
 
   const location = useLocation();
@@ -86,7 +80,7 @@ function Admin() {
 
   return (
     <div className="admin">
-      <Header connected email={userconnect?.name} />
+      <Header connected email={user?.name} />
       <div className="rf-m-1w rf-mb-4w rf-ml-4w">
         <h3>Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>
       </div>

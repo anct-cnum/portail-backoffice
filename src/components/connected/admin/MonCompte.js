@@ -5,16 +5,13 @@ import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
   const dispatch = useDispatch();
-  const { _id, name } = useSelector(state => state.authentication.user?.user);
-  const userId = useSelector(state => state.user?.userId);
+  const { _id, name, role } = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
   const error = useSelector(state => state?.user?.patchError);
   const flashMessage = useSelector(state => state?.user?.flashMessage);
-  // const userconnect = useSelector(state => state.user?.userId);
-  const [email, setEmail] = useState(userId?.name);
+  const [email, setEmail] = useState(name);
   useEffect(() => {
     dispatch(userActions.getUser(_id));
-    setEmail(userId?.name);
   }, []);
 
   const handleForm = event => {
@@ -22,13 +19,7 @@ function MonCompte() {
   };
   const updateEmail = () => {
     dispatch(userActions.updateUserEmail({ id: _id, newEmail: email }));
-    setTimeout(() => {
-      // dispatch(userActions.getUser(_id));
-      setForm(false);
-      // dispatch(userActions.getUser(_id));
-
-    }, 1000);
-    dispatch(userActions.getUser(_id));
+    setForm(false);
   };
 
   return (
@@ -59,7 +50,7 @@ function MonCompte() {
       {form === false ?
         <>
           <p>Email :<strong> { name }</strong></p>
-          <button className={userId?.role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+          <button className={role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
             <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
           </button>

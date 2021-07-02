@@ -10,7 +10,7 @@ export const userActions = {
   inviteAccountsPrefet,
   forgottenPassword,
   updateUserEmail,
-  getUser
+  confirmeUserEmail
 };
 
 function login(username, password) {
@@ -211,12 +211,10 @@ function updateUserEmail({ id, newEmail }) {
     return { type: 'UPDATE_USER_EMAIL_FAILURE', error };
   }
 }
-
-
-function getUser(_id) {
+function confirmeUserEmail(token) {
   return dispatch => {
     dispatch(request());
-    userService.getUser(_id)
+    userService.confirmeUserEmail(token)
     .then(
       user => dispatch(success(user)),
       error => {
@@ -226,12 +224,12 @@ function getUser(_id) {
   };
 
   function request() {
-    return { type: 'GET_USER_REQUEST' };
+    return { type: 'UPDATE_CONFIRME_USER_EMAIL_REQUEST' };
   }
   function success(user) {
-    return { type: 'GET_USER_SUCCESS', user };
+    return { type: 'UPDATE_CONFIRME_USER_EMAIL_SUCCESS', user };
   }
   function failure(error) {
-    return { type: 'GET_USER_FAILURE', error };
+    return { type: 'UPDATE_CONFIRME_USER_EMAIL_FAILURE', error };
   }
 }

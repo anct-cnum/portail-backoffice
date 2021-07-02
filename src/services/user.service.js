@@ -9,7 +9,7 @@ export const userService = {
   sendForgottenPasswordEmail,
   inviteAccountsPrefet,
   updateUserEmail,
-  getUser
+  confirmeUserEmail
 };
 
 function login(username, password) {
@@ -123,18 +123,18 @@ function updateUserEmail(id, newEmail) {
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function logout() {
-  localStorage.removeItem('user');
-}
-
-function getUser(_id) {
+function confirmeUserEmail(token) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
+    method: 'PATCH',
+    headers: authHeader(),
   };
-  let uri = `${apiUrlRoot}/users/${_id}`;
+  let uri = `${apiUrlRoot}/confirmation-email/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function logout() {
+  localStorage.removeItem('user');
 }
 
 function handleResponse(response) {

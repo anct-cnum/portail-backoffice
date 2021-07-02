@@ -16,18 +16,22 @@ export default function user(state = null, action) {
         patchError: action.error,
         flashMessage: true
       };
-    case 'GET_USER_REQUEST':
+    case 'UPDATE_CONFIRME_USER_EMAIL_REQUEST':
       return {
-        loading: true
+        loading: true,
+        flashMessage: true
       };
-    case 'GET_USER_SUCCESS':
+    case 'UPDATE_CONFIRME_USER_EMAIL_SUCCESS':
+      console.log('Reducer: SUCCES : ', action.user);
       return {
         ...state,
-        userId: action.user,
+        userConnected: action.user,
+        flashMessage: true
       };
-    case 'GET_USER_FAILURE':
+    case 'UPDATE_CONFIRME_USER_EMAIL_FAILURE':
       return {
-        getError: action.error,
+        patchError: action.error,
+        flashMessage: true
       };
     default:
       return state;

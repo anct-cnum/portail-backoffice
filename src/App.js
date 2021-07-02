@@ -33,7 +33,8 @@ function App() {
           <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <Route path="/dites-nous-en-plus-sur-vous/:token" component={CandidateSondageForm} />
           <Route path="/confirmer-email/:token" component={CandidateSondageForm} />
-          <Route path="/email-confirmer" component={EmailConfirmer} />
+          <Route path="/confirmation-email/:token" component={EmailConfirmer} />
+          {/* <Route path="/email-confirmer" component={EmailConfirmer} /> */}
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
