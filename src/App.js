@@ -9,7 +9,7 @@ import InvitationPrefet from './components/anonymous/createAccount/InvitationPre
 import { useSelector } from 'react-redux';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import CandidateSondageForm from './components/anonymous/CandidateSondageForm';
-import EmailConfirmer from './components/anonymous/EmailConfirmer';
+import ConfirmationEmail from './components/anonymous/ConfirmationEmail';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -33,7 +33,7 @@ function App() {
           <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <Route path="/dites-nous-en-plus-sur-vous/:token" component={CandidateSondageForm} />
           <Route path="/confirmer-email/:token" component={CandidateSondageForm} />
-          <Route path="/confirmation-email/:token" component={EmailConfirmer} />
+          <Route path="/confirmation-email/:token" component={ConfirmationEmail} />
           <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
