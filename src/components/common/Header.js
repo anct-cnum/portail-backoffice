@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function Header(connected) {
+function Header({ connected }) {
   const user = useSelector(state => state.authentication?.user?.user);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
