@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 import FlashMessage from 'react-flash-message';
@@ -8,11 +8,8 @@ function MonCompte() {
   const { _id, name, role } = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
   const error = useSelector(state => state?.user?.patchError);
-  const flashMessage = useSelector(state => state?.user?.flashMessage);
+  const user = useSelector(state => state?.user);
   const [email, setEmail] = useState(name);
-  useEffect(() => {
-    dispatch(userActions.getUser(_id));
-  }, []);
 
   const handleForm = event => {
     setEmail(event.target.value);
@@ -24,7 +21,7 @@ function MonCompte() {
 
   return (
     <div>
-      {flashMessage === true ?
+      {user !== null && user.flashMessage === true ?
         <div className="">
           <div style={{ width: '50%' }}>
             <div>
