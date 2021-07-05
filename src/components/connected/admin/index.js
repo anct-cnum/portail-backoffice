@@ -14,18 +14,16 @@ import Header from '../../common/Header';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBox from '../../common/SearchBox';
 import FilterDateBox from '../../common/FilterDateBox';
+import MonCompte from './MonCompte';
 
 function Admin() {
-
+  const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
-
   const dates = useSelector(state => state.filterDate);
 
   const location = useLocation();
-
-  const dispatch = useDispatch();
 
   const role = user.role;
 
@@ -82,7 +80,7 @@ function Admin() {
 
   return (
     <div className="admin">
-      <Header connected />
+      <Header connected email={user?.name} />
       <div className="rf-m-1w rf-mb-4w rf-ml-4w">
         <h3>Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>
       </div>
@@ -133,6 +131,8 @@ function Admin() {
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />
+            <Route path={`/mon-compte`} component={MonCompte} />
+
             { user.role === 'prefet' &&
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             }

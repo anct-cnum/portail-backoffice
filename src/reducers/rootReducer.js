@@ -14,6 +14,7 @@ import filterDateReducer from './filterDateReducer';
 import pagination from './paginationReducer';
 import exportsReducer from './exportsReducer';
 import sondagesReducer from './sondagesReducer';
+import userReducer from './userReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   pagination: pagination,
   exports: exportsReducer,
   sondages: sondagesReducer,
+  user: userReducer
 });
 
 export default rootReducer;

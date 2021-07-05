@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import FlashMessage from 'react-flash-message';
 import StructureContactForm from './StructureContactForm';
 
-function MonCompte() {
+function MesInformations() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const [form, setForm] = useState(false);
@@ -50,7 +50,7 @@ function MonCompte() {
         </div>
         <div className="rf-col">
           <h2 style={{ marginTop: '0' }}>
-            Mes informations
+            Informations de contact
           </h2>
           { form === false ?
             <div className="">
@@ -60,7 +60,7 @@ function MonCompte() {
               <p>Téléphone : { structure?.structure?.contact.telephone }</p>
               <div className="rf-mt-5w">
                 <button className="rf-btn" onClick={() => setForm(true)}>
-                    Modifier mes informations
+                    Modifier les informations de contact
                   <span style={{ color: 'white' }} className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
                 </button>
               </div>
@@ -77,4 +77,4 @@ function MonCompte() {
   );
 }
 
-export default MonCompte;
+export default MesInformations;

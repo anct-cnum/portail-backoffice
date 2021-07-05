@@ -1,3 +1,5 @@
+import { authHeader } from '../helpers';
+
 export const userService = {
   login,
   logout,
@@ -5,7 +7,9 @@ export const userService = {
   verifyPrefetToken,
   choosePassword,
   sendForgottenPasswordEmail,
-  inviteAccountsPrefet
+  inviteAccountsPrefet,
+  updateUserEmail,
+  confirmeUserEmail
 };
 
 function login(username, password) {
@@ -103,6 +107,29 @@ function sendForgottenPasswordEmail(username) {
   };
 
   let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+
+function updateUserEmail(id, newEmail) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
+    body: JSON.stringify({ name: newEmail })
+  };
+
+  let uri = `${apiUrlRoot}/users/${id}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function confirmeUserEmail(token) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+  };
+  let uri = `${apiUrlRoot}/confirmation-email/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
