@@ -16,18 +16,18 @@ export default function user(state = null, action) {
         patchError: action.error,
         flashMessage: true
       };
-    case 'UPDATE_CONFIRME_USER_EMAIL_REQUEST':
+    case 'CONFIRMATION_UPDATE_USER_EMAIL_REQUEST':
       return {
         loading: true,
         flashMessage: true
       };
-    case 'UPDATE_CONFIRME_USER_EMAIL_SUCCESS':
+    case 'CONFIRMATION_UPDATE_USER_EMAIL_SUCCESS':
       return {
         ...state,
         userConnected: action.user,
         flashMessage: true
       };
-    case 'UPDATE_CONFIRME_USER_EMAIL_FAILURE':
+    case 'CONFIRMATION_UPDATE_USER_EMAIL_FAILURE':
       return {
         patchError: action.error,
         flashMessage: true

@@ -224,12 +224,12 @@ function confirmeUserEmail(token) {
   };
 
   function request() {
-    return { type: 'UPDATE_CONFIRME_USER_EMAIL_REQUEST' };
+    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_REQUEST' };
   }
   function success(user) {
-    return { type: 'UPDATE_CONFIRME_USER_EMAIL_SUCCESS', user };
+    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_SUCCESS', user };
   }
   function failure(error) {
-    return { type: 'UPDATE_CONFIRME_USER_EMAIL_FAILURE', error };
+    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_FAILURE', error };
   }
 }
