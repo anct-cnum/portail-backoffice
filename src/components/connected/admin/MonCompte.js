@@ -33,7 +33,7 @@ function MonCompte() {
               <FlashMessage duration={10000}>
                 { (error === undefined || error === false) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-                  Nous vous avons envoyer un mail à : <strong style={{ color: 'black' }}>{email}</strong> afin que vous le confirmer
+                  Nous vous avons envoyé un mail à : <strong style={{ color: 'black' }}>{email}</strong> pour confirmation
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
