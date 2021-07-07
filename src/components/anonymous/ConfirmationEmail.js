@@ -42,7 +42,7 @@ function EmailConfirmer({ match }) {
             }
             {tokenVerified === false &&
                   <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  La confirmation de votre e-mail a échouer, <br/>
+                  La confirmation de votre e-mail a échoué, <br/>
                   veuillez réessayer plus tard
                   </p>
             }
