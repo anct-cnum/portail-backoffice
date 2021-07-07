@@ -14,18 +14,16 @@ import Header from '../../common/Header';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBox from '../../common/SearchBox';
 import FilterDateBox from '../../common/FilterDateBox';
+import MonCompte from './MonCompte';
 
 function Admin() {
-
+  const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user.user);
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
-
   const dates = useSelector(state => state.filterDate);
 
   const location = useLocation();
-
-  const dispatch = useDispatch();
 
   const role = user.role;
 
@@ -82,16 +80,16 @@ function Admin() {
 
   return (
     <div className="admin">
-      <Header connected />
+      <Header connected email={user?.name} />
       <div className="rf-m-1w rf-mb-4w rf-ml-4w">
         <h3>Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>
       </div>
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-2 rf-col-md-2' : 'rf-col-xs-5 rf-col-sm-2 rf-col-md-2'}`}>
             <Menu />
           </div>
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-8' : 'rf-col-xs-7 rf-col-sm-9'}`}>
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
             { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
               <SearchBox />
             }
@@ -133,6 +131,8 @@ function Admin() {
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />
+            <Route path={`/mon-compte`} component={MonCompte} />
+
             { user.role === 'prefet' &&
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             }

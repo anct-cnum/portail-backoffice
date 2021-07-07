@@ -9,12 +9,18 @@ function Structure({ structure, currentPage }) {
   return (
     <tr>
       <td>{structure.idPG}</td>
-      <td>{structure.siret !== null ? structure.siret : 'non renseigné' }</td>
+      <td> {structure.siret !== null ? structure.siret : 'non renseigné' } </td>
+      <td>
+        {structure.estLabelliseFranceServices === 'OUI' ?
+          <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-mt-5v rf-ml-4w" style={{ height: '50px' }}/> :
+          ''}
+      </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
       {/* eslint-disable-next-line max-len */}
       <td>{structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null ? structure.dernierCoselec?.avisCoselec : 'en attente de passage'}</td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
+      <td> {structure.nbCandidatsRecrutes}</td>
       <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
         to={{
           pathname: `/structure/${structure._id}`,

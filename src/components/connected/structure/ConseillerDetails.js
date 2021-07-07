@@ -73,7 +73,7 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/structure/candidats/${location.currentFilter}`,
+          pathname: `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
@@ -88,7 +88,7 @@ function ConseillerDetails({ location }) {
         </h2>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
-            <div className="rf-col-4">
+            <div className="rf-col-5">
               <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.conseiller?.estDiplomeMedNum &&
@@ -102,7 +102,7 @@ function ConseillerDetails({ location }) {
               <p><strong>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
             </div>
             { conseiller?.conseiller?.pix?.partage &&
-              <div className="rf-col-4 rf-ml-6w rf-mt-1w">
+              <div className="rf-col-5 rf-ml-6w rf-mt-1w">
                 <span className="capitalizeFirstLetter"><strong>Résultats Pix</strong></span>
                 {renderStars(conseiller?.conseiller?.pix?.palier)}
                 <p>

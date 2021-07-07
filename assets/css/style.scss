@@ -124,6 +124,10 @@ $blue-france:#000091;
   color: $blue-france;
 }
 
+.centrerTexte {
+  text-align: center;
+}
+
 .titrage {
   font-size: 56px;
 }
@@ -132,11 +136,19 @@ $blue-france:#000091;
   max-width: 130px !important;
 }
 
-.invalid {
+.invalid, .important {
   color: #e10600;
 }
 .valid {
   color: #008941;
+}
+
+@media (min-width: 1571px) {
+  .btn-rf-col-xl-3 {
+    flex: 0 0 25%;
+    width: 25%;
+    max-width: 25%;
+  }
 }
 /* Modal Gestion */
 .modalOpened {

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Header({ connected }) {
-
-  const user = useSelector(state => state.authentication.user?.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
+  const [menu, setmenu] = useState(false);
+
+  const menuClick = () => {
+    if (menu === false) {
+      setmenu(true);
+    } else {
+      setmenu(false);
+    }
+  };
 
   return (
     <header className="rf-header" role="banner">
@@ -38,9 +46,22 @@ function Header({ connected }) {
                     <ul className="rf-shortcuts__list">
                       <li className="rf-shortcuts__item">
                         <span>
-                          <h3 className="rf-tile__title">
-                            <span className="rf-fi-account-fill" /> {user?.name}
-                          </h3>
+                          <ul className="rf-nav-list">
+                            <li className="rf-nav__item">
+                              <button className="rf-sidemenu__btn" onClick={menuClick} aria-expanded={menu} aria-controls="menu-776" aria-current="false">
+                                <h3 className="rf-tile__title">
+                                  <span className="rf-fi-account-fill rf-ml-10v" /> {user?.name}
+                                </h3>
+                              </button>
+                              <div className={ menu === true ? 'rf-collapse--expanded' : 'rf-collapse rf-nav--expanded'} id="menu-776">
+                                <ul className="rf-menu__list" style={{ paddingInlineStart: '3rem', marginTop: '1rem' }}>
+                                  <li>
+                                    <Link to={'/mon-compte'}>Mon compte</Link>
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
                         </span>
                       </li>
                       <li className="rf-shortcuts__item">

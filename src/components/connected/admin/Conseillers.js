@@ -90,7 +90,7 @@ function Conseillers({ departement, region, search }) {
           </thead>
           <tbody>
             {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
-              return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page} />);
+              return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page}/>);
             })
             }
           </tbody>

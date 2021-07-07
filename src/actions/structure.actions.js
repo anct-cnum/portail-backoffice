@@ -4,6 +4,7 @@ export const structureActions = {
   get,
   getAll,
   resendInscription,
+  patch
 };
 
 function get(id) {
@@ -75,5 +76,29 @@ function resendInscription(id) {
   }
   function failure(error) {
     return { type: 'RESUBMIT_INSCRIPTION_FAILURE', error };
+  }
+}
+
+function patch(info) {
+  return dispatch => {
+    dispatch(request());
+
+    structureService.patch(info)
+    .then(
+      structure => dispatch(success(structure)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'PATCH_STRUCTURE_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'PATCH_STRUCTURE_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'PATCH_STRUCTURE_FAILURE', error };
   }
 }
