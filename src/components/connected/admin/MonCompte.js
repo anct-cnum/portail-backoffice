@@ -5,7 +5,7 @@ import FlashMessage from 'react-flash-message';
 
 function MonCompte() {
   const dispatch = useDispatch();
-  const { _id, name, role } = useSelector(state => state.authentication.user?.user);
+  const { token, name, role } = useSelector(state => state.authentication.user?.user);
   const [form, setForm] = useState(false);
   const error = useSelector(state => state?.user?.patchError);
   const user = useSelector(state => state?.user);
@@ -16,7 +16,7 @@ function MonCompte() {
     setEmail(event.target.value);
   };
   const updateEmail = () => {
-    dispatch(userActions.updateUserEmail({ id: _id, newEmail: email }));
+    dispatch(userActions.updateUserEmail({ token: token, newEmail: email }));
     setForm(false);
     setFlashMessage(true);
     setTimeout(() => {
