@@ -111,7 +111,7 @@ function sendForgottenPasswordEmail(username) {
 }
 
 
-function updateUserEmail(id, newEmail) {
+function updateUserEmail(token, newEmail) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'PATCH',
@@ -119,7 +119,7 @@ function updateUserEmail(id, newEmail) {
     body: JSON.stringify({ name: newEmail })
   };
 
-  let uri = `${apiUrlRoot}/users/validateEmailChange/${id}`;
+  let uri = `${apiUrlRoot}/users/validateEmailChange/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
