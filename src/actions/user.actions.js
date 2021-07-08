@@ -189,10 +189,10 @@ function forgottenPassword(username) {
   }
 }
 
-function updateUserEmail({ token, newEmail }) {
+function updateUserEmail({ id, newEmail }) {
   return dispatch => {
     dispatch(request());
-    userService.updateUserEmail(token, newEmail)
+    userService.updateUserEmail(id, newEmail)
     .then(
       user => dispatch(success(user)),
       error => {
