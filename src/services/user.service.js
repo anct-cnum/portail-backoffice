@@ -119,7 +119,7 @@ function updateUserEmail(id, newEmail) {
     body: JSON.stringify({ name: newEmail })
   };
 
-  let uri = `${apiUrlRoot}/users/${id}`;
+  let uri = `${apiUrlRoot}/users/sendEmailUpdate/${id}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
