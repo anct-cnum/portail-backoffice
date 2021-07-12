@@ -66,8 +66,8 @@ function StructureDetails({ location }) {
       key: 'finalisee'
     },
     {
-      name: 'candidats déjà recrutés',
-      nameSingle: 'candidat déjà recruté',
+      name: 'candidats déjà recrutés (non disponibles)',
+      nameSingle: 'candidat déjà recruté (non disponible)',
       key: 'finalisee_non_disponible'
     }
   ];
