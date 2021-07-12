@@ -44,6 +44,21 @@ export default function authentication(state = {}, action) {
         accountsPrefetInvited: false,
         error: action.error
       };
+    case 'INVITING_STRUCTURE_REQUEST':
+      return {
+        invitingStructure: true
+      };
+    case 'INVITING_STRUCTURE_SUCCESS':
+      return {
+        Structureinvited: true,
+        user: action.user
+      };
+    case 'INVITING_STRUCTURE_FAILURE':
+      return {
+        Structureinvited: false,
+        error: action.error
+      };
+
     case 'CHOOSE_PASSWORD_REQUEST':
       return {
         choosingPassword: true,

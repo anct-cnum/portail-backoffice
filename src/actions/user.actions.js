@@ -6,6 +6,7 @@ export const userActions = {
   logout,
   verifyToken,
   verifyPrefetToken,
+  inviteStructure,
   choosePassword,
   inviteAccountsPrefet,
   forgottenPassword,
@@ -133,6 +134,32 @@ function inviteAccountsPrefet(token, emails, departement) {
   }
   function failure(error) {
     return { type: 'INVITING_PREFET_FAILURE', error };
+  }
+}
+
+function inviteStructure(email) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.inviteStructure(email)
+    .then(
+      () => {
+        dispatch(success());
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'INVITING_STRUCTURE_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'INVITING_STRUCTURE_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'INVITING_STRUCTURE_FAILURE', error };
   }
 }
 
