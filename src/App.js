@@ -68,7 +68,7 @@ function App() {
                         <div className="rf-footer__content rf-mt-3w">
                           <p className="rf-footer__content-desc">
                         Conseiller numérique France Services est un dispositif financé par l&rsquo;&Eacute;tat dans le cadre de France Relance.
-                        Il est piloté par l’Agence nationale de la cohésion des territoires avec l&rsquo;appui de la Banque des Territoires.
+                        Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires avec l&rsquo;appui de la Banque des Territoires.
                           </p>
                         </div>
                         <div>
