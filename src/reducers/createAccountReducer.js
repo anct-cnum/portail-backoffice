@@ -58,7 +58,6 @@ export default function authentication(state = {}, action) {
         Structureinvited: false,
         error: action.error
       };
-
     case 'CHOOSE_PASSWORD_REQUEST':
       return {
         choosingPassword: true,

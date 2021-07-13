@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../../actions';
 
-function InvitationForm({ displayForm }) {
+function InvitationForm({ displayForm, structureId }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
 
@@ -19,7 +19,7 @@ function InvitationForm({ displayForm }) {
   };
   const sendInvitation = () => {
     displayForm(false);
-    dispatch(userActions.inviteStructure(email));
+    dispatch(userActions.inviteStructure(email.email, structureId));
   };
   return (
     <div>
@@ -35,6 +35,7 @@ function InvitationForm({ displayForm }) {
 
 InvitationForm.propTypes = {
   displayForm: PropTypes.func,
+  structureId: PropTypes.string,
 };
 export default InvitationForm;
 

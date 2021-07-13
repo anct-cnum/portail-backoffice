@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions, conseillerActions } from '../../../actions';
+import { structureActions, conseillerActions, userActions } from '../../../actions';
 import dayjs from 'dayjs';
 import FlashMessage from 'react-flash-message';
 import StructureContactForm from './StructureContactForm';
@@ -16,6 +16,9 @@ function MesInformations() {
   useEffect(() => {
     dispatch(structureActions.get());
     dispatch(conseillerActions.getAll({ misesEnRelation: true }));
+    if (structure?.structure?._id) {
+      dispatch(userActions.usersByStructure(structure?.structure?._id));
+    }
   }, []);
 
   return (
@@ -58,12 +61,12 @@ function MesInformations() {
             }
             {display === true &&
               <div style={{ width: '68%' }}>
-                <InvitationForm displayForm={displayForm}/>
+                <InvitationForm displayForm={displayForm} structureId={structure?.structure?._id}/>
               </div>
             }
           </div>
         </div>
-        <div className="rf-col">
+        <div className="rf-col-8">
           <h2 style={{ marginTop: '0' }}>
             Informations de contact
           </h2>
@@ -87,6 +90,18 @@ function MesInformations() {
             </div>
           }
         </div>
+        { !structure?.userError && structure?.users &&
+          <div className="rf-col-4">
+            <h2>Liste des utilisateurs</h2>
+            {structure?.users && structure?.users.map((user, idx) => {
+              return (
+                <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
+                  title={!user.passwordCreated ? 'Compte inactif pour le moment' : ''} >{user.name}</p>
+              );
+            })
+            }
+          </div>
+        }
       </div>
     </div>
   );
