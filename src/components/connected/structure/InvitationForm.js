@@ -18,17 +18,20 @@ function InvitationForm({ displayForm, structureId }) {
     });
   };
   const sendInvitation = () => {
-    displayForm(false);
-    dispatch(userActions.inviteStructure(email.email, structureId));
+    if (email.email !== '' && structureId) {
+      displayForm(false);
+      dispatch(userActions.inviteStructure(email.email, structureId));
+      dispatch(userActions.usersByStructure(structureId));
+    }
   };
   return (
     <div>
       <div className="rf-my-3w">
         <label className="rf-label">Email</label>
-        <input className="rf-input" type="text" id="text-input-text" name="email" onChange={handleForm} />
+        <input className="rf-input" type="email" id="text-input-text" name="email" onChange={handleForm} />
       </div>
       <button onClick={() => displayForm(false)} className="rf-btn">Annuler</button>
-      <button style={{ float: 'right' }} className="rf-btn" onClick={sendInvitation}>Envoyer</button>
+      <button style={{ float: 'right' }} className="rf-btn" onClick={sendInvitation} disabled={!email?.email ? 'disabled' : ''}>Envoyer</button>
     </div>
   );
 }

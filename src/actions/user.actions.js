@@ -144,8 +144,8 @@ function inviteStructure(email, structureId) {
 
     userService.inviteStructure(email, structureId)
     .then(
-      () => {
-        dispatch(success());
+      result => {
+        dispatch(success(result.status));
       },
       error => {
         dispatch(failure(error));
@@ -156,8 +156,8 @@ function inviteStructure(email, structureId) {
   function request() {
     return { type: 'INVITING_STRUCTURE_REQUEST' };
   }
-  function success() {
-    return { type: 'INVITING_STRUCTURE_SUCCESS' };
+  function success(status) {
+    return { type: 'INVITING_STRUCTURE_SUCCESS', status };
   }
   function failure(error) {
     return { type: 'INVITING_STRUCTURE_FAILURE', error };

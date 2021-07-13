@@ -14,6 +14,8 @@ function MesInformations() {
   const [display, displayForm] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
   const userError = useSelector(state => state.user?.userError);
+  const invitationStatus = useSelector(state => state.user?.status);
+  const invitationError = useSelector(state => state.user?.error);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -27,21 +29,26 @@ function MesInformations() {
 
   return (
     <div className="informations">
-      {structure?.flashMessage === true &&
+      {structure?.flashMessage === true || invitationStatus !== undefined || invitationError !== undefined &&
         <div className="">
           <div style={{ width: '55%' }}>
             <div>
               <FlashMessage duration={10000}>
-                { (error === undefined || error === false) &&
+                { ((error === undefined || error === false) && invitationError === undefined) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-                  La mise à jour a été effectuée avec succès
+                  {invitationStatus !== undefined ? invitationStatus : 'La mise à jour a été effectuée avec succès'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
                 }
-                { (error !== undefined && error !== false) &&
+                { error !== undefined && error !== false &&
                 <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
                   La mise à jour a échoué, veuillez réessayer plus tard
+                </p>
+                }
+                { invitationError !== undefined &&
+                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                  {invitationError}
                 </p>
                 }
               </FlashMessage>
@@ -57,6 +64,18 @@ function MesInformations() {
           <p>Date d&apos;inscription : { dayjs(structure?.structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
           <p>Code Postal : { structure?.structure?.codePostal }</p>
           <div className="rf-mt-5w">
+            { !userError && users &&
+              <>
+                <h2>Liste des utilisateurs</h2>
+                {users && users.map((user, idx) => {
+                  return (
+                    <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
+                      title={!user.passwordCreated ? 'Compte inactif pour le moment' : ''} >{user.name}</p>
+                  );
+                })
+                }
+              </>
+            }
             {display === false &&
               <button className="rf-btn" onClick={() => displayForm(true)}>
                 Envoyer une invitation
@@ -94,18 +113,6 @@ function MesInformations() {
             </div>
           }
         </div>
-        { !userError && users &&
-          <div className="rf-col-4">
-            <h2>Liste des utilisateurs</h2>
-            {users && users.map((user, idx) => {
-              return (
-                <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
-                  title={!user.passwordCreated ? 'Compte inactif pour le moment' : ''} >{user.name}</p>
-              );
-            })
-            }
-          </div>
-        }
       </div>
     </div>
   );
