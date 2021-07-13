@@ -20,7 +20,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidature validée'
   }, {
     key: 'finalisee',
-    label: 'Candidat recruté'
+    label: 'Candidat déjà recruté'
   },
   ];
 
@@ -29,7 +29,8 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
-      <td>{statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
+      <td>{miseEnRelation.dejaRecrutee !== undefined ?
+        statutLabel.find(item => item.key === miseEnRelation.dejaRecrutee).label : statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
@@ -41,13 +42,17 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
-          miseEnRelation: miseEnRelation,
-          currentPage: currentPage,
-          currentFilter: currentFilter }}>
+        { miseEnRelation?.dejaRecrutee === 'finalisee' ?
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+          Détails
+          </button> :
+          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+            pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
+            miseEnRelation: miseEnRelation,
+            currentPage: currentPage,
+            currentFilter: currentFilter }}>
             Détails
-        </Link>
+          </Link>}
       </td>
     </tr>
   );
