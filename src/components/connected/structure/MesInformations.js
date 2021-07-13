@@ -9,17 +9,21 @@ import InvitationForm from './InvitationForm';
 function MesInformations() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+  const users = useSelector(state => state.user?.users);
   const [form, setForm] = useState(false);
   const [display, displayForm] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
+  const userError = useSelector(state => state.user?.userError);
 
   useEffect(() => {
     dispatch(structureActions.get());
     dispatch(conseillerActions.getAll({ misesEnRelation: true }));
+  }, []);
+  useEffect(() => {
     if (structure?.structure?._id) {
       dispatch(userActions.usersByStructure(structure?.structure?._id));
     }
-  }, []);
+  }, [structure]);
 
   return (
     <div className="informations">
@@ -90,10 +94,10 @@ function MesInformations() {
             </div>
           }
         </div>
-        { !structure?.userError && structure?.users &&
+        { !userError && users &&
           <div className="rf-col-4">
             <h2>Liste des utilisateurs</h2>
-            {structure?.users && structure?.users.map((user, idx) => {
+            {users && users.map((user, idx) => {
               return (
                 <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
                   title={!user.passwordCreated ? 'Compte inactif pour le moment' : ''} >{user.name}</p>

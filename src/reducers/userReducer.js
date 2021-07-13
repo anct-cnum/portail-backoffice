@@ -32,6 +32,20 @@ export default function user(state = null, action) {
         patchError: action.error,
         flashMessage: true
       };
+    case 'GET_USERS_REQUEST':
+      return {
+        loading: true
+      };
+    case 'GET_USERS_SUCCESS':
+      return {
+        ...state,
+        users: action.users
+      };
+    case 'GET_USERS_FAILURE':
+      return {
+        ...state,
+        userError: action.error
+      };
     default:
       return state;
   }
