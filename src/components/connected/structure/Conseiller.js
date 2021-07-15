@@ -4,7 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
+function Conseiller({ miseEnRelation, dejaRecrutee, currentPage, currentFilter, search }) {
+
+  const verificationIdPG = dejaRecrutee.find(elem => elem === miseEnRelation.conseillerObj.idPG);
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -29,8 +31,8 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
-      <td>{miseEnRelation.dejaRecrutee !== undefined ?
-        statutLabel.find(item => item.key === miseEnRelation.dejaRecrutee).label : statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
+      <td>{Boolean(verificationIdPG) === true ?
+        'Candidat déjà recruté' : statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
       <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
@@ -42,7 +44,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        { miseEnRelation?.dejaRecrutee === 'finalisee' ?
+        { Boolean(verificationIdPG) === true ?
           <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
           Détails
           </button> :
@@ -62,7 +64,8 @@ Conseiller.propTypes = {
   miseEnRelation: PropTypes.object,
   currentPage: PropTypes.number,
   currentFilter: PropTypes.string,
-  search: PropTypes.bool
+  search: PropTypes.bool,
+  dejaRecrutee: PropTypes.array
 };
 
 export default Conseiller;

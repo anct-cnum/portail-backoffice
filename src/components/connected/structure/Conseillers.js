@@ -19,6 +19,7 @@ function Conseillers({ location }) {
 
   const { search } = useSelector(state => state.search);
   const conseillers = useSelector(state => state.conseillers);
+  const dejaRecrutee = useSelector(state => state.conseillers?.items?.dejaRecrutee);
   const stats = useSelector(state => state.stats);
 
   let [page, setPage] = useState(1);
@@ -164,7 +165,8 @@ function Conseillers({ location }) {
               { !conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((conseiller, idx) => {
                 return (
                   conseiller.conseillerObj ?
-                    <Conseiller key={idx} miseEnRelation={conseiller} currentPage={page} currentFilter={filter} search={search !== ''} /> :
+                    <Conseiller key={idx} miseEnRelation={conseiller} dejaRecrutee={dejaRecrutee}
+                      currentPage={page} currentFilter={filter} search={search !== ''} /> :
                     <ConseillerNonMisEnRelation key={idx} conseiller={conseiller} search={search !== ''} update={update} />
                 );
               })
