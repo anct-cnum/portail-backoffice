@@ -6,6 +6,8 @@ export const userActions = {
   logout,
   verifyToken,
   verifyPrefetToken,
+  inviteStructure,
+  usersByStructure,
   choosePassword,
   inviteAccountsPrefet,
   forgottenPassword,
@@ -133,6 +135,62 @@ function inviteAccountsPrefet(token, emails, departement) {
   }
   function failure(error) {
     return { type: 'INVITING_PREFET_FAILURE', error };
+  }
+}
+
+function inviteStructure(email, structureId) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.inviteStructure(email, structureId)
+    .then(
+      result => {
+        dispatch(success(result.status));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'INVITING_STRUCTURE_REQUEST' };
+  }
+  function success(status) {
+    return { type: 'INVITING_STRUCTURE_SUCCESS', status };
+  }
+  function failure(error) {
+    return { type: 'INVITING_STRUCTURE_FAILURE', error };
+  }
+}
+
+function usersByStructure(structureId) {
+  return dispatch => {
+    dispatch(request(structureId));
+
+    userService.usersByStructure(structureId)
+    .then(
+      users => {
+        users.forEach(user => {
+          user.role = user.roles[0];
+          delete user.roles;
+        });
+        dispatch(success(users));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(structureId) {
+    return { type: 'GET_USERS_REQUEST', structureId };
+  }
+  function success(users) {
+    return { type: 'GET_USERS_SUCCESS', users };
+  }
+  function failure(error) {
+    return { type: 'GET_USERS_FAILURE', error };
   }
 }
 
