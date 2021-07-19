@@ -3,8 +3,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import { history } from '../../../helpers';
-import moment from 'moment';
-import 'moment/locale/fr';
 import PropTypes from 'prop-types';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
@@ -14,8 +12,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   // TODO
   const lienCV = 'url avec clé';
-  const nomFichier = 'nom CV';
-  const dateCV = moment(new Date()).format('D MMMM YYYY');
+  const dateCV = dayjs(new Date()).format('DD/MM/YYYY');
 
   const dispatch = useDispatch();
 
@@ -53,7 +50,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
           </div>
         }
       </td> }
-      <td> dd</td>
+      <td>{lienCV ? <a href={lienCV}>{dateCV}</a> : 'Non renseigné'}</td>
       <td className="td-preselection">
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}
