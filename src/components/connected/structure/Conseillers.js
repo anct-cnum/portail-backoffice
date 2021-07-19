@@ -11,7 +11,6 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBox from '../../common/SearchBox';
-
 import './Conseillers.css';
 
 function Conseillers({ location }) {
@@ -157,6 +156,7 @@ function Conseillers({ location }) {
                 <th>Date de candidature</th>
                 <th>Code postal</th>
                 { search === '' && <th>Résultat Pix</th> }
+                <th>Curriculum Vit&aelig;</th>
                 <th style={{ minWidth: search !== '' ? '200px' : '' }}>Action</th>
               </tr>
             </thead>

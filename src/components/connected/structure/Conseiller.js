@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -24,6 +23,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   },
   ];
 
+  // TODO
+  const lienCV = 'url avec clé';
+  const dateCV = dayjs(new Date()).format('DD/MM/YYYY');
+
   return (
     <tr className="conseiller">
       <td>{miseEnRelation.conseillerObj.prenom}</td>
@@ -40,6 +43,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
           </div>
         }
       </td> }
+      <td>{lienCV ? <a href={lienCV}>{dateCV}</a> : 'Non renseigné'}</td>
       <td>
         <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
           pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,

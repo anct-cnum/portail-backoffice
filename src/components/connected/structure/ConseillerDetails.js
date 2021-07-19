@@ -8,12 +8,19 @@ import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
 import FlashMessage from 'react-flash-message';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
   const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
+
+  // TODO
+  const lienCV = 'url avec clé';
+  const dateCV = moment(new Date()).format('D MMMM YYYY');
+
   let { id } = useParams();
 
   const updateStatut = statut => {
@@ -89,6 +96,7 @@ function ConseillerDetails({ location }) {
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-5">
+              <p>Curriculum vit&aelig; : {lienCV ? <> <a href={ lienCV } >Datant du {dateCV}</a></> : 'Non renseigné'} </p>
               <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.conseiller?.estDiplomeMedNum &&
