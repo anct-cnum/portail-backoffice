@@ -50,7 +50,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
           </div>
         }
       </td> }
-      <td>{lienCV ? <a href={lienCV}>{dateCV}</a> : 'Non renseigné'}</td>
+      <td>{lienCV ? <a href={lienCV} title="Cliquez pour voir le CV">{dateCV}</a> : 'Non renseigné'}</td>
       <td className="td-preselection">
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}
