@@ -9,8 +9,11 @@ function EmailConfirmer({ match }) {
   let history = useHistory();
   const token = match.params.token;
   const dispatch = useDispatch();
+  const messageError = useSelector(state => state?.user?.patchError);
+  console.log('messageError:', messageError); // ici boucle infini
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
-  const role = useSelector(state => state?.user?.userConnected?.role);
+  console.log('tokenVerified:', tokenVerified); // ici boucle infini
+  // const role = useSelector(state => state?.user?.userConnected?.role);
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
 
@@ -19,9 +22,9 @@ function EmailConfirmer({ match }) {
     if (tokenVerified === true) {
       dispatch(userActions.confirmeUserEmail(token));
     }
-    setTimeout(() => {
-      history.push(`/login?role=${role}`);
-    }, 7000);
+    // setTimeout(() => {
+    //   history.push(`/login?role=${role}`);
+    // }, 7000);
   }, 0);
 
   return (
