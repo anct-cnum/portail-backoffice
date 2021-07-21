@@ -50,7 +50,7 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
 
 function resendInscription(id) {
   const requestOptions = {
-    method: 'GET',
+    method: 'POST',
     headers: authHeader()
   };
 
