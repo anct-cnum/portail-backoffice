@@ -41,6 +41,11 @@ function StructureDetails({ location }) {
 
   const statutsLabel = [
     {
+      name: 'recrutés par une autre structure',
+      nameSingle: 'recruté par une autre structure',
+      key: 'finalisee_non_disponible'
+    },
+    {
       name: 'candidatures',
       nameSingle: 'candidature',
       key: 'nouvelle'
@@ -64,11 +69,6 @@ function StructureDetails({ location }) {
       name: 'candidats recrutés',
       nameSingle: 'candidat recruté',
       key: 'finalisee'
-    },
-    {
-      name: 'candidats déjà recrutés (non disponibles)',
-      nameSingle: 'candidat déjà recruté (non disponible)',
-      key: 'finalisee_non_disponible'
     }
   ];
 
