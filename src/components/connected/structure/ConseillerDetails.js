@@ -8,7 +8,7 @@ import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
 import FlashMessage from 'react-flash-message';
-import moment from 'moment';
+import Spinner from 'react-loader-spinner';
 import 'moment/locale/fr';
 
 function ConseillerDetails({ location }) {
@@ -16,10 +16,7 @@ function ConseillerDetails({ location }) {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
   const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
-
-  // TODO
-  const lienCV = 'url avec clé';
-  const dateCV = moment(new Date()).format('D MMMM YYYY');
+  const downloading = useSelector(state => state.conseiller?.downloading);
 
   let { id } = useParams();
 
@@ -30,6 +27,10 @@ function ConseillerDetails({ location }) {
   useEffect(() => {
     dispatch(conseillerActions.get(id));
   }, []);
+
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?.conseiller?._id, conseiller?.conseiller));
+  };
 
   const renderStars = palier => {
     switch (palier) {
@@ -93,10 +94,28 @@ function ConseillerDetails({ location }) {
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
+        <div className="spinnerCustom">
+          <Spinner
+            type="Oval"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            visible={downloading === true}
+          />
+        </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-5">
-              <p>Curriculum vit&aelig; : {lienCV ? <> <a href={ lienCV } >Datant du {dateCV}</a></> : 'Non renseigné'} </p>
+              <p>Curriculum vit&aelig; :
+                {conseiller?.conseiller?.cv?.file &&
+                <button className="downloadCVBtn" onClick={downloadCV}>
+                  Datant du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') }
+                </button>
+                }
+                {!conseiller?.conseiller?.cv?.file &&
+                  <>Non renseigné</>
+                }
+              </p>
               <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.conseiller?.estDiplomeMedNum &&

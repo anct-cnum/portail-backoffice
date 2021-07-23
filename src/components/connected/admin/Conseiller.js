@@ -3,8 +3,16 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { conseillerActions } from '../../../actions';
 
 function Conseiller({ conseiller, currentPage }) {
+
+  const dispatch = useDispatch();
+
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
+  };
 
   return (
     <tr className="conseiller">
@@ -18,6 +26,16 @@ function Conseiller({ conseiller, currentPage }) {
             <img src="/logos/logo-pix.svg" alt="logo Pix" style={{ height: '36px' }}/>
             <span className="tooltiptext">A partagé ses résultats Pix</span>
           </div>
+        }
+      </td>
+      <td>
+        {conseiller?.cv?.file &&
+        <button className="downloadCVBtn" onClick={downloadCV}>
+          Du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') }
+        </button>
+        }
+        {!conseiller?.cv?.file &&
+          <>Non renseigné</>
         }
       </td>
       <td>

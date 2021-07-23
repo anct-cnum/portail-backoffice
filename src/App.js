@@ -18,10 +18,11 @@ require('dotenv').config();
 function App() {
 
   const exports = useSelector(state => state.exports);
+  const downloading = useSelector(state => state?.conseiller?.downloading);
 
   return (
     <div className="App">
-      { exports?.loading === true &&
+      { (exports?.loading === true || downloading === true) &&
       <div className="wrapperModal"></div>
       }
       <Router history={history}>

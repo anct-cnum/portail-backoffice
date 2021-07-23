@@ -10,10 +10,6 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
   const structure = useSelector(state => state.structure);
   const conseillerMisEnRelation = useSelector(state => state?.conseiller?.misEnRelation?.misEnRelation);
 
-  // TODO
-  const lienCV = 'url avec clé';
-  const dateCV = dayjs(new Date()).format('DD/MM/YYYY');
-
   const dispatch = useDispatch();
 
   const select = () => {
@@ -34,6 +30,10 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
     }
   }, [conseillerMisEnRelation, conseiller]);
 
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
+  };
+
   return (
     <tr className="conseiller">
       <td>{conseiller.prenom}</td>
@@ -50,7 +50,16 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
           </div>
         }
       </td> }
-      <td>{lienCV ? <a href={lienCV} title="Cliquez pour voir le CV">{dateCV}</a> : 'Non renseigné'}</td>
+      <td>
+        {conseiller?.cv?.file &&
+        <button className="downloadCVBtn" onClick={downloadCV}>
+          Du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') }
+        </button>
+        }
+        {!conseiller?.cv?.file &&
+          <>Non renseigné</>
+        }
+      </td>
       <td className="td-preselection">
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}

@@ -2,8 +2,12 @@ import dayjs from 'dayjs';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { conseillerActions } from '../../../actions';
 
 function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
+
+  const dispatch = useDispatch();
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -23,9 +27,9 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   },
   ];
 
-  // TODO
-  const lienCV = 'url avec clé';
-  const dateCV = dayjs(new Date()).format('DD/MM/YYYY');
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(miseEnRelation.conseillerObj?._id, miseEnRelation.conseillerObj));
+  };
 
   return (
     <tr className="conseiller">
@@ -43,7 +47,16 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
           </div>
         }
       </td> }
-      <td>{lienCV ? <a href={lienCV} title="Cliquez pour voir le CV">{dateCV}</a> : 'Non renseigné'}</td>
+      <td>
+        {miseEnRelation.conseillerObj?.cv?.file &&
+        <button className="downloadCVBtn" onClick={downloadCV}>
+          Du {dayjs(miseEnRelation.conseillerObj?.cv?.date).format('DD/MM/YYYY') }
+        </button>
+        }
+        {!miseEnRelation.conseillerObj?.cv?.file &&
+          <>Non renseigné</>
+        }
+      </td>
       <td>
         <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
           pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
