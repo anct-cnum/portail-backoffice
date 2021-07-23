@@ -22,6 +22,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     key: 'finalisee',
     label: 'Candidat recruté'
   },
+  {
+    key: 'finalisee_non_disponible',
+    label: 'Candidat déjà recruté'
+  }
   ];
 
   return (
@@ -41,13 +45,19 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
-          miseEnRelation: miseEnRelation,
-          currentPage: currentPage,
-          currentFilter: currentFilter }}>
+        { miseEnRelation.statut !== 'finalisee_non_disponible' ?
+
+          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+            pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
+            miseEnRelation: miseEnRelation,
+            currentPage: currentPage,
+            currentFilter: currentFilter }}>
             Détails
-        </Link>
+          </Link> :
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+              Détails
+          </button>
+        }
       </td>
     </tr>
   );
