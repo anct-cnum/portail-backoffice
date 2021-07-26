@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, paginationActions } from '../../../actions';
+import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
@@ -9,12 +10,18 @@ function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
+  const downloading = useSelector(state => state.conseiller?.downloading);
+
   let { id } = useParams();
 
   useEffect(() => {
     dispatch(paginationActions.resetPage(false));
     dispatch(conseillerActions.get(id));
   }, []);
+
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?.conseiller?._id, conseiller?.conseiller));
+  };
 
   const renderStars = palier => {
     switch (palier) {
@@ -63,9 +70,28 @@ function ConseillerDetails({ location }) {
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
+        <div className="spinnerCustom">
+          <Spinner
+            type="Oval"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            visible={downloading === true}
+          />
+        </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-4">
+              <p>Curriculum vit&aelig; :
+                {conseiller?.conseiller?.cv?.file &&
+                <button className="downloadCVBtn" onClick={downloadCV}>
+                  Datant du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') }
+                </button>
+                }
+                {!conseiller?.conseiller?.cv?.file &&
+                  <>Non renseigné</>
+                }
+              </p>
               <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.conseiller?.estDiplomeMedNum &&

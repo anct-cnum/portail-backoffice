@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import { history } from '../../../helpers';
-
 import PropTypes from 'prop-types';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
@@ -31,6 +30,10 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
     }
   }, [conseillerMisEnRelation, conseiller]);
 
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
+  };
+
   return (
     <tr className="conseiller">
       <td>{conseiller.prenom}</td>
@@ -47,6 +50,16 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
           </div>
         }
       </td> }
+      <td>
+        {conseiller?.cv?.file &&
+        <button className="downloadCVBtn" onClick={downloadCV}>
+          Du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') }
+        </button>
+        }
+        {!conseiller?.cv?.file &&
+          <>Non renseigné</>
+        }
+      </td>
       <td className="td-preselection">
         <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
           style={{ boxShadow: 'none' }}
