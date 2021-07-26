@@ -98,7 +98,13 @@ function ConseillerDetails({ location }) {
                   <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
               }
               <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
-              <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
+              <p>Code Postal : {conseiller?.conseiller?.codePostal}</p>
+              <p>
+                  Lieu de résidence :&nbsp;
+                { conseiller?.conseiller?.nomCommune === '' || conseiller?.conseiller?.nomCommune === '.' ?
+                  'Non renseigné' :
+                  conseiller?.conseiller?.nomCommune }
+              </p>
               <p>Mobilité géographique : { conseiller?.conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.conseiller?.distanceMax} Km` }</p>
               <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></strong></p>
