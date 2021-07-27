@@ -4,6 +4,7 @@ import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import { useParams, useLocation } from 'react-router-dom';
+import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
 function Conseillers({ departement, region, search }) {
@@ -12,6 +13,8 @@ function Conseillers({ departement, region, search }) {
   const conseillers = useSelector(state => state.conseillers);
   const user = useSelector(state => state.authentication.user.user);
   const pagination = useSelector(state => state.pagination);
+  const downloading = useSelector(state => state?.conseiller?.downloading);
+
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
 
@@ -71,7 +74,15 @@ function Conseillers({ departement, region, search }) {
 
   return (
     <div className="conseillers">
-
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={downloading === true}
+        />
+      </div>
       { conseillers && conseillers.loading && <span>Chargement...</span>}
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span>}
@@ -85,6 +96,7 @@ function Conseillers({ departement, region, search }) {
               <th>Date de candidature</th>
               <th>Code postal</th>
               <th>Résultat Pix</th>
+              <th>Curriculum Vit&aelig;</th>
               <th></th>
             </tr>
           </thead>

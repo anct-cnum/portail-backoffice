@@ -8,12 +8,16 @@ import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
 import FlashMessage from 'react-flash-message';
+import Spinner from 'react-loader-spinner';
+import 'moment/locale/fr';
 
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller);
   const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
+  const downloading = useSelector(state => state.conseiller?.downloading);
+
   let { id } = useParams();
 
   const updateStatut = statut => {
@@ -23,6 +27,10 @@ function ConseillerDetails({ location }) {
   useEffect(() => {
     dispatch(conseillerActions.get(id));
   }, []);
+
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?.conseiller?._id, conseiller?.conseiller));
+  };
 
   const renderStars = palier => {
     switch (palier) {
@@ -86,16 +94,41 @@ function ConseillerDetails({ location }) {
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
         </h2>
+        <div className="spinnerCustom">
+          <Spinner
+            type="Oval"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            visible={downloading === true}
+          />
+        </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-5">
+              <p>Curriculum vit&aelig; :
+                {conseiller?.conseiller?.cv?.file &&
+                <button className="downloadCVBtn" onClick={downloadCV}>
+                  Datant du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') }
+                </button>
+                }
+                {!conseiller?.conseiller?.cv?.file &&
+                  <>Non renseigné</>
+                }
+              </p>
               <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.conseiller?.estDiplomeMedNum &&
                   <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
               }
               <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
-              <p>Lieu de résidence : {conseiller?.conseiller?.nomCommune}</p>
+              <p>Code Postal : {conseiller?.conseiller?.codePostal}</p>
+              <p>
+                  Lieu de résidence :&nbsp;
+                { conseiller?.conseiller?.nomCommune === '' || conseiller?.conseiller?.nomCommune === '.' ?
+                  'Non renseigné' :
+                  conseiller?.conseiller?.nomCommune }
+              </p>
               <p>Mobilité géographique : { conseiller?.conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.conseiller?.distanceMax} Km` }</p>
               <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></strong></p>

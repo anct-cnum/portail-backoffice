@@ -1,10 +1,13 @@
 import dayjs from 'dayjs';
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { conseillerActions } from '../../../actions';
 
 function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
+
+  const dispatch = useDispatch();
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -28,6 +31,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   }
   ];
 
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(miseEnRelation.conseillerObj?._id, miseEnRelation.conseillerObj));
+  };
+
   return (
     <tr className="conseiller">
       <td>{miseEnRelation.conseillerObj.prenom}</td>
@@ -45,14 +52,20 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
+        {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.statut !== 'finalisee_non_disponible' &&
+          <button className="downloadCVBtn" onClick={downloadCV}>
+            Du {dayjs(miseEnRelation.conseillerObj?.cv?.date).format('DD/MM/YYYY') }
+          </button>
+        }
+      </td>
+      <td>
         { miseEnRelation.statut !== 'finalisee_non_disponible' ?
-
           <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
             currentPage: currentPage,
             currentFilter: currentFilter }}>
-            Détails
+              Détails
           </Link> :
           <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
               Détails
