@@ -17,6 +17,9 @@ function ConseillerDetails({ location }) {
   const conseiller = useSelector(state => state.conseiller);
   const errorUpdateStatus = useSelector(state => state.conseiller?.errorUpdateStatus);
   const downloading = useSelector(state => state.conseiller?.downloading);
+  let dateRecrutementUpdated = useSelector(state => state.conseiller?.dateRecrutementUpdated);
+  let dateRecrutement = useSelector(state => state.conseiller?.miseEnRelation?.dateRecrutement) ?? null;
+  console.log(dateRecrutement);
 
   let { id } = useParams();
 
@@ -78,6 +81,13 @@ function ConseillerDetails({ location }) {
         </p>
       </FlashMessage>
       }
+
+      { dateRecrutementUpdated === true && dateRecrutement !== null &&
+        <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+          La date d&rsquo;embauche au {dayjs(dateRecrutement).format('DD/MM/YYYY')} a bien été enregistrée
+        </p>
+      }
+
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -109,7 +119,7 @@ function ConseillerDetails({ location }) {
               <p>Curriculum vit&aelig; :
                 {conseiller?.conseiller?.cv?.file &&
                 <button className="downloadCVBtn" onClick={downloadCV}>
-                  Datant du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') }
+                  Télécharger le CV (du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') })
                 </button>
                 }
                 {!conseiller?.conseiller?.cv?.file &&
