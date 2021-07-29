@@ -54,13 +54,8 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       <td>
         {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.statut !== 'finalisee_non_disponible' &&
           <button className="downloadCVBtn" onClick={downloadCV}>
-            Du {dayjs(miseEnRelation.conseillerObj?.cv?.date).format('DD/MM/YYYY') }
+            <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
           </button>
-
-        {miseEnRelation.conseillerObj?.cv?.file &&
-        <button className="downloadCVBtn" onClick={downloadCV}>
-          <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
-        </button>
         }
         {!miseEnRelation.conseillerObj?.cv?.file &&
           <></>
