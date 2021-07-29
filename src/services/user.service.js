@@ -5,6 +5,8 @@ export const userService = {
   logout,
   verifyToken,
   verifyPrefetToken,
+  inviteStructure,
+  usersByStructure,
   choosePassword,
   sendForgottenPasswordEmail,
   inviteAccountsPrefet,
@@ -72,6 +74,33 @@ function verifyPrefetToken(token) {
   };
 
   let uri = `${apiUrlRoot}/users/verifyPrefetToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function inviteStructure(email, structureId) {
+
+  const apiUrl = `${process.env.REACT_APP_API}/users/inviteStructure`;
+  const user = { email, structureId };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  };
+
+  return fetch(apiUrl, requestOptions)
+  .then(handleResponse);
+}
+
+function usersByStructure(idStructure) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  let uri = `${apiUrlRoot}/users/listByIdStructure/${idStructure}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 

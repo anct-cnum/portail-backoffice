@@ -29,10 +29,16 @@ export default function conseiller(state = null, action) {
         ...state,
         errorUpdateStatus: action.error
       };
+    case 'UPDATE_DATE_REQUEST':
+      return {
+        ...state,
+        dateRecrutementUpdated: false
+      };
     case 'UPDATE_DATE_SUCCESS':
       return {
         ...state,
-        miseEnRelation: action.miseEnRelation
+        miseEnRelation: action.miseEnRelation,
+        dateRecrutementUpdated: true
       };
     case 'PRESELECTIONNER_CONSEILLER_REQUEST':
       return {
@@ -74,6 +80,30 @@ export default function conseiller(state = null, action) {
       return {
         tokenVerified: false,
         error: action.error
+      };
+    case 'GET_CURRICULUM_VITAE_REQUEST':
+      return {
+        conseiller: state?.conseiller,
+        downloading: true,
+        isDownloaded: false
+      };
+    case 'GET_CURRICULUM_VITAE_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        isDownloaded: action.download,
+        downloading: false,
+      };
+    case 'GET_CURRICULUM_VITAE_FAILURE':
+      return {
+        ...state,
+        downloadError: action.error,
+        isDownloaded: false
+      };
+    case 'RESET_FILE':
+      return {
+        ...state,
+        blob: null,
       };
     default:
       return state;

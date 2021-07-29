@@ -1,5 +1,6 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import { statsActions, searchActions } from '../actions';
+import download from 'downloadjs';
 
 export const conseillerActions = {
   get,
@@ -8,7 +9,9 @@ export const conseillerActions = {
   updateDateRecrutement,
   preSelectionner,
   verifyCandidateToken,
-  verifySondageToken
+  verifySondageToken,
+  getCurriculumVitae,
+  resetFile
 };
 
 function get(id) {
@@ -212,4 +215,30 @@ function verifySondageToken(token) {
   function failure(error) {
     return { type: 'VERIFY_SONDAGE_TOKEN_FAILURE', error };
   }
+}
+
+function getCurriculumVitae(id, candidat) {
+
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getCurriculumVitae(id)
+    .then(
+      data => dispatch(success(data, download(data, candidat?.nom + '_' + candidat?.prenom + '.' + candidat?.cv?.extension))),
+      error => dispatch(failure(error))
+    );
+  };
+  function request() {
+    return { type: 'GET_CURRICULUM_VITAE_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_CURRICULUM_VITAE_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_CURRICULUM_VITAE_FAILURE', error };
+  }
+}
+
+function resetFile() {
+  return { type: 'RESET_FILE' };
 }

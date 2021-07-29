@@ -59,7 +59,7 @@ function popinRecrutee({ statut }) {
                       target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-associations</a>
                   </p>
                   <p>
-                    <strong>Important : le recrutement reste conditionné à la conformité de votre dossier de demande de subvention.</strong>
+                    <strong>Important : l&rsquo;embauche reste conditionnée à la conformité de votre dossier de demande de subvention.</strong>
                   </p>
                 </div>
               </div>

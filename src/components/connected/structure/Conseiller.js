@@ -1,10 +1,13 @@
 import dayjs from 'dayjs';
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { conseillerActions } from '../../../actions';
 
 function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
+
+  const dispatch = useDispatch();
 
   const statutLabel = [{
     key: 'nouvelle',
@@ -22,7 +25,15 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     key: 'finalisee',
     label: 'Candidat recruté'
   },
+  {
+    key: 'finalisee_non_disponible',
+    label: 'Candidat déjà recruté'
+  }
   ];
+
+  const downloadCV = () => {
+    dispatch(conseillerActions.getCurriculumVitae(miseEnRelation.conseillerObj?._id, miseEnRelation.conseillerObj));
+  };
 
   return (
     <tr className="conseiller">
@@ -41,13 +52,28 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
-          miseEnRelation: miseEnRelation,
-          currentPage: currentPage,
-          currentFilter: currentFilter }}>
-            Détails
-        </Link>
+        {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.statut !== 'finalisee_non_disponible' &&
+          <button className="downloadCVBtn" onClick={downloadCV}>
+            <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
+          </button>
+        }
+        {!miseEnRelation.conseillerObj?.cv?.file &&
+          <></>
+        }
+      </td>
+      <td>
+        { miseEnRelation.statut !== 'finalisee_non_disponible' ?
+          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+            pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
+            miseEnRelation: miseEnRelation,
+            currentPage: currentPage,
+            currentFilter: currentFilter }}>
+              Détails
+          </Link> :
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+              Détails
+          </button>
+        }
       </td>
     </tr>
   );

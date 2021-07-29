@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'react-loader-spinner';
 import Conseiller from './Conseiller';
 import ConseillerNonMisEnRelation from './ConseillerNonMisEnRelation';
 import { conseillerActions, statsActions, searchActions } from '../../../actions';
@@ -11,7 +12,6 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBox from '../../common/SearchBox';
-
 import './Conseillers.css';
 
 function Conseillers({ location }) {
@@ -20,6 +20,7 @@ function Conseillers({ location }) {
   const { search } = useSelector(state => state.search);
   const conseillers = useSelector(state => state.conseillers);
   const stats = useSelector(state => state.stats);
+  const downloading = useSelector(state => state?.conseiller?.downloading);
 
   let [page, setPage] = useState(1);
   let savePage = null;
@@ -116,7 +117,6 @@ function Conseillers({ location }) {
 
   return (
     <div className="conseillers">
-
       <ul className="tabs rf-tags-group">
         {tabs.map((tab, idx) => <li key={idx}>
           <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
@@ -147,6 +147,15 @@ function Conseillers({ location }) {
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
         <div className="rf-table fr-table--layout-fixed">
+          <div className="spinnerCustom">
+            <Spinner
+              type="Oval"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              visible={downloading === true}
+            />
+          </div>
           <table className="table-conseillers">
             <thead>
               <tr>
@@ -157,6 +166,7 @@ function Conseillers({ location }) {
                 <th>Date de candidature</th>
                 <th>Code postal</th>
                 { search === '' && <th>Résultat Pix</th> }
+                <th>Curriculum Vit&aelig;</th>
                 <th style={{ minWidth: search !== '' ? '200px' : '' }}>Action</th>
               </tr>
             </thead>

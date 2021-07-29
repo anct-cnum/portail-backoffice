@@ -32,6 +32,34 @@ export default function user(state = null, action) {
         patchError: action.error,
         flashMessage: true
       };
+    case 'INVITING_STRUCTURE_REQUEST':
+      return {
+        invitingStructure: true
+      };
+    case 'INVITING_STRUCTURE_SUCCESS':
+      return {
+        structureinvited: true,
+        status: action.status
+      };
+    case 'INVITING_STRUCTURE_FAILURE':
+      return {
+        structureinvited: false,
+        error: action.error
+      };
+    case 'GET_USERS_REQUEST':
+      return {
+        loading: true
+      };
+    case 'GET_USERS_SUCCESS':
+      return {
+        ...state,
+        users: action.users
+      };
+    case 'GET_USERS_FAILURE':
+      return {
+        ...state,
+        userError: action.error
+      };
     default:
       return state;
   }

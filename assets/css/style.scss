@@ -15,10 +15,11 @@ $blue-france:#000091;
 }
 
 .spinnerCustom {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 3000;
 }
 
 .wrapperModal {
@@ -97,6 +98,10 @@ $blue-france:#000091;
   padding: 0.5rem;
   padding-right: 0;
 }
+/** Couleur d'icone **/
+.rf-fi-edit-line, .rf-fi-mail-line {
+  color: #fff;
+}
 /** style custom **/
 .alignRight {
     text-align: right;
@@ -139,8 +144,25 @@ $blue-france:#000091;
 .invalid, .important {
   color: #e10600;
 }
+
 .valid {
   color: #008941;
+}
+
+.inactif {
+  color: #a9a9a9a9;
+  cursor:pointer;
+}
+
+.downloadCVBtn {
+  font-family: "Marianne",arial,sans-serif !important;
+  text-rendering: optimizeSpeed;
+  background: transparent;
+  color: #383838;
+  cursor: pointer;
+  font-size: 1em;
+  border: none;
+  text-decoration: underline;
 }
 
 @media (min-width: 1571px) {

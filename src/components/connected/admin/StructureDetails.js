@@ -171,7 +171,7 @@ function StructureDetails({ location }) {
               {structure?.structure?.dernierCoselec?.nombreConseillersCoselec}
             </p>
           }
-          { user?.role === 'admin' &&
+          { user?.role === 'admin' && structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
 
