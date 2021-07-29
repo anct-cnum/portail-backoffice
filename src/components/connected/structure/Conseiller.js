@@ -56,6 +56,14 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
           <button className="downloadCVBtn" onClick={downloadCV}>
             Du {dayjs(miseEnRelation.conseillerObj?.cv?.date).format('DD/MM/YYYY') }
           </button>
+
+        {miseEnRelation.conseillerObj?.cv?.file &&
+        <button className="downloadCVBtn" onClick={downloadCV}>
+          <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
+        </button>
+        }
+        {!miseEnRelation.conseillerObj?.cv?.file &&
+          <></>
         }
       </td>
       <td>

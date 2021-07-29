@@ -85,7 +85,7 @@ function ConseillerDetails({ location }) {
               <p>Curriculum vit&aelig; :
                 {conseiller?.conseiller?.cv?.file &&
                 <button className="downloadCVBtn" onClick={downloadCV}>
-                  Datant du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') }
+                  Télécharger le CV (du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') })
                 </button>
                 }
                 {!conseiller?.conseiller?.cv?.file &&

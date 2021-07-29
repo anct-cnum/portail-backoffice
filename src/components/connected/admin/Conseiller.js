@@ -31,11 +31,11 @@ function Conseiller({ conseiller, currentPage }) {
       <td>
         {conseiller?.cv?.file &&
         <button className="downloadCVBtn" onClick={downloadCV}>
-          Du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') }
+          <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
         </button>
         }
         {!conseiller?.cv?.file &&
-          <>Non renseigné</>
+          <></>
         }
       </td>
       <td>
