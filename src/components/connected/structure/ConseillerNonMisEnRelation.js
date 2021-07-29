@@ -6,7 +6,6 @@ import { history } from '../../../helpers';
 import PropTypes from 'prop-types';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
-
   const structure = useSelector(state => state.structure);
   const conseillerMisEnRelation = useSelector(state => state?.conseiller?.misEnRelation?.misEnRelation);
 
@@ -39,7 +38,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
       <td>{conseiller.prenom}</td>
       <td>{conseiller.nom}</td>
       { search && <td>{conseiller.email}</td>}
-      <td>Non mis en relation</td>
+      <td>{conseiller?.finalisee === true ? <> Déjà recruté </> : <> Non mis en relation </>}</td>
       <td>{dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</td>
       <td>{conseiller.codePostal}</td>
       { !search && <td>
@@ -61,11 +60,15 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
         }
       </td>
       <td className="td-preselection">
-        <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
-          style={{ boxShadow: 'none' }}
-          onClick={select} >
+        {conseiller?.finalisee === true ?
+          <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
           Pré sélectionner
-        </button>
+          </button> :
+          <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
+            style={{ boxShadow: 'none' }}
+            onClick={select} >
+          Pré sélectionner
+          </button>}
       </td>
     </tr>
   );

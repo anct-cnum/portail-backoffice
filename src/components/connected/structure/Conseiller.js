@@ -25,6 +25,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     key: 'finalisee',
     label: 'Candidat recruté'
   },
+  {
+    key: 'finalisee_non_disponible',
+    label: 'Candidat déjà recruté'
+  }
   ];
 
   const downloadCV = () => {
@@ -48,23 +52,28 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        {miseEnRelation.conseillerObj?.cv?.file &&
-        <button className="downloadCVBtn" onClick={downloadCV}>
-          <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
-        </button>
+        {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.statut !== 'finalisee_non_disponible' &&
+          <button className="downloadCVBtn" onClick={downloadCV}>
+            <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
+          </button>
         }
         {!miseEnRelation.conseillerObj?.cv?.file &&
           <></>
         }
       </td>
       <td>
-        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
-          pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
-          miseEnRelation: miseEnRelation,
-          currentPage: currentPage,
-          currentFilter: currentFilter }}>
-            Détails
-        </Link>
+        { miseEnRelation.statut !== 'finalisee_non_disponible' ?
+          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+            pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
+            miseEnRelation: miseEnRelation,
+            currentPage: currentPage,
+            currentFilter: currentFilter }}>
+              Détails
+          </Link> :
+          <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+              Détails
+          </button>
+        }
       </td>
     </tr>
   );
