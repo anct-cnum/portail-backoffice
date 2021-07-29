@@ -29,10 +29,16 @@ export default function conseiller(state = null, action) {
         ...state,
         errorUpdateStatus: action.error
       };
+    case 'UPDATE_DATE_REQUEST':
+      return {
+        ...state,
+        dateRecrutementUpdated: false
+      };
     case 'UPDATE_DATE_SUCCESS':
       return {
         ...state,
-        miseEnRelation: action.miseEnRelation
+        miseEnRelation: action.miseEnRelation,
+        dateRecrutementUpdated: true
       };
     case 'PRESELECTIONNER_CONSEILLER_REQUEST':
       return {

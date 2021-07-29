@@ -25,6 +25,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
   };
 
   const updateDateRecrutement = date => {
+    window.scrollTo(0, 0); //permet de remonter pour visualiser le message date embauche enregistrée
     date = moment(date);
     dispatch(conseillerActions.updateDateRecrutement({ id: miseEnRelationId, date }));
   };
