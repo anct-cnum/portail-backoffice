@@ -81,7 +81,7 @@ function ConseillerDetails({ location }) {
       </FlashMessage>
       }
 
-      { dateRecrutementUpdated === true && dateRecrutement !== null &&
+      { dateRecrutementUpdated === true && dateRecrutement !== null && (errorUpdateStatus === undefined || errorUpdateStatus === false) &&
         <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
           La date d&rsquo;embauche au {dayjs(dateRecrutement).format('DD/MM/YYYY')} a bien été enregistrée
         </p>
@@ -115,7 +115,7 @@ function ConseillerDetails({ location }) {
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-5">
-              <p>Curriculum vit&aelig; :
+              <p>Curriculum vit&aelig; :&nbsp;
                 {conseiller?.conseiller?.cv?.file &&
                 <button className="downloadCVBtn" onClick={downloadCV}>
                   Télécharger le CV (du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') })
