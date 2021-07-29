@@ -19,7 +19,6 @@ function ConseillerDetails({ location }) {
   const downloading = useSelector(state => state.conseiller?.downloading);
   let dateRecrutementUpdated = useSelector(state => state.conseiller?.dateRecrutementUpdated);
   let dateRecrutement = useSelector(state => state.conseiller?.miseEnRelation?.dateRecrutement) ?? null;
-  console.log(dateRecrutement);
 
   let { id } = useParams();
 
