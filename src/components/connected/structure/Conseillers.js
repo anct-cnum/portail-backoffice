@@ -142,7 +142,9 @@ function Conseillers({ location }) {
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-        <h2>{`${search !== '' ? 'Résultats de recherche' : 'Liste des mises en relation'}`}</h2>
+      <>
+        {`${search !== '' ? <h2>Résultats de recherche</h2> : ''}`}
+      </>
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
