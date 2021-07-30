@@ -2,6 +2,7 @@ import { statsService } from '../services/stats.service.js';
 
 export const statsActions = {
   getMisesEnRelationStats,
+  getConseillersFinalisee
 };
 
 function getMisesEnRelationStats(id = null) {
@@ -32,5 +33,30 @@ function getMisesEnRelationStats(id = null) {
   }
   function failure(error) {
     return { type: 'GET_MISES_EN_RELATION_STATS_FAILURE', error };
+  }
+}
+
+function getConseillersFinalisee() {
+  return dispatch => {
+    dispatch(request());
+    statsService.getConseillersFinalisee()
+    .then(
+      conseillers => {
+        dispatch(success(conseillers));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(conseillers) {
+    return { type: 'GET_CONSEILLERS_FINALISEE_REQUEST', conseillers };
+  }
+  function success(conseillers) {
+    return { type: 'GET_CONSEILLERS_FINALISEE_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GET_CONSEILLERS_FINALISEE_FAILURE', error };
   }
 }
