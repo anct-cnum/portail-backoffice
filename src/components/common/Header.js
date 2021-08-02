@@ -58,10 +58,10 @@ function Header({ connected }) {
                   <div className="rf-header__tools" style={{ marginBottom: '33px', display: 'flex' }}>
                     <div className="rf-shortcuts">
                       <div className="rf-header rf-mb-2v" style={{ display: 'flex', alignItems: 'center', width: '98%' }}>
-                        <img className="rf-col-2" src="/logos/conseiller-conseillere.svg"
+                        <img className="rf-col-xl-2" src="/logos/conseiller-conseillere.svg"
                           alt="logo conseiller / conseillere de Conseiller Numérique France Services" style={{ height: '32px' }}/>
                         <p>
-                          &nbsp; <strong>{totalConseillers}</strong> conseillers déjà recruté dans le dispositif
+                        &nbsp;<strong>{totalConseillers}</strong> conseillers déjà recruté dans le dispositif
                         </p>
                       </div>
                       <ul className="rf-shortcuts__list">
