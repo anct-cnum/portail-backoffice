@@ -24,6 +24,19 @@ export default function stats(state = initialState, action) {
       return {
         error: action.error
       };
+    case 'GET_CONSEILLERS_FINALISEE_REQUEST':
+      return {
+        loading: true
+      };
+    case 'GET_CONSEILLERS_FINALISEE_SUCCESS':
+      return {
+        ...state,
+        totalConseillers: action.conseillers.conseillerTotalFinalisee
+      };
+    case 'GET_CONSEILLERS_FINALISEE_FAILURE':
+      return {
+        error: action.error
+      };
     default:
       return state;
   }

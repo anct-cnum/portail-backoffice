@@ -12,7 +12,8 @@ function Header({ connected }) {
   }, []);
 
   const user = useSelector(state => state.authentication?.user?.user);
-  const totalConseillers = useSelector(state => state?.totalConseillers?.totalConseillers);
+  const totalConseillers = useSelector(state => state?.stats?.totalConseillers);
+  console.log('totalConseillers:', totalConseillers);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
   const [menu, setmenu] = useState(false);
