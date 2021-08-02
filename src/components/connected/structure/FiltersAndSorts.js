@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filtersAndSortsActions, conseillerActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './FiltersAndSorts.css';
 
 function filtersAndSorts({ resetPage }) {
 
@@ -62,9 +63,9 @@ function filtersAndSorts({ resetPage }) {
         <div className="rf-col-n" >
           <div className="rf-form-group" style={{ float: 'left' }}>
             <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2v rf-co">
-              <div className="rf-mr-3w" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-start' }}>
+              <div className="rf-mr-3w boxPix">
                 <span>
-                  <label style={{ marginRight: '1rem', fontWeight: 'normal' }}>Niveau(x) Pix</label>
+                  <label className="labelPix">Niveau(x) Pix</label>
                 </span>
                 <div className="rf-fieldset__content">
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
@@ -113,9 +114,9 @@ function filtersAndSorts({ resetPage }) {
           </div>
         </div>
         <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-3">
-          <div className="rf-mr-3w" style={{ display: 'flex', alignItems: 'baseline', textAlign: 'center' }}>
+          <div className="rf-mr-3w selectOption">
             <span>
-              <label className="rf-label rf-mr-4v" style={{ fontWeight: 'normal' }} htmlFor="selectDiplome">Diplômé ?</label>
+              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplômé ?</label>
             </span>
             <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
               <option value="">- Tous -</option>

@@ -61,7 +61,7 @@ function Header({ connected }) {
                         <img className="rf-col-xl-2" src="/logos/conseiller-conseillere.svg"
                           alt="logo conseiller / conseillere de Conseiller Numérique France Services" style={{ height: '32px' }}/>
                         <p>
-                        &nbsp;<strong>{totalConseillers}</strong> conseillers déjà recruté dans le dispositif
+                        &nbsp;<strong>{totalConseillers}</strong> conseillers déjà recrutés dans le dispositif
                         </p>
                       </div>
                       <ul className="rf-shortcuts__list">
