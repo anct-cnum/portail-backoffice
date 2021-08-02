@@ -57,88 +57,89 @@ function filtersAndSorts({ resetPage }) {
   };
 
   return (
-    <div className="rf-grid-row rf-grid-row--left">
-      <div className="rf-col-n" >
-        <div className="rf-form-group" style={{ float: 'left' }}>
-          <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2v rf-co">
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-start' }}>
-              <span>
-                <label style={{ marginRight: '1rem', fontWeight: 'normal' }}>Niveau(x) Pix</label>
-              </span>
-              <div className="rf-fieldset__content">
-                <div className="rf-checkbox-group rf-checkbox-group--sm">
-                  <input
-                    type="checkbox"
-                    id="pix-level-1"
-                    name="pix-level-1"
-                    checked={filtersAndSorts?.pix?.includes(1)}
-                    onChange={changePix}
-                  />
-                  <label className="rf-label" htmlFor="pix-level-1">
-                    <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i></span>
-                  </label>
-                </div>
-                <div className="rf-checkbox-group rf-checkbox-group--sm">
-                  <input
-                    type="checkbox"
-                    id="pix-level-2"
-                    name="pix-level-2"
-                    checked={filtersAndSorts?.pix?.includes(2)}
-                    onChange={changePix}
-                  />
-                  <label className="rf-label" htmlFor="pix-level-2">
-                    <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i><i className="ri-star-fill"></i></span>
-                  </label>
-                </div>
-                <div className="rf-checkbox-group rf-checkbox-group--sm">
-                  <input
-                    type="checkbox"
-                    id="pix-level-3"
-                    name="pix-level-3"
-                    checked={filtersAndSorts?.pix?.includes(3)}
-                    onChange={changePix}
-                  />
-                  <label className="rf-label" htmlFor="pix-level-3">
-                    <span style={{ verticalAlign: 'sub' }}>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                      <i className="ri-star-fill"></i>
-                    </span>
-                  </label>
+    <div>
+      <div className="rf-grid-row rf-grid-row--left">
+        <div className="rf-col-n" >
+          <div className="rf-form-group" style={{ float: 'left' }}>
+            <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2v rf-co">
+              <div className="rf-mr-3w" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-start' }}>
+                <span>
+                  <label style={{ marginRight: '1rem', fontWeight: 'normal' }}>Niveau(x) Pix</label>
+                </span>
+                <div className="rf-fieldset__content">
+                  <div className="rf-checkbox-group rf-checkbox-group--sm">
+                    <input
+                      type="checkbox"
+                      id="pix-level-1"
+                      name="pix-level-1"
+                      checked={filtersAndSorts?.pix?.includes(1)}
+                      onChange={changePix}
+                    />
+                    <label className="rf-label" htmlFor="pix-level-1">
+                      <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i></span>
+                    </label>
+                  </div>
+                  <div className="rf-checkbox-group rf-checkbox-group--sm">
+                    <input
+                      type="checkbox"
+                      id="pix-level-2"
+                      name="pix-level-2"
+                      checked={filtersAndSorts?.pix?.includes(2)}
+                      onChange={changePix}
+                    />
+                    <label className="rf-label" htmlFor="pix-level-2">
+                      <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i><i className="ri-star-fill"></i></span>
+                    </label>
+                  </div>
+                  <div className="rf-checkbox-group rf-checkbox-group--sm">
+                    <input
+                      type="checkbox"
+                      id="pix-level-3"
+                      name="pix-level-3"
+                      checked={filtersAndSorts?.pix?.includes(3)}
+                      onChange={changePix}
+                    />
+                    <label className="rf-label" htmlFor="pix-level-3">
+                      <span style={{ verticalAlign: 'sub' }}>
+                        <i className="ri-star-fill"></i>
+                        <i className="ri-star-fill"></i>
+                        <i className="ri-star-fill"></i>
+                      </span>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-          </fieldset>
+            </fieldset>
+          </div>
         </div>
-      </div>
-      <div className="rf-col-sm-3">
-        <div className="rf-ml-3w" style={{ display: 'flex', alignItems: 'baseline', textAlign: 'center' }}>
-          <span>
-            <label className="rf-label rf-mr-4v" style={{ fontWeight: 'normal' }} htmlFor="selectDiplome">Diplômé ?</label>
-          </span>
-          <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
-            <option value="">- Tous -</option>
-            <option value="true">Oui</option>
-            <option value="false">Non</option>
-          </select>
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-3">
+          <div className="rf-mr-3w" style={{ display: 'flex', alignItems: 'baseline', textAlign: 'center' }}>
+            <span>
+              <label className="rf-label rf-mr-4v" style={{ fontWeight: 'normal' }} htmlFor="selectDiplome">Diplômé ?</label>
+            </span>
+            <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
+              <option value="">- Tous -</option>
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </select>
+          </div>
         </div>
-
-      </div>
-      <div className="fr-col-12 fr-col-lg-4 rf-mt-1v">
-        <div className="rf-grid-row rf-mb-3w rf-ml-3w">
-          {/* Tri */}
-          <div className="rf-toggle rf-toggle--label-left">
-            <input type="checkbox"
-              className="rf-toggle__input"
-              id="orderByDateStart"
-              checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
-              onChange={e => changeSort(e)}/>
-            <label className="rf-toggle__label"
-              htmlFor="orderByDateStart"
-              data-rf-checked-label="Activé"
-              data-rf-unchecked-label="Désactivé">
+        <div className="rf-mt-1v">
+          <div className="rf-grid-row rf-mb-3w">
+            {/* Tri */}
+            <div className="rf-toggle rf-toggle--label-left">
+              <input type="checkbox"
+                className="rf-toggle__input"
+                id="orderByDateStart"
+                checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
+                onChange={e => changeSort(e)}/>
+              <label className="rf-toggle__label"
+                htmlFor="orderByDateStart"
+                data-rf-checked-label="Activé"
+                data-rf-unchecked-label="Désactivé">
               Trier par date possible de démarrage
-            </label>
+              </label>
+            </div>
           </div>
         </div>
       </div>
