@@ -6,17 +6,17 @@ import { statsActions } from '../../actions';
 
 function Header({ connected }) {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(statsActions.getConseillersFinalisee());
-  }, []);
-
   const user = useSelector(state => state.authentication?.user?.user);
   const totalConseillers = useSelector(state => state?.stats?.totalConseillers);
-  console.log('totalConseillers:', totalConseillers);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
   const [menu, setmenu] = useState(false);
+
+  useEffect(() => {
+    if (totalConseillers === undefined) {
+      dispatch(statsActions.getConseillersFinalisee());
+    }
+  }, [totalConseillers]);
 
   const menuClick = () => {
     if (menu === false) {
@@ -61,7 +61,7 @@ function Header({ connected }) {
                         <img className="rf-col-2" src="/logos/conseiller-conseillere.svg"
                           alt="logo conseiller / conseillere de Conseiller Numérique France Services" style={{ height: '32px' }}/>
                         <p>
-                            &nbsp; <strong>{totalConseillers}</strong> conseillers déjà recruté dans le dispositif
+                          &nbsp; <strong>{totalConseillers}</strong> conseillers déjà recruté dans le dispositif
                         </p>
                       </div>
                       <ul className="rf-shortcuts__list">
