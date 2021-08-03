@@ -12,11 +12,13 @@ function Header({ connected }) {
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
   const [menu, setmenu] = useState(false);
 
-  useEffect(() => {
-    if (totalConseillers === undefined) {
-      dispatch(statsActions.getConseillersFinalisee());
-    }
-  }, [totalConseillers]);
+  if (connected) {
+    useEffect(() => {
+      if (totalConseillers === undefined) {
+        dispatch(statsActions.getConseillersFinalisee());
+      }
+    }, [totalConseillers]);
+  }
 
   const menuClick = () => {
     if (menu === false) {
