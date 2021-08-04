@@ -50,8 +50,8 @@ function getConseillersFinalisee() {
     );
   };
 
-  function request(conseillers) {
-    return { type: 'GET_CONSEILLERS_FINALISEE_REQUEST', conseillers };
+  function request() {
+    return { type: 'GET_CONSEILLERS_FINALISEE_REQUEST' };
   }
   function success(conseillers) {
     return { type: 'GET_CONSEILLERS_FINALISEE_SUCCESS', conseillers };

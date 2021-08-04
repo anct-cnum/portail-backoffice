@@ -142,13 +142,13 @@ function Conseillers({ location }) {
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-      <>
-        {`${search !== '' ? <h2>Résultats de recherche</h2> : ''}`}
-      </>
+        <h2>
+          {`${search !== '' ? 'Résultats de recherche' : ''}`}
+        </h2>
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-        <div className="rf-table fr-table--layout-fixed">
+        <div className="rf-table fr-table--layout-fixed" style={{ overflow: 'auto' }}>
           <div className="spinnerCustom">
             <Spinner
               type="Oval"

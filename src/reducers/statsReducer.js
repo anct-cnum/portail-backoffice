@@ -26,6 +26,7 @@ export default function stats(state = initialState, action) {
       };
     case 'GET_CONSEILLERS_FINALISEE_REQUEST':
       return {
+        ...state,
         loading: true
       };
     case 'GET_CONSEILLERS_FINALISEE_SUCCESS':
