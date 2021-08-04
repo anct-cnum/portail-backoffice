@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { statsActions } from '../../actions';
-import './Header.css';
+// import './Header.css';
 
 function Header({ connected }) {
   const dispatch = useDispatch();

@@ -12,7 +12,6 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBox from '../../common/SearchBox';
-import './Conseillers.css';
 
 function Conseillers({ location }) {
   const dispatch = useDispatch();

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filtersAndSortsActions, conseillerActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './FiltersAndSorts.css';
 
 function filtersAndSorts({ resetPage }) {
 
