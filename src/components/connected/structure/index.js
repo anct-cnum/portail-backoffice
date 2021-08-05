@@ -49,38 +49,47 @@ function Structure() {
     <div className="structure rf-pb-md-3w">
       { crisp() }
       <Header connected />
-      <div className="rf-ml-1w rf-my-1w rf-py-1w" style={{ textAlign: 'center' }}>
-        <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--center">
-          <div className="rf-grid-row">
-            <h2>
-              Espace structure — {structure?.structure?.nom}&nbsp;
-              <span className="rf-highlight valignMiddle"/>
-            </h2>
-            {structure?.structure?.estLabelliseFranceServices === 'OUI' ? <>
-              <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-ml-3v rf-mt-4v" style={{ height: '70px' }}/>
-              <p style={{ fontWeight: 'normal', padding: '30px' }}>
+      <div className="rf-container-fluid">
+        <div className="rf-grid-row">
+          <div className="rf-col-xs-1 rf-col-sm-2 rf-col-md-3 rf-col-lg-3 rf-col-xl-2"/>
+          <div className="rf-col-xs-11 rf-col-sm-9 rf-col-md-8 rf-col-lg-8 rf-col-xl-9">
+            <div className="rf-grid-row rf-mt-2w">
+              <h2>
+                {structure?.structure?.nom}&nbsp;
+              </h2>
+              <div className="rf-col" style={{ textAlign: 'right' }}>
+                {structure?.structure?.estLabelliseFranceServices === 'OUI' ? <>
+                  <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-ml-3v rf-mt-4v" style={{ height: '70px' }}/>
+                  <p style={{ fontWeight: 'normal', padding: '30px' }}>
                 SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
-              </p>
-            </> :
-              <p style={{ fontWeight: 'normal', padding: '22px' }}> SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'} </p>}
+                  </p>
+                </> :
+                  <p style={{ fontWeight: 'normal', padding: '22px' }}>
+                SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'} </p>}
+              </div>
+            </div>
+
           </div>
         </div>
-        { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
-          <span style={{ fontWeight: 'normal' }}>
+      </div>
+      <div className="rf-container-fluid rf-mb-5w">
+        <div className="rf-grid-row">
+          <div className={`${menu.hiddenMenu ?
+            'rf-col-xs-1 rf-col-sm-2 rf-col-md-3 rf-col-lg-3 rf-col-xl-2' : 'rf-col-xs-5 rf-col-sm-2 rf-col-md-3 rf-col-lg-2'}`}>
+            <Menu />
+          </div>
+          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-8 rf-col-lg-8 rf-col-xl-9' : 'rf-col-xs-7 rf-col-sm-10'}`}>
+            <div className="rf-mb-3w rf-mt-2w">
+              { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
+          <span style={{ fontWeight: 'normal' }} className="rf-mr-15w">
             <Pluralize
               singular={'conseiller validé'}
               plural={'conseillers validés'}
               count={nombreConseillersCoselec} />
             &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
           </span>
-        }
-      </div>
-      <div className="rf-container-fluid rf-mb-5w">
-        <div className="rf-grid-row">
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-3' : 'rf-col-xs-5 rf-col-sm-3'}`}>
-            <Menu />
-          </div>
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-8' : 'rf-col-xs-7 rf-col-sm-9'}`}>
+              }
+            </div>
             <Route path={`/structure/candidats/:filter`} component={Conseillers} />
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
             <Route path={`/structure/documents`} component={Documents} />

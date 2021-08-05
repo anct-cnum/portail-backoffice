@@ -3,6 +3,7 @@ import { userService } from './user.service';
 
 export const statsService = {
   getMisesEnRelationStats,
+  getConseillersFinalisee
 };
 
 function getMisesEnRelationStats(id) {
@@ -14,6 +15,17 @@ function getMisesEnRelationStats(id) {
   const apiUrlRoot = process.env.REACT_APP_API;
 
   return fetch(`${apiUrlRoot}/structures/${id === null ? userEntityId() : id}/misesEnRelation/stats`, requestOptions).then(handleResponse);
+}
+
+function getConseillersFinalisee() {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  return fetch(`${apiUrlRoot}/stats/conseillers/finalisees`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
