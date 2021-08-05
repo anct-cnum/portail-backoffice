@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { statsActions } from '../../actions';
-// import './Header.css';
 
 function Header({ connected }) {
   const dispatch = useDispatch();
@@ -11,10 +10,9 @@ function Header({ connected }) {
   const totalConseillers = useSelector(state => state?.stats?.totalConseillers);
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
-  console.log('role:', role);
   const [menu, setmenu] = useState(false);
 
-  if (connected && (role !== 'prefet')) {
+  if (connected && (role === 'structure')) {
     useEffect(() => {
       if (totalConseillers === undefined) {
         dispatch(statsActions.getConseillersFinalisee());
@@ -62,7 +60,7 @@ function Header({ connected }) {
                 { connected &&
                   <div className="rf-header__tools headerBottom">
                     <div className="rf-shortcuts">
-                      {role !== 'prefet' &&
+                      {role === 'structure' &&
                         <div className="rf-header rf-mb-2v nombreTotalConseiller">
                           <img className="rf-col-xl-2 logoConseiller" src="/logos/conseiller-conseillere.svg"
                             alt="logo conseiller / conseillere de Conseiller Numérique France Services logoConseiller"/>
@@ -71,7 +69,7 @@ function Header({ connected }) {
                           </p>
                         </div>
                       }
-                      { role === 'prefet' && <div className="positionBloc"/>}
+                      { role !== 'structure' && <div className={role === 'admin' ? 'positionBlocAdmin' : 'positionBloc'} />}
                       <ul className="rf-shortcuts__list">
                         <li className="rf-shortcuts__item">
                           <span>
