@@ -12,7 +12,6 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBox from '../../common/SearchBox';
-import './Conseillers.css';
 
 function Conseillers({ location }) {
   const dispatch = useDispatch();
@@ -142,11 +141,13 @@ function Conseillers({ location }) {
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-        <h2>{`${search !== '' ? 'Résultats de recherche' : 'Liste des mises en relation'}`}</h2>
+        <h2>
+          {`${search !== '' ? 'Résultats de recherche' : ''}`}
+        </h2>
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-        <div className="rf-table fr-table--layout-fixed">
+        <div className="rf-table fr-table--layout-fixed" style={{ overflow: 'auto' }}>
           <div className="spinnerCustom">
             <Spinner
               type="Oval"

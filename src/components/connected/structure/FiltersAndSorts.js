@@ -58,13 +58,14 @@ function filtersAndSorts({ resetPage }) {
 
   return (
     <div>
-      <div className="rf-container-fluid">
-        {/* Filtres */}
-        <div className="rf-grid-row rf-mt-3w">
-          <div className="rf-col-3 rf-mr-4w">
-            <div className="rf-form-group">
-              <fieldset className="rf-fieldset rf-fieldset--inline">
-                <legend className="rf-fieldset__legend">Sélectionner le(s) niveau(x) Pix</legend>
+      <div className="rf-grid-row rf-grid-row--left">
+        <div className="rf-col-n" >
+          <div className="rf-form-group" style={{ float: 'left' }}>
+            <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2v rf-co">
+              <div className="rf-mr-3w boxPix">
+                <span>
+                  <label className="labelPix">Niveau(x) Pix</label>
+                </span>
                 <div className="rf-fieldset__content">
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
                     <input
@@ -107,38 +108,43 @@ function filtersAndSorts({ resetPage }) {
                     </label>
                   </div>
                 </div>
-              </fieldset>
-            </div>
+              </div>
+            </fieldset>
           </div>
-          <div className="rf-col-3 rf-mr-4w">
-            <label className="rf-label" htmlFor="selectDiplome">Diplômé ?</label>
-            <select className="rf-select" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
+        </div>
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-3">
+          <div className="rf-mr-3w selectOption">
+            <span>
+              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplômé ?</label>
+            </span>
+            <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
               <option value="">- Tous -</option>
               <option value="true">Oui</option>
               <option value="false">Non</option>
             </select>
           </div>
         </div>
-      </div>
-      <div className="rf-grid-row rf-mb-3w">
-        {/* Tri */}
-        <div className="rf-toggle rf-toggle--label-left">
-          <input type="checkbox"
-            className="rf-toggle__input"
-            id="orderByDateStart"
-            checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
-            onChange={e => changeSort(e)}/>
-          <label className="rf-toggle__label"
-            htmlFor="orderByDateStart"
-            data-rf-checked-label="Activé"
-            data-rf-unchecked-label="Désactivé">
+        <div className="rf-mt-1v">
+          <div className="rf-grid-row rf-mb-3w">
+            {/* Tri */}
+            <div className="rf-toggle rf-toggle--label-left">
+              <input type="checkbox"
+                className="rf-toggle__input"
+                id="orderByDateStart"
+                checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
+                onChange={e => changeSort(e)}/>
+              <label className="rf-toggle__label"
+                htmlFor="orderByDateStart"
+                data-rf-checked-label="Activé"
+                data-rf-unchecked-label="Désactivé">
               Trier par date possible de démarrage
-          </label>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-
 }
 
 filtersAndSorts.propTypes = {

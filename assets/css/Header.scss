@@ -1,0 +1,30 @@
+.headerBottom {
+  margin-bottom: 33px;
+  display: flex
+}
+
+.nombreTotalConseiller {
+  display: flex;
+  align-items: center;
+  width: 98%
+}
+.logoConseiller{
+  height: 32px;
+  padding-left: 1.5rem
+}
+@media (min-width: 1783px) {
+.positionBloc {
+  padding-top: 2.5rem
+}
+.positionBlocAdmin {
+  padding-top: 2rem
+}
+}
+@media (max-width: 1782px) {
+  .positionBloc {
+    padding-top: 4.5rem
+  }
+  .positionBlocAdmin {
+    padding-top: 3rem
+  }
+  }
