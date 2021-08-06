@@ -28,7 +28,7 @@ function ForgottenPassword({ match = null }) {
     }
   }
   const errorEmail = useSelector(state => state.motDePasseOublie.error);
-  const validEmail = useSelector(state => state.motDePasseOublie.user);
+  const validEmail = useSelector(state => state.motDePasseOublie.response);
 
   /* Etape 2 */
   const [inputsPassword, setInputsPassword] = useState({
