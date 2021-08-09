@@ -6,6 +6,7 @@ import Structures from './Structures';
 import StructureDetails from './StructureDetails';
 import Conseillers from './Conseillers';
 import ConseillerDetails from './ConseillerDetails';
+import CandidatsRecrutes from './CandidatsRecrutes';
 import Documents from './Documents';
 import ExportsCoselec from './ExportsCoselec';
 import Stats from './Stats';
@@ -129,6 +130,13 @@ function Admin() {
                   region={codeRegion}
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
+            <Route path={`/candidats-recrutes`}
+              component={
+                () => <CandidatsRecrutes
+                  departement={role === 'admin' ? departement : null}
+                  region={codeRegion}
+                  search={search} />} />
+
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />
             <Route path={`/mon-compte`} component={MonCompte} />
