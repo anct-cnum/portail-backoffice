@@ -7,7 +7,6 @@ import { userActions } from '../../actions';
 import { Link } from 'react-router-dom';
 
 function ForgottenPassword({ match = null }) {
-
   const dispatch = useDispatch();
   const token = match.params.token;
 
@@ -24,7 +23,7 @@ function ForgottenPassword({ match = null }) {
   function handleSubmitEmail() {
     setSubmittedEmail(true);
     if (username) {
-      dispatch(userActions.forgottenPassword(username));
+      dispatch(userActions.forgottenPassword(username.toLowerCase()));
     }
   }
   const errorEmail = useSelector(state => state.motDePasseOublie.error);
@@ -56,11 +55,11 @@ function ForgottenPassword({ match = null }) {
     setInputsPassword(inputsPassword => ({ ...inputsPassword, [name]: value }));
   }
 
-  const checkComplexity = password => password.length >= 6;
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmitPassword() {
     setSubmittedPassword(true);
-    if (password && confirmPassword === password && checkComplexity(password)) {
+    if (password && confirmPassword === password && checkComplexity.test(password)) {
       dispatch(userActions.choosePassword(token, password, 'renouvellement'));
     }
   }
@@ -112,51 +111,57 @@ function ForgottenPassword({ match = null }) {
               }
 
               { tokenVerified && !passwordChoosen &&
+              <div>
                 <div>
-                  <div>
-                    {errorPassword && <span>{errorPassword.error ? errorPassword.error : 'Une erreur s\'est produite'}</span>}
-                  </div>
-
-                  <div className="rf-my-3w">
-                    <label className="rf-label">Votre adresse email:</label>
-                    <span>{user.name}</span>
-                  </div>
-
-                  <div className="rf-my-3w">
-                    <label className="rf-label">Mot de passe</label>
-                    <input name="password"
-                      type="password"
-                      value={password}
-                      onChange={handleChangePassword}
-                      className={(submittedPassword && !password ? ' is-invalid rf-input' : 'rf-input')} />
-                    {submittedPassword && !password &&
-                      <div className="invalid">Mot de passe requis</div>
-                    }
-                    { password && !checkComplexity(password) &&
-                      <span>Le mot de passe doit contenir au moins 6 caractères.</span>
-                    }
-                  </div>
-
-                  <div className="rf-my-3w">
-                    <label className="rf-label">Mot de passe (confirmation)</label>
-                    <input name="confirmPassword"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={handleChangePassword}
-                      className={(password !== confirmPassword ? ' is-invalid rf-input' : 'rf-input')} />
-                    {password !== confirmPassword &&
-                      <div className="invalid">Mot de passe doit être identique</div>
-                    }
-                  </div>
-
-                  {choosingPassword && <span>Chargement...</span>}
-                  <button className="rf-btn" onClick={handleSubmitPassword}>Valider</button>
+                  {errorPassword && <span>{errorPassword.error ? errorPassword.error : 'Une erreur s\'est produite'}</span>}
                 </div>
+                <span>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)</span>
+
+
+                <div className="rf-my-3w">
+                  <label className="rf-label">Votre adresse email:</label>
+                  <span>{user.name}</span>
+                </div>
+
+                <div className="rf-my-3w">
+                  <label className="rf-label">Mot de passe</label>
+                  <input name="password"
+                    type="password"
+                    value={password}
+                    onChange={handleChangePassword}
+                    className={(submittedPassword && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                  {submittedPassword && !password &&
+                      <div className="invalid">Mot de passe requis</div>
+                  }
+                  { password && !checkComplexity.test(password) &&
+                      <span>Le mot de passe ne correspond pas aux exigences de sécurité.</span>
+                  }
+                </div>
+
+                <div className="rf-my-3w">
+                  <label className="rf-label">Mot de passe (confirmation)</label>
+                  <input name="confirmPassword"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={handleChangePassword}
+                    className={(password !== confirmPassword ? ' is-invalid rf-input' : 'rf-input')} />
+                  {password !== confirmPassword &&
+                      <div className="invalid">Mot de passe doit être identique</div>
+                  }
+                </div>
+
+                {choosingPassword && <span>Chargement...</span>}
+                <button className="rf-btn" onClick={handleSubmitPassword}>Valider</button>
+              </div>
               }
               { passwordChoosen &&
-                <span>Votre mot de passe a été renouvelé avec succès. <Link to={`/login?role=${user?.role}`}>Vous pouvez vous connecter</Link>.</span>
+                <>
+                  <span>
+                    Votre mot de passe a été renouvelé avec succès <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle', color: 'green' }}></i>
+                  </span><br/><br/>
+                  <span><Link to={`/login?role=${user?.role}`}>Vous pouvez vous connecter</Link></span>
+                </>
               }
-
               <div className="rf-col-3"></div>
             </div>
           }
