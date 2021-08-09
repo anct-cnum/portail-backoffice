@@ -33,7 +33,7 @@ function StructureContactForm({ setForm }) {
         <label className="rf-label rf-mt-5v">Fonction</label>
         <input className="rf-input" type="text" id="text-input-text" name="fonction" value={infoForm?.fonction} onChange={handleForm} />
         <label className="rf-label rf-mt-5v">Téléphone</label>
-        <input className="rf-input" type="text" id="text-input-text" name="telephone" value={infoForm?.telephone} onChange={handleForm}/>
+        <input className="rf-input" type="text" id="text-input-text" name="telephone" maxLength="20" value={infoForm?.telephone} onChange={handleForm}/>
       </div>
       <button onClick={() => setForm(false)} className="rf-btn">Annuler</button>
       <button style={{ float: 'right' }} className="rf-btn" onClick={updateInfo}>Valider</button>
