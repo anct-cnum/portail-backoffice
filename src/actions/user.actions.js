@@ -64,10 +64,10 @@ function verifyToken(token) {
 
     userService.verifyToken(token)
     .then(
-      user => {
-        user.role = user.roles[0];
-        delete user.roles;
-        dispatch(success(user));
+      resultVerifyToken => {
+        resultVerifyToken.role = resultVerifyToken.roles[0];
+        delete resultVerifyToken.roles;
+        dispatch(success(resultVerifyToken));
       },
       error => {
         dispatch(failure(error));
@@ -78,8 +78,8 @@ function verifyToken(token) {
   function request(token) {
     return { type: 'VERIFY_TOKEN_REQUEST', token };
   }
-  function success(user) {
-    return { type: 'VERIFY_TOKEN_SUCCESS', user };
+  function success(resultVerifyToken) {
+    return { type: 'VERIFY_TOKEN_SUCCESS', resultVerifyToken };
   }
   function failure(error) {
     return { type: 'VERIFY_TOKEN_FAILURE', error };
@@ -214,8 +214,8 @@ function choosePassword(token, password, typeEmail) {
   function request(token) {
     return { type: 'CHOOSE_PASSWORD_REQUEST', token };
   }
-  function success(user) {
-    return { type: 'CHOOSE_PASSWORD_SUCCESS', user };
+  function success(resultChoosePassword) {
+    return { type: 'CHOOSE_PASSWORD_SUCCESS', resultChoosePassword };
   }
   function failure(error) {
     return { type: 'CHOOSE_PASSWORD_FAILURE', error };
@@ -227,8 +227,8 @@ function forgottenPassword(username) {
     dispatch(request({ username }));
     userService.sendForgottenPasswordEmail(username)
     .then(
-      user => {
-        dispatch(success(user));
+      response => {
+        dispatch(success(response));
       },
       error => {
         dispatch(failure(error));
@@ -239,8 +239,8 @@ function forgottenPassword(username) {
   function request(user) {
     return { type: 'SEND_EMAIL_REQUEST', user };
   }
-  function success(user) {
-    return { type: 'SEND_EMAIL_SUCCESS', user };
+  function success(response) {
+    return { type: 'SEND_EMAIL_SUCCESS', response };
   }
   function failure(error) {
     return { type: 'SEND_EMAIL_FAILURE', error };
