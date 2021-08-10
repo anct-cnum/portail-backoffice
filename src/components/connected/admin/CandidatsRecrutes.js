@@ -12,7 +12,6 @@ function CandidatsRecrutes({ departement, region, search }) {
 
   const candidatsRecrutes = useSelector(state => state.conseillers);
   const pagination = useSelector(state => state.pagination);
-  const downloading = useSelector(state => state?.conseiller?.downloading);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -72,15 +71,6 @@ function CandidatsRecrutes({ departement, region, search }) {
 
   return (
     <div className="candidatsRecrutes">
-      <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          visible={downloading === true}
-        />
-      </div>
       { candidatsRecrutes && candidatsRecrutes.loading && <span>Chargement...</span>}
 
       { !candidatsRecrutes.loading && candidatsRecrutes.items && candidatsRecrutes.items.data.length === 0 &&
