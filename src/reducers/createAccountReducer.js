@@ -50,10 +50,9 @@ export default function authentication(state = {}, action) {
         user: action.user
       };
     case 'CHOOSE_PASSWORD_SUCCESS':
-      console.log('action.user CHOOSE PASSWORD:', action.user);
       return {
         passwordChoosen: true,
-        resultChoosePassword: action.user
+        resultChoosePassword: action.resultChoosePassword
       };
     case 'CHOOSE_PASSWORD_FAILURE':
       return {

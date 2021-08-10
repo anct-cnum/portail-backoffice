@@ -18,7 +18,8 @@ function ChoosePassword({ match }) {
   const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
-  const user = useSelector(state => state.createAccount.user);
+  const resultVerifyToken = useSelector(state => state.createAccount.resultVerifyToken);
+  const resultChoosePassword = useSelector(state => state.createAccount.resultChoosePassword);
   const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
   const passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
   const error = useSelector(state => state.createAccount.error);
@@ -68,7 +69,7 @@ function ChoosePassword({ match }) {
 
                 <div className="rf-my-3w">
                   <label className="rf-label">Votre adresse email:</label>
-                  <span>{user.name}</span>
+                  <span>{resultVerifyToken.name}</span>
                 </div>
 
                 <div className="rf-my-3w">
@@ -104,7 +105,7 @@ function ChoosePassword({ match }) {
             }
 
             { passwordChoosen &&
-              <span>Votre compte a été créé avec succès. <Link to={`/login?role=${user?.role}`}>Vous pouvez vous connecter</Link>.</span>
+              <span>Votre compte a été créé avec succès. <Link to={`/login?role=${resultChoosePassword?.role}`}>Vous pouvez vous connecter</Link>.</span>
             }
 
             <div className="rf-col-3"></div>

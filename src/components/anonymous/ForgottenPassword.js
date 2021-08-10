@@ -39,6 +39,7 @@ function ForgottenPassword({ match = null }) {
   const { password, confirmPassword } = inputsPassword;
 
   const resultVerifyToken = useSelector(state => state.createAccount.resultVerifyToken);
+  const resultChoosePassword = useSelector(state => state.createAccount.resultChoosePassword);
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
 
@@ -159,7 +160,7 @@ function ForgottenPassword({ match = null }) {
                   <span>
                     Votre mot de passe a été renouvelé avec succès <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle', color: 'green' }}></i>
                   </span><br/><br/>
-                  <span><Link to={`/login?role=${resultVerifyToken?.role}`}>Vous pouvez vous connecter</Link></span>
+                  <span><Link to={`/login?role=${resultChoosePassword?.role}`}>Vous pouvez vous connecter</Link></span>
                 </>
               }
               <div className="rf-col-3"></div>

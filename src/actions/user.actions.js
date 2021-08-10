@@ -214,8 +214,8 @@ function choosePassword(token, password, typeEmail) {
   function request(token) {
     return { type: 'CHOOSE_PASSWORD_REQUEST', token };
   }
-  function success(user) {
-    return { type: 'CHOOSE_PASSWORD_SUCCESS', user };
+  function success(resultChoosePassword) {
+    return { type: 'CHOOSE_PASSWORD_SUCCESS', resultChoosePassword };
   }
   function failure(error) {
     return { type: 'CHOOSE_PASSWORD_FAILURE', error };
