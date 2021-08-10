@@ -32,12 +32,12 @@ function ChoosePassword({ match }) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
-
-  const checkComplexity = password => password.length >= 6;
+  //Sécurité mot de passe :  Au moins 8 caratères (moins de 200) ayant au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmit() {
     setSubmitted(true);
-    if (password && confirmPassword === password && checkComplexity(password)) {
+    if (password && confirmPassword === password && checkComplexity.test(password)) {
       dispatch(userActions.choosePassword(token, password, 'bienvenue'));
     }
   }
@@ -64,6 +64,7 @@ function ChoosePassword({ match }) {
                 <div>
                   {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
                 </div>
+                <span>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)</span>
 
                 <div className="rf-my-3w">
                   <label className="rf-label">Votre adresse email:</label>
@@ -80,8 +81,8 @@ function ChoosePassword({ match }) {
                   {submitted && !password &&
                     <div className="invalid">Mot de passe requis</div>
                   }
-                  { password && !checkComplexity(password) &&
-                    <span>Le mot de passe doit contenir au moins 6 caractères.</span>
+                  { password && !checkComplexity.test(password) &&
+                    <div className="invalid">Le mot de passe ne correspond pas aux exigences de sécurité.</div>
                   }
                 </div>
 
