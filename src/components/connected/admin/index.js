@@ -91,11 +91,12 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
-            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
+            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') || location.pathname.startsWith('/liste-candidats')) &&
               <SearchBox />
             }
 
-            { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats')) &&
+            { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
+              location.pathname.startsWith('/liste-candidats')) &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion} value={codeRegion === null ? '' : codeRegion}>
                 <option value="">Toute région</option>
@@ -130,12 +131,15 @@ function Admin() {
                   region={codeRegion}
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
-            <Route path={`/candidats-recrutes`}
-              component={
-                () => <CandidatsRecrutes
-                  departement={role === 'admin' ? departement : null}
-                  region={codeRegion}
-                  search={search} />} />
+            { user.role === 'admin' &&
+              <Route path={`/liste-candidats-recrutes`}
+                component={
+                  () => <CandidatsRecrutes
+                    departement={departement}
+                    region={codeRegion}
+                    search={search} />
+                } />
+            }
 
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />

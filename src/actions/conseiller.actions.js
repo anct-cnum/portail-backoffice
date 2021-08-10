@@ -5,13 +5,15 @@ import download from 'downloadjs';
 export const conseillerActions = {
   get,
   getAll,
+  getAllRecrutes,
   updateStatus,
   updateDateRecrutement,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
   getCurriculumVitae,
-  resetFile
+  resetFile,
+  getStructureByIdConseiller
 };
 
 function get(id) {
@@ -64,6 +66,45 @@ function getAll({
       let promise = conseillerService.getAll(departement, region, search, page, isSearch ? '' : filter, sortData, sortOrder, persoFilters);
       promises.push(promise);
     }
+
+    let conseillers = null;
+    Promise.all(promises).then(items => {
+      conseillers = items[0];
+      if (items.length > 1) {
+        conseillers.data = [...items[0].data, ...items[1].data];
+      }
+      dispatch(success(conseillers));
+    }).catch(error => {
+      dispatch(failure(error));
+    });
+  };
+
+  function request() {
+    return { type: 'GETALL_REQUEST' };
+  }
+  function success(conseillers) {
+    return { type: 'GETALL_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GETALL_FAILURE', error };
+  }
+}
+
+function getAllRecrutes({
+  departement = null,
+  region = null,
+  search = '',
+  page = 0,
+  filter,
+  sortData = 'conseillerObj.createdAt',
+  sortOrder = 1,
+  persoFilters }) {
+  return dispatch => {
+    dispatch(request());
+    let promises = [];
+    let isSearch = search.length > 0;
+    let promise = conseillerService.getAllRecrutes(departement, region, search, page, isSearch ? '' : filter, sortData, sortOrder, persoFilters);
+    promises.push(promise);
 
     let conseillers = null;
     Promise.all(promises).then(items => {
@@ -241,4 +282,31 @@ function getCurriculumVitae(id, candidat) {
 
 function resetFile() {
   return { type: 'RESET_FILE' };
+}
+
+
+function getStructureByIdConseiller(id) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getStructureByIdConseiller(id)
+    .then(
+      result => {
+        dispatch(success(result.nomStructure));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STRUCTURE_EMPLOYER_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'GET_STRUCTURE_EMPLOYER_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'GET_STRUCTURE_EMPLOYER_FAILURE', error };
+  }
 }

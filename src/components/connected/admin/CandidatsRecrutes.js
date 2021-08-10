@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Conseiller from './Conseiller';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
+import CandidatRecrute from './CandidatRecrute';
 
 function CandidatsRecrutes({ departement, region, search }) {
   const dispatch = useDispatch();
 
   const candidatsRecrutes = useSelector(state => state.conseillers);
-  const user = useSelector(state => state.authentication.user.user);
   const pagination = useSelector(state => state.pagination);
   const downloading = useSelector(state => state?.conseiller?.downloading);
 
@@ -21,10 +20,7 @@ function CandidatsRecrutes({ departement, region, search }) {
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   let { filter } = useParams();
-
-  if (user.role !== 'admin') {
-    region = user.region ? user.region : null;
-  }
+  const persoFilters = { recrutes: 'RECRUTE' };
 
   const navigate = page => {
     setPage(page);
@@ -34,11 +30,11 @@ function CandidatsRecrutes({ departement, region, search }) {
       search,
       misesEnRelation: false,
       page: candidatsRecrutes.items ? (page - 1) * candidatsRecrutes.items.limit : 0,
-      filter: filter
+      filter: filter,
+      persoFilters
     })
     );
   };
-
 
   useEffect(() => {
     if (candidatsRecrutes.items) {
@@ -53,7 +49,8 @@ function CandidatsRecrutes({ departement, region, search }) {
         navigate(page);
       }
     } else {
-      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter }));
+      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter,
+        persoFilters }));
     }
   };
 
@@ -86,7 +83,9 @@ function CandidatsRecrutes({ departement, region, search }) {
       </div>
       { candidatsRecrutes && candidatsRecrutes.loading && <span>Chargement...</span>}
 
-      { !candidatsRecrutes.loading && candidatsRecrutes.items && candidatsRecrutes.items.data.length === 0 && <span>Aucun candidat recruté pour le moment.</span>}
+      { !candidatsRecrutes.loading && candidatsRecrutes.items && candidatsRecrutes.items.data.length === 0 &&
+        <span>Aucun candidat recruté pour le moment.</span>
+      }
 
       <div className="rf-table">
         <table>
@@ -102,8 +101,8 @@ function CandidatsRecrutes({ departement, region, search }) {
             </tr>
           </thead>
           <tbody>
-            {!candidatsRecrutes.error && !candidatsRecrutes.loading && candidatsRecrutes.items && candidatsRecrutes.items.data.map((conseiller, idx) => {
-              return (<Conseiller key={idx} conseiller={conseiller} update={update} currentPage={page}/>);
+            {!candidatsRecrutes.error && !candidatsRecrutes.loading && candidatsRecrutes.items && candidatsRecrutes.items.data.map((candidat, idx) => {
+              return (<CandidatRecrute key={idx} candidat={candidat} update={update} currentPage={page}/>);
             })
             }
           </tbody>

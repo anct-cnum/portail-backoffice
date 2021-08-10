@@ -69,8 +69,8 @@ function Menu() {
                   </Link>
                 </li>
 
-                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/candidats-recrutes') ? 'rf-sidemenu__item--active' : ''}`}>
-                  <Link className="rf-sidemenu__link" to="/candidats-recrutes" style={{ padding: '0.5rem 0' }}>
+                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/liste-candidats-recrutes') ? 'rf-sidemenu__item--active' : ''}`}>
+                  <Link className="rf-sidemenu__link" to="/liste-candidats-recrutes" style={{ padding: '0.5rem 0' }}>
                     <div className="rf-container" style={{ padding: '0' }}>
                       <div className="rf-grid-row rf-grid-row--end">
                         Liste des candidats recrutés
