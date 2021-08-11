@@ -34,6 +34,7 @@ function filtersAndSorts({ resetPage }) {
     dispatch(filtersAndSortsActions.updatePix(pix));
     let persoFilters = {
       pix: pix,
+      cv: filtersAndSorts?.cv,
       diplome: filtersAndSorts?.diplome
     };
     dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
@@ -50,7 +51,25 @@ function filtersAndSorts({ resetPage }) {
     dispatch(filtersAndSortsActions.updateDiplome(diplome));
     let persoFilters = {
       pix: filtersAndSorts?.pix,
+      cv: filtersAndSorts?.cv,
       diplome: diplome
+    };
+    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
+    resetPage(1);
+  };
+
+  //filter CV
+  const changeCV = () => {
+    let cv = document.getElementById('selectCV').value;
+
+    if (cv !== '') {
+      cv = (cv === 'true');
+    }
+    dispatch(filtersAndSortsActions.updateCV(cv));
+    let persoFilters = {
+      pix: filtersAndSorts?.pix,
+      diplome: filtersAndSorts?.diplome,
+      cv: cv
     };
     dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
@@ -112,12 +131,24 @@ function filtersAndSorts({ resetPage }) {
             </fieldset>
           </div>
         </div>
-        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-3">
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
           <div className="rf-mr-3w selectOption">
             <span>
               <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplômé ?</label>
             </span>
             <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
+              <option value="">- Tous -</option>
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </select>
+          </div>
+        </div>
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
+          <div className="rf-mr-3w selectOption">
+            <span>
+              <label className="rf-label rf-mr-4v labelCV" htmlFor="selectCV">CV ?</label>
+            </span>
+            <select className="rf-select rf-col rf-mt-3v" id="selectCV" name="selectCV" onChange={changeCV} value={filtersAndSorts?.cv}>
               <option value="">- Tous -</option>
               <option value="true">Oui</option>
               <option value="false">Non</option>

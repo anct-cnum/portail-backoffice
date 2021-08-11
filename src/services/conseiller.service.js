@@ -66,6 +66,10 @@ $skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
     if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
       uri += `&diplome=${persoFilters?.diplome}`;
     }
+    //CV ?
+    if (persoFilters?.cv !== undefined && persoFilters?.cv !== '') {
+      uri += `&cv=${persoFilters?.cv}`;
+    }
   }
   return fetch(uri, requestOptions).then(handleResponse);
 }
