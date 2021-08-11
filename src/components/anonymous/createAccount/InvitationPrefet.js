@@ -65,7 +65,7 @@ function InvitationPrefet({ match }) {
             }
 
             { tokenVerified === false &&
-              <span>Désolé mais le lien est invalide.</span>
+              <span>Désolé mais le lien est invalide ou a déjà été utilisé.</span>
             }
 
             { tokenVerified && !accountsPrefetInvited &&
