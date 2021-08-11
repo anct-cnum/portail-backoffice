@@ -18,7 +18,7 @@ function Aide() {
             </p>
             <p>Pour toute question relative <b>à l&rsquo;instruction de votre dossier de subvention</b>, nous vous invitons à utiliser prioritairement
               la messagerie accessible via la plateforme&nbsp;
-            <a href="https://www.demarches-simplifiees.fr/" rel="noreferrer" target="_blank" title="www.demarches-simplifiees.fr">
+            <a href="https://www.demarches-simplifiees.fr/" rel="noreferrer" target="blank" title="www.demarches-simplifiees.fr">
               demarches-simplifiees.fr
             </a>.
               Nous vous rappelons que les demandes sont instruites à partir de la date de recrutement et d&rsquo;entrée en formation de votre Conseiller
@@ -28,7 +28,7 @@ function Aide() {
                employeur public ou privé et le guide &laquo; Bien démarrer ma mission &raquo;.</p>
             <p>Si toutefois vous n&rsquo;avez pas trouvez votre réponse, nous vous invitons à consulter en priorité la Foire aux
               Questions accessible sur le site&nbsp;
-            <a href="https://aide.conseiller-numerique.gouv.fr/fr/" rel="noreferrer" target="_blank" title="aide.conseiller-numerique.gouv.fr">
+            <a href="https://aide.conseiller-numerique.gouv.fr/fr/" rel="noreferrer" target="blank" title="aide.conseiller-numerique.gouv.fr">
               aide.conseiller-numerique.gouv.fr
             </a>.
             </p>
