@@ -57,7 +57,7 @@ function ChoosePassword({ match }) {
             }
 
             { tokenVerified === false &&
-              <span>Désolé mais le lien est invalide.</span>
+              <span>Désolé mais le lien est invalide ou a déjà été utilisé. Veuillez réinitialiser votre mot de passe si nécessaire.</span>
             }
 
             { tokenVerified && !passwordChoosen &&
