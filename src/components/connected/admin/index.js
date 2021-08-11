@@ -132,7 +132,7 @@ function Admin() {
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             { user.role === 'admin' &&
-              <Route path={`/liste-candidats-recrutes`}
+              <Route path={`/admin/liste-candidats-recrutes`}
                 component={
                   () => <CandidatsRecrutes
                     departement={departement}
@@ -141,8 +141,8 @@ function Admin() {
                 } />
             }
 
-            <Route path={`/admin/documents`} component={Documents} />
-            <Route path={`/admin/exports`} component={ExportsCoselec} />
+            <Route path={`/documents`} component={Documents} />
+            <Route path={`/exports`} component={ExportsCoselec} />
             <Route path={`/mon-compte`} component={MonCompte} />
 
             { user.role === 'prefet' &&

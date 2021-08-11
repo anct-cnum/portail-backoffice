@@ -70,7 +70,7 @@ function Menu() {
                 </li>
 
                 <li className={`rf-sidemenu__item ${location.pathname.startsWith('/liste-candidats-recrutes') ? 'rf-sidemenu__item--active' : ''}`}>
-                  <Link className="rf-sidemenu__link" to="/liste-candidats-recrutes" style={{ padding: '0.5rem 0' }}>
+                  <Link className="rf-sidemenu__link" to="/admin/liste-candidats-recrutes" style={{ padding: '0.5rem 0' }}>
                     <div className="rf-container" style={{ padding: '0' }}>
                       <div className="rf-grid-row rf-grid-row--end">
                         Liste des candidats recrutés
@@ -81,8 +81,8 @@ function Menu() {
               </>
             }
             { role === 'prefet' &&
-            <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/admin/documents" style={{ padding: '0.5rem 0' }}>
+            <li className={`rf-sidemenu__item ${location.pathname === '/documents' ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/documents" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
                   <div className="rf-grid-row rf-grid-row--end">
                     Mes documents
@@ -91,8 +91,8 @@ function Menu() {
               </Link>
             </li>
             }
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/admin/exports') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/admin/exports" style={{ padding: '0.5rem 0' }}>
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/exports') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/exports" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
                   <div className="rf-grid-row rf-grid-row--end">
                     Exports

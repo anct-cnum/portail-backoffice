@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, statsActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import { useLocation, useParams } from 'react-router-dom';
-import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import CandidatRecrute from './CandidatRecrute';
 
