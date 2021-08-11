@@ -58,16 +58,13 @@ $skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
     uri += `&filter=${filter}`;
   }
   if (persoFilters) {
-    //Pix ?
-    if (persoFilters?.pix !== undefined && persoFilters?.pix.length > 0) {
+    if (havePix(persoFilters)) {
       uri += `&pix=${persoFilters?.pix}`;
     }
-    //Diplome ?
-    if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
+    if (haveDiplome(persoFilters)) {
       uri += `&diplome=${persoFilters?.diplome}`;
     }
-    //CV ?
-    if (persoFilters?.cv !== undefined && persoFilters?.cv !== '') {
+    if (haveCV(persoFilters)) {
       uri += `&cv=${persoFilters?.cv}`;
     }
   }
@@ -166,4 +163,14 @@ function handleFileResponse(response) {
     }
     return blob;
   });
+}
+
+function haveCV(persoFilters) {
+  return persoFilters?.cv !== undefined && persoFilters?.cv !== '';
+}
+function haveDiplome(persoFilters) {
+  return persoFilters?.diplome !== undefined && persoFilters?.diplome !== '';
+}
+function havePix(persoFilters) {
+  return persoFilters?.pix !== undefined && persoFilters?.pix.length > 0;
 }
