@@ -91,12 +91,13 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
-            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') || location.pathname.startsWith('/liste-candidats')) &&
+            { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
+               location.pathname.startsWith('/liste-candidats') || location.pathname.startsWith('/admin/liste-candidats')) &&
               <SearchBox />
             }
 
             { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
-              location.pathname.startsWith('/liste-candidats')) &&
+               location.pathname.startsWith('/liste-candidats') || location.pathname.startsWith('/admin/liste-candidats')) &&
             <>
               <select className="rf-select rf-mb-2w" onChange={selectRegion} value={codeRegion === null ? '' : codeRegion}>
                 <option value="">Toute région</option>

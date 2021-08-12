@@ -18,7 +18,7 @@ function CandidatRecrute({ candidat, currentPage }) {
         <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }} to={{
           pathname: `/candidat/${candidat?._id}`,
           currentPage: currentPage,
-          origin: '/liste-candidats-recrutes' }}>
+          origin: '/admin/liste-candidats-recrutes' }}>
             Détails
         </Link>
       </td>
