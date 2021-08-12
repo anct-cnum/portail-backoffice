@@ -15,6 +15,11 @@ export default function filtersAndSorts(state = null, action) {
         ...state,
         diplome: action.diplome,
       };
+    case 'UPDATE_CV':
+      return {
+        ...state,
+        cv: action.cv,
+      };
     default:
       return state;
   }
