@@ -31,7 +31,7 @@ function ConseillerDetails({ location }) {
   }, []);
 
   const downloadCV = () => {
-    dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?.conseiller?._id, conseiller?.conseiller));
   };
 
   const textRecrute = [
