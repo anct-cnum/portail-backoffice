@@ -44,7 +44,9 @@ function filtersAndSorts({ resetPage }) {
     }
 
     if (name === 'selectDiplome') {
-      let diplome = '';
+      // filtre "TOUS"
+      let diplome = null;
+      // filtre "avec diplome" ou "sans diplome"
       if (value !== '') {
         diplome = value === 'true';
       }
@@ -52,7 +54,9 @@ function filtersAndSorts({ resetPage }) {
     }
 
     if (name === 'selectCV') {
-      let cv = '';
+      // filtre "TOUS"
+      let cv = null;
+      // filtre "avec CV" ou "sans CV"
       if (value !== '') {
         cv = value === 'true';
       }

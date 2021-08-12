@@ -166,10 +166,10 @@ function handleFileResponse(response) {
 }
 
 function haveCV(persoFilters) {
-  return persoFilters?.cv !== undefined && persoFilters?.cv !== '';
+  return persoFilters?.cv !== undefined && persoFilters?.cv !== null;
 }
 function haveDiplome(persoFilters) {
-  return persoFilters?.diplome !== undefined && persoFilters?.diplome !== '';
+  return persoFilters?.diplome !== undefined && persoFilters?.diplome !== null;
 }
 function havePix(persoFilters) {
   return persoFilters?.pix !== undefined && persoFilters?.pix.length > 0;
