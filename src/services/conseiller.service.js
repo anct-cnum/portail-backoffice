@@ -13,7 +13,8 @@ export const conseillerService = {
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
-  getCurriculumVitae
+  getCurriculumVitae,
+  getStructureByIdConseiller
 };
 
 function get(id) {
@@ -25,7 +26,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, search, page, filter, sortData, sortOrder) {
+function getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -34,11 +35,20 @@ function getAll(departement, region, search, page, filter, sortData, sortOrder) 
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
   const filterSearch = search !== '' ? `&$search=${search}&$limit=100` : '';
   const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
+
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
+
+  if (persoFilters) {
+    //Recrutés ?
+    if (persoFilters?.recrutes !== undefined && persoFilters?.recrutes !== '') {
+      uri += `&statut=${persoFilters?.recrutes}`;
+    }
+  }
 
   if (filter) {
     uri += `&filter=${filter}`;
   }
+
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -67,6 +77,7 @@ $skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
       uri += `&diplome=${persoFilters?.diplome}`;
     }
   }
+
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -131,6 +142,18 @@ function getCurriculumVitae(id) {
 
   return fetch(`${apiUrlRoot}/conseillers/${id}/cv`, requestOptions).then(handleFileResponse);
 }
+
+function getStructureByIdConseiller(id) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  let uri = `${apiUrlRoot}/conseillers/${id}/employeur`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
 
 function handleResponse(response) {
   return response.text().then(text => {

@@ -11,7 +11,8 @@ export const conseillerActions = {
   verifyCandidateToken,
   verifySondageToken,
   getCurriculumVitae,
-  resetFile
+  resetFile,
+  getStructureByIdConseiller
 };
 
 function get(id) {
@@ -241,4 +242,31 @@ function getCurriculumVitae(id, candidat) {
 
 function resetFile() {
   return { type: 'RESET_FILE' };
+}
+
+
+function getStructureByIdConseiller(id) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getStructureByIdConseiller(id)
+    .then(
+      result => {
+        dispatch(success(result.nomStructure));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STRUCTURE_EMPLOYER_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'GET_STRUCTURE_EMPLOYER_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'GET_STRUCTURE_EMPLOYER_FAILURE', error };
+  }
 }
