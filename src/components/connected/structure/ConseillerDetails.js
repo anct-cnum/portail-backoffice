@@ -120,11 +120,11 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
-            { conseiller?.conseiller?.dateRecrutement &&
+            { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
               <div className="rf-col-12">
                 <p><b>{conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom} a été&nbsp;
                   {textRecrute.find(label => label.key === conseiller?.conseiller?.sexe).text}&nbsp;le&nbsp;
-                  {dayjs(conseiller?.conseiller?.dateRecrutement).format('DD/MM/YY') }</b>
+                  {dayjs(conseiller?.conseiller?.dateRecrutement[0]).format('DD/MM/YY') }</b>
                 </p>
               </div>
             }

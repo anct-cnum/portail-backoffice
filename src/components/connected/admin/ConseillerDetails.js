@@ -94,11 +94,21 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
-            { conseiller?.dateRecrutement &&
+            { conseiller?.dateRecrutement?.length > 0 &&
               <div className="rf-col-12">
                 <p><b>{conseiller?.prenom}&nbsp;{conseiller?.nom} a été&nbsp;
-                  {textRecrute.find(label => label.key === conseiller?.sexe).text}&nbsp;le&nbsp;
-                  {dayjs(conseiller?.dateRecrutement).format('DD/MM/YY') }</b>
+                  {textRecrute.find(label => label.key === conseiller?.sexe).text}&nbsp;le:&nbsp;
+                  {conseiller?.dateRecrutement.map((date, idx) =>
+
+                    <span key={idx}>
+                      {conseiller?.dateRecrutement?.length > 1 &&
+                        <><br/>-&nbsp;</>
+                      }
+                      {dayjs(date).format('DD/MM/YY')}
+                    </span>
+
+                  )}
+                </b>
                 </p>
               </div>
             }
