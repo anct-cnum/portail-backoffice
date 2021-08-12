@@ -141,8 +141,8 @@ function Admin() {
                 } />
             }
 
-            <Route path={`/documents`} component={Documents} />
-            <Route path={`/exports`} component={ExportsCoselec} />
+            <Route path={`/admin/documents`} component={Documents} />
+            <Route path={`/admin/exports`} component={ExportsCoselec} />
             <Route path={`/mon-compte`} component={MonCompte} />
 
             { user.role === 'prefet' &&
