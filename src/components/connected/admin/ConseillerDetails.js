@@ -61,6 +61,12 @@ function ConseillerDetails({ location }) {
     }
   };
 
+  const textRecrute = [
+    { key: 'Homme', text: 'recruté' },
+    { key: 'Femme', text: 'recrutée' },
+    { key: undefined, text: 'recruté(e)' }
+  ];
+
   return (
     <div className="ConseillerDetails">
       <Link
@@ -88,6 +94,27 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
+            { conseiller?.dateRecrutement?.length > 0 &&
+              <div className="rf-col-12">
+                <p><b>{conseiller?.prenom}&nbsp;{conseiller?.nom} a été&nbsp;
+                  {textRecrute.find(label => label.key === conseiller?.sexe).text}&nbsp;le:&nbsp;
+                  {conseiller?.dateRecrutement.map((date, idx) =>
+
+                    <span key={idx}>
+                      {conseiller?.dateRecrutement?.length > 1 &&
+                        <><br/>-&nbsp;</>
+                      }
+                      {dayjs(date).format('DD/MM/YY')}
+                      { conseiller?.nomStructures.length > 0 &&
+                        <>&nbsp;par {conseiller?.nomStructures[idx]}</>
+                      }
+                    </span>
+
+                  )}
+                </b>
+                </p>
+              </div>
+            }
             <div className="rf-col-4">
               {conseiller?.estRecrute &&
                 <>
