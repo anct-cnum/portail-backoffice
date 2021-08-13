@@ -194,6 +194,12 @@ $blue-france:#000091;
 .react-datepicker__triangle {
   left: 120px !important;
 }
+@media (min-width: 1321px) and (max-width: 1715px) {
+  .liste-recrutes {
+    text-align: right;
+  }
+}
+
 @media (max-width: 865px) {
   .br-lg {
     display: none;
