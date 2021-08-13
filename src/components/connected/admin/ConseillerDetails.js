@@ -105,6 +105,9 @@ function ConseillerDetails({ location }) {
                         <><br/>-&nbsp;</>
                       }
                       {dayjs(date).format('DD/MM/YY')}
+                      { conseiller?.nomStructures.length > 0 &&
+                        <>&nbsp;par {conseiller?.nomStructures[idx]}</>
+                      }
                     </span>
 
                   )}
