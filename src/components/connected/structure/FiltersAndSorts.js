@@ -134,7 +134,7 @@ function filtersAndSorts({ resetPage }) {
         <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
           <div className="rf-mr-3w selectOption">
             <span>
-              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplômé ?</label>
+              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplôme</label>
             </span>
             <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={handleChange} value={filtersAndSorts?.diplome}>
               <option value="">- Tous -</option>
@@ -146,7 +146,7 @@ function filtersAndSorts({ resetPage }) {
         <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
           <div className="rf-mr-3w selectOption">
             <span>
-              <label className="rf-label rf-mr-4v labelCV" htmlFor="selectCV">CV ?</label>
+              <label className="rf-label rf-mr-4v labelCV" htmlFor="selectCV">CV</label>
             </span>
             <select className="rf-select rf-col rf-mt-3v" id="selectCV" name="selectCV" onChange={handleChange} value={filtersAndSorts?.cv}>
               <option value="">- Tous -</option>
