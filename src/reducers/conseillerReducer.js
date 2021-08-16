@@ -105,6 +105,21 @@ export default function conseiller(state = null, action) {
         ...state,
         blob: null,
       };
+
+    case 'GET_STRUCTURE_EMPLOYER_REQUEST':
+      return {
+        ...state,
+        loadingStructureNom: true
+      };
+    case 'GET_STRUCTURE_EMPLOYER_SUCCESS':
+      return {
+        ...state,
+        nomStructure: action.structure
+      };
+    case 'GET_STRUCTURE_EMPLOYER_FAILURE':
+      return {
+        nomStructureError: action.error,
+      };
     default:
       return state;
   }

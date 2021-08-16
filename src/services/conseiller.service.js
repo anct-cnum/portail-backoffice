@@ -13,7 +13,8 @@ export const conseillerService = {
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
-  getCurriculumVitae
+  getCurriculumVitae,
+  getStructureByIdConseiller
 };
 
 function get(id) {
@@ -25,7 +26,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, search, page, filter, sortData, sortOrder) {
+function getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -34,11 +35,20 @@ function getAll(departement, region, search, page, filter, sortData, sortOrder) 
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
   const filterSearch = search !== '' ? `&$search=${search}&$limit=100` : '';
   const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
+
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
+
+  if (persoFilters) {
+    //Recrutés ?
+    if (persoFilters?.recrutes !== undefined && persoFilters?.recrutes !== '') {
+      uri += `&statut=${persoFilters?.recrutes}`;
+    }
+  }
 
   if (filter) {
     uri += `&filter=${filter}`;
   }
+
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -58,15 +68,17 @@ $skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
     uri += `&filter=${filter}`;
   }
   if (persoFilters) {
-    //Pix ?
-    if (persoFilters?.pix !== undefined && persoFilters?.pix.length > 0) {
+    if (havePix(persoFilters)) {
       uri += `&pix=${persoFilters?.pix}`;
     }
-    //Diplome ?
-    if (persoFilters?.diplome !== undefined && persoFilters?.diplome !== '') {
+    if (haveDiplome(persoFilters)) {
       uri += `&diplome=${persoFilters?.diplome}`;
     }
+    if (haveCV(persoFilters)) {
+      uri += `&cv=${persoFilters?.cv}`;
+    }
   }
+
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
@@ -132,6 +144,18 @@ function getCurriculumVitae(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}/cv`, requestOptions).then(handleFileResponse);
 }
 
+function getStructureByIdConseiller(id) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  let uri = `${apiUrlRoot}/conseillers/${id}/employeur`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
@@ -162,4 +186,14 @@ function handleFileResponse(response) {
     }
     return blob;
   });
+}
+
+function haveCV(persoFilters) {
+  return persoFilters?.cv !== undefined && persoFilters?.cv !== null;
+}
+function haveDiplome(persoFilters) {
+  return persoFilters?.diplome !== undefined && persoFilters?.diplome !== null;
+}
+function havePix(persoFilters) {
+  return persoFilters?.pix !== undefined && persoFilters?.pix.length > 0;
 }

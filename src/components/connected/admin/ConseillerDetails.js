@@ -9,18 +9,25 @@ import dayjs from 'dayjs';
 function ConseillerDetails({ location }) {
 
   const dispatch = useDispatch();
-  const conseiller = useSelector(state => state.conseiller);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
+  const nomStructure = useSelector(state => state.conseiller?.nomStructure);
 
   let { id } = useParams();
 
   useEffect(() => {
-    dispatch(paginationActions.resetPage(false));
     dispatch(conseillerActions.get(id));
+    dispatch(paginationActions.resetPage(false));
   }, []);
 
+  useEffect(() => {
+    if (conseiller?._id && conseiller?.statut === 'RECRUTE') {
+      dispatch(conseillerActions.getStructureByIdConseiller(conseiller?._id));
+    }
+  }, [conseiller]);
+
   const downloadCV = () => {
-    dispatch(conseillerActions.getCurriculumVitae(conseiller?.conseiller?._id, conseiller?.conseiller));
+    dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
   };
 
   const renderStars = palier => {
@@ -59,7 +66,7 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/candidats`,
+          pathname: location.origin,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
@@ -68,7 +75,7 @@ function ConseillerDetails({ location }) {
       <div>
         <h2>
           <span className="capitalizeFirstLetter">
-            {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
+            {conseiller?.prenom}&nbsp;{conseiller?.nom}</span>
         </h2>
         <div className="spinnerCustom">
           <Spinner
@@ -81,55 +88,83 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
+            { conseiller?.dateRecrutement?.length > 0 &&
+              <div className="rf-col-12">
+                <p><b>Date de recrutement prévisionnelle:&nbsp;
+                  {conseiller?.dateRecrutement.map((date, idx) =>
+
+                    <span key={idx}>
+                      {conseiller?.dateRecrutement?.length > 1 &&
+                        <><br/>-&nbsp;</>
+                      }
+                      {dayjs(date).format('DD/MM/YY')}
+                      { conseiller?.nomStructures.length > 0 &&
+                        <>&nbsp;par {conseiller?.nomStructures[idx]}</>
+                      }
+                    </span>
+
+                  )}
+                </b>
+                </p>
+              </div>
+            }
             <div className="rf-col-4">
+              {conseiller?.estRecrute &&
+                <>
+                  <p>Recruté(e) par&nbsp;:&nbsp; {nomStructure}</p>
+                  <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.emailCN ? 'OUI' : 'NON'}</p>
+                  <p>Date d’entrée en formation&nbsp;:&nbsp;{dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY')}</p>
+                  <p>Date de sortie de formation&nbsp;:&nbsp;{dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY')}</p>
+                </>
+              }
               <p>Curriculum vit&aelig; :&nbsp;
-                {conseiller?.conseiller?.cv?.file &&
+                {conseiller?.cv?.file &&
                 <button className="downloadCVBtn" onClick={downloadCV}>
-                  Télécharger le CV (du {dayjs(conseiller?.conseiller?.cv?.date).format('DD/MM/YYYY') })
+                  Télécharger le CV (du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') })
                 </button>
                 }
-                {!conseiller?.conseiller?.cv?.file &&
+                {!conseiller?.cv?.file &&
                   <>Non renseigné</>
                 }
               </p>
-              <p>Situation professionnelle : {conseiller?.conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
-              <p>Diplômé : {conseiller?.conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
-              {conseiller?.conseiller?.estDiplomeMedNum &&
-                  <p>Nom du diplôme : {conseiller?.conseiller?.nomDiplomeMedNum}</p>
+              <p>Situation professionnelle : {conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
+              <p>Diplômé : {conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
+              {conseiller?.estDiplomeMedNum &&
+                  <p>Nom du diplôme : {conseiller?.nomDiplomeMedNum}</p>
               }
-              <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
-              <p>Code Postal : {conseiller?.conseiller?.codePostal}</p>
+              <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
+              <p>Code Postal : {conseiller?.codePostal}</p>
               <p>
                   Lieu de résidence :&nbsp;
-                { conseiller?.conseiller?.nomCommune === '' || conseiller?.conseiller?.nomCommune === '.' ?
+                { conseiller?.nomCommune === '' || conseiller?.nomCommune === '.' ?
                   'Non renseigné' :
-                  conseiller?.conseiller?.nomCommune }
+                  conseiller?.nomCommune }
               </p>
-              <p>Mobilité géographique : { conseiller?.conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.conseiller?.distanceMax} Km` }</p>
-              <p>Date de démarrage possible : { dayjs(conseiller?.conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
-              <p><strong>Courriel : <a href={'mailto:' + conseiller?.conseiller?.email}>{conseiller?.conseiller?.email}</a></strong></p>
-              <p><strong>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
+              <p>Mobilité géographique : { conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.distanceMax} Km` }</p>
+              <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
+              <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
+              <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
             </div>
-            { conseiller?.conseiller?.pix?.partage &&
+            { conseiller?.pix?.partage &&
               <div className="rf-col-4 rf-ml-6w rf-mt-1w">
                 <span className="capitalizeFirstLetter"><strong>Résultats Pix</strong></span>
-                {renderStars(conseiller?.conseiller?.pix?.palier)}
+                {renderStars(conseiller?.pix?.palier)}
                 <p>
-                  { conseiller?.conseiller?.pix?.competence1 &&
+                  { conseiller?.pix?.competence1 &&
                     <img src="/logos/pix-utilisation.png"
                       alt="Utilisation du numérique"
                       title="Utilisation du numérique dans la vie professionnelle"
                       className="rf-mr-2w"
                     />
                   }
-                  { conseiller?.conseiller?.pix?.competence2 &&
+                  { conseiller?.pix?.competence2 &&
                     <img src="/logos/pix-ressources.png"
                       alt="Production de ressources"
                       title="Production de ressources"
                       className="rf-mr-2w"
                     />
                   }
-                  { conseiller?.conseiller?.pix?.competence3 &&
+                  { conseiller?.pix?.competence3 &&
                   <img src="/logos/pix-citoyen.png"
                     alt="Compétences numériques en lien avec la e-citoyenneté"
                     title="Compétences numériques en lien avec la e-citoyenneté"

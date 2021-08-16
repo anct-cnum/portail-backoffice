@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filtersAndSortsActions, conseillerActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
@@ -11,47 +11,66 @@ function filtersAndSorts({ resetPage }) {
   const { search } = useSelector(state => state.search);
   let { filter } = useParams();
 
-  //Sort
-  const changeSort = e => {
-    let order = e.target.checked ? 'conseillerObj.dateDisponibilite' : 'conseillerObj.createdAt';
-    dispatch(filtersAndSortsActions.updateOrder(order));
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: order, persoFilters: filtersAndSorts }));
-    resetPage(1);
-  };
+  const [filters, setFilters] = useState({
+    pixLevel1: '',
+    pixLevel2: '',
+    pixLevel3: '',
+    diplome: '',
+    cv: '',
+    orderByDateStart: ''
+  });
 
-  //filter Pix
-  const changePix = () => {
-    let pix = [];
-    if (document.getElementById('pix-level-1').checked) {
-      pix.push(1);
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    if (name === 'orderByDateStart') {
+      let order = e.target.checked ? 'conseillerObj.dateDisponibilite' : 'conseillerObj.createdAt';
+      dispatch(filtersAndSortsActions.updateOrder(order));
     }
-    if (document.getElementById('pix-level-2').checked) {
-      pix.push(2);
+
+    if (name === 'pixLevel1' || name === 'pixLevel2' || name === 'pixLevel3') {
+      let pix = [];
+      if (document.getElementById('pixLevel1').checked) {
+        pix.push(1);
+      }
+      if (document.getElementById('pixLevel2').checked) {
+        pix.push(2);
+      }
+      if (document.getElementById('pixLevel3').checked) {
+        pix.push(3);
+      }
+
+      dispatch(filtersAndSortsActions.updatePix(pix));
     }
-    if (document.getElementById('pix-level-3').checked) {
-      pix.push(3);
+
+    if (name === 'selectDiplome') {
+      // filtre "TOUS"
+      let diplome = null;
+      // filtre "avec diplome" ou "sans diplome"
+      if (value !== '') {
+        diplome = value === 'true';
+      }
+      dispatch(filtersAndSortsActions.updateDiplome(diplome));
     }
-    dispatch(filtersAndSortsActions.updatePix(pix));
+
+    if (name === 'selectCV') {
+      // filtre "TOUS"
+      let cv = null;
+      // filtre "avec CV" ou "sans CV"
+      if (value !== '') {
+        cv = value === 'true';
+      }
+      dispatch(filtersAndSortsActions.updateCV(cv));
+    }
+
+    setFilters(inputs => ({ ...inputs, [name]: value }));
+
     let persoFilters = {
-      pix: pix,
-      diplome: filtersAndSorts?.diplome
+      pix: [!!filters.pixLevel1, !!filters.pixLevel2, !!filters.pixLevel3],
+      cv: filters.cv,
+      diplome: filters.diplome
     };
-    dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
-    resetPage(1);
-  };
 
-  //filter Diplome
-  const changeDiplome = () => {
-    let diplome = document.getElementById('selectDiplome').value;
-
-    if (diplome !== '') {
-      diplome = (diplome === 'true');
-    }
-    dispatch(filtersAndSortsActions.updateDiplome(diplome));
-    let persoFilters = {
-      pix: filtersAndSorts?.pix,
-      diplome: diplome
-    };
     dispatch(conseillerActions.getAll({ misesEnRelation: true, search, page: 0, filter, sortData: filtersAndSorts?.order, persoFilters }));
     resetPage(1);
   };
@@ -70,36 +89,36 @@ function filtersAndSorts({ resetPage }) {
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
                     <input
                       type="checkbox"
-                      id="pix-level-1"
-                      name="pix-level-1"
-                      checked={filtersAndSorts?.pix?.includes(1)}
-                      onChange={changePix}
+                      id="pixLevel1"
+                      name="pixLevel1"
+                      value="1"
+                      onChange={handleChange}
                     />
-                    <label className="rf-label" htmlFor="pix-level-1">
+                    <label className="rf-label" htmlFor="pixLevel1">
                       <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i></span>
                     </label>
                   </div>
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
                     <input
                       type="checkbox"
-                      id="pix-level-2"
-                      name="pix-level-2"
-                      checked={filtersAndSorts?.pix?.includes(2)}
-                      onChange={changePix}
+                      id="pixLevel2"
+                      name="pixLevel2"
+                      value="2"
+                      onChange={handleChange}
                     />
-                    <label className="rf-label" htmlFor="pix-level-2">
+                    <label className="rf-label" htmlFor="pixLevel2">
                       <span style={{ verticalAlign: 'sub' }}><i className="ri-star-fill"></i><i className="ri-star-fill"></i></span>
                     </label>
                   </div>
                   <div className="rf-checkbox-group rf-checkbox-group--sm">
                     <input
                       type="checkbox"
-                      id="pix-level-3"
-                      name="pix-level-3"
-                      checked={filtersAndSorts?.pix?.includes(3)}
-                      onChange={changePix}
+                      id="pixLevel3"
+                      name="pixLevel3"
+                      value="3"
+                      onChange={handleChange}
                     />
-                    <label className="rf-label" htmlFor="pix-level-3">
+                    <label className="rf-label" htmlFor="pixLevel3">
                       <span style={{ verticalAlign: 'sub' }}>
                         <i className="ri-star-fill"></i>
                         <i className="ri-star-fill"></i>
@@ -112,12 +131,24 @@ function filtersAndSorts({ resetPage }) {
             </fieldset>
           </div>
         </div>
-        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-3">
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
           <div className="rf-mr-3w selectOption">
             <span>
-              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplômé ?</label>
+              <label className="rf-label rf-mr-4v labelDiplome" htmlFor="selectDiplome">Diplôme</label>
             </span>
-            <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={changeDiplome} value={filtersAndSorts?.diplome}>
+            <select className="rf-select rf-col rf-mt-3v" id="selectDiplome" name="selectDiplome" onChange={handleChange} value={filtersAndSorts?.diplome}>
+              <option value="">- Tous -</option>
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </select>
+          </div>
+        </div>
+        <div className="rf-col-sm-3 rf-col-md-5 rf-col-lg-2">
+          <div className="rf-mr-3w selectOption">
+            <span>
+              <label className="rf-label rf-mr-4v labelCV" htmlFor="selectCV">CV</label>
+            </span>
+            <select className="rf-select rf-col rf-mt-3v" id="selectCV" name="selectCV" onChange={handleChange} value={filtersAndSorts?.cv}>
               <option value="">- Tous -</option>
               <option value="true">Oui</option>
               <option value="false">Non</option>
@@ -131,8 +162,9 @@ function filtersAndSorts({ resetPage }) {
               <input type="checkbox"
                 className="rf-toggle__input"
                 id="orderByDateStart"
+                name="orderByDateStart"
                 checked={filtersAndSorts?.order === 'conseillerObj.dateDisponibilite'}
-                onChange={e => changeSort(e)}/>
+                onChange={handleChange}/>
               <label className="rf-toggle__label"
                 htmlFor="orderByDateStart"
                 data-rf-checked-label="Activé"

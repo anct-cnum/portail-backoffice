@@ -114,6 +114,13 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
+            { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
+              <div className="rf-col-12">
+                <p><b>Date de recrutement prévisionnelle:&nbsp;
+                  {dayjs(conseiller?.conseiller?.dateRecrutement[0]).format('DD/MM/YY') }</b>
+                </p>
+              </div>
+            }
             <div className="rf-col-5">
               <p>Curriculum vit&aelig; :&nbsp;
                 {conseiller?.conseiller?.cv?.file &&
