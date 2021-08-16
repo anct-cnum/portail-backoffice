@@ -61,12 +61,6 @@ function ConseillerDetails({ location }) {
     }
   };
 
-  const textRecrute = [
-    { key: 'Homme', text: 'recruté' },
-    { key: 'Femme', text: 'recrutée' },
-    { key: undefined, text: 'recruté(e)' }
-  ];
-
   return (
     <div className="ConseillerDetails">
       <Link
@@ -96,8 +90,7 @@ function ConseillerDetails({ location }) {
           <div className="rf-grid-row">
             { conseiller?.dateRecrutement?.length > 0 &&
               <div className="rf-col-12">
-                <p><b>{conseiller?.prenom}&nbsp;{conseiller?.nom} a été&nbsp;
-                  {textRecrute.find(label => label.key === conseiller?.sexe).text}&nbsp;le:&nbsp;
+                <p><b>Date de recrutement prévisionnelle:&nbsp;
                   {conseiller?.dateRecrutement.map((date, idx) =>
 
                     <span key={idx}>
