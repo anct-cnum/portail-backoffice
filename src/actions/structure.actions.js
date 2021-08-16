@@ -4,7 +4,8 @@ export const structureActions = {
   get,
   getAll,
   resendInscription,
-  patch
+  patch,
+  updateStructureSiret
 };
 
 function get(id) {
@@ -100,5 +101,30 @@ function patch(info) {
   }
   function failure(error) {
     return { type: 'PATCH_STRUCTURE_FAILURE', error };
+  }
+}
+
+function updateStructureSiret(siret, structureId) {
+
+  return dispatch => {
+    dispatch(request());
+
+    structureService.updateStructureSiret(siret, structureId)
+    .then(
+      structure => dispatch(success(structure)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_STRUCTURE_SIRET_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'UPDATE_STRUCTURE_SIRET_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_STRUCTURE_SIRET_FAILURE', error };
   }
 }

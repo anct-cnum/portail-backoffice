@@ -9,6 +9,7 @@ import 'moment/locale/fr';
 import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
+import SiretForm from './SiretForm';
 
 moment.locale('fr');
 
@@ -22,6 +23,7 @@ function StructureDetails({ location }) {
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
+  const [display, displayForm] = useState(false);
 
   const navigate = page => {
     setPage(page);
@@ -143,9 +145,22 @@ function StructureDetails({ location }) {
         <h2>
           {structure?.structure?.nom}
         </h2>
-        <h3>
-          SIRET {structure?.structure?.siret}
-        </h3>
+        {display === false &&
+          <h3>
+            SIRET
+            <button onClick={() => displayForm(true)} className="siretBtn">
+              {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
+              <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
+            </button>
+          </h3>
+        }
+
+        {display === true &&
+          <div style={{ width: '320px' }}>
+            <SiretForm displayForm={displayForm} structure={structure?.structure?._id}/>
+          </div>
+        }
+
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           {['prefet', 'admin'].indexOf(user.role) !== -1 &&

@@ -7,7 +7,8 @@ export const structureService = {
   get,
   getAll,
   resendInscription,
-  patch
+  patch,
+  updateStructureSiret
 };
 
 function get(id) {
@@ -67,6 +68,19 @@ function patch({ id, contact }) {
   return fetch(`${apiUrlRoot}/structures/${id}`, requestOptions).then(handleResponse);
 }
 
+function updateStructureSiret(siret, structureId) {
+
+  const user = { siret, structureId };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
+    body: JSON.stringify(user)
+  };
+
+  return fetch(`${apiUrlRoot}/structures/updateStructureSiret`, requestOptions).then(handleResponse);
+}
+
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
@@ -84,3 +98,4 @@ function handleResponse(response) {
     return data;
   });
 }
+
