@@ -90,7 +90,7 @@ function ConseillerDetails({ location }) {
           <div className="rf-grid-row">
             { conseiller?.dateRecrutement?.length > 0 &&
               <div className="rf-col-12">
-                <p><b>Date de recrutement prévisionnelle:
+                <p><b>Date de recrutement prévisionnelle:&nbsp;
                   {conseiller?.dateRecrutement.map((date, idx) =>
 
                     <span key={idx}>
