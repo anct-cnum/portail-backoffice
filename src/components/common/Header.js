@@ -43,7 +43,7 @@ function Header({ connected }) {
                   <div className="rf-header__navbar">
                     <div className="rf-service">
                       <a className="rf-service__title titrage" href="/" title="Portail Conseiller Numérique">
-                        {connected ? `Espace ${role === 'structure' ? 'Structure' : 'Prefet'} Conseiller Numérique France Services` :
+                        {connected ? `Espace ${role.charAt(0).toUpperCase() + role.slice(1)} - Conseiller Numérique France Services` :
                           'Votre espace Conseiller Numérique France Services' }
                       </a>
                       { role === 'structure' &&
