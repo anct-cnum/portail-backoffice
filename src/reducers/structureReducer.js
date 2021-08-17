@@ -47,6 +47,41 @@ export default function structure(state = null, action) {
         patchError: action.error,
         flashMessage: true
       };
+    case 'VERIFY_STRUCTURE_SIRET_REQUEST':
+      return {
+        ...state,
+        loadingSiret: true
+      };
+    case 'VERIFY_STRUCTURE_SIRET_SUCCESS':
+      return {
+        ...state,
+        nomStructure: action.structure,
+      };
+    case 'VERIFY_STRUCTURE_SIRET_FAILURE':
+      return {
+        ...state,
+        siretError: action.error,
+      };
+    case 'UPDATE_STRUCTURE_SIRET_REQUEST':
+      return {
+        ...state,
+        loadingSiret: true
+      };
+    case 'UPDATE_STRUCTURE_SIRET_SUCCESS':
+      return {
+        ...state,
+        structureSiretUpdate: action.structure,
+      };
+    case 'UPDATE_STRUCTURE_SIRET_FAILURE':
+      return {
+        ...state,
+        structutreSiretError: action.error,
+      };
+    case 'CANCEL_STRUCTURE_SIRET_REQUEST':
+      return {
+        ...state,
+        nomStructure: null
+      };
     default:
       return state;
   }

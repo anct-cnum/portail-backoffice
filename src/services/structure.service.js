@@ -8,6 +8,7 @@ export const structureService = {
   getAll,
   resendInscription,
   patch,
+  verifyStructureSiret,
   updateStructureSiret
 };
 
@@ -66,6 +67,19 @@ function patch({ id, contact }) {
   };
 
   return fetch(`${apiUrlRoot}/structures/${id}`, requestOptions).then(handleResponse);
+}
+
+function verifyStructureSiret(siret, structureId) {
+
+  const user = { siret, structureId };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
+    body: JSON.stringify(user)
+  };
+
+  return fetch(`${apiUrlRoot}/structures/verifyStructureSiret`, requestOptions).then(handleResponse);
 }
 
 function updateStructureSiret(siret, structureId) {

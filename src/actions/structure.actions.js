@@ -5,7 +5,9 @@ export const structureActions = {
   getAll,
   resendInscription,
   patch,
-  updateStructureSiret
+  verifyStructureSiret,
+  updateStructureSiret,
+  cancelStructureSiret
 };
 
 function get(id) {
@@ -104,6 +106,31 @@ function patch(info) {
   }
 }
 
+function verifyStructureSiret(siret, structureId) {
+
+  return dispatch => {
+    dispatch(request());
+
+    structureService.verifyStructureSiret(siret, structureId)
+    .then(
+      result => dispatch(success(result.structure)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'VERIFY_STRUCTURE_SIRET_REQUEST' };
+  }
+  function success(structure) {
+    return { type: 'VERIFY_STRUCTURE_SIRET_SUCCESS', structure };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_STRUCTURE_SIRET_FAILURE', error };
+  }
+}
+
 function updateStructureSiret(siret, structureId) {
 
   return dispatch => {
@@ -111,7 +138,7 @@ function updateStructureSiret(siret, structureId) {
 
     structureService.updateStructureSiret(siret, structureId)
     .then(
-      structure => dispatch(success(structure)),
+      structure => dispatch(success(structure.siretUpdated)),
       error => {
         dispatch(failure(error));
       }
@@ -126,5 +153,14 @@ function updateStructureSiret(siret, structureId) {
   }
   function failure(error) {
     return { type: 'UPDATE_STRUCTURE_SIRET_FAILURE', error };
+  }
+}
+function cancelStructureSiret() {
+  return dispatch => {
+    dispatch(request());
+  };
+
+  function request() {
+    return { type: 'CANCEL_STRUCTURE_SIRET_REQUEST' };
   }
 }

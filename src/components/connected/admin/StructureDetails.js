@@ -18,6 +18,10 @@ function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
+  const siretError = useSelector(state => state.structure?.siretError);
+  const StructureUpdateValid = useSelector(state => state.structure?.structureSiretUpdate);
+  const StructureUpdateError = useSelector(state => state.structure?.structutreSiretError);
+
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
@@ -116,6 +120,26 @@ function StructureDetails({ location }) {
 
   return (
     <div className="StructureDetails">
+      {StructureUpdateValid &&
+        <FlashMessage duration={10000} >
+          <div className=" flashBag">
+            <span>
+              Le SIRET de la structure a bien été modifié !
+            </span>
+          </div>
+        </FlashMessage>
+      }
+      {(siretError || StructureUpdateError) &&
+        <FlashMessage duration={10000} >
+          <div className=" flashBag invalid">
+            <span>
+              {siretError}
+              {StructureUpdateError}
+            </span>
+          </div>
+        </FlashMessage>
+      }
+
       { structure?.flashMessage === true &&
       <FlashMessage duration={10000}>
         { (errorSendMail === undefined || errorSendMail === false) &&
@@ -157,7 +181,7 @@ function StructureDetails({ location }) {
 
         {display === true &&
           <div style={{ width: '320px' }}>
-            <SiretForm displayForm={displayForm} structure={structure?.structure?._id}/>
+            <SiretForm displayForm={displayForm} structureId={structure?.structure?._id} structureSiret={structure?.structure?.siret}/>
           </div>
         }
 
