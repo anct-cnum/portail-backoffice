@@ -201,7 +201,12 @@ function choosePassword(token, password, typeEmail) {
     userService.choosePassword(token, password, typeEmail)
     .then(
       user => {
-        user.role = user.roles[0];
+        if (user.roles.length > 1) {
+          let result = user.roles.find(adminCoop => adminCoop !== 'admin_coop');
+          user.role = result;
+        } else {
+          user.role = user.roles[0];
+        }
         delete user.roles;
         dispatch(success(user));
       },
