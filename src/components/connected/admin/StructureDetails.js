@@ -181,7 +181,7 @@ function StructureDetails({ location }) {
 
         {display === true &&
           <div style={{ width: '320px' }}>
-            <SiretForm displayForm={displayForm} structureId={structure?.structure?._id} structureSiret={structure?.structure?.siret}/>
+            <SiretForm displayForm={displayForm} structureId={structure?.structure?._id}/>
           </div>
         }
 

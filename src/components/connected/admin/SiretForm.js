@@ -7,7 +7,7 @@ function SiretForm({ displayForm, structureId }) {
   const dispatch = useDispatch();
   const siretValid = useSelector(state => state.structure?.nomStructure);
 
-  const [siret, setSiret] = useState();
+  const [siret, setSiret] = useState('');
   const reg = new RegExp('^[0-9]{14}$');
 
   const filtreValue = value => {
@@ -18,20 +18,7 @@ function SiretForm({ displayForm, structureId }) {
   const handleForm = e => {
     let { value } = e.target;
     value = filtreValue(value);
-    if (reg.test(value)) {
-      setSiret(value);
-    }
-  };
-
-  const ctrlSiret = e => {
-    let value = e.clipboardData.getData('Text');
-    //eslint-disable-next-line
-    value = value.replace(/\s/g,'');
-    if (reg.test(value)) {
-      setSiret(value);
-    } else {
-      setSiret(null);
-    }
+    setSiret(value);
   };
 
   const verifySiret = () => {
@@ -71,12 +58,12 @@ function SiretForm({ displayForm, structureId }) {
         }
 
         <label className="rf-label"><h3>SIRET</h3></label>
-        <input className="rf-input" type="text" id="text-input-text" name="siret" onPaste={ctrlSiret} onChange={handleForm} />
+        <input className="rf-input" type="text" id="text-input-text" name="siret" value={siret} onChange={handleForm} />
       </div>
 
       <button onClick={() => displayForm(false)} className="rf-btn rf-btn--secondary">Annuler</button>
       <button style={{ float: 'right' }} className="rf-btn" onClick={verifySiret}
-        disabled={(siret?.length !== 14 || !reg.test(siret)) ? 'disabled' : ''}>Modifier</button>
+        disabled={!reg.test(siret) ? 'disabled' : ''}>Modifier</button>
     </div>
   );
 }
