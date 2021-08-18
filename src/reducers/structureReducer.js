@@ -55,7 +55,7 @@ export default function structure(state = null, action) {
     case 'VERIFY_STRUCTURE_SIRET_SUCCESS':
       return {
         ...state,
-        nomStructure: action.structure,
+        nomStructure: action.nomStructure,
       };
     case 'VERIFY_STRUCTURE_SIRET_FAILURE':
       return {
@@ -70,7 +70,7 @@ export default function structure(state = null, action) {
     case 'UPDATE_STRUCTURE_SIRET_SUCCESS':
       return {
         ...state,
-        structureSiretUpdate: action.structure,
+        structureSiretUpdated: action.siretUpdated,
       };
     case 'UPDATE_STRUCTURE_SIRET_FAILURE':
       return {

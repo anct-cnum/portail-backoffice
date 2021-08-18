@@ -19,15 +19,15 @@ function StructureDetails({ location }) {
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
   const siretError = useSelector(state => state.structure?.siretError);
-  const StructureUpdateValid = useSelector(state => state.structure?.structureSiretUpdate);
-  const StructureUpdateError = useSelector(state => state.structure?.structutreSiretError);
+  const structureUpdateValid = useSelector(state => state.structure?.structureSiretUpdated);
+  const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
 
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const [display, displayForm] = useState(false);
+  const [displaySiretForm, setDisplaySiretForm] = useState(false);
 
   const navigate = page => {
     setPage(page);
@@ -120,7 +120,7 @@ function StructureDetails({ location }) {
 
   return (
     <div className="StructureDetails">
-      {StructureUpdateValid &&
+      {structureUpdateValid &&
         <FlashMessage duration={10000} >
           <div className=" flashBag">
             <span>
@@ -129,12 +129,12 @@ function StructureDetails({ location }) {
           </div>
         </FlashMessage>
       }
-      {(siretError || StructureUpdateError) &&
+      {(siretError || structureUpdateError) &&
         <FlashMessage duration={10000} >
           <div className=" flashBag invalid">
             <span>
               {siretError}
-              {StructureUpdateError}
+              {structureUpdateError}
             </span>
           </div>
         </FlashMessage>
@@ -169,19 +169,19 @@ function StructureDetails({ location }) {
         <h2>
           {structure?.structure?.nom}
         </h2>
-        {display === false &&
+        {displaySiretForm === false &&
           <h3>
             SIRET
-            <button onClick={() => displayForm(true)} className="siretBtn">
+            <button onClick={() => setDisplaySiretForm(true)} className="siretBtn">
               {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
               <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
             </button>
           </h3>
         }
 
-        {display === true &&
+        {displaySiretForm === true &&
           <div style={{ width: '320px' }}>
-            <SiretForm displayForm={displayForm} structureId={structure?.structure?._id}/>
+            <SiretForm setDisplaySiretForm={setDisplaySiretForm} structureId={structure?.structure?._id}/>
           </div>
         }
 

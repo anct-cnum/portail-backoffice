@@ -123,8 +123,8 @@ function verifyStructureSiret(siret, structureId) {
   function request() {
     return { type: 'VERIFY_STRUCTURE_SIRET_REQUEST' };
   }
-  function success(structure) {
-    return { type: 'VERIFY_STRUCTURE_SIRET_SUCCESS', structure };
+  function success(nomStructure) {
+    return { type: 'VERIFY_STRUCTURE_SIRET_SUCCESS', nomStructure };
   }
   function failure(error) {
     return { type: 'VERIFY_STRUCTURE_SIRET_FAILURE', error };
@@ -148,8 +148,8 @@ function updateStructureSiret(siret, structureId) {
   function request() {
     return { type: 'UPDATE_STRUCTURE_SIRET_REQUEST' };
   }
-  function success(structure) {
-    return { type: 'UPDATE_STRUCTURE_SIRET_SUCCESS', structure };
+  function success(siretUpdated) {
+    return { type: 'UPDATE_STRUCTURE_SIRET_SUCCESS', siretUpdated };
   }
   function failure(error) {
     return { type: 'UPDATE_STRUCTURE_SIRET_FAILURE', error };

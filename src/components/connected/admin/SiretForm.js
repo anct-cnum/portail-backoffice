@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { structureActions } from '../../../actions';
 
-function SiretForm({ displayForm, structureId }) {
+function SiretForm({ setDisplaySiretForm, structureId }) {
   const dispatch = useDispatch();
   const siretValid = useSelector(state => state.structure?.nomStructure);
 
@@ -28,7 +28,7 @@ function SiretForm({ displayForm, structureId }) {
   };
 
   const updateSiret = () => {
-    displayForm(false);
+    setDisplaySiretForm(false);
     dispatch(structureActions.updateStructureSiret(siret, structureId));
   };
 
@@ -61,7 +61,7 @@ function SiretForm({ displayForm, structureId }) {
         <input className="rf-input" type="text" id="text-input-text" name="siret" value={siret} onChange={handleForm} />
       </div>
 
-      <button onClick={() => displayForm(false)} className="rf-btn rf-btn--secondary">Annuler</button>
+      <button onClick={() => setDisplaySiretForm(false)} className="rf-btn rf-btn--secondary">Annuler</button>
       <button style={{ float: 'right' }} className="rf-btn" onClick={verifySiret}
         disabled={!reg.test(siret) ? 'disabled' : ''}>Modifier</button>
     </div>
@@ -69,7 +69,7 @@ function SiretForm({ displayForm, structureId }) {
 }
 
 SiretForm.propTypes = {
-  displayForm: PropTypes.func,
+  setDisplaySiretForm: PropTypes.func,
   structureId: PropTypes.string,
 };
 export default SiretForm;
