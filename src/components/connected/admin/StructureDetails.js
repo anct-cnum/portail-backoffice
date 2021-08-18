@@ -22,7 +22,6 @@ function StructureDetails({ location }) {
   const structureUpdateValid = useSelector(state => state.structure?.structureSiretUpdated);
   const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
 
-
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);

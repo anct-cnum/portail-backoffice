@@ -113,7 +113,7 @@ function verifyStructureSiret(siret, structureId) {
 
     structureService.verifyStructureSiret(siret, structureId)
     .then(
-      result => dispatch(success(result.structure)),
+      result => dispatch(success(result.nomStructure)),
       error => {
         dispatch(failure(error));
       }
