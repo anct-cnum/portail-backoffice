@@ -17,7 +17,6 @@ import Aide from './Aide';
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
-  const user = useSelector(state => state.authentication.user?.user);
 
   const menu = useSelector(state => state.menu);
   const nombreConseillersCoselec = structure?.structure?.dernierCoselec?.nombreConseillersCoselec;
@@ -26,29 +25,8 @@ function Structure() {
     dispatch(structureActions.get());
   }, []);
 
-  function crisp() {
-    if (window.$crisp === undefined) {
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = process.env.REACT_APP_CANAL_CRISP_ID;
-
-      (function() {
-        let d = document;
-        let s = d.createElement('script');
-
-        s.src = 'https://client.crisp.chat/l.js';
-        s.async = 1;
-        d.getElementsByTagName('head')[0].appendChild(s);
-      })();
-
-      window.$crisp.push(['set', 'session:segments', [['espace_structure']]]);
-      window.$crisp.push(['set', 'user:email', [user.name]]);
-    }
-  }
-
-
   return (
     <div className="structure rf-pb-md-3w">
-      { crisp() }
       <Header connected />
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
