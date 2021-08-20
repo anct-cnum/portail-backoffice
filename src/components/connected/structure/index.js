@@ -17,7 +17,6 @@ import Aide from './Aide';
 function Structure() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
-  const user = useSelector(state => state.authentication.user?.user);
 
   const menu = useSelector(state => state.menu);
   const nombreConseillersCoselec = structure?.structure?.dernierCoselec?.nombreConseillersCoselec;
