@@ -9,6 +9,7 @@ import 'moment/locale/fr';
 import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
+import SiretForm from './SiretForm';
 
 moment.locale('fr');
 
@@ -17,11 +18,15 @@ function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
+  const siretError = useSelector(state => state.structure?.siretError);
+  const structureUpdateValid = useSelector(state => state.structure?.structureSiretUpdated);
+  const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
+  const [displaySiretForm, setDisplaySiretForm] = useState(false);
 
   const navigate = page => {
     setPage(page);
@@ -114,6 +119,26 @@ function StructureDetails({ location }) {
 
   return (
     <div className="StructureDetails">
+      {structureUpdateValid &&
+        <FlashMessage duration={10000} >
+          <div className=" flashBag">
+            <span>
+              Le SIRET de la structure a bien été modifié !
+            </span>
+          </div>
+        </FlashMessage>
+      }
+      {(siretError || structureUpdateError) &&
+        <FlashMessage duration={10000} >
+          <div className=" flashBag invalid">
+            <span>
+              {siretError}
+              {structureUpdateError}
+            </span>
+          </div>
+        </FlashMessage>
+      }
+
       { structure?.flashMessage === true &&
       <FlashMessage duration={10000}>
         { (errorSendMail === undefined || errorSendMail === false) &&
@@ -143,9 +168,22 @@ function StructureDetails({ location }) {
         <h2>
           {structure?.structure?.nom}
         </h2>
-        <h3>
-          SIRET {structure?.structure?.siret}
-        </h3>
+        {displaySiretForm === false &&
+          <h3>
+            SIRET
+            <button onClick={() => setDisplaySiretForm(true)} className="siretBtn">
+              {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
+              <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
+            </button>
+          </h3>
+        }
+
+        {displaySiretForm === true &&
+          <div style={{ width: '320px' }}>
+            <SiretForm setDisplaySiretForm={setDisplaySiretForm} structureId={structure?.structure?._id}/>
+          </div>
+        }
+
         <div className="rf-container-fluid">
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           {['prefet', 'admin'].indexOf(user.role) !== -1 &&
