@@ -63,7 +63,7 @@ function SiretForm({ setDisplaySiretForm, structureId }) {
 
       <button onClick={() => setDisplaySiretForm(false)} className="rf-btn rf-btn--secondary">Annuler</button>
       <button style={{ float: 'right' }} className="rf-btn" onClick={verifySiret}
-        disabled={!reg.test(siret) ? 'disabled' : ''}>Modifier</button>
+        disabled={!reg.test(siret) ? 'disabled' : ''}>Valider</button>
     </div>
   );
 }
