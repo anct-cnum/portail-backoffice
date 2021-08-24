@@ -171,13 +171,13 @@ function StructureDetails({ location }) {
         {displaySiretForm === false &&
           <h3>
             SIRET
-            { ['admin'].indexOf(user.role) !== -1 &&
+            { user?.roles.includes('admin') &&
               <button onClick={() => setDisplaySiretForm(true)} className="siretBtn">
                 {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
                 <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
               </button>
             }
-            { ['prefet'].indexOf(user.role) !== -1 &&
+            { user?.roles.includes('prefet') &&
               <span>
                 {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret }
               </span>
