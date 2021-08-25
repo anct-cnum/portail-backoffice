@@ -171,10 +171,17 @@ function StructureDetails({ location }) {
         {displaySiretForm === false &&
           <h3>
             SIRET
-            <button onClick={() => setDisplaySiretForm(true)} className="siretBtn">
-              {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
-              <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
-            </button>
+            { user?.role.includes('admin') &&
+              <button onClick={() => setDisplaySiretForm(true)} className="siretBtn">
+                {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret } &nbsp;
+                <img src="/logos/icone-crayon.svg" alt="Modifier le SIRET" style={{ height: '0.9em' }}/>
+              </button>
+            }
+            { user?.role.includes('prefet') &&
+              <span>
+                {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret }
+              </span>
+            }
           </h3>
         }
 
