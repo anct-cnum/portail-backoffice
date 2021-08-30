@@ -53,6 +53,15 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/recrutements') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/recrutements" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end">
+                    Mes recrutements
+                  </div>
+                </div>
+              </Link>
+            </li>
             <li className={`rf-sidemenu__item ${location.pathname === '/structure/documents' ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/documents" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>

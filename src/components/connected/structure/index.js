@@ -12,6 +12,7 @@ import { structureActions } from '../../../actions';
 import Header from '../../common/Header';
 import MesInformations from './MesInformations';
 import MonCompte from './MonCompte';
+import Recrutements from './Recrutements';
 import Aide from './Aide';
 
 function Structure() {
@@ -71,6 +72,7 @@ function Structure() {
             </div>
             <Route path={`/structure/candidats/:filter`} component={Conseillers} />
             <Route path={`/structure/candidat/:id`} component={conseillerDetails} />
+            <Route path={`/structure/recrutements`} component={Recrutements} />
             <Route path={`/structure/documents`} component={Documents} />
             <Route path={`/structure/demarches`} component={Demarches} />
             <Route path={`/structure/exports`} component={Exports} />
