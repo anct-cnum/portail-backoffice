@@ -48,6 +48,17 @@ function Menu() {
                   </Link>
                 </li>
             }
+            { role === 'prefet' &&
+              <li className={`rf-sidemenu__item ${location.pathname.startsWith('/etat-des-recrutements') ? 'rf-sidemenu__item--active' : ''}`}>
+                <Link className="rf-sidemenu__link" to="/etat-des-recrutements" style={{ padding: '0.5rem 0' }}>
+                  <div className="rf-container" style={{ padding: '0' }}>
+                    <div className="rf-grid-row rf-grid-row--end liste-recrutes">
+                    État des recrutements
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            }
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structures') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structures" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>

@@ -7,7 +7,8 @@ export const structureActions = {
   patch,
   verifyStructureSiret,
   updateStructureSiret,
-  cancelStructureSiret
+  cancelStructureSiret,
+  getAvancementRecrutement
 };
 
 function get(id) {
@@ -162,5 +163,28 @@ function cancelStructureSiret() {
 
   function request() {
     return { type: 'CANCEL_STRUCTURE_SIRET_REQUEST' };
+  }
+}
+
+function getAvancementRecrutement() {
+  return dispatch => {
+    dispatch(request());
+
+    structureService.getAvancementRecrutement()
+    .then(
+      result => dispatch(success(result)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'GET_STRUCTURES_RECRUTEMENT_REQUEST' };
+  }
+  function success(result) {
+    return { type: 'GET_STRUCTURES_RECRUTEMENT_SUCCESS', result };
+  }
+  function failure(error) {
+    return { type: 'GET_STRUCTURES_RECRUTEMENT_FAILURE', error };
   }
 }
