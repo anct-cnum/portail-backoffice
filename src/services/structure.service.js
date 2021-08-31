@@ -9,7 +9,8 @@ export const structureService = {
   resendInscription,
   patch,
   verifyStructureSiret,
-  updateStructureSiret
+  updateStructureSiret,
+  getAvancementRecrutement
 };
 
 function get(id) {
@@ -93,6 +94,14 @@ function updateStructureSiret(siret, structureId) {
   };
 
   return fetch(`${apiUrlRoot}/structures/updateStructureSiret`, requestOptions).then(handleResponse);
+}
+
+function getAvancementRecrutement() {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+  return fetch(`${apiUrlRoot}/structures/getAvancementRecrutement`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
