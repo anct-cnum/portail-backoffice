@@ -24,7 +24,6 @@ function Recrutements() {
     }));
   }, []);
 
-  console.log(conseillers?.items?.data);
   return (
     <div className="recrutements">
       <div className="rf-container-fluid">
