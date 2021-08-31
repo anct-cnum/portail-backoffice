@@ -24,7 +24,8 @@ function Structure({ structure, currentPage }) {
       <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
         to={{
           pathname: `/structure/${structure._id}`,
-          currentPage: currentPage
+          currentPage: currentPage,
+          origin: `/structures`
         }}>Détails</Link></td>
     </tr>
   );

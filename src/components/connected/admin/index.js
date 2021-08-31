@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBox from '../../common/SearchBox';
 import FilterDateBox from '../../common/FilterDateBox';
 import MonCompte from './MonCompte';
+import EtatRecrutements from './EtatRecrutements';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -142,6 +143,7 @@ function Admin() {
                 } />
             }
 
+            <Route path={`/etat-des-recrutements`} component={EtatRecrutements} />
             <Route path={`/admin/documents`} component={Documents} />
             <Route path={`/admin/exports`} component={ExportsCoselec} />
             <Route path={`/mon-compte`} component={MonCompte} />

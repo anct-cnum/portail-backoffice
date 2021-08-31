@@ -71,6 +71,8 @@ function ConseillerDetails({ location }) {
     }
   }, [errorUpdateStatus]);
 
+  const linkUrl = location.origin ?? `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`;
+
   return (
     <div className="ConseillerDetails">
       { (errorUpdateStatus !== undefined && errorUpdateStatus !== false) &&
@@ -90,7 +92,7 @@ function ConseillerDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`,
+          pathname: linkUrl,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">

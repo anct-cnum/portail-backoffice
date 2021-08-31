@@ -67,7 +67,8 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
             currentPage: currentPage,
-            currentFilter: currentFilter }}>
+            currentFilter: currentFilter,
+          }}>
               Détails
           </Link> :
           <button className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
