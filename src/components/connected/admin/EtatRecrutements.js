@@ -1,9 +1,10 @@
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { structureActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
+import ProgressBar from '../../common/ProgressBar';
 
 function EtatRecrutements() {
   const dispatch = useDispatch();
@@ -18,23 +19,6 @@ function EtatRecrutements() {
 
   const departement = user?.departement;
   const region = user?.region;
-
-  const ProgressBar = completion => {
-    const { completed } = completion;
-
-    const fillerStyles = {
-      width: `${completed}%`,
-      borderTopRightRadius: completed > 95 ? '20px' : '',
-      borderBottomRightRadius: completed > 95 ? '20px' : '',
-    };
-    return (
-      <div className="barre-total">
-        <div className="barre-progression" style={fillerStyles}>
-          <div className="barre-label">{`${completed}%`}</div>
-        </div>
-      </div>
-    );
-  };
 
   const [pageCount, setPageCount] = useState(0);
 
@@ -69,15 +53,14 @@ function EtatRecrutements() {
   }, []);
 
   return (
-    <div className="etatRecrutements">
+    <div className="recrutements">
       <div className="rf-container-fluid">
         <div className="rf-grid-row">
           <div className="rf-col-12">
             <h4 className="titre-etat-recrutements">Avancement total des recrutements sur le territoire</h4>
           </div>
           <div className="rf-col-12">
-            <ProgressBar completed={avancement?.pourcentage} />
-            <span className="nombre-recrutes"><b>{avancement?.candidatsRecrutes}/{avancement?.dotations}</b> candidats recrutés.</span>
+            <ProgressBar completed={avancement?.pourcentage} candidatsRecrutes={avancement?.candidatsRecrutes} dotations={avancement?.dotations} />
           </div>
           <div className="rf-col-12">
             <h4 className="titre-etat-recrutements">Avancement des recrutements par structure</h4>
@@ -102,11 +85,15 @@ function EtatRecrutements() {
                         <td>{structure.coselecAt ? dayjs(structure.coselecAt).format('DD/MM/YY') : '-'}</td>
                         <td>{structure?.dernierCoselec?.nombreConseillersCoselec ? structure?.dernierCoselec?.nombreConseillersCoselec : '-'}</td>
                         <td>{structure?.nbCandidatsRecrutes}</td>
-                        <td>Détails</td>
+                        <td>
+                          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+                            to={{ pathname: `/structure/${structure._id}`, currentPage: page, origin: `/etat-des-recrutements` }}>
+                              Détails
+                          </Link>
+                        </td>
                       </tr>);
                   })
                   }
-
                 </tbody>
               </table>
             </div>

@@ -14,7 +14,6 @@ import SiretForm from './SiretForm';
 moment.locale('fr');
 
 function StructureDetails({ location }) {
-
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
@@ -158,7 +157,7 @@ function StructureDetails({ location }) {
       <Link
         style={{ boxShadow: 'none' }}
         to={{
-          pathname: `/structures`,
+          pathname: location.origin,
           currentPage: location.currentPage
         }}
         className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
@@ -179,7 +178,7 @@ function StructureDetails({ location }) {
             }
             { user?.role.includes('prefet') &&
               <span>
-                {!structure?.structure?.siret && <>Aucun numéro !</>}{structure?.structure?.siret }
+                {!structure?.structure?.siret && <>&nbsp;Aucun numéro !</>}{structure?.structure?.siret }
               </span>
             }
           </h3>
