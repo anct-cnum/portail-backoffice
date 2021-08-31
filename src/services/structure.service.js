@@ -21,7 +21,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/structures/${id ? id : userEntityId()}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, search, start, end, type, page, filter, sortData, sortOrder) {
+function getAll(departement, region, com, search, start, end, type, page, filter, sortData, sortOrder) {
 
   const requestOptions = {
     method: 'GET',
@@ -29,6 +29,7 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  const filterCom = com !== null ? `&codeCom=${com}` : '';
   const filterSearch = search !== '' ? `&$search=${search}` : '';
 
 
@@ -40,7 +41,7 @@ function getAll(departement, region, search, start, end, type, page, filter, sor
     filterType = type === 'PRIVATE' ? `&type=PRIVATE` : '&type[$ne]=PRIVATE';
   }
   // eslint-disable-next-line max-len
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterDateStart}${filterDateEnd}${filterType}${filterSearch}`;
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterCom}${filterDateStart}${filterDateEnd}${filterType}${filterSearch}`;
 
 
   if (filter) {
