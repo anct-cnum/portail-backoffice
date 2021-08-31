@@ -72,7 +72,7 @@ function Recrutements() {
                         <td>{miseEnRelation.conseillerObj.datePrisePoste ? dayjs(miseEnRelation.conseillerObj.datePrisePoste).format('DD/MM/YY') : '-'}</td>
                         <td>
                           <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
-                            to={{ pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`, currentPage: 0, origin: `/structure/recrutements`}}>
+                            to={{ pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`, currentPage: 0, origin: `/structure/recrutements` }}>
                               Détails
                           </Link>
                         </td>
