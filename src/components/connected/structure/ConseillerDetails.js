@@ -71,7 +71,7 @@ function ConseillerDetails({ location }) {
     }
   }, [errorUpdateStatus]);
 
-  const linkUrl = location.origin ? location.origin : `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`;
+  const linkUrl = location.origin ?? `/structure/candidats/${location.currentFilter === undefined ? 'toutes' : location.currentFilter}`;
 
   return (
     <div className="ConseillerDetails">

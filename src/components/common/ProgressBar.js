@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 
 function ProgressBar(props) {
   const { completed, candidatsRecrutes, dotations } = props;
@@ -17,7 +18,15 @@ function ProgressBar(props) {
           <div className="barre-label">{`${completed}%`}</div>
         </div>
       </div>
-      <span className="nombre-recrutes"><b>{`${candidatsRecrutes}`}/{`${dotations}`}</b> candidat(s) recruté(s).</span>
+      <span className="nombre-recrutes"><b>{`${candidatsRecrutes}`}/{`${dotations}`}</b>&nbsp;
+        <Pluralize
+          zero={'candidat recruté.'}
+          singular={'candidat recruté.'}
+          plural={'candidats recrutés.'}
+          count={candidatsRecrutes}
+          showCount={false}
+        />
+      </span>
     </>
   );
 }
