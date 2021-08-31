@@ -26,17 +26,18 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, search, page, filter, sortData, sortOrder, persoFilters) {
+function getAll(departement, region, com, search, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  const filterCom = com !== null ? `&codeCom=${com}` : '';
   const filterSearch = search !== '' ? `&$search=${search}&$limit=100` : '';
   const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
 
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterCom}${filterSearch}`;
 
   if (persoFilters) {
     //Recrutés ?
@@ -52,17 +53,18 @@ function getAll(departement, region, search, page, filter, sortData, sortOrder, 
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters) {
+function getAllMisesEnRelation(departement, region, com, structureId, search, page, filter, sortData, sortOrder, persoFilters) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
   const filterDepartement = departement !== null ? `&codeDepartement=${departement}` : '';
   const filterRegion = region !== null ? `&codeRegion=${region}` : '';
+  const filterCom = com !== null ? `&codeCom=${com}` : '';
   const filterSearch = search !== '' ? `&$search=${search}` : '';
   const filterSort = search === '' ? `&$sort[${sortData}]=${sortOrder}` : '';
   let uri = `${apiUrlRoot}/structures/${structureId ? structureId : userEntityId()}/misesEnRelation?\
-$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterSearch}`;
+$skip=${page}${filterSort}${filterDepartement}${filterRegion}${filterCom}${filterSearch}`;
 
   if (filter) {
     uri += `&filter=${filter}`;

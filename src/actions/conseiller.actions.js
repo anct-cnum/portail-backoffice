@@ -43,6 +43,7 @@ function get(id) {
 function getAll({
   departement = null,
   region = null,
+  com = null,
   structureId = null,
   misesEnRelation,
   search = '',
@@ -56,13 +57,13 @@ function getAll({
 
     let promises = [];
     if (misesEnRelation) {
-      let promise = conseillerService.getAllMisesEnRelation(departement, region, structureId, search, page, filter, sortData, sortOrder, persoFilters);
+      let promise = conseillerService.getAllMisesEnRelation(departement, region, com, structureId, search, page, filter, sortData, sortOrder, persoFilters);
       promises.push(promise);
     }
 
     let isSearch = search.length > 0;
     if (!misesEnRelation || isSearch) {
-      let promise = conseillerService.getAll(departement, region, search, page, isSearch ? '' : filter, sortData, sortOrder, persoFilters);
+      let promise = conseillerService.getAll(departement, region, com, search, page, isSearch ? '' : filter, sortData, sortOrder, persoFilters);
       promises.push(promise);
     }
 
