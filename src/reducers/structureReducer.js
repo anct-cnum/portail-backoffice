@@ -2,6 +2,7 @@ export default function structure(state = null, action) {
   switch (action.type) {
     case 'GET_STRUCTURE_REQUEST':
       return {
+        ...state,
         loading: true,
         flashMessage: false
       };

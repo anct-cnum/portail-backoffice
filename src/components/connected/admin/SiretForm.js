@@ -30,7 +30,6 @@ function SiretForm({ setDisplaySiretForm, structureId }) {
   const updateSiret = () => {
     setDisplaySiretForm(false);
     dispatch(structureActions.updateStructureSiret(siret, structureId));
-    dispatch(structureActions.get(structureId));
   };
 
   const cancelSiret = () => {

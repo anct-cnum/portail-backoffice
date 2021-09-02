@@ -130,6 +130,12 @@ function StructureDetails({ location }) {
     dispatch(structureActions.resendInscription(id));
   };
 
+  useEffect(() => {
+    if (structureUpdateValid) {
+      dispatch(structureActions.get(id));
+    }
+  }, [structureUpdateValid]);
+
   return (
     <div className="StructureDetails">
       {structureUpdateValid &&
