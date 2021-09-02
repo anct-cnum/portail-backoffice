@@ -91,6 +91,7 @@ function StructureDetails({ location }) {
   }
 
   useEffect(() => {
+    dispatch(structureActions.cancelStructureSiret());
     dispatch(paginationActions.resetPage(false));
     dispatch(structureActions.get(id));
     navigate(1);
