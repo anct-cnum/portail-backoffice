@@ -81,7 +81,9 @@ export default function structure(state = null, action) {
     case 'CANCEL_STRUCTURE_SIRET_REQUEST':
       return {
         ...state,
-        nomStructure: null
+        nomStructure: null,
+        structureSiretUpdated: null,
+        loadingSiret: false
       };
     default:
       return state;
