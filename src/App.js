@@ -58,10 +58,6 @@ function App() {
                                 style={{ height: '59px', marginRight: '50px' }}/>
                             </div>
                             <div style={{ display: 'inline-block' }} >
-                              <img src="/logos/logo-banque-des-territoires.svg" alt="logo Banque Des Territoires"
-                                style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }}/>
-                            </div>
-                            <div style={{ display: 'inline-block' }} >
                               <img src="/logos/logo-france-relance.svg" alt="logo France Relance" style={{ height: '70px', marginBottom: '7px' }}/>
                             </div>
                           </a>
