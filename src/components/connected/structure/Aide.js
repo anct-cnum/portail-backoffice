@@ -12,8 +12,8 @@ function Aide() {
               &laquo; pas-à-pas &raquo;, disponible dans l&rsquo;onglet &laquo; Mes documents &raquo; ; si vous rencontrez des difficultés techniques
               d&rsquo;accès à votre espace structure,
               vous pouvez écrire à l&rsquo;adresse suivante :&nbsp;
-            <a href="mailto:support-cnfs@anct.gouv.fr" title="support-cnfs@anct.gouv.fr">
-              support-cnfs@anct.gouv.fr
+            <a href="mailto:conseiller-numérique@anct.gouv.fr" title="conseiller-numérique@anct.gouv.fr">
+              conseiller-numérique@anct.gouv.fr
             </a>.
             </p>
             <p>Pour toute question relative <b>à l&rsquo;instruction de votre dossier de subvention</b>, nous vous invitons à utiliser prioritairement
