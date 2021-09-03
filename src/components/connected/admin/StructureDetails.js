@@ -45,38 +45,53 @@ function StructureDetails({ location }) {
 
   const statutsLabel = [
     {
-      name: 'recrutés par une autre structure',
-      nameSingle: 'recruté par une autre structure',
-      key: 'finalisee_non_disponible'
+      name: 'candidats déjà recrutés par une autre structure',
+      nameSingle: 'candidat déjà recruté par une autre structure',
+      key: 'finalisee_non_disponible',
+      order: 6
     },
     {
       name: 'candidatures',
       nameSingle: 'candidature',
-      key: 'nouvelle'
+      key: 'nouvelle',
+      order: 5
     },
     {
       name: 'candidatures pré sélectionnées',
       nameSingle: 'candidature pré sélectionnée',
-      key: 'interessee'
+      key: 'interessee',
+      order: 3
     },
     {
       name: 'candidatures non retenues',
       nameSingle: 'candidature non retenue',
-      key: 'nonInteressee'
+      key: 'nonInteressee',
+      order: 4
     },
     {
       name: 'candidatures validées',
       nameSingle: 'candidature validée',
-      key: 'recrutee'
+      key: 'recrutee',
+      order: 2
     },
     {
       name: 'candidats recrutés',
       nameSingle: 'candidat recruté',
-      key: 'finalisee'
+      key: 'finalisee',
+      order: 1
     }
   ];
 
+  if (Array.isArray(stats)) {
+    stats.sort((a, b) => {
+      let stat1 = statutsLabel.find(stat => stat.key === a.statut);
+      let stat2 = statutsLabel.find(stat => stat.key === b.statut);
+      return (stat1.order < stat2.order) ? -1 : 1;
+    });
+  }
+
   useEffect(() => {
+    dispatch(structureActions.cancelStructureSiret());
     dispatch(paginationActions.resetPage(false));
     dispatch(structureActions.get(id));
     navigate(1);
@@ -115,6 +130,12 @@ function StructureDetails({ location }) {
     window.scrollTo(0, 0); //remonte la page pour visualiser le message flash
     dispatch(structureActions.resendInscription(id));
   };
+
+  useEffect(() => {
+    if (structureUpdateValid) {
+      dispatch(structureActions.get(id));
+    }
+  }, [structureUpdateValid]);
 
   return (
     <div className="StructureDetails">

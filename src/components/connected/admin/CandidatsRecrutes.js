@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CandidatRecrute from './CandidatRecrute';
 
-function CandidatsRecrutes({ departement, region, search }) {
+function CandidatsRecrutes({ departement, region, com, search }) {
   const dispatch = useDispatch();
 
   const candidatsRecrutes = useSelector(state => state.conseillers);
@@ -25,6 +25,7 @@ function CandidatsRecrutes({ departement, region, search }) {
     dispatch(conseillerActions.getAll({
       departement,
       region,
+      com,
       search,
       misesEnRelation: false,
       page: candidatsRecrutes.items ? (page - 1) * candidatsRecrutes.items.limit : 0,
@@ -47,7 +48,7 @@ function CandidatsRecrutes({ departement, region, search }) {
         navigate(page);
       }
     } else {
-      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter,
+      dispatch(conseillerActions.getAll({ departement, region, com, search, misesEnRelation: false, page: page - 1, filter,
         persoFilters }));
     }
   };
@@ -105,6 +106,7 @@ function CandidatsRecrutes({ departement, region, search }) {
 
 CandidatsRecrutes.propTypes = {
   region: PropTypes.string,
+  com: PropTypes.string,
   search: PropTypes.string,
   departement: PropTypes.string
 };

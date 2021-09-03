@@ -2,6 +2,7 @@ export default function structure(state = null, action) {
   switch (action.type) {
     case 'GET_STRUCTURE_REQUEST':
       return {
+        ...state,
         loading: true,
         flashMessage: false
       };
@@ -80,7 +81,9 @@ export default function structure(state = null, action) {
     case 'CANCEL_STRUCTURE_SIRET_REQUEST':
       return {
         ...state,
-        nomStructure: null
+        nomStructure: null,
+        structureSiretUpdated: null,
+        loadingSiret: false
       };
     default:
       return state;

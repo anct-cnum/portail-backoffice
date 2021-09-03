@@ -34,6 +34,7 @@ function Admin() {
   let deptLabel = null;
 
   let regionList = require('../../../data/regions');
+  let comList = require('../../../data/coms');
 
   if (user.departement) {
     departementsRegionList.forEach(d => {
@@ -59,6 +60,7 @@ function Admin() {
 
   const [departement, setDepartement] = useState(null);
   const [codeRegion, setCodeRegion] = useState(null);
+  const [codeCom, setCodeCom] = useState(null);
 
   function selectDepartement(event) {
     dispatch(paginationActions.resetPage(true));
@@ -72,8 +74,17 @@ function Admin() {
     setDepartement(null);
   }
 
+  function selectCom(event) {
+    dispatch(paginationActions.resetPage(true));
+    setCodeCom(event.target.value !== '' ? event.target.value : null);
+  }
+
   function getDepartements() {
     return departementsRegionRaw.filter(region => codeRegion !== null ? region.region_name === regionList.find(r => r.code === codeRegion).name : true);
+  }
+
+  function getComs() {
+    return comList;
   }
 
   useEffect(() => {
@@ -113,6 +124,13 @@ function Admin() {
                   <option key={idx} value={region.num_dep}>{region.num_dep} - {region.dep_name}</option>
                 )}
               </select>
+
+              <select className="rf-select rf-mb-2w" value={codeCom === null ? '' : codeCom} onChange={selectCom}>
+                <option value="">Toute collectivité d&apos;outre-mer</option>
+                {getComs().map((com, idx) =>
+                  <option key={idx} value={com.num_com}>{com.num_com} - {com.com_name}</option>
+                )}
+              </select>
             </>}
 
             { (location.pathname.startsWith('/structures')) &&
@@ -120,7 +138,7 @@ function Admin() {
             }
 
             <Route path={`/tableau-de-bord`} component={Stats} />
-            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion}
+            <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} com={codeCom}
               search={search}
               start={dates.filterDateStart !== null ? String(dates.filterDateStart) : ''}
               end={dates.filterDateEnd !== null ? String(dates.filterDateEnd) : ''} />}
@@ -131,6 +149,7 @@ function Admin() {
                 () => <Conseillers
                   departement={role === 'admin' ? departement : null}
                   region={codeRegion}
+                  com={codeCom}
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
             { user.role === 'admin' &&
@@ -139,6 +158,7 @@ function Admin() {
                   () => <CandidatsRecrutes
                     departement={departement}
                     region={codeRegion}
+                    com={codeCom}
                     search={search} />
                 } />
             }

@@ -7,7 +7,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
-function Conseillers({ departement, region, search }) {
+function Conseillers({ departement, region, com, search }) {
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseillers);
@@ -26,11 +26,16 @@ function Conseillers({ departement, region, search }) {
     region = user.region ? user.region : null;
   }
 
+  if (user.role !== 'admin') {
+    com = user.com ? user.com : null;
+  }
+
   const navigate = page => {
     setPage(page);
     dispatch(conseillerActions.getAll({
       departement,
       region,
+      com,
       search,
       misesEnRelation: false,
       page: conseillers.items ? (page - 1) * conseillers.items.limit : 0,
@@ -52,7 +57,7 @@ function Conseillers({ departement, region, search }) {
         navigate(page);
       }
     } else {
-      dispatch(conseillerActions.getAll({ departement, region, search, misesEnRelation: false, page: page - 1, filter }));
+      dispatch(conseillerActions.getAll({ departement, region, com, search, misesEnRelation: false, page: page - 1, filter }));
     }
   };
 
@@ -116,6 +121,7 @@ function Conseillers({ departement, region, search }) {
 
 Conseillers.propTypes = {
   region: PropTypes.string,
+  com: PropTypes.string,
   search: PropTypes.string,
   departement: PropTypes.string
 };

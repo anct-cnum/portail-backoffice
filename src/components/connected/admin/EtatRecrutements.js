@@ -82,8 +82,10 @@ function EtatRecrutements() {
                     return (
                       <tr key={idx}>
                         <td>{structure.nom}</td>
-                        <td>{structure.coselecAt ? dayjs(structure.coselecAt).format('DD/MM/YY') : '-'}</td>
-                        <td>{structure?.dernierCoselec?.nombreConseillersCoselec ? structure?.dernierCoselec?.nombreConseillersCoselec : '-'}</td>
+                        <td>{structure.coselecAt ? dayjs(structure.coselecAt).format('DD/MM/YY') : 'en attente de passage'}</td>
+                        <td>
+                          {structure?.dernierCoselec?.nombreConseillersCoselec ? structure?.dernierCoselec?.nombreConseillersCoselec : 'en attente de passage'}
+                        </td>
                         <td>{structure?.nbCandidatsRecrutes}</td>
                         <td>
                           <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
