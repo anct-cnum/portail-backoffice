@@ -79,6 +79,12 @@ function StructureDetails({ location }) {
       nameSingle: 'candidat recruté',
       key: 'finalisee',
       order: 1
+    },
+    {
+      name: 'ruptures de contrat',
+      nameSingle: 'rupture de contrat',
+      key: 'finalisee_rupture',
+      order: 7
     }
   ];
 
@@ -212,6 +218,7 @@ function StructureDetails({ location }) {
         }
 
         <div className="rf-container-fluid">
+          <p>Grand réseau : {structure?.structure?.reseau ? `Oui (${structure?.structure?.reseau})` : 'Non'}</p>
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           {['prefet', 'admin'].indexOf(user.role) !== -1 &&
             <p>Zone rurale : {structure?.structure?.estZRR ? 'Oui' : 'Non'}</p>
