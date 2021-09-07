@@ -43,8 +43,9 @@ function ExportsCoselec() {
       </div>
       { role === 'admin' &&
       <>
-        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier « Je recrute »</a></p>
-        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier « structures »</a></p>
+        <p><a className="rf-link" onClick={() => getFile('candidats')}>Export des candidatures validées par la structure</a></p>
+        <p><a className="rf-link" onClick={() => getFile('embauches')}>Export des candidats embauchés</a></p>
+        <p><a className="rf-link" onClick={() => getFile('structures')}>Export des structures</a></p>
       </>
       }
       { role === 'prefet' &&
