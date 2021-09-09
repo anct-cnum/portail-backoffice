@@ -177,6 +177,7 @@ function Documents() {
             <a href={`${urlSiteVitrine}/kit-communication`}
               id="btn-kit-communication"
               target="blank"
+              rel="noreferrer"
               className="rf-btn big-btn rf-text--lg rf-text--bold"
               title="Kit de communication">
                 kit de communication V2

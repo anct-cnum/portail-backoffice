@@ -43,10 +43,10 @@ function ExportsCoselec() {
       </div>
       { role === 'admin' &&
       <>
-        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier &laquo;&nbsp;Je recrute&raquo;&nbsp; (candidaits validés + embauchés)</a></p>
+        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier &laquo;&nbsp;Je recrute&nbsp;&raquo; (candidats validés + embauchés)</a></p>
         <p><a className="rf-link" onClick={() => getFile('candidatsValidesStructure')}>Liste des candidatures validées par la structure</a></p>
         <p><a className="rf-link" onClick={() => getFile('embauches')}>Liste des candidats embauchés</a></p>
-        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier &laquo;&nbsp;structures&raquo;&nbsp;</a></p>
+        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier &laquo;&nbsp;structures&nbsp;&raquo;</a></p>
       </>
       }
       { role === 'prefet' &&
