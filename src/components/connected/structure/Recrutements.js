@@ -37,7 +37,7 @@ function Recrutements() {
           <div className="rf-col-4">
             <ul className="liste-stats rf-mb-4w">
               <li><b>{nombreConseillersCoselec}</b>&nbsp;CnFS attendu(s) dans votre structure</li>
-              <li><b>{stats?.stats?.interesse }</b>&nbsp;candidature(s) préselectionnée(s)</li>
+              <li><b>{stats?.stats?.interessee }</b>&nbsp;candidature(s) préselectionnée(s)</li>
               <li><b>{stats?.stats?.recrutee}</b>&nbsp;candidature(s) validée(s) </li>
               <li><b>{!nombreConseillersFinalise ? '0' : nombreConseillersFinalise }</b>&nbsp;candidat recruté(s).</li>
             </ul>
