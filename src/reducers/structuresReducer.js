@@ -9,7 +9,8 @@ export default function structures(state = [], action) {
       return {
         ...state,
         loading: false,
-        items: action.structures
+        items: action.structures,
+        error: false
       };
     case 'GETALL_FAILURE':
       return {
@@ -23,7 +24,8 @@ export default function structures(state = [], action) {
     case 'GET_STRUCTURES_RECRUTEMENT_SUCCESS':
       return {
         ...state,
-        avancement: action.result
+        avancement: action.result,
+        error: false
       };
     case 'GET_STRUCTURES_RECRUTEMENT_FAILURE':
       return {
