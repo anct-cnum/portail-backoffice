@@ -5,6 +5,8 @@ function Documents() {
 
   const structure = useSelector(state => state.structure?.structure);
 
+  const urlSiteVitrine = process.env.REACT_APP_PUBLIC_HOSTNAME;
+
   return (
     <div className="documents">
       <div className="rf-container-fluid">
@@ -172,12 +174,12 @@ function Documents() {
         <h4>4) &Eacute;léments de communication</h4>
         <div className="rf-grid-row">
           <p>
-            <a href="https://www.conseiller-numerique.gouv.fr/kit-communication"
+            <a href={`${urlSiteVitrine}/kit-communication`}
               id="btn-kit-communication"
               target="blank"
               className="rf-btn big-btn rf-text--lg rf-text--bold"
               title="Kit de communication">
-                kit de communication
+                kit de communication V2
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
               Accéder au kit de communication&nbsp;: logos, charte graphique, gabarits, modèle de carte de visite
