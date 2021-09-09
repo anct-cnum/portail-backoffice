@@ -12,7 +12,7 @@ function Recrutements() {
   const conseillers = useSelector(state => state.conseillers);
 
   const nombreConseillersCoselec = structure?.structure?.dernierCoselec?.nombreConseillersCoselec;
-  const nombreConseillersFinalise = stats?.stats?.finalisee === undefined ? 0 : stats?.stats?.finalisee;
+  const nombreConseillersFinalise = stats?.stats?.finalisee ?? 0;
   const pourcentage = nombreConseillersCoselec > 0 ? nombreConseillersFinalise * 100 / nombreConseillersCoselec : 0;
 
   useEffect(() => {
@@ -37,9 +37,9 @@ function Recrutements() {
           <div className="rf-col-4">
             <ul className="liste-stats rf-mb-4w">
               <li><b>{nombreConseillersCoselec}</b>&nbsp;CnFS attendu(s) dans votre structure</li>
-              <li><b>{stats?.stats?.interessee }</b>&nbsp;candidature(s) préselectionnée(s)</li>
-              <li><b>{stats?.stats?.recrutee}</b>&nbsp;candidature(s) validée(s) </li>
-              <li><b>{!nombreConseillersFinalise ? '0' : nombreConseillersFinalise }</b>&nbsp;candidat recruté(s).</li>
+              <li><b>{stats?.stats?.interessee ?? '0'}</b>&nbsp;candidature(s) préselectionnée(s)</li>
+              <li><b>{stats?.stats?.recrutee ?? '0'}</b>&nbsp;candidature(s) validée(s) </li>
+              <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat recruté(s).</li>
             </ul>
           </div>
           <div className="rf-col-8">
