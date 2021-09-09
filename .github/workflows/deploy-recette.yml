@@ -30,7 +30,7 @@ jobs:
       with:
         envkey_REACT_APP_STRATEGYAUTH: "local"
         envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_RECETTE }}
-        envkey_REACT_PUBLIC_HOSTNAME: "https://beta.www.conseiller-numerique.gouv.fr"
+        envkey_REACT_APP_PUBLIC_HOSTNAME: "https://beta.www.conseiller-numerique.gouv.fr"
         file_name: .env
     - name: Build application
       run: yarn run build
