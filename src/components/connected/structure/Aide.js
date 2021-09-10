@@ -29,7 +29,7 @@ function Aide() {
               aide.conseiller-numerique.gouv.fr
             </a>.
             </p>
-            <p>En dernier lieu, vous pouvez écrire à l&rsquo;adresse suivante :&nbsp;
+            <p>En dernier lieu, vous pouvez écrire à l&rsquo;adresse suivante&nbsp;:&nbsp;
               <a href="mailto:conseiller-numerique@anct.gouv.fr" title="conseiller-numerique@anct.gouv.fr">
               conseiller-numerique@anct.gouv.fr
               </a>.
