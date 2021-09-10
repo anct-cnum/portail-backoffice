@@ -21,7 +21,8 @@ function Aide() {
             <p>Pour toute question relative notamment <b>à l&rsquo;accueil de votre/vos conseiller(s) numérique(s)</b>,&nbsp;
                nous vous invitons à consulter les guides&nbsp;
                employeur public ou privé et le guide &laquo;&nbsp;Bien démarrer ma mission&nbsp;&raquo;,
-    disponibles dans l&rsquo;onglet &laquo;&nbsp;Mes documents&nbsp;&raquo;.</p>
+               disponibles dans l&rsquo;onglet &laquo;&nbsp;Mes documents&nbsp;&raquo;.
+            </p>
             <p>Si toutefois vous n&rsquo;avez pas trouvé votre réponse, nous vous invitons à consulter en priorité la Foire aux
               Questions accessible sur le site&nbsp;
             <a href="https://aide.conseiller-numerique.gouv.fr/fr/" rel="noreferrer" target="blank" title="aide.conseiller-numerique.gouv.fr">
