@@ -39,7 +39,7 @@ function Demarches() {
           </p>
         </div>
         <div className="rf-grid-row">
-          <p>Entreprises de l’économie sociale et solidaire et autres structures privées :
+          <p>Entreprises de l&rsquo;économie sociale et solidaire et autres structures privées :
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises"
               title="cnfs-sa-entreprises"
