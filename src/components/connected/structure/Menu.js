@@ -89,6 +89,15 @@ function Menu() {
                 </div>
               </Link>
             </li>
+            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/formation') ? 'rf-sidemenu__item--active' : ''}`}>
+              <Link className="rf-sidemenu__link" to="/structure/formation" style={{ padding: '0.5rem 0' }}>
+                <div className="rf-container" style={{ padding: '0' }}>
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
+                    Inscription en formation
+                  </div>
+                </div>
+              </Link>
+            </li>
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/aide') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/aide" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
