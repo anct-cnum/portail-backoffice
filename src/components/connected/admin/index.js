@@ -17,6 +17,7 @@ import SearchBox from '../../common/SearchBox';
 import FilterDateBox from '../../common/FilterDateBox';
 import MonCompte from './MonCompte';
 import EtatRecrutements from './EtatRecrutements';
+import InscriptionFormation from './InscriptionFormation';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -169,7 +170,10 @@ function Admin() {
             <Route path={`/mon-compte`} component={MonCompte} />
 
             { user.role === 'prefet' &&
+            <>
+              <Route path={`/admin/formation`} component={InscriptionFormation} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
+            </>
             }
             { user.role === 'admin' &&
               <Route exact path="/" render={() => (<Redirect to="/tableau-de-bord" />)} />
