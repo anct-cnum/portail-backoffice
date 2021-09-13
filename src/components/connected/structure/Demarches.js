@@ -9,7 +9,7 @@ function Demarches() {
           <div>
             <p>Vous retrouverez ci-dessous le lien vous permettant de déposer votre dossier de demande de subvention via l&rsquo;outil Démarches Simplifiées.
             </p>
-            <p>Nous vous rappelons que les demandes sont traitées en fonction de la date de recrutement et d&rsquo;entrée en formation&nbsp;
+            <p>Nous vous informons que les demandes sont traitées en fonction de la date de recrutement et d&rsquo;entrée en formation&nbsp;
               de votre conseiller numérique France services,&nbsp;
               et non pas selon la date de dépôt de votre dossier.
             </p>
