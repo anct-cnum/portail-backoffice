@@ -38,7 +38,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/informations') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/informations" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes informations
                   </div>
                 </div>
@@ -47,7 +47,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/candidats/nouvelle" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes candidatures
                   </div>
                 </div>
@@ -56,7 +56,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/recrutements') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/recrutements" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes recrutements
                   </div>
                 </div>
@@ -65,7 +65,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname === '/structure/documents' ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/documents" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes documents
                   </div>
                 </div>
@@ -74,7 +74,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname === '/structure/demarches' ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/demarches" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes démarches
                   </div>
                 </div>
@@ -83,7 +83,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/exports') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/exports" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Mes exports
                   </div>
                 </div>
@@ -101,7 +101,7 @@ function Menu() {
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/aide') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/structure/aide" style={{ padding: '0.5rem 0' }}>
                 <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end">
+                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Aide
                   </div>
                 </div>
@@ -109,7 +109,7 @@ function Menu() {
             </li>
             <li className={`rf-sidemenu__item`}>
               <a className="rf-sidemenu__link menu-contact" href="mailto:conseiller-numerique@anct.gouv.fr">
-                <div className="rf-grid-row rf-grid-row--end">
+                <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
                     Nous contacter
                 </div>
               </a>
