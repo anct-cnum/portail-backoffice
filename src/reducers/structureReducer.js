@@ -85,6 +85,22 @@ export default function structure(state = null, action) {
         structureSiretUpdated: null,
         loadingSiret: false
       };
+    case 'UPDATE_STRUCTURE_EMAIL_REQUEST':
+      return {
+        ...state,
+        loadingEmail: true
+      };
+    case 'UPDATE_STRUCTURE_EMAIL_SUCCESS':
+      console.log('action', action);
+      return {
+        ...state,
+        structureEmailUpdated: action.emailUpdated,
+      };
+    case 'UPDATE_STRUCTURE_EMAIL_FAILURE':
+      return {
+        ...state,
+        structutreEmailError: action.error,
+      };
     default:
       return state;
   }
