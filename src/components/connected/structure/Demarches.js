@@ -27,7 +27,7 @@ function Demarches() {
             </p>
             <p><b>Votre demande de subvention ne pourra pas être traitée si ces étapes n&rsquo;ont pas été respectées.</b>
             </p>
-            <p><b>Vous ne devez remplir qu&rsquo;une seule demande quel que soit le nombre de postes que l&rsquo;État a accordé à votre structure.</b>
+            <p><b>Vous ne devez remplir qu&rsquo;une seule demande quel que soit le nombre de postes que l&rsquo;&Eacute;tat a accordé à votre structure.</b>
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@ function Demarches() {
           </p>
         </div>
         <div className="rf-grid-row">
-          <p>N&rsquo;hésitez pas à consulter notre guide « pas-à-pas » pour vous guider dans vos démarches&nbsp;:
+          <p>N&rsquo;hésitez pas à consulter notre guide &laquo;&nbsp;pas-à-pas&nbsp;&raquo; pour vous guider dans vos démarches&nbsp;:
             <br/>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide_pas_a_pas.pdf"
               title="guide-pas-a-pas"
