@@ -10,6 +10,7 @@ import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
 import SiretForm from './SiretForm';
+import EmailForm from './EmailForm';
 
 moment.locale('fr');
 
@@ -26,6 +27,7 @@ function StructureDetails({ location }) {
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [displaySiretForm, setDisplaySiretForm] = useState(false);
+  const [displayFormEmail, setDisplayFormEmail] = useState(false);
 
   const navigate = page => {
     setPage(page);
@@ -216,7 +218,7 @@ function StructureDetails({ location }) {
             <SiretForm setDisplaySiretForm={setDisplaySiretForm} structureId={structure?.structure?._id}/>
           </div>
         }
-
+        
         <div className="rf-container-fluid">
           <p>Grand réseau : {structure?.structure?.reseau ? `Oui (${structure?.structure?.reseau})` : 'Non'}</p>
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
@@ -228,7 +230,15 @@ function StructureDetails({ location }) {
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
-          <p>Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a></p>
+          {displayFormEmail === true ?
+            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id}/> :
+            <p>
+              Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
+              <button>
+                <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }} onClick={() => setDisplayFormEmail(true)}/>
+              </button>
+            </p>
+          }
           {/* eslint-disable-next-line max-len */}
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
           </p>
