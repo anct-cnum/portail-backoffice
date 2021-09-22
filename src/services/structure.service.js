@@ -86,15 +86,13 @@ function verifyStructureSiret(siret, structureId) {
 }
 function updateStructureEmail(email, structureId) {
 
-  const user = { email, structureId };
-
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
-    body: JSON.stringify(user)
+    body: JSON.stringify({ email })
   };
 
-  return fetch(`${apiUrlRoot}/structures/updateStructureEmail`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/structures/${structureId}/email`, requestOptions).then(handleResponse);
 }
 
 function updateStructureSiret(siret, structureId) {
