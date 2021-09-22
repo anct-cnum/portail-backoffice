@@ -267,7 +267,7 @@ function StructureDetails({ location }) {
                 setDisplayFormEmail(true);
                 setMessageEmailChange(false);
               }}
-              style={{ cursor: 'pointer', border: 'none', borderBottom: '1px solid' }}>
+              style={{ cursor: 'pointer', border: 'none', borderBottom: '1px solid', paddingBottom: 'inherit' }}>
                 <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }}/>
               </button>
             </p>
