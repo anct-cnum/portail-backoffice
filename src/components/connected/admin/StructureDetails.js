@@ -148,7 +148,6 @@ function StructureDetails({ location }) {
     }
   }, [structureUpdateValid]);
 
-  console.log('structureEmailSuccess :', structureEmailSuccess);
   useEffect(() => {
     if (structureEmailSuccess === true) {
       setMessageEmailChange(true);
