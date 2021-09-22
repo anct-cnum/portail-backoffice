@@ -3,31 +3,22 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { structureActions } from '../../../actions';
 
-function EmailForm({ setDisplayFormEmail, structureId, setMessageEmailChange }) {
+function EmailForm({ setDisplayFormEmail, structureId }) {
   const dispatch = useDispatch();
   const [messageValidEmailRegex, setMessageValidEmailRegex] = useState(false);
-  const [email, setEmail] = useState({
-    email: ''
-  });
+  const [email, setEmail] = useState('');
   const valideEmail = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
   const handleForm = e => {
-    const { name, value } = e.target;
-    setEmail({
-      ...email,
-      [name]: value.replace(/\s/g, '')
-    });
+    const { value } = e.target;
+    setEmail(value.replace(/\s/g, ''));
   };
   const ChangeEmail = () => {
     setMessageValidEmailRegex(true);
-    if (valideEmail.test(email.email) && structureId) {
-      dispatch(structureActions.updateStructureEmail(email.email.toLocaleLowerCase(), structureId));
+    if (valideEmail.test(email) && structureId) {
+      dispatch(structureActions.updateStructureEmail(email.toLocaleLowerCase(), structureId));
       setDisplayFormEmail(false);
       setMessageValidEmailRegex(false);
-      setTimeout(() => {
-        dispatch(structureActions.get(structureId));
-        setMessageEmailChange(true);
-      }, 300);
     }
   };
 
@@ -36,7 +27,7 @@ function EmailForm({ setDisplayFormEmail, structureId, setMessageEmailChange }) 
       <div className="rf-my-3w">
         <label className="rf-label"><h3>Email</h3></label>
         <input className="rf-input" type="text" id="text-input-text" name="email" onChange={handleForm} />
-        { messageValidEmailRegex && !valideEmail.test(email.email) &&
+        { messageValidEmailRegex && !valideEmail.test(email) &&
                     <p className="invalid">Le format de l&rsquo;email saisi est invalide.</p>
         }
       </div>
@@ -47,7 +38,6 @@ function EmailForm({ setDisplayFormEmail, structureId, setMessageEmailChange }) 
 }
 EmailForm.propTypes = {
   setDisplayFormEmail: PropTypes.func,
-  setMessageEmailChange: PropTypes.func,
   structureId: PropTypes.string,
 };
 export default EmailForm;

@@ -91,11 +91,9 @@ export default function structure(state = null, action) {
         loadingEmail: true
       };
     case 'UPDATE_STRUCTURE_EMAIL_SUCCESS':
-      console.log('action', action);
       return {
         ...state,
         messageChangeEmailSuccess: true,
-        structureEmailUpdated: action.emailUpdated,
       };
     case 'UPDATE_STRUCTURE_EMAIL_FAILURE':
       return {

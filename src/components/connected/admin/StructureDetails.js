@@ -148,6 +148,13 @@ function StructureDetails({ location }) {
     }
   }, [structureUpdateValid]);
 
+  useEffect(() => {
+    if (structureEmailSuccess === true) {
+      setMessageEmailChange(true);
+      dispatch(structureActions.get(id));
+    }
+  }, [structureEmailSuccess]);
+
   return (
     <div className="StructureDetails">
       {structureUpdateValid &&
@@ -191,14 +198,14 @@ function StructureDetails({ location }) {
             <FlashMessage duration={10000}>
               { structureEmailSuccess === true &&
             <p className="rf-label flashBag">
-              L&apos;adresse e-mail a été changer avec succès
+              L&apos;adresse e-mail a été changée avec succès
               &nbsp;
               <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
             </p>
               }
               { structureEmailError === true &&
             <p className="rf-label flashBag labelError">
-             Une erreur est survenue lors de la modification de l&nbsp;e-mail.<br/>
+             Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
              Veuillez réessayer plus tard.
             </p>
               }
@@ -253,7 +260,7 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
           {displayFormEmail === true ?
-            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} setMessageEmailChange={setMessageEmailChange} /> :
+            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} /> :
             <p>
               Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
               <button onClick={() => {
