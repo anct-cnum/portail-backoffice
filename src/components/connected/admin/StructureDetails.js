@@ -21,6 +21,9 @@ function StructureDetails({ location }) {
   const siretError = useSelector(state => state.structure?.siretError);
   const structureUpdateValid = useSelector(state => state.structure?.structureSiretUpdated);
   const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
+  const structureEmailSuccess = useSelector(state => state?.structure?.messageChangeEmailSuccess);
+  const structureEmailError = useSelector(state => state?.structure?.messageChangeEmailError);
+  const [messageEmailChange, setMessageEmailChange] = useState(false);
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
@@ -183,6 +186,25 @@ function StructureDetails({ location }) {
         }
       </FlashMessage>
       }
+
+      { messageEmailChange &&
+            <FlashMessage duration={10000}>
+              { structureEmailSuccess === true &&
+            <p className="rf-label flashBag">
+              L&apos;adresse e-mail a été changer avec succès
+              &nbsp;
+              <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+            </p>
+              }
+              { structureEmailError === true &&
+            <p className="rf-label flashBag labelError">
+             Une erreur est survenue lors de la modification de l&nbsp;e-mail.<br/>
+             Veuillez réessayer plus tard.
+            </p>
+              }
+            </FlashMessage>
+      }
+
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -218,7 +240,7 @@ function StructureDetails({ location }) {
             <SiretForm setDisplaySiretForm={setDisplaySiretForm} structureId={structure?.structure?._id}/>
           </div>
         }
-        
+
         <div className="rf-container-fluid">
           <p>Grand réseau : {structure?.structure?.reseau ? `Oui (${structure?.structure?.reseau})` : 'Non'}</p>
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
@@ -231,11 +253,15 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
           {displayFormEmail === true ?
-            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id}/> :
+            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} setMessageEmailChange={setMessageEmailChange} /> :
             <p>
               Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
-              <button>
-                <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }} onClick={() => setDisplayFormEmail(true)}/>
+              <button onClick={() => {
+                setDisplayFormEmail(true);
+                setMessageEmailChange(false);
+              }}
+              style={{ cursor: 'pointer', border: 'none', borderBottom: '1px solid' }}>
+                <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }}/>
               </button>
             </p>
           }

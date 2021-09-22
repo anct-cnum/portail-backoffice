@@ -150,7 +150,7 @@ function updateStructureEmail(email, structureId) {
     return { type: 'UPDATE_STRUCTURE_EMAIL_REQUEST' };
   }
   function success(emailUpdated) {
-    return dispatch => dispatch(get(emailUpdated.id), { type: 'UPDATE_STRUCTURE_EMAIL_SUCCESS', emailUpdated });
+    return { type: 'UPDATE_STRUCTURE_EMAIL_SUCCESS', emailUpdated };
   }
   function failure(error) {
     return { type: 'UPDATE_STRUCTURE_EMAIL_FAILURE', error };

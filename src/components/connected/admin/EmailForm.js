@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { structureActions } from '../../../actions';
 
-function EmailForm({ setDisplayFormEmail, structureId }) {
+function EmailForm({ setDisplayFormEmail, structureId, setMessageEmailChange }) {
   const dispatch = useDispatch();
-  const structure = useSelector(state => state?.structure?.structureEmailUpdated);
   const [messageValidEmailRegex, setMessageValidEmailRegex] = useState(false);
   const [email, setEmail] = useState({
     email: ''
@@ -26,10 +25,9 @@ function EmailForm({ setDisplayFormEmail, structureId }) {
       setDisplayFormEmail(false);
       setMessageValidEmailRegex(false);
       setTimeout(() => {
-        if (structure) {
-          dispatch(structureActions.get(structureId));
-        }
-      }, 200);
+        dispatch(structureActions.get(structureId));
+        setMessageEmailChange(true);
+      }, 300);
     }
   };
 
@@ -49,6 +47,7 @@ function EmailForm({ setDisplayFormEmail, structureId }) {
 }
 EmailForm.propTypes = {
   setDisplayFormEmail: PropTypes.func,
+  setMessageEmailChange: PropTypes.func,
   structureId: PropTypes.string,
 };
 export default EmailForm;
