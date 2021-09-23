@@ -309,8 +309,8 @@ function StructureDetails({ location }) {
                   {stat.statut === 'finalisee' &&
                    <>
                      <h3 className="capitalizeFirstLetter">
-                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name }
-                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle }
+                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut)?.name }
+                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut)?.nameSingle }
                      </h3>
                      {stat.candidats && stat.candidats.map((candidat, idx) =>
                        <p key={idx}>
@@ -334,8 +334,8 @@ function StructureDetails({ location }) {
                   {stat.statut === 'recrutee' &&
                    <>
                      <h3 className="capitalizeFirstLetter">
-                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name }
-                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle }
+                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut)?.name }
+                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut)?.nameSingle }
                      </h3>
                      {stat.candidats && stat.candidats.map((candidat, idx) =>
                        <p key={idx}>
