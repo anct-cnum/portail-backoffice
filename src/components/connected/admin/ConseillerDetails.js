@@ -18,6 +18,7 @@ function ConseillerDetails({ location }) {
   useEffect(() => {
     dispatch(conseillerActions.get(id));
     dispatch(paginationActions.resetPage(false));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
