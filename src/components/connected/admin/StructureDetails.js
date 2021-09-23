@@ -314,7 +314,36 @@ function StructureDetails({ location }) {
                      </h3>
                      {stat.candidats && stat.candidats.map((candidat, idx) =>
                        <p key={idx}>
-                         {candidat}
+                         <Link to={{
+                           pathname: `/candidat/${candidat?._id}`,
+                           origin: `/structure/${structure?.structure?._id}` }}>
+                           {candidat.prenom} {candidat.nom}
+                         </Link>
+                       </p>
+                     )}
+                     {!stat.candidats &&
+                      <p>Aucun candidat trouvé</p>
+                     }
+                   </>
+                  }
+                </div>
+              )}
+
+              {stats.map((stat, idx) =>
+                <div key={idx}>
+                  {stat.statut === 'recrutee' &&
+                   <>
+                     <h3 className="capitalizeFirstLetter">
+                       {stat.count > 1 && statutsLabel.find(label => label.key === stat.statut).name }
+                       {stat.count <= 1 && statutsLabel.find(label => label.key === stat.statut).nameSingle }
+                     </h3>
+                     {stat.candidats && stat.candidats.map((candidat, idx) =>
+                       <p key={idx}>
+                         <Link to={{
+                           pathname: `/candidat/${candidat?._id}`,
+                           origin: `/structure/${structure?.structure?._id}` }}>
+                           {candidat.prenom} {candidat.nom}
+                         </Link>
                        </p>
                      )}
                      {!stat.candidats &&
