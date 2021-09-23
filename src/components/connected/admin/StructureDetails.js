@@ -10,6 +10,7 @@ import Pagination from '../../common/Pagination';
 import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
 import SiretForm from './SiretForm';
+import EmailForm from './EmailForm';
 
 moment.locale('fr');
 
@@ -20,12 +21,16 @@ function StructureDetails({ location }) {
   const siretError = useSelector(state => state.structure?.siretError);
   const structureUpdateValid = useSelector(state => state.structure?.structureSiretUpdated);
   const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
+  const structureEmailSuccess = useSelector(state => state?.structure?.messageChangeEmailSuccess);
+  const structureEmailError = useSelector(state => state?.structure?.messageChangeEmailError);
+  const [messageEmailChange, setMessageEmailChange] = useState(false);
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [displaySiretForm, setDisplaySiretForm] = useState(false);
+  const [displayFormEmail, setDisplayFormEmail] = useState(false);
 
   const navigate = page => {
     setPage(page);
@@ -143,6 +148,13 @@ function StructureDetails({ location }) {
     }
   }, [structureUpdateValid]);
 
+  useEffect(() => {
+    if (structureEmailSuccess === true) {
+      setMessageEmailChange(true);
+      dispatch(structureActions.get(id));
+    }
+  }, [structureEmailSuccess]);
+
   return (
     <div className="StructureDetails">
       {structureUpdateValid &&
@@ -181,6 +193,25 @@ function StructureDetails({ location }) {
         }
       </FlashMessage>
       }
+
+      { messageEmailChange &&
+            <FlashMessage duration={10000}>
+              { structureEmailSuccess === true &&
+            <p className="rf-label flashBag">
+              L&apos;adresse e-mail a été changée avec succès
+              &nbsp;
+              <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+            </p>
+              }
+              { structureEmailError === true &&
+            <p className="rf-label flashBag labelError">
+             Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
+             Veuillez réessayer plus tard.
+            </p>
+              }
+            </FlashMessage>
+      }
+
       <Link
         style={{ boxShadow: 'none' }}
         to={{
@@ -228,7 +259,19 @@ function StructureDetails({ location }) {
           <p>Prêt à accueillir votre conseiller numérique France Services à partir du {moment(structure?.structure?.dateDebutMission).format('D MMMM YYYY')}</p>
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
-          <p>Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a></p>
+          {displayFormEmail === true ?
+            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} /> :
+            <p>
+              Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
+              <button onClick={() => {
+                setDisplayFormEmail(true);
+                setMessageEmailChange(false);
+              }}
+              style={{ cursor: 'pointer', border: 'none', borderBottom: '1px solid', paddingBottom: 'inherit' }}>
+                <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }}/>
+              </button>
+            </p>
+          }
           {/* eslint-disable-next-line max-len */}
           <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
           </p>

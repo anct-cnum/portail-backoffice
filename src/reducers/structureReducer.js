@@ -85,6 +85,24 @@ export default function structure(state = null, action) {
         structureSiretUpdated: null,
         loadingSiret: false
       };
+    case 'UPDATE_STRUCTURE_EMAIL_REQUEST':
+      return {
+        ...state,
+        loadingEmail: true,
+        structureEmailError: false,
+        messageChangeEmailSuccess: false
+      };
+    case 'UPDATE_STRUCTURE_EMAIL_SUCCESS':
+      return {
+        ...state,
+        messageChangeEmailSuccess: action.emailUpdated.emailUpdated
+      };
+    case 'UPDATE_STRUCTURE_EMAIL_FAILURE':
+      return {
+        ...state,
+        messageChangeEmailError: true,
+        structureEmailError: action.error,
+      };
     default:
       return state;
   }

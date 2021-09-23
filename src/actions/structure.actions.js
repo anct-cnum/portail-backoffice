@@ -6,6 +6,7 @@ export const structureActions = {
   resendInscription,
   patch,
   verifyStructureSiret,
+  updateStructureEmail,
   updateStructureSiret,
   cancelStructureSiret,
   getAvancementRecrutement
@@ -129,6 +130,30 @@ function verifyStructureSiret(siret, structureId) {
   }
   function failure(error) {
     return { type: 'VERIFY_STRUCTURE_SIRET_FAILURE', error };
+  }
+}
+function updateStructureEmail(email, structureId) {
+
+  return dispatch => {
+    dispatch(request());
+
+    structureService.updateStructureEmail(email, structureId)
+    .then(
+      structure => dispatch(success(structure)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_STRUCTURE_EMAIL_REQUEST' };
+  }
+  function success(emailUpdated) {
+    return { type: 'UPDATE_STRUCTURE_EMAIL_SUCCESS', emailUpdated };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_STRUCTURE_EMAIL_FAILURE', error };
   }
 }
 
