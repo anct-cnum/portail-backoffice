@@ -5,6 +5,7 @@ import { conseillerActions, paginationActions } from '../../../actions';
 import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import FlashMessage from 'react-flash-message';
 
 function ConseillerDetails({ location }) {
   const history = useHistory();
@@ -96,6 +97,13 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
+        { errorDeleteCandidat &&
+            <FlashMessage duration={10000}>
+              <p className="rf-label flashBag labelError">
+                {errorDeleteCandidat}
+              </p>
+            </FlashMessage>
+        }
         <h2>
           <span className="capitalizeFirstLetter">
             {conseiller?.prenom}&nbsp;{conseiller?.nom}</span>
