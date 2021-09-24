@@ -14,7 +14,8 @@ export const conseillerService = {
   verifyCandidateToken,
   verifySondageToken,
   getCurriculumVitae,
-  getStructureByIdConseiller
+  getStructureByIdConseiller,
+  deleteCandidat
 };
 
 function get(id) {
@@ -156,7 +157,14 @@ function getStructureByIdConseiller(id) {
   let uri = `${apiUrlRoot}/conseillers/${id}/employeur`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
+function deleteCandidat(id) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: authHeader()
+  };
 
+  return fetch(`${apiUrlRoot}/conseillers/${id}/candidat`, requestOptions).then(handleResponse);
+}
 
 function handleResponse(response) {
   return response.text().then(text => {

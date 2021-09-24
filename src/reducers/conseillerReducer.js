@@ -120,6 +120,19 @@ export default function conseiller(state = null, action) {
       return {
         nomStructureError: action.error,
       };
+    case 'DELETE_CONSEILLER_REQUEST':
+      return {
+        loading: true
+      };
+    case 'DELETE_CONSEILLER_SUCCESS':
+      return {
+        ...state,
+        conseillerSuccessDelete: action.conseiller
+      };
+    case 'DELETE_CONSEILLER_FAILURE':
+      return {
+        conseillerErrorDelete: action.error
+      };
     default:
       return state;
   }

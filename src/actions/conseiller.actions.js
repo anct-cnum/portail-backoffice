@@ -12,7 +12,8 @@ export const conseillerActions = {
   verifySondageToken,
   getCurriculumVitae,
   resetFile,
-  getStructureByIdConseiller
+  getStructureByIdConseiller,
+  deleteCandidat
 };
 
 function get(id) {
@@ -270,4 +271,29 @@ function getStructureByIdConseiller(id) {
   function failure(error) {
     return { type: 'GET_STRUCTURE_EMPLOYER_FAILURE', error };
   }
+}
+
+function deleteCandidat(id) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.deleteCandidat(id)
+    .then(
+      conseiller => dispatch(success(conseiller)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'DELETE_CONSEILLER_REQUEST' };
+  }
+  function success(conseiller) {
+    return { type: 'DELETE_CONSEILLER_SUCCESS', conseiller };
+  }
+  function failure(error) {
+    return { type: 'DELETE_CONSEILLER_FAILURE', error };
+  }
+
 }
