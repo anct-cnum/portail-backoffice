@@ -12,9 +12,15 @@ function ConseillerDetails({ location }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
+  const successDeleteCandidat = useSelector(state => state.conseiller?.conseillerSuccessDelete);
+  const errorDeleteCandidat = useSelector(state => state.conseiller?.conseillerErrorDelete);
   const [confirmDeleteCandidat, setConfirmDeleteCandidat] = useState(false);
 
   let { id } = useParams();
+
+  if (confirmDeleteCandidat === true) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   useEffect(() => {
     dispatch(conseillerActions.get(id));
@@ -32,9 +38,19 @@ function ConseillerDetails({ location }) {
     dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
   };
   const deleteCandidat = () => {
-    history.push('/candidats');
-
-    // dispatch(conseillerActions.deleteCandidat(conseiller?._id));
+    dispatch(conseillerActions.deleteCandidat(conseiller?._id));
+  };
+  useEffect(() => {
+    if (successDeleteCandidat) {
+      history.push('/candidats');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [successDeleteCandidat]);
+  const annulerDeleteCandidat = () => {
+    setConfirmDeleteCandidat(false);
+    if (errorDeleteCandidat) {
+      dispatch(conseillerActions.get(id));
+    }
   };
 
   const renderStars = palier => {
@@ -218,7 +234,7 @@ function ConseillerDetails({ location }) {
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
-                         <button onClick={() => setConfirmDeleteCandidat(false)} className="rf-btn">Annuler</button>
+                         <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
                          <button style={{ float: 'right', backgroundColor: '#E10600' }} className="rf-btn" onClick={deleteCandidat}>Oui, je supprime</button>
                        </div>
                      </div>
