@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, paginationActions } from '../../../actions';
 import Spinner from 'react-loader-spinner';
@@ -7,11 +7,12 @@ import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
 function ConseillerDetails({ location }) {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
+  const [confirmDeleteCandidat, setConfirmDeleteCandidat] = useState(false);
 
   let { id } = useParams();
 
@@ -29,6 +30,11 @@ function ConseillerDetails({ location }) {
 
   const downloadCV = () => {
     dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
+  };
+  const deleteCandidat = () => {
+    history.push('/candidats');
+
+    // dispatch(conseillerActions.deleteCandidat(conseiller?._id));
   };
 
   const renderStars = palier => {
@@ -145,6 +151,15 @@ function ConseillerDetails({ location }) {
               <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
+              <br/>
+              <br/>
+              <div>
+                <button
+                  style={{ backgroundColor: '#E7E7E7', padding: '1rem 1.5rem', fontSize: '1rem', cursor: 'pointer', border: '#E7E7E7' }}
+                  onClick={() => setConfirmDeleteCandidat(true)}>
+                Supprimer le profil et ses données
+                </button>
+              </div>
             </div>
             { conseiller?.pix?.partage &&
               <div className="rf-col-4 rf-ml-6w rf-mt-1w">
@@ -186,10 +201,36 @@ function ConseillerDetails({ location }) {
                 </p>
               </div>
             }
+            {confirmDeleteCandidat &&
+               <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
+                 <div className="rf-grid-row rf-grid-row--center">
+                   <div className="rf-col-12 rf-col-md-12 rf-col-lg-12">
+                     <div className="rf-modal__body">
+                       <div className="rf-modal__header">
+                         <button className="rf-link--close rf-link" onClick={() => setConfirmDeleteCandidat(false)}>Fermer</button>
+                       </div>
+                       <div className="rf-modal__content">
+                         <h1 id="rf-modal-2-title" className="rf-modal__title">
+                           <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
+                         Supprimer totalement {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                         </h1>
+                         <p>Êtes vous certain(e) de vouloir supprimer ce profil de candidat ?</p>
+                         <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
+                       </div>
+                       <div style={{ paddingBottom: '2rem' }}>
+                         <button onClick={() => setConfirmDeleteCandidat(false)} className="rf-btn">Annuler</button>
+                         <button style={{ float: 'right', backgroundColor: '#E10600' }} className="rf-btn" onClick={deleteCandidat}>Oui, je supprime</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            }
           </div>
         </div>
       </div>
     </div>
+
   );
 }
 
