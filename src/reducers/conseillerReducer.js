@@ -122,12 +122,14 @@ export default function conseiller(state = null, action) {
       };
     case 'DELETE_CONSEILLER_REQUEST':
       return {
-        loading: true
+        loading: true,
+        ...state,
+        conseillerErrorDelete: false
       };
     case 'DELETE_CONSEILLER_SUCCESS':
       return {
         ...state,
-        conseillerSuccessDelete: action.conseiller
+        conseillerSuccessDelete: action.deleteSuccess
       };
     case 'DELETE_CONSEILLER_FAILURE':
       return {

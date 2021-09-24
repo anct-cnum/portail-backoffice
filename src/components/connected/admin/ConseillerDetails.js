@@ -179,7 +179,7 @@ function ConseillerDetails({ location }) {
               <br/>
               <div>
                 <button
-                  style={{ backgroundColor: '#E10600', color: 'white', padding: '1rem 1.5rem', fontSize: '1rem', cursor: 'pointer', border: '#E7E7E7' }}
+                  className="bouton_delete"
                   onClick={() => setConfirmDeleteCandidat(true)}>
                 Supprimer définitivement le profil
                 </button>

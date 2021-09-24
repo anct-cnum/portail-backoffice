@@ -279,7 +279,7 @@ function deleteCandidat(id) {
 
     conseillerService.deleteCandidat(id)
     .then(
-      conseiller => dispatch(success(conseiller)),
+      deleteSuccess => dispatch(success(deleteSuccess)),
       error => {
         dispatch(failure(error));
       }
@@ -289,8 +289,8 @@ function deleteCandidat(id) {
   function request() {
     return { type: 'DELETE_CONSEILLER_REQUEST' };
   }
-  function success(conseiller) {
-    return { type: 'DELETE_CONSEILLER_SUCCESS', conseiller };
+  function success(deleteSuccess) {
+    return { type: 'DELETE_CONSEILLER_SUCCESS', deleteSuccess };
   }
   function failure(error) {
     return { type: 'DELETE_CONSEILLER_FAILURE', error };
