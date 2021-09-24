@@ -179,9 +179,9 @@ function ConseillerDetails({ location }) {
               <br/>
               <div>
                 <button
-                  style={{ backgroundColor: '#E7E7E7', padding: '1rem 1.5rem', fontSize: '1rem', cursor: 'pointer', border: '#E7E7E7' }}
+                  style={{ backgroundColor: '#E10600', color: 'white', padding: '1rem 1.5rem', fontSize: '1rem', cursor: 'pointer', border: '#E7E7E7' }}
                   onClick={() => setConfirmDeleteCandidat(true)}>
-                Supprimer le profil et ses données
+                Supprimer définitivement le profil
                 </button>
               </div>
             </div>
@@ -236,14 +236,16 @@ function ConseillerDetails({ location }) {
                        <div className="rf-modal__content">
                          <h1 id="rf-modal-2-title" className="rf-modal__title">
                            <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
-                         Supprimer totalement {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                           Suppression définitive
                          </h1>
                          <p>Êtes vous certain(e) de vouloir supprimer ce profil de candidat ?</p>
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
                          <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
-                         <button style={{ float: 'right', backgroundColor: '#E10600' }} className="rf-btn" onClick={deleteCandidat}>Oui, je supprime</button>
+                         <button style={{ float: 'right', backgroundColor: '#E10600' }} className="rf-btn" onClick={deleteCandidat}>
+                           Oui, Supprimer définitivement
+                         </button>
                        </div>
                      </div>
                    </div>
