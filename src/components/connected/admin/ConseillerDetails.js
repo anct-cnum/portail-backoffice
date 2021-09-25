@@ -16,6 +16,7 @@ function ConseillerDetails({ location }) {
   const successDeleteCandidat = useSelector(state => state.conseiller?.conseillerSuccessDelete);
   const errorDeleteCandidat = useSelector(state => state.conseiller?.conseillerErrorDelete);
   const [confirmDeleteCandidat, setConfirmDeleteCandidat] = useState(false);
+  const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
 
   let { id } = useParams();
 
@@ -240,12 +241,38 @@ function ConseillerDetails({ location }) {
                          </h1>
                          <p>Êtes vous certain(e) de vouloir supprimer ce profil de candidat ?</p>
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
+                         <div>
+                           <label>
+                              Confirmez l&apos;adresse e-mail en le saisissant ici:
+                           </label>
+                           <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
+                             aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
+                             type="text"
+                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                             name={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                             onChange={e => setConfirmEmailCandidat(e.target.value)}
+                           />
+                           <p
+                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
+                             className={confirmEmailCandidat === conseiller?.email ? 'rf-valid-text' : 'rf-error-text'}>
+                             {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmer' : 'L\'adresse e-mail ne correspond pas'}
+                           </p>
+                         </div>
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
                          <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
-                         <button style={{ float: 'right', backgroundColor: '#E10600' }} className="rf-btn" onClick={deleteCandidat}>
-                           Oui, Supprimer définitivement
-                         </button>
+                         {confirmEmailCandidat === conseiller?.email ?
+                           <button
+                             style={{ float: 'right', backgroundColor: '#E10600' }}
+                             className="rf-btn" onClick={deleteCandidat}>
+                         Oui, Supprimer définitivement
+                           </button> :
+                           <button
+                             style={{ float: 'right', backgroundColor: '#E7E7E7', color: '#E10600' }}
+                             className="rf-btn" disabled>
+                       Oui, Supprimer définitivement
+                           </button>
+                         }
                        </div>
                      </div>
                    </div>
