@@ -17,6 +17,7 @@ function ConseillerDetails({ location }) {
   const errorDeleteCandidat = useSelector(state => state.conseiller?.conseillerErrorDelete);
   const [confirmDeleteCandidat, setConfirmDeleteCandidat] = useState(false);
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
+  const [motif, setMotif] = useState('');
 
   let { id } = useParams();
 
@@ -40,7 +41,7 @@ function ConseillerDetails({ location }) {
     dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
   };
   const deleteCandidat = () => {
-    dispatch(conseillerActions.deleteCandidat(conseiller?._id));
+    dispatch(conseillerActions.deleteCandidat({ id: conseiller?._id, motif }));
   };
   useEffect(() => {
     if (successDeleteCandidat) {
@@ -182,7 +183,7 @@ function ConseillerDetails({ location }) {
                 <button
                   className="bouton_delete"
                   onClick={() => setConfirmDeleteCandidat(true)}>
-                Supprimer définitivement le profil
+                Supprimer la candidature
                 </button>
               </div>
             </div>
@@ -237,13 +238,33 @@ function ConseillerDetails({ location }) {
                        <div className="rf-modal__content">
                          <h1 id="rf-modal-2-title" className="rf-modal__title">
                            <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
-                           Suppression définitive
+                           Supprimer la candidature définitivement
                          </h1>
                          <p>Êtes vous certain(e) de vouloir supprimer ce profil de candidat ?</p>
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
+                         <div className="rf-form-group">
+                           <fieldset className="rf-fieldset">
+                             <legend className="rf-fieldset__legend rf-text--regular" id="radio-legend">
+                                Le motif de la suppression :
+                             </legend>
+                             <div className="rf-fieldset__content">
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-1" onClick={() => setMotif('demande RGPD')}/>
+                                 <label className="rf-label" htmlFor="radio-1">Demande RGPD
+                                 </label>
+                               </div>
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-2" onClick={() => setMotif('plus intéressé par le dispositif')}/>
+                                 <label className="rf-label" htmlFor="radio-2">
+                                     Plus intéressé par le dispositif
+                                 </label>
+                               </div>
+                             </div>
+                           </fieldset>
+                         </div>
                          <div>
                            <label>
-                              Confirmez l&apos;adresse e-mail en le saisissant ici:
+                              Confirmez l&apos;adresse e-mail en le saisissant ici :
                            </label>
                            <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
                              aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
@@ -255,13 +276,14 @@ function ConseillerDetails({ location }) {
                            <p
                              id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
                              className={confirmEmailCandidat === conseiller?.email ? 'rf-valid-text' : 'rf-error-text'}>
-                             {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmer' : 'L\'adresse e-mail ne correspond pas'}
+                             {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmé' : 'L\'adresse e-mail ne correspond pas'}
                            </p>
                          </div>
+
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
                          <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
-                         {confirmEmailCandidat === conseiller?.email ?
+                         {confirmEmailCandidat === conseiller?.email && motif !== '' ?
                            <button
                              style={{ float: 'right', backgroundColor: '#E10600' }}
                              className="rf-btn" onClick={deleteCandidat}>
