@@ -157,12 +157,13 @@ function getStructureByIdConseiller(id) {
   let uri = `${apiUrlRoot}/conseillers/${id}/employeur`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
-function deleteCandidat({ id, motif }) {
+function deleteCandidat({ id, motif, actionUser }) {
   const requestOptions = {
     method: 'DELETE',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      motif
+      motif,
+      actionUser
     })
   };
 

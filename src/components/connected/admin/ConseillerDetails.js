@@ -41,7 +41,7 @@ function ConseillerDetails({ location }) {
     dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
   };
   const deleteCandidat = () => {
-    dispatch(conseillerActions.deleteCandidat({ id: conseiller?._id, motif }));
+    dispatch(conseillerActions.deleteCandidat({ id: conseiller?._id, motif, actionUser: 'admin' }));
   };
   useEffect(() => {
     if (successDeleteCandidat) {

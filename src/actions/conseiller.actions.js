@@ -273,11 +273,11 @@ function getStructureByIdConseiller(id) {
   }
 }
 
-function deleteCandidat({ id, motif }) {
+function deleteCandidat({ id, motif, actionUser }) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.deleteCandidat({ id, motif })
+    conseillerService.deleteCandidat({ id, motif, actionUser })
     .then(
       deleteSuccess => dispatch(success(deleteSuccess)),
       error => {
