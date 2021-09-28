@@ -96,7 +96,6 @@ function Admin() {
 
   return (
     <div className="admin">
-
       <Header connected email={user?.name} />
       <div className="rf-m-1w rf-mb-4w rf-ml-4w">
         <h3>Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>

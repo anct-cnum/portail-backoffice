@@ -181,9 +181,9 @@ function ConseillerDetails({ location }) {
               <br/>
               <div>
                 <button
-                  className="bouton_delete"
+                  className="bouton-delete"
                   onClick={() => setConfirmDeleteCandidat(true)}>
-                Supprimer la candidature
+                    Supprimer la candidature
                 </button>
               </div>
             </div>
@@ -240,7 +240,7 @@ function ConseillerDetails({ location }) {
                            <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
                            Supprimer la candidature définitivement
                          </h1>
-                         <p>Êtes vous certain(e) de vouloir supprimer ce profil de candidat ?</p>
+                         <p>Êtes vous certain(e) de vouloir supprimer ce candidat ?</p>
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
                          <div className="rf-form-group">
                            <fieldset className="rf-fieldset">
@@ -279,7 +279,6 @@ function ConseillerDetails({ location }) {
                              {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmé' : 'L\'adresse e-mail ne correspond pas'}
                            </p>
                          </div>
-
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
                          <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
