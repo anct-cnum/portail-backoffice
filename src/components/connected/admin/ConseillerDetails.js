@@ -18,6 +18,8 @@ function ConseillerDetails({ location }) {
   const [confirmSuppressionCandidat, setConfirmSuppressionCandidat] = useState(false);
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
   const [motif, setMotif] = useState('');
+  console.log('motif:', motif);
+  const [autreMotif, setAutreMotif] = useState(false);
 
   let { id } = useParams();
 
@@ -184,7 +186,10 @@ function ConseillerDetails({ location }) {
               <div>
                 <button
                   className="bouton-delete"
-                  onClick={() => setConfirmSuppressionCandidat(true)}>
+                  onClick={() => {
+                    setConfirmSuppressionCandidat(true);
+                    setAutreMotif(false);
+                  }}>
                     Supprimer la candidature
                 </button>
               </div>
@@ -208,12 +213,13 @@ function ConseillerDetails({ location }) {
                            <label>
                                        Confirmez l&apos;adresse e-mail en le saisissant ici&nbsp;:
                            </label>
-                           <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
-                             aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
-                             type="text"
-                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
-                             name={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
-                             onChange={e => setConfirmEmailCandidat(e.target.value)}
+                           <input className={confirmEmailCandidat === conseiller?.email ?
+                             'rf-input rf-input--valid rf-col-6' : 'rf-input rf-input--error rf-col-6'}
+                           aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
+                           type="text"
+                           id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                           name={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                           onChange={e => setConfirmEmailCandidat(e.target.value)}
                            />
                            <p
                              id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
@@ -228,15 +234,29 @@ function ConseillerDetails({ location }) {
                              </legend>
                              <div className="rf-fieldset__content">
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-1" onClick={() => setMotif('demande RGPD')}/>
+                                 <input type="radio" name="radio" id="radio-1"onClick={() => {
+                                   setMotif('demande RGPD');
+                                   setAutreMotif(false);
+                                 }}/>
                                  <label className="rf-label" htmlFor="radio-1">Demande RGPD
                                  </label>
                                </div>
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-2" onClick={() => setMotif('plus intéressé par le dispositif')}/>
+                                 <input type="radio" name="radio" id="radio-2" onClick={() => {
+                                   setMotif('plus intéressé par le dispositif');
+                                   setAutreMotif(false);
+                                 }}/>
                                  <label className="rf-label" htmlFor="radio-2">
                                               Plus intéressé par le dispositif
                                  </label>
+                               </div>
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-3" onClick={() => setAutreMotif(true)}/>
+                                 <label className="rf-label" htmlFor="radio-3">
+                                              Autre
+                                 </label>
+                                 {autreMotif &&
+                                 <input type="text" className="rf-input rf-col-6" id="text-input-text" onChange={e => setMotif(e.target.value)}/> }
                                </div>
                              </div>
                            </fieldset>
