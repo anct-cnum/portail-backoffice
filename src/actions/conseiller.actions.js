@@ -13,7 +13,7 @@ export const conseillerActions = {
   getCurriculumVitae,
   resetFile,
   getStructureByIdConseiller,
-  deleteCandidat
+  suppressionCandidat
 };
 
 function get(id) {
@@ -273,11 +273,11 @@ function getStructureByIdConseiller(id) {
   }
 }
 
-function deleteCandidat({ id, motif, actionUser }) {
+function suppressionCandidat({ id, motif, actionUser }) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.deleteCandidat({ id, motif, actionUser })
+    conseillerService.suppressionCandidat({ id, motif, actionUser })
     .then(
       deleteSuccess => dispatch(success(deleteSuccess)),
       error => {

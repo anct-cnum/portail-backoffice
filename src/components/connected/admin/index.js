@@ -26,7 +26,7 @@ function Admin() {
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
   const dates = useSelector(state => state.filterDate);
-  const successDeleteCandidat = useSelector(state => state.conseiller?.conseillerSuccessDelete);
+  const successSuppressionCandidat = useSelector(state => state.conseiller?.conseillerSuccessSuppression);
 
   const location = useLocation();
 
@@ -106,10 +106,10 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
-            { successDeleteCandidat &&
+            { successSuppressionCandidat &&
             <FlashMessage duration={20000}>
               <p className="flashBag">
-                Suppression réussie !
+                Suppression réussie&nbsp;!
               </p>
             </FlashMessage>
             }

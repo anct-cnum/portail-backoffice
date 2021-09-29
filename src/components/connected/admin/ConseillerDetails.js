@@ -13,15 +13,15 @@ function ConseillerDetails({ location }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
-  const successDeleteCandidat = useSelector(state => state.conseiller?.conseillerSuccessDelete);
-  const errorDeleteCandidat = useSelector(state => state.conseiller?.conseillerErrorDelete);
-  const [confirmDeleteCandidat, setConfirmDeleteCandidat] = useState(false);
+  const successSuppressionCandidat = useSelector(state => state.conseiller?.conseillerSuccessSuppression);
+  const erreurSuppressionCandidat = useSelector(state => state.conseiller?.conseillerErreurSuppression);
+  const [confirmSuppressionCandidat, setConfirmSuppressionCandidat] = useState(false);
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
   const [motif, setMotif] = useState('');
 
   let { id } = useParams();
 
-  if (confirmDeleteCandidat === true) {
+  if (confirmSuppressionCandidat === true) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -40,18 +40,18 @@ function ConseillerDetails({ location }) {
   const downloadCV = () => {
     dispatch(conseillerActions.getCurriculumVitae(conseiller?._id, conseiller));
   };
-  const deleteCandidat = () => {
-    dispatch(conseillerActions.deleteCandidat({ id: conseiller?._id, motif, actionUser: 'admin' }));
+  const suppressionCandidat = () => {
+    dispatch(conseillerActions.suppressionCandidat({ id: conseiller?._id, motif, actionUser: 'admin' }));
   };
   useEffect(() => {
-    if (successDeleteCandidat) {
+    if (successSuppressionCandidat) {
       history.push('/candidats');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [successDeleteCandidat]);
-  const annulerDeleteCandidat = () => {
-    setConfirmDeleteCandidat(false);
-    if (errorDeleteCandidat) {
+  }, [successSuppressionCandidat]);
+  const annulerSuppressionCandidat = () => {
+    setConfirmSuppressionCandidat(false);
+    if (erreurSuppressionCandidat) {
       dispatch(conseillerActions.get(id));
     }
     setMotif('');
@@ -101,10 +101,10 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
-        { errorDeleteCandidat &&
+        { erreurSuppressionCandidat &&
             <FlashMessage duration={20000}>
               <p className="rf-label flashBag labelError">
-                {errorDeleteCandidat}
+                {erreurSuppressionCandidat}
               </p>
             </FlashMessage>
         }
@@ -184,29 +184,29 @@ function ConseillerDetails({ location }) {
               <div>
                 <button
                   className="bouton-delete"
-                  onClick={() => setConfirmDeleteCandidat(true)}>
+                  onClick={() => setConfirmSuppressionCandidat(true)}>
                     Supprimer la candidature
                 </button>
               </div>
             </div>
-            {confirmDeleteCandidat &&
+            {confirmSuppressionCandidat &&
                <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
                  <div className="rf-grid-row rf-grid-row--center">
                    <div className="rf-col-12 rf-col-md-12 rf-col-lg-12">
                      <div className="rf-modal__body">
                        <div className="rf-modal__header">
-                         <button className="rf-link--close rf-link" onClick={annulerDeleteCandidat}>Fermer</button>
+                         <button className="rf-link--close rf-link" onClick={annulerSuppressionCandidat}>Fermer</button>
                        </div>
                        <div className="rf-modal__content">
                          <h1 id="rf-modal-2-title" className="rf-modal__title">
                            <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
                                     Supprimer la candidature définitivement
                          </h1>
-                         <p>Êtes vous certain(e) de vouloir supprimer ce candidat ?</p>
+                         <p>&Ecirc;tes-vous certain(e) de vouloir supprimer ce candidat ?</p>
                          <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
                          <div>
                            <label>
-                                       Confirmez l&apos;adresse e-mail en le saisissant ici :
+                                       Confirmez l&apos;adresse e-mail en le saisissant ici&nbsp;:
                            </label>
                            <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
                              aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
@@ -224,7 +224,7 @@ function ConseillerDetails({ location }) {
                          <div className="rf-form-group">
                            <fieldset className="rf-fieldset">
                              <legend className="rf-fieldset__legend rf-text--regular" id="radio-legend">
-                                         Le motif de la suppression :
+                                         Le motif de la suppression&nbsp;:
                              </legend>
                              <div className="rf-fieldset__content">
                                <div className="rf-radio-group">
@@ -243,11 +243,11 @@ function ConseillerDetails({ location }) {
                          </div>
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
-                         <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
+                         <button onClick={annulerSuppressionCandidat} className="rf-btn">Annuler</button>
                          {confirmEmailCandidat === conseiller?.email && motif !== '' ?
                            <button
                              style={{ float: 'right', backgroundColor: '#E10600' }}
-                             className="rf-btn" onClick={deleteCandidat}>
+                             className="rf-btn" onClick={suppressionCandidat}>
                                   Oui, Supprimer définitivement
                            </button> :
                            <button

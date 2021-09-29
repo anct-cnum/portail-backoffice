@@ -15,7 +15,7 @@ export const conseillerService = {
   verifySondageToken,
   getCurriculumVitae,
   getStructureByIdConseiller,
-  deleteCandidat
+  suppressionCandidat
 };
 
 function get(id) {
@@ -157,7 +157,7 @@ function getStructureByIdConseiller(id) {
   let uri = `${apiUrlRoot}/conseillers/${id}/employeur`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
-function deleteCandidat({ id, motif, actionUser }) {
+function suppressionCandidat({ id, motif, actionUser }) {
   const requestOptions = {
     method: 'DELETE',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),

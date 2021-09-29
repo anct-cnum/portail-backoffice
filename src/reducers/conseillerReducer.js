@@ -124,16 +124,17 @@ export default function conseiller(state = null, action) {
       return {
         loading: true,
         ...state,
-        conseillerErrorDelete: false
+        conseillerDelete: false
       };
     case 'DELETE_CONSEILLER_SUCCESS':
       return {
+        loading: false,
         ...state,
-        conseillerSuccessDelete: action.deleteSuccess
+        conseillerSuccessSuppression: action.deleteSuccess
       };
     case 'DELETE_CONSEILLER_FAILURE':
       return {
-        conseillerErrorDelete: action.error
+        conseillerErreurSuppression: action.error
       };
     default:
       return state;
