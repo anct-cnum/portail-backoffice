@@ -18,14 +18,9 @@ function ConseillerDetails({ location }) {
   const [confirmSuppressionCandidat, setConfirmSuppressionCandidat] = useState(false);
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
   const [motif, setMotif] = useState('');
-  console.log('motif:', motif);
   const [autreMotif, setAutreMotif] = useState(false);
 
   let { id } = useParams();
-
-  if (confirmSuppressionCandidat === true) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   useEffect(() => {
     dispatch(conseillerActions.get(id));
@@ -189,6 +184,7 @@ function ConseillerDetails({ location }) {
                   onClick={() => {
                     setConfirmSuppressionCandidat(true);
                     setAutreMotif(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}>
                     Supprimer la candidature
                 </button>
