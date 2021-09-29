@@ -54,6 +54,8 @@ function ConseillerDetails({ location }) {
     if (errorDeleteCandidat) {
       dispatch(conseillerActions.get(id));
     }
+    setMotif('');
+    setConfirmEmailCandidat('');
   };
 
   const renderStars = palier => {
@@ -100,7 +102,7 @@ function ConseillerDetails({ location }) {
       </Link>
       <div>
         { errorDeleteCandidat &&
-            <FlashMessage duration={10000}>
+            <FlashMessage duration={20000}>
               <p className="rf-label flashBag labelError">
                 {errorDeleteCandidat}
               </p>
@@ -187,6 +189,79 @@ function ConseillerDetails({ location }) {
                 </button>
               </div>
             </div>
+            {confirmDeleteCandidat &&
+               <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
+                 <div className="rf-grid-row rf-grid-row--center">
+                   <div className="rf-col-12 rf-col-md-12 rf-col-lg-12">
+                     <div className="rf-modal__body">
+                       <div className="rf-modal__header">
+                         <button className="rf-link--close rf-link" onClick={annulerDeleteCandidat}>Fermer</button>
+                       </div>
+                       <div className="rf-modal__content">
+                         <h1 id="rf-modal-2-title" className="rf-modal__title">
+                           <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
+                                    Supprimer la candidature définitivement
+                         </h1>
+                         <p>Êtes vous certain(e) de vouloir supprimer ce candidat ?</p>
+                         <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
+                         <div>
+                           <label>
+                                       Confirmez l&apos;adresse e-mail en le saisissant ici :
+                           </label>
+                           <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
+                             aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
+                             type="text"
+                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                             name={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
+                             onChange={e => setConfirmEmailCandidat(e.target.value)}
+                           />
+                           <p
+                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
+                             className={confirmEmailCandidat === conseiller?.email ? 'rf-valid-text' : 'rf-error-text'}>
+                             {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmé' : 'L\'adresse e-mail ne correspond pas'}
+                           </p>
+                         </div>
+                         <div className="rf-form-group">
+                           <fieldset className="rf-fieldset">
+                             <legend className="rf-fieldset__legend rf-text--regular" id="radio-legend">
+                                         Le motif de la suppression :
+                             </legend>
+                             <div className="rf-fieldset__content">
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-1" onClick={() => setMotif('demande RGPD')}/>
+                                 <label className="rf-label" htmlFor="radio-1">Demande RGPD
+                                 </label>
+                               </div>
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-2" onClick={() => setMotif('plus intéressé par le dispositif')}/>
+                                 <label className="rf-label" htmlFor="radio-2">
+                                              Plus intéressé par le dispositif
+                                 </label>
+                               </div>
+                             </div>
+                           </fieldset>
+                         </div>
+                       </div>
+                       <div style={{ paddingBottom: '2rem' }}>
+                         <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
+                         {confirmEmailCandidat === conseiller?.email && motif !== '' ?
+                           <button
+                             style={{ float: 'right', backgroundColor: '#E10600' }}
+                             className="rf-btn" onClick={deleteCandidat}>
+                                  Oui, Supprimer définitivement
+                           </button> :
+                           <button
+                             style={{ float: 'right', backgroundColor: '#E7E7E7', color: '#E10600' }}
+                             className="rf-btn" disabled>
+                                Oui, Supprimer définitivement
+                           </button>
+                         }
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            }
             { conseiller?.pix?.partage &&
               <div className="rf-col-4 rf-ml-6w rf-mt-1w">
                 <span className="capitalizeFirstLetter"><strong>Résultats Pix</strong></span>
@@ -226,79 +301,6 @@ function ConseillerDetails({ location }) {
                   </span>
                 </p>
               </div>
-            }
-            {confirmDeleteCandidat &&
-               <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
-                 <div className="rf-grid-row rf-grid-row--center">
-                   <div className="rf-col-12 rf-col-md-12 rf-col-lg-12">
-                     <div className="rf-modal__body">
-                       <div className="rf-modal__header">
-                         <button className="rf-link--close rf-link" onClick={() => setConfirmDeleteCandidat(false)}>Fermer</button>
-                       </div>
-                       <div className="rf-modal__content">
-                         <h1 id="rf-modal-2-title" className="rf-modal__title">
-                           <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
-                           Supprimer la candidature définitivement
-                         </h1>
-                         <p>Êtes vous certain(e) de vouloir supprimer ce candidat ?</p>
-                         <p><strong>Cette action supprimera définitivement toutes ses données.</strong></p>
-                         <div className="rf-form-group">
-                           <fieldset className="rf-fieldset">
-                             <legend className="rf-fieldset__legend rf-text--regular" id="radio-legend">
-                                Le motif de la suppression :
-                             </legend>
-                             <div className="rf-fieldset__content">
-                               <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-1" onClick={() => setMotif('demande RGPD')}/>
-                                 <label className="rf-label" htmlFor="radio-1">Demande RGPD
-                                 </label>
-                               </div>
-                               <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-2" onClick={() => setMotif('plus intéressé par le dispositif')}/>
-                                 <label className="rf-label" htmlFor="radio-2">
-                                     Plus intéressé par le dispositif
-                                 </label>
-                               </div>
-                             </div>
-                           </fieldset>
-                         </div>
-                         <div>
-                           <label>
-                              Confirmez l&apos;adresse e-mail en le saisissant ici :
-                           </label>
-                           <input className={confirmEmailCandidat === conseiller?.email ? 'rf-input rf-input--valid' : 'rf-input rf-input--error'}
-                             aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
-                             type="text"
-                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
-                             name={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
-                             onChange={e => setConfirmEmailCandidat(e.target.value)}
-                           />
-                           <p
-                             id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
-                             className={confirmEmailCandidat === conseiller?.email ? 'rf-valid-text' : 'rf-error-text'}>
-                             {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmé' : 'L\'adresse e-mail ne correspond pas'}
-                           </p>
-                         </div>
-                       </div>
-                       <div style={{ paddingBottom: '2rem' }}>
-                         <button onClick={annulerDeleteCandidat} className="rf-btn">Annuler</button>
-                         {confirmEmailCandidat === conseiller?.email && motif !== '' ?
-                           <button
-                             style={{ float: 'right', backgroundColor: '#E10600' }}
-                             className="rf-btn" onClick={deleteCandidat}>
-                         Oui, Supprimer définitivement
-                           </button> :
-                           <button
-                             style={{ float: 'right', backgroundColor: '#E7E7E7', color: '#E10600' }}
-                             className="rf-btn" disabled>
-                       Oui, Supprimer définitivement
-                           </button>
-                         }
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
             }
           </div>
         </div>
