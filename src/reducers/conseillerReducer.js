@@ -134,6 +134,7 @@ export default function conseiller(state = null, action) {
       };
     case 'DELETE_CONSEILLER_FAILURE':
       return {
+        loading: false,
         conseillerErreurSuppression: action.error
       };
     default:
