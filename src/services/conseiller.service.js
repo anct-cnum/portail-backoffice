@@ -167,7 +167,7 @@ function suppressionCandidat({ id, motif, actionUser }) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${id}/candidat`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers/${id}/candidature`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
