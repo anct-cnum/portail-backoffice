@@ -18,7 +18,7 @@ function InvitationForm({ displayForm, structureId }) {
       [name]: value
     });
   };
-  const valideEmail = new RegExp(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/);
+  const valideEmail = new RegExp(/^[a-zA-Z0-9-.-_-]+@[a-zA-Z0-9-.-_-]{2,}[.][a-zA-Z]{2,3}$/);
   const sendInvitation = () => {
     if (valideEmail.test(email.email) && structureId) {
       displayForm(false);
