@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../../actions';
 
-function InvitationForm({ displayForm, structureId }) {
+function InvitationForm({ displayForm, structureId, setMessageInvitationReussie }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [activeMessage, setActiveMessage] = useState(false);
@@ -24,6 +24,7 @@ function InvitationForm({ displayForm, structureId }) {
       displayForm(false);
       dispatch(userActions.inviteStructure(email.email, structureId));
       dispatch(userActions.usersByStructure(structureId));
+      setMessageInvitationReussie(true);
     } else {
       setActiveMessage(true);
     }
@@ -37,7 +38,7 @@ function InvitationForm({ displayForm, structureId }) {
                     <div className="invalid">Le format de l&rsquo;email saisi est invalide.</div>
         }
       </div>
-      <button onClick={() => displayForm(false)} className="rf-btn">Annuler</button>
+      <button onClick={() => displayForm(false) } className="rf-btn">Annuler</button>
       <button style={{ float: 'right' }} className="rf-btn" onClick={sendInvitation} disabled={!email?.email ? 'disabled' : ''}>Envoyer</button>
     </div>
   );
@@ -46,6 +47,7 @@ function InvitationForm({ displayForm, structureId }) {
 InvitationForm.propTypes = {
   displayForm: PropTypes.func,
   structureId: PropTypes.string,
+  setMessageInvitationReussie: PropTypes.func
 };
 export default InvitationForm;
 
