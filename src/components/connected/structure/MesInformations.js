@@ -12,9 +12,10 @@ function MesInformations() {
   const users = useSelector(state => state.user?.users);
   const [form, setForm] = useState(false);
   const [display, displayForm] = useState(false);
+  const [messageInvitationReussie, setMessageInvitationReussie] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
   const userError = useSelector(state => state.user?.userError);
-  const invitationStatus = useSelector(state => state.user?.status);
+  const invitationStatus = useSelector(state => state?.user?.status);
   const invitationError = useSelector(state => state.user?.error);
 
   useEffect(() => {
@@ -27,16 +28,25 @@ function MesInformations() {
     }
   }, [structure]);
 
+  useEffect(() => {
+    if (structure?.structure?._id) {
+      dispatch(userActions.usersByStructure(structure?.structure?._id));
+      setTimeout(() => {
+        setMessageInvitationReussie(false);
+      }, 10000);
+    }
+  }, [invitationStatus]);
+
   return (
     <div className="informations">
-      {structure?.flashMessage === true || invitationStatus !== undefined || invitationError !== undefined &&
+      { ((messageInvitationReussie === true) || (structure?.flashMessage === true) || (invitationStatus !== undefined) || (invitationError !== undefined)) &&
         <div className="">
           <div style={{ width: '55%' }}>
             <div>
               <FlashMessage duration={10000}>
                 { ((error === undefined || error === false) && invitationError === undefined) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-                  {invitationStatus !== undefined ? invitationStatus : 'La mise à jour a été effectuée avec succès'}
+                  {messageInvitationReussie ? 'Invitation à rejoindre la structure envoyée !' : 'La mise à jour a été effectuée avec succès'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
@@ -84,7 +94,7 @@ function MesInformations() {
             }
             {display === true &&
               <div style={{ width: '68%' }}>
-                <InvitationForm displayForm={displayForm} structureId={structure?.structure?._id}/>
+                <InvitationForm displayForm={displayForm} structureId={structure?.structure?._id} setMessageInvitationReussie={setMessageInvitationReussie}/>
               </div>
             }
           </div>
