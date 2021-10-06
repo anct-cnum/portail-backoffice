@@ -18,6 +18,7 @@ import FilterDateBox from '../../common/FilterDateBox';
 import MonCompte from './MonCompte';
 import EtatRecrutements from './EtatRecrutements';
 import InscriptionFormation from './InscriptionFormation';
+import FlashMessage from 'react-flash-message';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Admin() {
   const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
   const dates = useSelector(state => state.filterDate);
+  const successSuppressionCandidat = useSelector(state => state.conseiller?.conseillerSuccessSuppression);
 
   const location = useLocation();
 
@@ -104,6 +106,13 @@ function Admin() {
             <Menu />
           </div>
           <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
+            { successSuppressionCandidat &&
+            <FlashMessage duration={20000}>
+              <p className="flashBag">
+                Suppression réussie&nbsp;!
+              </p>
+            </FlashMessage>
+            }
             { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
                location.pathname.startsWith('/liste-candidats') || location.pathname.startsWith('/admin/liste-candidats')) &&
               <SearchBox />

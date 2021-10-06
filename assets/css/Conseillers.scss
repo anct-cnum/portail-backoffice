@@ -2,3 +2,12 @@
   word-wrap: break-word;         /* All browsers since IE 5.5+ */
   overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
 }
+
+.bouton-delete {
+  background-color: #E10600;
+  color: white;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: #E7E7E7
+  }

@@ -12,7 +12,8 @@ export const conseillerActions = {
   verifySondageToken,
   getCurriculumVitae,
   resetFile,
-  getStructureByIdConseiller
+  getStructureByIdConseiller,
+  suppressionCandidat
 };
 
 function get(id) {
@@ -270,4 +271,29 @@ function getStructureByIdConseiller(id) {
   function failure(error) {
     return { type: 'GET_STRUCTURE_EMPLOYER_FAILURE', error };
   }
+}
+
+function suppressionCandidat({ id, motif, actionUser }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.suppressionCandidat({ id, motif, actionUser })
+    .then(
+      deleteSuccess => dispatch(success(deleteSuccess)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'DELETE_CONSEILLER_REQUEST' };
+  }
+  function success(deleteSuccess) {
+    return { type: 'DELETE_CONSEILLER_SUCCESS', deleteSuccess };
+  }
+  function failure(error) {
+    return { type: 'DELETE_CONSEILLER_FAILURE', error };
+  }
+
 }
