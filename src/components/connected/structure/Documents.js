@@ -14,7 +14,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide_pas_a_pas.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide pas à pas">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le guide pas à pas">
                 Télécharger le guide pas à pas (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -27,7 +27,7 @@ function Documents() {
           <div className="rf-grid-row">
             <p>
               <a href="https://cdn.conseiller-numerique.gouv.fr/Mod%C3%A8le%20de%20d%C3%A9lib%C3%A9ration%20contrat%20de%20projet.pdf"
-                className="rf-link" target="blank" title="Télécharger le modèle de délibération">
+                className="rf-link" target="blank" rel="noreferrer" title="Télécharger le modèle de délibération">
                   Télécharger le modèle de délibération pour l&rsquo;assemblée délibérative (pdf)
               </a>
               <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -39,19 +39,32 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Modele_de_convention.pdf"
-              className="rf-link" target="blank" title="Télécharger la convention de subvention">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger la convention de subvention">
                 Télécharger le modèle de convention de subvention (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Modèle de convention de subvention
+              Modèle de convention de subvention avec la Banque des Territoires
             </span>
           </p>
         </div>
         { structure?.type !== 'PRIVATE' &&
         <div className="rf-grid-row">
           <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/ConventionMutualisationEPCI.pdf"
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le modèle de convention de mutualisation de poste pour un EPCI">
+                Télécharger le modèle de convention de mutualisation de poste pour un EPCI (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Modèle de convention entre une Communauté de commune et ses Communes membres
+            </span>
+          </p>
+        </div>
+        }
+        { structure?.type !== 'PRIVATE' &&
+        <div className="rf-grid-row">
+          <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Conseiller-Numerique.pdf"
-              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Public">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger l'Appel à Manifestation d'Intérêt Public">
                 Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Public (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -64,7 +77,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/AMI_Prive.pdf"
-              className="rf-link" target="blank" title="Télécharger l'Appel à Manifestation d'Intérêt Privé">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger l'Appel à Manifestation d'Intérêt Privé">
                 Télécharger l&rsquo;Appel à Manifestation d&rsquo;Intérêt Privé (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -77,7 +90,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Articulation_des_dispositifs_Pass_numeriques_et_Conseillers_numeriques_France_Services.pdf"
-              className="rf-link" target="blank" title="Télécharger le document articulation des dispositifs">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le document articulation des dispositifs">
                 Télécharger le document d&rsquo;articulation des dispositifs (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -89,7 +102,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20public.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Public">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le guide de l'employeur - Public">
                 Télécharger le guide employeur (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -102,7 +115,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20employeur%20prive.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide de l'employeur - Privé">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le guide de l'employeur - Privé">
                 Télécharger le guide employeur (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -114,7 +127,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Fiche%20de%20poste%20type.pdf"
-              className="rf-link" target="blank" title="Télécharger la fiche de poste type">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger la fiche de poste type">
                 Télécharger la fiche de poste type (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -126,7 +139,7 @@ function Documents() {
           <div className="rf-grid-row">
             <p>
               <a href="https://cdn.conseiller-numerique.gouv.fr/Contrat%20de%20projet%20type.pdf"
-                className="rf-link" target="blank" title="Télécharger le contrat de projet type">
+                className="rf-link" target="blank" rel="noreferrer" title="Télécharger le contrat de projet type">
                   Télécharger le modèle de contrat de projet (pdf)
               </a>
               <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -139,7 +152,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/CDD_type_structures_privees.pdf"
-              className="rf-link" target="blank" title="Télécharger le CDD type structures privées">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le CDD type structures privées">
                 Télécharger le modèle de contrat de projet (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -151,7 +164,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide%20d%27entretien.pdf"
-              className="rf-link" target="blank" title="Télécharger le guide d'entretien">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le guide d'entretien">
                 Télécharger le guide d&rsquo;entretien (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -162,7 +175,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
-              className="rf-link" target="blank" title="Télécharger le kit &laquo;Bien démarrer ma mission&raquo;">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le kit &laquo;Bien démarrer ma mission&raquo;">
                 Télécharger le kit &laquo;Bien démarrer ma mission&raquo; à remettre au(x) Conseiller(s) (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
@@ -190,7 +203,7 @@ function Documents() {
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Flyer_CNFS.pdf"
-              className="rf-link" target="blank" title="Télécharger le flyer">
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le flyer">
                 Télécharger le flyer (pdf)
             </a>
             <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
