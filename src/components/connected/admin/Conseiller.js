@@ -16,6 +16,7 @@ function Conseiller({ conseiller, currentPage }) {
 
   return (
     <tr className="conseiller">
+      <td>{conseiller?.idPG}</td>
       <td>{conseiller?.prenom}</td>
       <td>{conseiller?.nom}</td>
       <td>{dayjs(conseiller?.createdAt).format('DD/MM/YYYY')}</td>
