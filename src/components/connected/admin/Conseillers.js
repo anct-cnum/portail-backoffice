@@ -96,7 +96,7 @@ function Conseillers({ departement, region, com, search }) {
         <table>
           <thead>
             <tr>
-              <th>id</th>
+              <th>Id</th>
               <th>Prénom</th>
               <th>Nom</th>
               <th>Date de candidature</th>
