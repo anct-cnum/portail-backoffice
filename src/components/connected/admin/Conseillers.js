@@ -92,10 +92,11 @@ function Conseillers({ departement, region, com, search }) {
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length === 0 && <span>Aucun conseiller pour le moment.</span>}
 
-      <div className="rf-table">
+      <div className="rf-table" style={{ overflow: 'auto' }}>
         <table>
           <thead>
             <tr>
+              <th>Id</th>
               <th>Prénom</th>
               <th>Nom</th>
               <th>Date de candidature</th>
