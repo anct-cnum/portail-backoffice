@@ -145,8 +145,14 @@ function ConseillerDetails({ location }) {
                 <>
                   <p>Recruté(e) par&nbsp;:&nbsp; {nomStructure}</p>
                   <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.emailCN ? 'OUI' : 'NON'}</p>
-                  <p>Date d’entrée en formation&nbsp;:&nbsp;{dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY')}</p>
-                  <p>Date de sortie de formation&nbsp;:&nbsp;{dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY')}</p>
+                  <p>
+                    Date d&rsquo;entrée en formation&nbsp;:&nbsp;
+                    {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}
+                  </p>
+                  <p>
+                    Date de sortie de formation&nbsp;:&nbsp;
+                    {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}
+                  </p>
                 </>
               }
               <p>Curriculum vit&aelig; :&nbsp;
