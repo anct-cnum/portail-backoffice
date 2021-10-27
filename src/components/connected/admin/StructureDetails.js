@@ -11,7 +11,7 @@ import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
 import SiretForm from './SiretForm';
 import EmailForm from './EmailForm';
-import InvitationForm from './InvitationForm';
+import InvitationForm from '../../common/InvitationForm';
 
 moment.locale('fr');
 
@@ -115,6 +115,10 @@ function StructureDetails({ location }) {
     dispatch(structureActions.get(id));
     navigate(1);
     dispatch(statsActions.getMisesEnRelationStats(id));
+    if (structure?.structure?._id) {
+      dispatch(userActions.usersByStructure(structure?.structure?._id));
+      return;
+    }
   }, []);
 
   const typeStructure = [
@@ -162,12 +166,6 @@ function StructureDetails({ location }) {
       dispatch(structureActions.get(id));
     }
   }, [structureEmailSuccess]);
-
-  useEffect(() => {
-    if (structure?.structure?._id) {
-      dispatch(userActions.usersByStructure(structure?.structure?._id));
-    }
-  }, [structure]);
 
   useEffect(() => {
     if (structure?.structure?._id) {
