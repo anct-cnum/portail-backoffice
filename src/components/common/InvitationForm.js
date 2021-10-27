@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { userActions } from '../../../actions';
+import { userActions } from '../../actions';
 
 function InvitationForm({ setDisplayFormMulticompte, structureId, setMessageInvitationReussie }) {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ function InvitationForm({ setDisplayFormMulticompte, structureId, setMessageInvi
       dispatch(userActions.inviteStructure(email.email, structureId));
       dispatch(userActions.usersByStructure(structureId));
       setMessageInvitationReussie(true);
-      setActiveMessage(false);
       window.scrollTo(0, 0);
     } else {
       setActiveMessage(true);

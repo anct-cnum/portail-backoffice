@@ -4,14 +4,14 @@ import { structureActions, conseillerActions, userActions } from '../../../actio
 import dayjs from 'dayjs';
 import FlashMessage from 'react-flash-message';
 import StructureContactForm from './StructureContactForm';
-import InvitationForm from './InvitationForm';
+import InvitationForm from '../../common/InvitationForm';
 
 function MesInformations() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
   const users = useSelector(state => state.user?.users);
   const [form, setForm] = useState(false);
-  const [display, displayForm] = useState(false);
+  const [displayFormMulticompte, setDisplayFormMulticompte] = useState(false);
   const [messageInvitationReussie, setMessageInvitationReussie] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
   const userError = useSelector(state => state.user?.userError);
@@ -86,15 +86,19 @@ function MesInformations() {
                 }
               </>
             }
-            {display === false &&
-              <button className="rf-btn" onClick={() => displayForm(true)}>
+            {displayFormMulticompte === false &&
+              <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true)}>
                 Envoyer une invitation
                 <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
               </button>
             }
-            {display === true &&
+            {displayFormMulticompte === true &&
               <div style={{ width: '68%' }}>
-                <InvitationForm displayForm={displayForm} structureId={structure?.structure?._id} setMessageInvitationReussie={setMessageInvitationReussie}/>
+                <InvitationForm
+                  setDisplayFormMulticompte={setDisplayFormMulticompte}
+                  structureId={structure?.structure?._id}
+                  setMessageInvitationReussie={setMessageInvitationReussie}
+                />
               </div>
             }
           </div>
