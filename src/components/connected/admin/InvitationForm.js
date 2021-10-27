@@ -22,6 +22,7 @@ function InvitationForm({ setDisplayFormMulticompte, structureId, setMessageInvi
       dispatch(userActions.inviteStructure(email.email, structureId));
       dispatch(userActions.usersByStructure(structureId));
       setMessageInvitationReussie(true);
+      setActiveMessage(false);
       window.scrollTo(0, 0);
     } else {
       setActiveMessage(true);
@@ -33,7 +34,7 @@ function InvitationForm({ setDisplayFormMulticompte, structureId, setMessageInvi
         <label className="rf-label">Email</label>
         <input className="rf-input" type="email" id="text-input-text" name="email" onChange={handleForm} />
         { email && !valideEmail.test(email.email) && activeMessage &&
-                    <div className="invalid">Le format de l&rsquo;email saisi est invalide.</div>
+          <div className="invalid">Le format de l&rsquo;email saisi est invalide.</div>
         }
       </div>
       <button onClick={() => setDisplayFormMulticompte(false) } className="rf-btn">Annuler</button>

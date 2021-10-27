@@ -417,19 +417,19 @@ function StructureDetails({ location }) {
               </>
                 }
                 {displayFormMultiCompte === false &&
-              <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true)}>
-                Envoyer une invitation
-                <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
-              </button>
+                    <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true)}>
+                      Envoyer une invitation
+                      <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
+                    </button>
                 }
                 {displayFormMultiCompte === true &&
-              <div style={{ width: '30%' }}>
-                <InvitationForm
-                  setDisplayFormMulticompte={setDisplayFormMulticompte}
-                  structureId={structure?.structure?._id}
-                  setMessageInvitationReussie={setMessageInvitationReussie}
-                />
-              </div>
+                    <div style={{ width: '30%' }}>
+                      <InvitationForm
+                        setDisplayFormMulticompte={setDisplayFormMulticompte}
+                        structureId={structure?.structure?._id}
+                        setMessageInvitationReussie={setMessageInvitationReussie}
+                      />
+                    </div>
                 }
               </div>
               <h3>Liste des candidats</h3>
