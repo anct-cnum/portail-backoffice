@@ -1,4 +1,7 @@
-export default function user(state = null, action) {
+const initialState = { loadingMultiCompte: false };
+
+export default function user(state = initialState, action) {
+  console.log('state:', state.loadingMultiCompte);
   switch (action.type) {
     case 'UPDATE_USER_EMAIL_REQUEST':
       return {
@@ -13,6 +16,7 @@ export default function user(state = null, action) {
       };
     case 'UPDATE_USER_EMAIL_FAILURE':
       return {
+        ...state,
         patchError: action.error,
         flashMessage: true
       };
@@ -34,20 +38,23 @@ export default function user(state = null, action) {
       };
     case 'INVITING_STRUCTURE_REQUEST':
       return {
-        invitingStructure: true
+        loadingMultiCompte: true
       };
     case 'INVITING_STRUCTURE_SUCCESS':
       return {
-        structureinvited: true,
-        status: action.status
+        ...state,
+        status: action.status,
+        loadingMultiCompte: false
       };
     case 'INVITING_STRUCTURE_FAILURE':
       return {
-        structureinvited: false,
-        error: action.error
+        ...state,
+        error: action.error,
+        loadingMultiCompte: false
       };
     case 'GET_USERS_REQUEST':
       return {
+        ...state,
         loading: true
       };
     case 'GET_USERS_SUCCESS':
