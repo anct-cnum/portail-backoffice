@@ -110,15 +110,12 @@ function StructureDetails({ location }) {
   }
 
   useEffect(() => {
+    dispatch(userActions.usersByStructure(id));
     dispatch(structureActions.cancelStructureSiret());
     dispatch(paginationActions.resetPage(false));
     dispatch(structureActions.get(id));
     navigate(1);
     dispatch(statsActions.getMisesEnRelationStats(id));
-    if (structure?.structure?._id) {
-      dispatch(userActions.usersByStructure(structure?.structure?._id));
-      return;
-    }
   }, []);
 
   const typeStructure = [
@@ -168,17 +165,15 @@ function StructureDetails({ location }) {
   }, [structureEmailSuccess]);
 
   useEffect(() => {
-    if (structure?.structure?._id) {
-      dispatch(userActions.usersByStructure(structure?.structure?._id));
-      setTimeout(() => {
-        setMessageInvitationReussie(false);
-      }, 10000);
-    }
+    dispatch(userActions.usersByStructure(id));
+    // setTimeout(() => {
+    //   setMessageInvitationReussie(false);
+    // }, 10000);
   }, [invitationStatus]);
 
   return (
     <div className="StructureDetails">
-      { ((messageInvitationReussie === true) || (structure?.flashMessage === true) || (invitationStatus !== undefined) || (invitationError !== undefined)) &&
+      { ((structure?.flashMessage === true) || (invitationStatus !== undefined) || (invitationError !== undefined)) &&
         <div className="">
           <div style={{ width: '55%' }}>
             <div>
