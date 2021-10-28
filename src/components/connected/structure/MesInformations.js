@@ -10,6 +10,7 @@ import Spinner from 'react-loader-spinner';
 function MesInformations() {
   const dispatch = useDispatch();
   const structure = useSelector(state => state.structure);
+
   const users = useSelector(state => state.user?.users);
   const [form, setForm] = useState(false);
   const [displayFormMulticompte, setDisplayFormMulticompte] = useState(false);
@@ -18,6 +19,7 @@ function MesInformations() {
   const sucessMulticompte = useSelector(state => state?.user?.status);
   const errorMulticompte = useSelector(state => state.user?.error);
   const loadingMessageMulticompte = useSelector(state => state?.user?.loadingMultiCompte);
+  const [loadingSnipper, setLoadingSnipper] = useState(false);
 
   useEffect(() => {
     dispatch(structureActions.get());
@@ -29,6 +31,12 @@ function MesInformations() {
     }
   }, [structure]);
 
+  useEffect(() => {
+    if (sucessMulticompte !== undefined || errorMulticompte !== undefined) {
+      setLoadingSnipper(false);
+    }
+  }, [loadingMessageMulticompte]);
+
   return (
     <div className="informations">
       <div style={{ textAlign: 'center' }}>
@@ -37,17 +45,16 @@ function MesInformations() {
           color="#00BFFF"
           height={80}
           width={80}
-          visible={loadingMessageMulticompte}
+          visible={loadingSnipper}
         />
       </div>
-      { ((structure?.flashMessage === true) || (sucessMulticompte !== undefined) || (errorMulticompte !== undefined)) &&
-        <div className="">
+      { (structure?.flashMessage === true) &&
           <div style={{ width: '55%' }}>
             <div>
               <FlashMessage duration={10000}>
                 { ((error === undefined || error === false) && errorMulticompte === undefined) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-                  {sucessMulticompte ? 'Invitation à rejoindre la structure envoyée !' : 'La mise à jour a été effectuée avec succès'}
+                  {structure?.flashMessage ? 'La mise à jour a été effectuée avec succès' : ''}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
@@ -57,15 +64,33 @@ function MesInformations() {
                   La mise à jour a échoué, veuillez réessayer plus tard
                 </p>
                 }
-                { errorMulticompte !== undefined &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  {errorMulticompte}
-                </p>
-                }
               </FlashMessage>
             </div>
           </div>
-        </div>
+      }
+      { (sucessMulticompte !== undefined) &&
+      <div style={{ width: '55%' }}>
+        <FlashMessage duration={10000} style={{ width: '55%' }}>
+          { ((error === undefined || error === false) && errorMulticompte === undefined && sucessMulticompte !== undefined) &&
+                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                  {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
+                  &nbsp;
+                  <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                </p>
+          }
+        </FlashMessage>
+      </div>
+      }
+      { (errorMulticompte !== undefined) &&
+      <div style={{ width: '55%' }}>
+        <FlashMessage duration={10000}>
+          { errorMulticompte !== undefined &&
+                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                  {errorMulticompte}
+                </p>
+          }
+        </FlashMessage>
+      </div>
       }
       <div className="rf-grid-row">
         <div className="rf-col-4">
@@ -99,6 +124,7 @@ function MesInformations() {
                 <InvitationForm
                   setDisplayFormMulticompte={setDisplayFormMulticompte}
                   structureId={structure?.structure?._id}
+                  setLoadingSnipper={setLoadingSnipper}
                 />
               </div>
             }

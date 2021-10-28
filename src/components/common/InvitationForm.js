@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../actions';
 
-function InvitationForm({ setDisplayFormMulticompte, structureId }) {
+function InvitationForm({ setDisplayFormMulticompte, structureId, setLoadingSnipper }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [activeMessage, setActiveMessage] = useState(false);
@@ -18,6 +18,7 @@ function InvitationForm({ setDisplayFormMulticompte, structureId }) {
   const valideEmail = new RegExp(/^[a-zA-Z0-9-._]+@[a-zA-Z0-9-._]{2,}[.][a-zA-Z]{2,3}$/);
   const sendInvitation = () => {
     if (valideEmail.test(email.email) && structureId) {
+      setLoadingSnipper(true);
       setDisplayFormMulticompte(false);
       dispatch(userActions.inviteStructure(email.email, structureId));
       dispatch(userActions.usersByStructure(structureId));
@@ -43,6 +44,7 @@ function InvitationForm({ setDisplayFormMulticompte, structureId }) {
 
 InvitationForm.propTypes = {
   setDisplayFormMulticompte: PropTypes.func,
+  setLoadingSnipper: PropTypes.func,
   structureId: PropTypes.string,
 };
 

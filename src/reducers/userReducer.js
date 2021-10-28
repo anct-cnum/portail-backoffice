@@ -1,7 +1,7 @@
-const initialState = { loadingMultiCompte: false };
+const initialState = { loadingMultiCompte: false, flashMessageMultiCompte: false };
 
 export default function user(state = initialState, action) {
-  console.log('state:', state.loadingMultiCompte);
+
   switch (action.type) {
     case 'UPDATE_USER_EMAIL_REQUEST':
       return {
@@ -10,7 +10,6 @@ export default function user(state = initialState, action) {
       };
     case 'UPDATE_USER_EMAIL_SUCCESS':
       return {
-        ...state,
         user: action.user,
         flashMessage: true
       };
@@ -38,23 +37,24 @@ export default function user(state = initialState, action) {
       };
     case 'INVITING_STRUCTURE_REQUEST':
       return {
+        ...state,
         loadingMultiCompte: true
       };
     case 'INVITING_STRUCTURE_SUCCESS':
       return {
         ...state,
         status: action.status,
-        loadingMultiCompte: false
+        loadingMultiCompte: false,
+
       };
     case 'INVITING_STRUCTURE_FAILURE':
       return {
         ...state,
         error: action.error,
-        loadingMultiCompte: false
+        loadingMultiCompte: false,
       };
     case 'GET_USERS_REQUEST':
       return {
-        ...state,
         loading: true
       };
     case 'GET_USERS_SUCCESS':

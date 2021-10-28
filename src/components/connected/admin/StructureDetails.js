@@ -37,6 +37,7 @@ function StructureDetails({ location }) {
   const errorMulticompte = useSelector(state => state.user?.error);
   const sucessMulticompte = useSelector(state => state.user?.status);
   const loadingMessageMulticompte = useSelector(state => state?.user?.loadingMultiCompte);
+  const [loadingSnipper, setLoadingSnipper] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
   const users = useSelector(state => state.user?.users);
   const userError = useSelector(state => state.user?.userError);
@@ -165,6 +166,12 @@ function StructureDetails({ location }) {
     }
   }, [structureEmailSuccess]);
 
+  useEffect(() => {
+    if (sucessMulticompte !== undefined || errorMulticompte !== undefined) {
+      setLoadingSnipper(false);
+    }
+  }, [loadingMessageMulticompte]);
+
   return (
     <div className="StructureDetails">
       <div style={{ textAlign: 'center' }}>
@@ -173,26 +180,28 @@ function StructureDetails({ location }) {
           color="#00BFFF"
           height={80}
           width={80}
-          visible={loadingMessageMulticompte === true}
+          visible={loadingSnipper}
         />
       </div>
-      { ((sucessMulticompte !== undefined) || (errorMulticompte !== undefined)) &&
-          <div>
+      { (sucessMulticompte !== undefined) &&
             <FlashMessage duration={10000}>
-              { ((error === undefined || error === false) && errorMulticompte === undefined) &&
+              { ((error === undefined || error === false) && errorMulticompte === undefined && sucessMulticompte !== undefined) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
                   {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
               }
+            </FlashMessage>
+      }
+      { (errorMulticompte !== undefined) &&
+            <FlashMessage duration={10000}>
               { errorMulticompte !== undefined &&
                 <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
                   {errorMulticompte}
                 </p>
               }
             </FlashMessage>
-          </div>
       }
       {structureUpdateValid &&
         <FlashMessage duration={10000} >
@@ -414,6 +423,7 @@ function StructureDetails({ location }) {
                       <InvitationForm
                         setDisplayFormMulticompte={setDisplayFormMulticompte}
                         structureId={structure?.structure?._id}
+                        setLoadingSnipper={setLoadingSnipper}
                       />
                     </div>
                 }
