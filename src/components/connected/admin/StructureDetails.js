@@ -12,6 +12,7 @@ import FlashMessage from 'react-flash-message';
 import SiretForm from './SiretForm';
 import EmailForm from './EmailForm';
 import InvitationForm from '../../common/InvitationForm';
+import Spinner from 'react-loader-spinner';
 
 moment.locale('fr');
 
@@ -26,7 +27,6 @@ function StructureDetails({ location }) {
   const structureEmailError = useSelector(state => state?.structure?.messageChangeEmailError);
   const [messageEmailChange, setMessageEmailChange] = useState(false);
   const [displayFormMultiCompte, setDisplayFormMulticompte] = useState(false);
-  const [messageInvitationReussie, setMessageInvitationReussie] = useState(false);
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
@@ -34,8 +34,9 @@ function StructureDetails({ location }) {
   const [pageCount, setPageCount] = useState(0);
   const [displaySiretForm, setDisplaySiretForm] = useState(false);
   const [displayFormEmail, setDisplayFormEmail] = useState(false);
-  const invitationStatus = useSelector(state => state?.user?.status);
-  const invitationError = useSelector(state => state.user?.error);
+  const errorMulticompte = useSelector(state => state.user?.error);
+  const sucessMulticompte = useSelector(state => state.user?.status);
+  const loadingMessageMulticompte = useSelector(state => state?.user?.loadingMultiCompte);
   const error = useSelector(state => state.structure?.patchError);
   const users = useSelector(state => state.user?.users);
   const userError = useSelector(state => state.user?.userError);
@@ -164,41 +165,34 @@ function StructureDetails({ location }) {
     }
   }, [structureEmailSuccess]);
 
-  useEffect(() => {
-    dispatch(userActions.usersByStructure(id));
-    // setTimeout(() => {
-    //   setMessageInvitationReussie(false);
-    // }, 10000);
-  }, [invitationStatus]);
-
   return (
     <div className="StructureDetails">
-      { ((structure?.flashMessage === true) || (invitationStatus !== undefined) || (invitationError !== undefined)) &&
-        <div className="">
-          <div style={{ width: '55%' }}>
-            <div>
-              <FlashMessage duration={10000}>
-                { ((error === undefined || error === false) && invitationError === undefined) &&
+      <div style={{ textAlign: 'center' }}>
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={80}
+          width={80}
+          visible={loadingMessageMulticompte === true}
+        />
+      </div>
+      { ((sucessMulticompte !== undefined) || (errorMulticompte !== undefined)) &&
+          <div>
+            <FlashMessage duration={10000}>
+              { ((error === undefined || error === false) && errorMulticompte === undefined) &&
                 <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
-                  {messageInvitationReussie ? 'Invitation à rejoindre la structure envoyée !' : 'La mise à jour a été effectuée avec succès'}
+                  {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
-                }
-                { error !== undefined && error !== false &&
+              }
+              { errorMulticompte !== undefined &&
                 <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  La mise à jour a échoué, veuillez réessayer plus tard
+                  {errorMulticompte}
                 </p>
-                }
-                { invitationError !== undefined &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  {invitationError}
-                </p>
-                }
-              </FlashMessage>
-            </div>
+              }
+            </FlashMessage>
           </div>
-        </div>
       }
       {structureUpdateValid &&
         <FlashMessage duration={10000} >
@@ -332,7 +326,6 @@ function StructureDetails({ location }) {
           { user?.role === 'admin' && structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
-
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
@@ -400,6 +393,7 @@ function StructureDetails({ location }) {
                 <h3>Compte associés à la structure</h3>
                 { !userError && users &&
               <>
+                {users.length === 0 && <p>Aucun compte crée.</p>}
                 {users && users.map((user, idx) => {
                   return (
                     <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
@@ -410,7 +404,7 @@ function StructureDetails({ location }) {
               </>
                 }
                 {displayFormMultiCompte === false &&
-                    <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true)}>
+                    <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
                       Envoyer une invitation
                       <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
                     </button>
@@ -420,7 +414,6 @@ function StructureDetails({ location }) {
                       <InvitationForm
                         setDisplayFormMulticompte={setDisplayFormMulticompte}
                         structureId={structure?.structure?._id}
-                        setMessageInvitationReussie={setMessageInvitationReussie}
                       />
                     </div>
                 }
