@@ -1,4 +1,7 @@
-export default function user(state = null, action) {
+const initialState = { flashMessageMultiCompte: false };
+
+export default function user(state = initialState, action) {
+
   switch (action.type) {
     case 'UPDATE_USER_EMAIL_REQUEST':
       return {
@@ -13,6 +16,7 @@ export default function user(state = null, action) {
       };
     case 'UPDATE_USER_EMAIL_FAILURE':
       return {
+        ...state,
         patchError: action.error,
         flashMessage: true
       };
@@ -33,17 +37,15 @@ export default function user(state = null, action) {
         flashMessage: true
       };
     case 'INVITING_STRUCTURE_REQUEST':
-      return {
-        invitingStructure: true
-      };
+      return state;
     case 'INVITING_STRUCTURE_SUCCESS':
       return {
-        structureinvited: true,
+        ...state,
         status: action.status
       };
     case 'INVITING_STRUCTURE_FAILURE':
       return {
-        structureinvited: false,
+        ...state,
         error: action.error
       };
     case 'GET_USERS_REQUEST':
