@@ -39,12 +39,11 @@ function App() {
         </Switch>
       </Router>
       <footer className="rf-footer rf-mt-12w" role="contentinfo" id="footer">
-        <div className="rf-container">
+        <div className="rf-container-fluid">
           <div className="rf-grid-row">
-            <div className="rf-col-1"></div>
-            <div className="rf-col-10">
+            <div className="rf-col-offset-2 rf-col-9">
               <div className="rf-footer__body">
-                <div className="rf-container" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                <div className="rf-container-fluid" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                   <div className="rf-grid-row rf-grid-row--bottom">
                     <div>
                       <div>
