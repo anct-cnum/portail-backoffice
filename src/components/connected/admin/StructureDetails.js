@@ -36,7 +36,6 @@ function StructureDetails({ location }) {
   const [displayFormEmail, setDisplayFormEmail] = useState(false);
   const errorMulticompte = useSelector(state => state.user?.error);
   const sucessMulticompte = useSelector(state => state.user?.status);
-  const loadingMessageMulticompte = useSelector(state => state?.user?.loadingMultiCompte);
   const [loadingSnipper, setLoadingSnipper] = useState(false);
   const error = useSelector(state => state.structure?.patchError);
   const users = useSelector(state => state.user?.users);
@@ -170,7 +169,7 @@ function StructureDetails({ location }) {
     if (sucessMulticompte !== undefined || errorMulticompte !== undefined) {
       setLoadingSnipper(false);
     }
-  }, [loadingMessageMulticompte]);
+  }, [sucessMulticompte, errorMulticompte]);
 
   return (
     <div className="StructureDetails">

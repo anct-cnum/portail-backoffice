@@ -18,7 +18,6 @@ function MesInformations() {
   const userError = useSelector(state => state.user?.userError);
   const sucessMulticompte = useSelector(state => state?.user?.status);
   const errorMulticompte = useSelector(state => state.user?.error);
-  const loadingMessageMulticompte = useSelector(state => state?.user?.loadingMultiCompte);
   const [loadingSnipper, setLoadingSnipper] = useState(false);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ function MesInformations() {
     if (sucessMulticompte !== undefined || errorMulticompte !== undefined) {
       setLoadingSnipper(false);
     }
-  }, [loadingMessageMulticompte]);
+  }, [sucessMulticompte, errorMulticompte]);
 
   return (
     <div className="informations">
