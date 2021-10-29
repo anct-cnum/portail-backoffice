@@ -368,7 +368,7 @@ function StructureDetails({ location }) {
                       <th>Date de candidature</th>
                       <th>Code postal</th>
                       <th>Résultat Pix</th>
-                      <th>Curriculum Vitæ</th>
+                      <th>Curriculum&aelig;Vitæ</th>
                       <th></th>
                     </tr>
                   </thead>
