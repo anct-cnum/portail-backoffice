@@ -362,11 +362,13 @@ function StructureDetails({ location }) {
                 <table>
                   <thead>
                     <tr>
+                      <th>Id</th>
                       <th>Prénom</th>
                       <th>Nom</th>
                       <th>Date de candidature</th>
                       <th>Code postal</th>
                       <th>Résultat Pix</th>
+                      <th>Curriculum&aelig;Vitæ</th>
                       <th></th>
                     </tr>
                   </thead>
