@@ -5,7 +5,6 @@ export const userActions = {
   login,
   logout,
   verifyToken,
-  verifyPrefetToken,
   inviteStructure,
   usersByStructure,
   choosePassword,
@@ -86,37 +85,11 @@ function verifyToken(token) {
   }
 }
 
-function verifyPrefetToken(token) {
-  return dispatch => {
-    dispatch(request(token));
-
-    userService.verifyPrefetToken(token)
-    .then(
-      result => {
-        dispatch(success(result.isValid));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request(token) {
-    return { type: 'VERIFY_PREFET_TOKEN_REQUEST', token };
-  }
-  function success(isValid) {
-    return { type: 'VERIFY_PREFET_TOKEN_SUCCESS', isValid };
-  }
-  function failure(error) {
-    return { type: 'VERIFY_PREFET_TOKEN_FAILURE', error };
-  }
-}
-
-function inviteAccountsPrefet(token, emails, departement) {
+function inviteAccountsPrefet(emails, departement) {
   return dispatch => {
     dispatch(request());
 
-    userService.inviteAccountsPrefet(token, emails, departement)
+    userService.inviteAccountsPrefet(emails, departement)
     .then(
       () => {
         dispatch(success());

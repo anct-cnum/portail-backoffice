@@ -4,7 +4,7 @@ export const userService = {
   login,
   logout,
   verifyToken,
-  verifyPrefetToken,
+  // verifyPrefetToken,
   inviteStructure,
   usersByStructure,
   choosePassword,
@@ -38,7 +38,7 @@ function login(username, password) {
   });
 }
 
-function inviteAccountsPrefet(token, emails, departement) {
+function inviteAccountsPrefet(emails, departement) {
   const apiUrl = `${process.env.REACT_APP_API}/users/inviteAccountsPrefet`;
 
   const requestOptions = {
@@ -47,7 +47,6 @@ function inviteAccountsPrefet(token, emails, departement) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      token,
       emails,
       departement
     })
@@ -64,16 +63,6 @@ function verifyToken(token) {
   };
 
   let uri = `${apiUrlRoot}/users/verifyToken/${token}`;
-  return fetch(uri, requestOptions).then(handleResponse);
-}
-
-function verifyPrefetToken(token) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET'
-  };
-
-  let uri = `${apiUrlRoot}/users/verifyPrefetToken/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
