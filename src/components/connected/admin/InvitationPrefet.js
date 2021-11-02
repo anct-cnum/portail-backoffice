@@ -47,9 +47,9 @@ function InvitationPrefet() {
   return (
     <div className="rf-container rf-mt-3w">
       <div className="rf-grid-row">
-        {/* <div className="rf-col-3"></div> */}
+        <div className="rf-col-3"></div>
         <div className="Login rf-col-6">
-          <h2>Invitez des utilisateurs dans votre espace préfet<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
+          <h2>Invitez des utilisateurs dans l&apos;espace préfet<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
 
           { verifyingToken &&
               <span>Chargement...</span>
@@ -62,7 +62,7 @@ function InvitationPrefet() {
                 </div>
 
                 <div className="rf-my-3w">
-                  <label className="rf-label">Votre adresse préfecture:</label>
+                  <label className="rf-label">Adresse préfecture:</label>
                   <span>
                     <select className="rf-select" onChange={selectDepartement}>
                       {regions.map((region, idx) =>
@@ -111,7 +111,7 @@ function InvitationPrefet() {
           }
 
           { accountsPrefetInvited &&
-              <span>Les utilisateurs de votre espace préfet ont été invités.</span>
+              <span>Les utilisateurs de l&apos;espace préfet ont été invités.</span>
           }
 
           <div className="rf-col-3"></div>

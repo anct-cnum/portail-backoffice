@@ -93,7 +93,7 @@ function Menu() {
                   <Link className="rf-sidemenu__link" to="/inscription-prefet" style={{ padding: '0.5rem 0' }}>
                     <div className="rf-container" style={{ padding: '0' }}>
                       <div className="rf-grid-row rf-grid-row--end liste-recrutes" style={{ textAlign: 'end' }}>
-                        Invitation Prefet
+                        Invitation Espace Prefecture
                       </div>
                     </div>
                   </Link>
