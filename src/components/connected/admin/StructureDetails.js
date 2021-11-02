@@ -413,7 +413,7 @@ function StructureDetails({ location }) {
                 }
                 {displayFormMultiCompte === false &&
                     <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
-                      Envoyer une invitation
+                      Ajouter un compte
                       <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
                     </button>
                 }
