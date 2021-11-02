@@ -4,7 +4,6 @@ export const userService = {
   login,
   logout,
   verifyToken,
-  // verifyPrefetToken,
   inviteStructure,
   usersByStructure,
   choosePassword,
