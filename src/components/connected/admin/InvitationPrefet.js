@@ -15,6 +15,7 @@ function InvitationPrefet() {
   const invitingAccountsPrefet = useSelector(state => state.createAccount.invitingAccountsPrefet);
   const accountsPrefetInvited = useSelector(state => state.createAccount.accountsPrefetInvited);
   const error = useSelector(state => state.createAccount.error);
+  console.log('error:', error);
   const dispatch = useDispatch();
 
   const checkEmail = email => email.endsWith('.gouv.fr');
@@ -56,7 +57,7 @@ function InvitationPrefet() {
           { !accountsPrefetInvited &&
               <div>
                 <div>
-                  {error && <span style={{ color: 'red' }}>{error ?? 'Une erreur s\'est produite'}</span>}
+                  {error && <span style={{ color: 'red' }}>{error.error ? error.error : error ?? 'Une erreur s\'est produite'}</span>}
                 </div>
 
                 <div className="rf-my-3w">
