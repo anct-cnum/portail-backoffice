@@ -4,7 +4,6 @@ export const userService = {
   login,
   logout,
   verifyToken,
-  // verifyPrefetToken,
   inviteStructure,
   usersByStructure,
   choosePassword,
@@ -43,9 +42,7 @@ function inviteAccountsPrefet(emails, departement) {
 
   const requestOptions = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
     body: JSON.stringify({
       emails,
       departement

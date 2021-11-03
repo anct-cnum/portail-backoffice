@@ -54,11 +54,10 @@ function InvitationPrefet() {
           { verifyingToken &&
               <span>Chargement...</span>
           }
-
           { !accountsPrefetInvited &&
               <div>
                 <div>
-                  {error && <span>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
+                  {error && <span style={{ color: 'red' }}>{error ?? 'Une erreur s\'est produite'}</span>}
                 </div>
 
                 <div className="rf-my-3w">
@@ -111,7 +110,7 @@ function InvitationPrefet() {
           }
 
           { accountsPrefetInvited &&
-              <span>Les utilisateurs de l&apos;espace préfet ont été invités.</span>
+              <span style={{ color: 'green' }}>Les utilisateurs de l&apos;espace préfet ont été invités.</span>
           }
 
           <div className="rf-col-3"></div>
