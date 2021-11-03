@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { structureActions, statsActions, conseillerActions, paginationActions } from '../../../actions';
+import { structureActions, statsActions, conseillerActions, paginationActions, userActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import Pluralize from 'react-pluralize';
 import moment from 'moment';
@@ -11,6 +11,8 @@ import Conseiller from './Conseiller';
 import FlashMessage from 'react-flash-message';
 import SiretForm from './SiretForm';
 import EmailForm from './EmailForm';
+import InvitationForm from '../../common/InvitationForm';
+import Spinner from 'react-loader-spinner';
 
 moment.locale('fr');
 
@@ -24,6 +26,7 @@ function StructureDetails({ location }) {
   const structureEmailSuccess = useSelector(state => state?.structure?.messageChangeEmailSuccess);
   const structureEmailError = useSelector(state => state?.structure?.messageChangeEmailError);
   const [messageEmailChange, setMessageEmailChange] = useState(false);
+  const [displayFormMultiCompte, setDisplayFormMulticompte] = useState(false);
 
   let { id } = useParams();
   const conseillers = useSelector(state => state.conseillers);
@@ -31,6 +34,12 @@ function StructureDetails({ location }) {
   const [pageCount, setPageCount] = useState(0);
   const [displaySiretForm, setDisplaySiretForm] = useState(false);
   const [displayFormEmail, setDisplayFormEmail] = useState(false);
+  const errorMulticompte = useSelector(state => state.user?.error);
+  const sucessMulticompte = useSelector(state => state.user?.status);
+  const [loadingSnipper, setLoadingSnipper] = useState(false);
+  const error = useSelector(state => state.structure?.patchError);
+  const users = useSelector(state => state.user?.users);
+  const userError = useSelector(state => state.user?.userError);
 
   const navigate = page => {
     setPage(page);
@@ -102,6 +111,7 @@ function StructureDetails({ location }) {
   }
 
   useEffect(() => {
+    dispatch(userActions.usersByStructure(id));
     dispatch(structureActions.cancelStructureSiret());
     dispatch(paginationActions.resetPage(false));
     dispatch(structureActions.get(id));
@@ -155,8 +165,43 @@ function StructureDetails({ location }) {
     }
   }, [structureEmailSuccess]);
 
+  useEffect(() => {
+    if (sucessMulticompte !== undefined || errorMulticompte !== undefined) {
+      setLoadingSnipper(false);
+    }
+  }, [sucessMulticompte, errorMulticompte]);
+
   return (
     <div className="StructureDetails">
+      <div style={{ textAlign: 'center' }}>
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={80}
+          width={80}
+          visible={loadingSnipper}
+        />
+      </div>
+      { (sucessMulticompte !== undefined) &&
+            <FlashMessage duration={10000}>
+              { ((error === undefined || error === false) && errorMulticompte === undefined && sucessMulticompte !== undefined) &&
+                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                  {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
+                  &nbsp;
+                  <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                </p>
+              }
+            </FlashMessage>
+      }
+      { (errorMulticompte !== undefined) &&
+            <FlashMessage duration={10000}>
+              { errorMulticompte !== undefined &&
+                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                  {errorMulticompte}
+                </p>
+              }
+            </FlashMessage>
+      }
       {structureUpdateValid &&
         <FlashMessage duration={10000} >
           <div className=" flashBag">
@@ -289,7 +334,6 @@ function StructureDetails({ location }) {
           { user?.role === 'admin' && structure?.structure?.statut === 'VALIDATION_COSELEC' &&
             <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
-
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
             <p>Pas de mise en relation pour le moment.</p>
@@ -353,7 +397,36 @@ function StructureDetails({ location }) {
                   }
                 </div>
               )}
-
+              <div className="rf-mt-5w">
+                <h3>Compte associés à la structure</h3>
+                { !userError && users &&
+              <>
+                {users.length === 0 && <p>Aucun compte crée.</p>}
+                {users && users.map((user, idx) => {
+                  return (
+                    <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
+                      title={!user.passwordCreated ? 'Compte inactif pour le moment' : 'Compte actif'} >{user.name}</p>
+                  );
+                })
+                }
+              </>
+                }
+                {displayFormMultiCompte === false &&
+                    <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
+                      Ajouter un compte
+                      <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
+                    </button>
+                }
+                {displayFormMultiCompte === true &&
+                    <div style={{ width: '30%' }}>
+                      <InvitationForm
+                        setDisplayFormMulticompte={setDisplayFormMulticompte}
+                        structureId={structure?.structure?._id}
+                        setLoadingSnipper={setLoadingSnipper}
+                      />
+                    </div>
+                }
+              </div>
               <h3>Liste des candidats</h3>
 
               {conseillers && conseillers.loading && <span>Chargement...</span>}
@@ -362,11 +435,13 @@ function StructureDetails({ location }) {
                 <table>
                   <thead>
                     <tr>
+                      <th>Id</th>
                       <th>Prénom</th>
                       <th>Nom</th>
                       <th>Date de candidature</th>
                       <th>Code postal</th>
                       <th>Résultat Pix</th>
+                      <th>Curriculum&aelig;Vitæ</th>
                       <th></th>
                     </tr>
                   </thead>
