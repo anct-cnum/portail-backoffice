@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { userActions } from '../../../actions';
 
@@ -110,18 +109,17 @@ function InvitationPrefet() {
           }
 
           { accountsPrefetInvited &&
-              <span style={{ color: 'green' }}>Les utilisateurs de l&apos;espace préfet ont été invités.</span>
+              <span style={{ color: 'green' }}>
+                Les utilisateurs de l&apos;espace préfet ont été invités.<br />
+                <button className="rf-link" style={{ textDecoration: 'underline' }}
+                  onClick={() => window.location.reload() }>Je veux continuer à inviter</button>
+              </span>
           }
-
           <div className="rf-col-3"></div>
         </div>
       </div>
     </div>
   );
 }
-
-InvitationPrefet.propTypes = {
-  match: PropTypes.object
-};
 
 export default InvitationPrefet;
