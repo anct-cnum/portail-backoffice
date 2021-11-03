@@ -184,7 +184,30 @@ function Documents() {
             </span>
           </p>
         </div>
-        <h4>4) &Eacute;léments de communication</h4>
+        <h4>4) Préparer l&rsquo;arrivée de votre conseiller numérique</h4>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/parcours_et_integration_des_CnFS.pdf"
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le parcours et intégration">
+                Télécharger le document sur le parcours des CnFS (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Ce document présente le parcours, l&rsquo;intégration et les missions des Conseillers numériques France Services
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Les_outils_des_CnFS.pdf"
+              className="rf-link" target="blank" rel="noreferrer" title="Télécharger la présentation des outils">
+                Télécharger la présentation des outils des CnFS (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Ce document présente l&rsquo;espace COOP et les outils mis à disposition aux Conseillers numériques France Services
+            </span>
+          </p>
+        </div>
+        <h4>5) &Eacute;léments de communication</h4>
         <div className="rf-grid-row">
           <p>
             <a href={`${urlSiteVitrine}/kit-communication`}
