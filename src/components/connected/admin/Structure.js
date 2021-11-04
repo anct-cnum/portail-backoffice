@@ -16,8 +16,13 @@ function Structure({ structure, currentPage }) {
           ''}
       </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
-      {/* eslint-disable-next-line max-len */}
-      <td>{structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null ? structure.dernierCoselec?.avisCoselec : 'en attente de passage'}</td>
+      <td>
+        {(structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null) && <b>VALIDÉE</b>}
+        {structure.statut === 'CREEE' && <p style={{ whiteSpace: 'nowrap' }}>NON TRAITÉE</p>}
+        {structure.statut === 'ABANDON' && 'ABANDONNÉE'}
+        {structure.statut === 'ANNULEE' && 'ANNULÉE'}
+        {structure.statut === 'DOUBLON' && 'DOUBLON'}
+      </td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
       <td> {structure.nbCandidatsRecrutes}</td>

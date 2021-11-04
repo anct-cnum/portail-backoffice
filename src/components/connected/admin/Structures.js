@@ -95,7 +95,7 @@ function Structures({ departement, region, com, search, start, end }) {
                 <th>SIRET</th>
                 <th></th>
                 <th>Nom</th>
-                <th>Statut coselec</th>
+                <th>Candidature</th>
                 <th>Date de<br/> candidature</th>
                 <th>Code postal</th>
                 <th>Candidats<br/> recrutés</th>

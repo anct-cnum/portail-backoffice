@@ -318,7 +318,12 @@ function StructureDetails({ location }) {
             </p>
           }
           {/* eslint-disable-next-line max-len */}
-          <p>Avis Coselec : {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null ? structure?.structure?.dernierCoselec?.avisCoselec : 'en attente de passage'}
+          <p>Candidature :&nbsp;
+            {(structure.structure.statut === 'VALIDATION_COSELEC' && structure.structure.dernierCoselec !== null) && 'VALIDÉE'}
+            {structure.structure.statut === 'CREEE' && 'NON TRAITÉE'}
+            {structure.structure.statut === 'ABANDON' && 'ABANDONNÉE'}
+            {structure.structure.statut === 'ANNULEE' && 'ANNULÉE'}
+            {structure.structure.statut === 'DOUBLON' && 'DOUBLON'}
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>
