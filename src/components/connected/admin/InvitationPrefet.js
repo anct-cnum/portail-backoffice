@@ -111,9 +111,10 @@ function InvitationPrefet() {
 
           { accountsPrefetInvited &&
               <span style={{ color: 'green' }}>
-                Les utilisateurs de l&apos;espace préfet ont été invités.<br />
+                Invitation envoyée<br />
+                Le nouvel utilisateur doit consulter ses mails pour activer son espace prefet.<br />
                 <button className="rf-link" style={{ textDecoration: 'underline' }}
-                  onClick={() => window.location.reload() }>Je veux continuer à inviter</button>
+                  onClick={() => window.location.reload() }>Je souhaite inviter une nouvelle personne</button>
               </span>
           }
           <div className="rf-col-3"></div>
