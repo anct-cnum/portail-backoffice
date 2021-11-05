@@ -319,11 +319,11 @@ function StructureDetails({ location }) {
           }
           {/* eslint-disable-next-line max-len */}
           <p>Candidature :&nbsp;
-            {(structure.structure.statut === 'VALIDATION_COSELEC' && structure.structure.dernierCoselec !== null) && 'VALIDÉE'}
-            {structure.structure.statut === 'CREEE' && 'NON TRAITÉE'}
-            {structure.structure.statut === 'ABANDON' && 'ABANDONNÉE'}
-            {structure.structure.statut === 'ANNULEE' && 'ANNULÉE'}
-            {structure.structure.statut === 'DOUBLON' && 'DOUBLON'}
+            {structure.structure.statut === 'VALIDATION_COSELEC' && 'Validée'}
+            {structure.structure.statut === 'CREEE' && 'Non traitée'}
+            {structure.structure.statut === 'ABANDON' && 'Abandonée'}
+            {structure.structure.statut === 'ANNULEE' && 'Annulée'}
+            {structure.structure.statut === 'DOUBLON' && 'Doublon'}
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>

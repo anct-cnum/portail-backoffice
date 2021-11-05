@@ -17,11 +17,11 @@ function Structure({ structure, currentPage }) {
       </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
       <td>
-        {(structure.statut === 'VALIDATION_COSELEC' && structure.dernierCoselec !== null) && <b>VALIDÉE</b>}
-        {structure.statut === 'CREEE' && <p style={{ whiteSpace: 'nowrap' }}>NON TRAITÉE</p>}
-        {structure.statut === 'ABANDON' && 'ABANDONNÉE'}
-        {structure.statut === 'ANNULEE' && 'ANNULÉE'}
-        {structure.statut === 'DOUBLON' && 'DOUBLON'}
+        {structure.statut === 'VALIDATION_COSELEC' && <b>Validée</b>}
+        {structure.statut === 'CREEE' && <p style={{ whiteSpace: 'nowrap' }}>Non traitée</p>}
+        {structure.statut === 'ABANDON' && 'Abandonnée'}
+        {structure.statut === 'ANNULEE' && 'Annulée'}
+        {structure.statut === 'DOUBLON' && 'Doublon'}
       </td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
