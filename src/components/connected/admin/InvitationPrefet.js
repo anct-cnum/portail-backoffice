@@ -15,7 +15,6 @@ function InvitationPrefet() {
   const invitingAccountsPrefet = useSelector(state => state.createAccount.invitingAccountsPrefet);
   const accountsPrefetInvited = useSelector(state => state.createAccount.accountsPrefetInvited);
   const error = useSelector(state => state.createAccount.error);
-  console.log('error:', error);
   const dispatch = useDispatch();
 
   const checkEmail = email => email.endsWith('.gouv.fr');
