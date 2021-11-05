@@ -5,7 +5,6 @@ import { history } from './helpers';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
 import ChoosePassword from './components/anonymous/createAccount/ChoosePassword';
-import InvitationPrefet from './components/anonymous/createAccount/InvitationPrefet';
 import { useSelector } from 'react-redux';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import CandidateSondageForm from './components/anonymous/CandidateSondageForm';
@@ -31,7 +30,6 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
-          <Route path="/inscription-prefet/:token" component={InvitationPrefet} />
           <Route path="/dites-nous-en-plus-sur-vous/:token" component={CandidateSondageForm} />
           <Route path="/confirmer-email/:token" component={CandidateSondageForm} />
           <Route path="/confirmation-email/:token" component={ConfirmationEmail} />

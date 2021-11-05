@@ -15,21 +15,6 @@ export default function authentication(state = {}, action) {
         tokenVerified: false,
         error: action.error
       };
-    case 'VERIFY_PREFET_TOKEN_REQUEST':
-      return {
-        verifyingPrefetToken: true,
-        user: action.user
-      };
-    case 'VERIFY_PREFET_TOKEN_SUCCESS':
-      return {
-        tokenPrefetVerified: action.isValid,
-        user: action.user
-      };
-    case 'VERIFY_PREFET_TOKEN_FAILURE':
-      return {
-        tokenPrefetVerified: false,
-        error: action.error
-      };
     case 'INVITING_PREFET_REQUEST':
       return {
         invitingAccountsPrefet: true
