@@ -19,6 +19,7 @@ import MonCompte from './MonCompte';
 import EtatRecrutements from './EtatRecrutements';
 import InscriptionFormation from './InscriptionFormation';
 import FlashMessage from 'react-flash-message';
+import InvitationPrefet from './InvitationPrefet';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -148,6 +149,7 @@ function Admin() {
             }
 
             <Route path={`/tableau-de-bord`} component={Stats} />
+            <Route path="/inscription-prefet" component={InvitationPrefet} />
             <Route path={`/structures`} component={() => <Structures departement={departement} region={codeRegion} com={codeCom}
               search={search}
               start={dates.filterDateStart !== null ? String(dates.filterDateStart) : ''}

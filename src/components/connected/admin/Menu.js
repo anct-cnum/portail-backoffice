@@ -89,6 +89,15 @@ function Menu() {
                     </div>
                   </Link>
                 </li>
+                <li className={`rf-sidemenu__item ${location.pathname.startsWith('/inscription-prefet') ? 'rf-sidemenu__item--active' : ''}`}>
+                  <Link className="rf-sidemenu__link" to="/inscription-prefet" style={{ padding: '0.5rem 0' }}>
+                    <div className="rf-container" style={{ padding: '0' }}>
+                      <div className="rf-grid-row rf-grid-row--end liste-recrutes" style={{ textAlign: 'end' }}>
+                        Invitation Espace Prefecture
+                      </div>
+                    </div>
+                  </Link>
+                </li>
               </>
             }
             { role === 'prefet' &&
