@@ -149,17 +149,41 @@ function Documents() {
           </div>
         }
         { structure?.type === 'PRIVATE' &&
-        <div className="rf-grid-row">
-          <p>
-            <a href="https://cdn.conseiller-numerique.gouv.fr/CDD_type_structures_privees.pdf"
-              className="rf-link" target="blank" rel="noreferrer" title="Télécharger le CDD type structures privées">
-                Télécharger le modèle de contrat de projet (pdf)
-            </a>
-            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
-              Contrat de travail à durée déterminée pour les structures privées
-            </span>
-          </p>
-        </div>
+        <>
+          <div className="rf-grid-row">
+            <p>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/CDD_type_structures_privees.pdf"
+                className="rf-link" target="blank" rel="noreferrer" title="Télécharger le CDD type structures privées">
+                  Télécharger le modèle de contrat de projet (pdf)
+              </a>
+              <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                Contrat de travail à durée déterminée pour les structures privées
+              </span>
+            </p>
+          </div>
+          <div className="rf-grid-row">
+            <p>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/CDD_18_mois_SA_privees.docx"
+                className="rf-link" target="blank" rel="noreferrer" title="Télécharger le modèle CDD de 18 mois">
+                  Télécharger le modèle CDD (docx)
+              </a>
+              <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                Contrat de travail à durée déterminée de 18 mois pour les structures privées
+              </span>
+            </p>
+          </div>
+          <div className="rf-grid-row">
+            <p>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/CDI_SA_privees.docx"
+                className="rf-link" target="blank" rel="noreferrer" title="Télécharger le modèle CDI">
+                  Télécharger le modèle CDI (docx)
+              </a>
+              <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                Contrat de travail à durée indéterminée pour les structures privées
+              </span>
+            </p>
+          </div>
+        </>
         }
         <div className="rf-grid-row">
           <p>
