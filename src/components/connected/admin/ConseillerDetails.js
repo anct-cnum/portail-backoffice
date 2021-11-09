@@ -21,7 +21,7 @@ function ConseillerDetails({ location }) {
   const [autreMotif, setAutreMotif] = useState(false);
   const invitCandidat = useSelector(state => state?.conseiller);
   const errorSendMail = useSelector(state => state.conseiller?.errorResendInscriptionCandidat);
-  const sucessSendMail = useSelector(state => state.conseiller?.sucessResendInscriptionCandidat);
+  const successSendMail = useSelector(state => state.conseiller?.sucessResendInscriptionCandidat);
 
   let { id } = useParams();
 
@@ -108,14 +108,14 @@ function ConseillerDetails({ location }) {
       <div>
         { invitCandidat?.flashMessage === true &&
       <FlashMessage duration={10000}>
-        { (errorSendMail === undefined || sucessSendMail === true) &&
+        { (errorSendMail === undefined || successSendMail === true) &&
         <p className="rf-label flashBag">
           Le mail de relance d&rsquo;inscription a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
           &nbsp;
           <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
         </p>
         }
-        { (errorSendMail !== undefined && sucessSendMail === undefined) &&
+        { (errorSendMail !== undefined && successSendMail === undefined) &&
         <p className="rf-label flashBag labelError">
           {errorSendMail}
         </p>
