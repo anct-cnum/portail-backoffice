@@ -118,7 +118,6 @@ function ConseillerDetails({ location }) {
         { (errorSendMail !== undefined && sucessSendMail === undefined) &&
         <p className="rf-label flashBag labelError">
           {errorSendMail}
-          {/* L&rsquo;envoi du mail de relance d&rsquo;inscription a échoué, veuillez réessayer plus tard */}
         </p>
         }
       </FlashMessage>
@@ -220,7 +219,7 @@ function ConseillerDetails({ location }) {
                 className="rf-btn"
                 style={{ 'padding': '1rem 1.5rem' }}
                 onClick={resendInscriptionCandidat}>
-              Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]</button>
+                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]</button>
               <br/>
               <br/>
               <div>
