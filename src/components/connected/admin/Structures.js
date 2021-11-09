@@ -87,7 +87,7 @@ function Structures({ departement, region, com, search, start, end }) {
 
       { structures?.items?.data?.length > 0 &&
       <>
-        <div className="rf-table">
+        <div className="rf-table" style={{ overflow: 'auto' }}>
           <table>
             <thead>
               <tr>

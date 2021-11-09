@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Structure({ structure, currentPage }) {
-
+  const labels = {
+    VALIDATION_COSELEC: 'Validée',
+    CREEE: 'Non traitée',
+    ABANDON: 'Abandonnée',
+    ANNULEE: 'Annulée',
+    DOUBLON: 'Doublon'
+  };
   return (
     <tr>
       <td>{structure.idPG}</td>
@@ -17,11 +23,7 @@ function Structure({ structure, currentPage }) {
       </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
       <td>
-        {structure.statut === 'VALIDATION_COSELEC' && <b>Validée</b>}
-        {structure.statut === 'CREEE' && <p style={{ whiteSpace: 'nowrap' }}>Non traitée</p>}
-        {structure.statut === 'ABANDON' && 'Abandonnée'}
-        {structure.statut === 'ANNULEE' && 'Annulée'}
-        {structure.statut === 'DOUBLON' && 'Doublon'}
+        { labels[structure?.statut] }
       </td>
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
