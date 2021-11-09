@@ -171,6 +171,14 @@ function StructureDetails({ location }) {
     }
   }, [sucessMulticompte, errorMulticompte]);
 
+  const labels = {
+    VALIDATION_COSELEC: 'Validée',
+    CREEE: 'Non traitée',
+    ABANDON: 'Abandonnée',
+    ANNULEE: 'Annulée',
+    DOUBLON: 'Doublon'
+  };
+
   return (
     <div className="StructureDetails">
       <div style={{ textAlign: 'center' }}>
@@ -317,13 +325,7 @@ function StructureDetails({ location }) {
               </button>
             </p>
           }
-          {/* eslint-disable-next-line max-len */}
-          <p>Candidature :&nbsp;
-            {structure.structure.statut === 'VALIDATION_COSELEC' && 'Validée'}
-            {structure.structure.statut === 'CREEE' && 'Non traitée'}
-            {structure.structure.statut === 'ABANDON' && 'Abandonée'}
-            {structure.structure.statut === 'ANNULEE' && 'Annulée'}
-            {structure.structure.statut === 'DOUBLON' && 'Doublon'}
+          <p>Candidature :&nbsp; { labels[structure?.structure?.statut] }
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>
@@ -436,7 +438,7 @@ function StructureDetails({ location }) {
 
               {conseillers && conseillers.loading && <span>Chargement...</span>}
 
-              <div className="rf-table">
+              <div className="rf-table" style={{ overflow: 'auto' }}>
                 <table>
                   <thead>
                     <tr>
