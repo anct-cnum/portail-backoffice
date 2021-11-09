@@ -141,22 +141,22 @@ export default function conseiller(state = null, action) {
       return {
         ...state,
         flashMessage: false,
-        loadingInviteCandidat: true,
+        loadingInvitCandidat: true,
         errorResendInscriptionCandidat: false
       };
     case 'RESUBMIT_INSCRIPTION_CANDIDAT_SUCCESS':
       return {
         ...state,
         flashMessage: true,
-        sucessResendInscriptionCandidat: action.user.emailEnvoyer,
-        loadingInviteCandidat: false
+        successResendInscriptionCandidat: action.user.emailEnvoyer,
+        loadingInvitCandidat: false
       };
     case 'RESUBMIT_INSCRIPTION_CANDIDAT_FAILURE':
       return {
         ...state,
         errorResendInscriptionCandidat: action.error,
         flashMessage: true,
-        loadingInviteCandidat: false
+        loadingInvitCandidat: false
       };
     default:
       return state;
