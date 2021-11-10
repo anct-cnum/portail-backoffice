@@ -15,7 +15,8 @@ export const conseillerService = {
   verifySondageToken,
   getCurriculumVitae,
   getStructureByIdConseiller,
-  suppressionCandidat
+  suppressionCandidat,
+  resendInscriptionCandidat
 };
 
 function get(id) {
@@ -168,6 +169,15 @@ function suppressionCandidat({ id, motif, actionUser }) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/${id}/candidature`, requestOptions).then(handleResponse);
+}
+
+function resendInscriptionCandidat(id) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/${id}/relance-inscription-candidat`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

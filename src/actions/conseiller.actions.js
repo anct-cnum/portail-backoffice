@@ -13,7 +13,8 @@ export const conseillerActions = {
   getCurriculumVitae,
   resetFile,
   getStructureByIdConseiller,
-  suppressionCandidat
+  suppressionCandidat,
+  resendInscriptionCandidat
 };
 
 function get(id) {
@@ -296,4 +297,26 @@ function suppressionCandidat({ id, motif, actionUser }) {
     return { type: 'DELETE_CONSEILLER_FAILURE', error };
   }
 
+}
+
+function resendInscriptionCandidat(id) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.resendInscriptionCandidat(id)
+    .then(
+      user => dispatch(success(user)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'RESUBMIT_INSCRIPTION_CANDIDAT_REQUEST' };
+  }
+  function success(user) {
+    return { type: 'RESUBMIT_INSCRIPTION_CANDIDAT_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'RESUBMIT_INSCRIPTION_CANDIDAT_FAILURE', error };
+  }
 }
