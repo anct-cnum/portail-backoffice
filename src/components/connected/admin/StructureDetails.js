@@ -325,7 +325,7 @@ function StructureDetails({ location }) {
               </button>
             </p>
           }
-          <p>Candidature :&nbsp; { labels[structure?.structure?.statut] }
+          <p>Candidature&nbsp;: { labels[structure?.structure?.statut] }
           </p>
           {structure?.structure?.statut === 'VALIDATION_COSELEC' && structure?.structure?.dernierCoselec !== null &&
             <p>
