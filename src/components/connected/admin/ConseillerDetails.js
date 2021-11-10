@@ -108,14 +108,14 @@ function ConseillerDetails({ location }) {
       <div>
         { invitCandidat?.flashMessage === true &&
       <FlashMessage duration={10000}>
-        { (errorSendMail === undefined || successSendMail === true) &&
+        { (errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
         <p className="rf-label flashBag">
           L&rsquo;email de relance d&rsquo;inscription a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
           &nbsp;
           <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
         </p>
         }
-        { (errorSendMail !== undefined && successSendMail === undefined) &&
+        { (errorSendMail !== undefined && successSendMail === undefined && errorSendMail !== false) &&
         <p className="rf-label flashBag labelError">
           {errorSendMail}
         </p>
@@ -219,9 +219,8 @@ function ConseillerDetails({ location }) {
                 className="rf-btn"
                 style={{ 'padding': '1rem 1.5rem' }}
                 onClick={resendInscriptionCandidat}>
-                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]</button>
-              <br/>
-              <br/>
+                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
+              </button><br/><br/>
               <div>
                 <button
                   className="bouton-delete"
@@ -230,7 +229,7 @@ function ConseillerDetails({ location }) {
                     setAutreMotif(false);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}>
-                    Supprimer la candidature
+                      Supprimer la candidature
                 </button>
               </div>
             </div>
