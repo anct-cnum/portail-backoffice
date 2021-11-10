@@ -19,6 +19,9 @@ function ConseillerDetails({ location }) {
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
   const [motif, setMotif] = useState('');
   const [autreMotif, setAutreMotif] = useState(false);
+  const invitCandidat = useSelector(state => state?.conseiller);
+  const errorSendMail = useSelector(state => state.conseiller?.errorResendInscriptionCandidat);
+  const successSendMail = useSelector(state => state.conseiller?.successResendInscriptionCandidat);
 
   let { id } = useParams();
 
@@ -86,6 +89,11 @@ function ConseillerDetails({ location }) {
     }
   };
 
+  const resendInscriptionCandidat = () => {
+    window.scrollTo(0, 0);
+    dispatch(conseillerActions.resendInscriptionCandidat(id));
+  };
+
   return (
     <div className="ConseillerDetails">
       <Link
@@ -98,6 +106,31 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
+        { invitCandidat?.flashMessage === true &&
+      <FlashMessage duration={10000}>
+        { (errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
+        <p className="rf-label flashBag">
+          L&rsquo;email de relance d&rsquo;inscription a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
+          &nbsp;
+          <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+        </p>
+        }
+        { (errorSendMail !== undefined && successSendMail === undefined && errorSendMail !== false) &&
+        <p className="rf-label flashBag labelError">
+          {errorSendMail}
+        </p>
+        }
+      </FlashMessage>
+        }
+        <div style={{ textAlign: 'center' }}>
+          <Spinner
+            type="Oval"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            visible={invitCandidat?.loadingInvitCandidat === true}
+          />
+        </div>
         { erreurSuppressionCandidat &&
             <FlashMessage duration={20000}>
               <p className="rf-label flashBag labelError">
@@ -182,8 +215,12 @@ function ConseillerDetails({ location }) {
               <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
-              <br/>
-              <br/>
+              <button
+                className="rf-btn"
+                style={{ 'padding': '1rem 1.5rem' }}
+                onClick={resendInscriptionCandidat}>
+                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
+              </button><br/><br/>
               <div>
                 <button
                   className="bouton-delete"
@@ -192,7 +229,7 @@ function ConseillerDetails({ location }) {
                     setAutreMotif(false);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}>
-                    Supprimer la candidature
+                      Supprimer la candidature
                 </button>
               </div>
             </div>

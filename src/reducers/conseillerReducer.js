@@ -137,6 +137,27 @@ export default function conseiller(state = null, action) {
         loading: false,
         conseillerErreurSuppression: action.error
       };
+    case 'RESUBMIT_INSCRIPTION_CANDIDAT_REQUEST':
+      return {
+        ...state,
+        flashMessage: false,
+        loadingInvitCandidat: true,
+        errorResendInscriptionCandidat: false
+      };
+    case 'RESUBMIT_INSCRIPTION_CANDIDAT_SUCCESS':
+      return {
+        ...state,
+        flashMessage: true,
+        successResendInscriptionCandidat: action.user.emailEnvoyer,
+        loadingInvitCandidat: false
+      };
+    case 'RESUBMIT_INSCRIPTION_CANDIDAT_FAILURE':
+      return {
+        ...state,
+        errorResendInscriptionCandidat: action.error,
+        flashMessage: true,
+        loadingInvitCandidat: false
+      };
     default:
       return state;
   }
