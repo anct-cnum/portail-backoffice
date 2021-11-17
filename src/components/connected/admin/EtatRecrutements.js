@@ -51,6 +51,13 @@ function EtatRecrutements() {
     update();
     dispatch(structureActions.getAvancementRecrutement());
   }, []);
+  const labels = {
+    VALIDATION_COSELEC: 'Validée',
+    CREEE: 'Non traitée',
+    ABANDON: 'Abandonnée',
+    ANNULEE: 'Annulée',
+    DOUBLON: 'Doublon'
+  };
 
   return (
     <div className="recrutements">
@@ -84,7 +91,7 @@ function EtatRecrutements() {
                         <td>{structure.nom}</td>
                         <td>{structure.coselecAt ? dayjs(structure.coselecAt).format('DD/MM/YY') : 'en attente de passage'}</td>
                         <td>
-                          {structure?.dernierCoselec?.nombreConseillersCoselec ? structure?.dernierCoselec?.nombreConseillersCoselec : 'en attente de passage'}
+                          { labels[structure?.statut] }
                         </td>
                         <td>{structure?.nbCandidatsRecrutes}</td>
                         <td>
