@@ -11,6 +11,7 @@ function ConseillerDetails({ location }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user.user);
+  const role = user.role;
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
@@ -216,7 +217,7 @@ function ConseillerDetails({ location }) {
               <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
-              { user === 'admin' && <>
+              { role === 'admin' && <>
                 <button
                   className="rf-btn"
                   style={{ 'padding': '1rem 1.5rem' }}

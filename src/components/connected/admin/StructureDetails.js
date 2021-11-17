@@ -19,6 +19,7 @@ moment.locale('fr');
 function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const userConnected = useSelector(state => state.authentication.user.user);
+  const role = userConnected.role;
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
   const siretError = useSelector(state => state.structure?.siretError);
@@ -317,7 +318,7 @@ function StructureDetails({ location }) {
             <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} /> :
             <p>
               Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
-              { userConnected === 'admin' && <button onClick={() => {
+              { role === 'admin' && <button onClick={() => {
                 setDisplayFormEmail(true);
                 setMessageEmailChange(false);
               }}
@@ -405,7 +406,7 @@ function StructureDetails({ location }) {
                   }
                 </div>
               )}
-              { userConnected === 'admin' && <div className="rf-mt-5w">
+              { role === 'admin' && <div className="rf-mt-5w">
                 <h3>Compte associés à la structure</h3>
                 { !userError && users &&
               <>
