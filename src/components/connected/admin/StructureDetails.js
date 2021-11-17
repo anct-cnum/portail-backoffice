@@ -18,6 +18,8 @@ moment.locale('fr');
 
 function StructureDetails({ location }) {
   const dispatch = useDispatch();
+  const userConnected = useSelector(state => state.authentication.user.user);
+  const role = userConnected.role;
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
   const siretError = useSelector(state => state.structure?.siretError);
@@ -316,13 +318,13 @@ function StructureDetails({ location }) {
             <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} /> :
             <p>
               Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
-              <button onClick={() => {
+              { role === 'admin' && <button onClick={() => {
                 setDisplayFormEmail(true);
                 setMessageEmailChange(false);
               }}
               style={{ cursor: 'pointer', border: 'none', borderBottom: '1px solid', paddingBottom: 'inherit' }}>
                 <img src="/logos/icone-crayon.svg" alt="Modifier l'email" style={{ height: '1rem' }}/>
-              </button>
+              </button>}
             </p>
           }
           <p>Candidature&nbsp;: { labels[structure?.structure?.statut] }
@@ -404,19 +406,19 @@ function StructureDetails({ location }) {
                   }
                 </div>
               )}
-              <div className="rf-mt-5w">
+              { role === 'admin' && <div className="rf-mt-5w">
                 <h3>Compte associés à la structure</h3>
                 { !userError && users &&
-              <>
-                {users.length === 0 && <p>Aucun compte crée.</p>}
-                {users && users.map((user, idx) => {
-                  return (
-                    <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
-                      title={!user.passwordCreated ? 'Compte inactif pour le moment' : 'Compte actif'} >{user.name}</p>
-                  );
-                })
-                }
-              </>
+                  <>
+                    {users.length === 0 && <p>Aucun compte crée.</p>}
+                    {users && users.map((user, idx) => {
+                      return (
+                        <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
+                          title={!user.passwordCreated ? 'Compte inactif pour le moment' : 'Compte actif'} >{user.name}</p>
+                      );
+                    })
+                    }
+                  </>
                 }
                 {displayFormMultiCompte === false &&
                     <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
@@ -433,7 +435,7 @@ function StructureDetails({ location }) {
                       />
                     </div>
                 }
-              </div>
+              </div>}
               <h3>Liste des candidats</h3>
 
               {conseillers && conseillers.loading && <span>Chargement...</span>}

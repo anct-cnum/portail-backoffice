@@ -10,6 +10,8 @@ import FlashMessage from 'react-flash-message';
 function ConseillerDetails({ location }) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.authentication.user.user);
+  const role = user.role;
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
@@ -215,23 +217,26 @@ function ConseillerDetails({ location }) {
               <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
-              <button
-                className="rf-btn"
-                style={{ 'padding': '1rem 1.5rem' }}
-                onClick={resendInscriptionCandidat}>
-                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
-              </button><br/><br/>
-              <div>
+              { role === 'admin' && <>
                 <button
-                  className="bouton-delete"
-                  onClick={() => {
-                    setConfirmSuppressionCandidat(true);
-                    setAutreMotif(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}>
+                  className="rf-btn"
+                  style={{ 'padding': '1rem 1.5rem' }}
+                  onClick={resendInscriptionCandidat}>
+                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
+                </button><br/><br/>
+                <div>
+                  <button
+                    className="bouton-delete"
+                    onClick={() => {
+                      setConfirmSuppressionCandidat(true);
+                      setAutreMotif(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>
                       Supprimer la candidature
-                </button>
-              </div>
+                  </button>
+                </div>
+              </>
+              }
             </div>
             {confirmSuppressionCandidat &&
                <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
