@@ -19,7 +19,6 @@ moment.locale('fr');
 function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const userConnected = useSelector(state => state.authentication.user.user);
-  console.log('userConnected:', userConnected);
   const role = userConnected.role;
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
