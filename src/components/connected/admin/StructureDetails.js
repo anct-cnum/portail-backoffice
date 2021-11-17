@@ -19,6 +19,7 @@ moment.locale('fr');
 function StructureDetails({ location }) {
   const dispatch = useDispatch();
   const userConnected = useSelector(state => state.authentication.user.user);
+  console.log('userConnected:', userConnected);
   const role = userConnected.role;
   const structure = useSelector(state => state.structure);
   const { stats } = useSelector(state => state.stats);
@@ -409,16 +410,16 @@ function StructureDetails({ location }) {
               { role === 'admin' && <div className="rf-mt-5w">
                 <h3>Compte associés à la structure</h3>
                 { !userError && users &&
-              <>
-                {users.length === 0 && <p>Aucun compte crée.</p>}
-                {users && users.map((user, idx) => {
-                  return (
-                    <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
-                      title={!user.passwordCreated ? 'Compte inactif pour le moment' : 'Compte actif'} >{user.name}</p>
-                  );
-                })
-                }
-              </>
+                  <>
+                    {users.length === 0 && <p>Aucun compte crée.</p>}
+                    {users && users.map((user, idx) => {
+                      return (
+                        <p key={idx} className={!user.passwordCreated ? 'inactif' : 'actif'}
+                          title={!user.passwordCreated ? 'Compte inactif pour le moment' : 'Compte actif'} >{user.name}</p>
+                      );
+                    })
+                    }
+                  </>
                 }
                 {displayFormMultiCompte === false &&
                     <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
