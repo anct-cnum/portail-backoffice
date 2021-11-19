@@ -295,8 +295,17 @@ function ConseillerDetails({ location }) {
                                  </label>
                                </div>
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-3" onClick={() => setAutreMotif(true)}/>
+                                 <input type="radio" name="radio" id="radio-3" onClick={() => {
+                                   setMotif('doublon');
+                                   setAutreMotif(false);
+                                 }}/>
                                  <label className="rf-label" htmlFor="radio-3">
+                                              Doublon
+                                 </label>
+                               </div>
+                               <div className="rf-radio-group">
+                                 <input type="radio" name="radio" id="radio-4" onClick={() => setAutreMotif(true)}/>
+                                 <label className="rf-label" htmlFor="radio-4">
                                               Autre
                                  </label>
                                  {autreMotif &&
