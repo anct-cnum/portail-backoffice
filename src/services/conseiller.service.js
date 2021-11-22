@@ -161,14 +161,10 @@ function getStructureByIdConseiller(id) {
 function suppressionCandidat({ id, motif, actionUser }) {
   const requestOptions = {
     method: 'DELETE',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      motif,
-      actionUser
-    })
+    headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${id}/candidature`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers/${id}/candidature?motif=${motif}&actionUser=${actionUser}`, requestOptions).then(handleResponse);
 }
 
 function resendInscriptionCandidat(id) {
