@@ -278,34 +278,34 @@ function ConseillerDetails({ location }) {
                              </legend>
                              <div className="rf-fieldset__content">
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-1"onClick={() => {
+                                 <input type="radio" name="radio" id="rgpd"onClick={() => {
                                    setMotif('demande RGPD');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="radio-1">Demande RGPD
+                                 <label className="rf-label" htmlFor="rgpd">Demande RGPD
                                  </label>
                                </div>
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-2" onClick={() => {
+                                 <input type="radio" name="radio" id="non_interesse_dispositif" onClick={() => {
                                    setMotif('plus intéressé par le dispositif');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="radio-2">
+                                 <label className="rf-label" htmlFor="non_interesse_dispositif">
                                               Plus intéressé par le dispositif
                                  </label>
                                </div>
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-3" onClick={() => {
+                                 <input type="radio" name="radio" id="doublon" onClick={() => {
                                    setMotif('doublon');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="radio-3">
+                                 <label className="rf-label" htmlFor="doublon">
                                               Doublon
                                  </label>
                                </div>
                                <div className="rf-radio-group">
-                                 <input type="radio" name="radio" id="radio-4" onClick={() => setAutreMotif(true)}/>
-                                 <label className="rf-label" htmlFor="radio-4">
+                                 <input type="radio" name="radio" id="autre" onClick={() => setAutreMotif(true)}/>
+                                 <label className="rf-label" htmlFor="autre">
                                               Autre
                                  </label>
                                  {autreMotif &&
