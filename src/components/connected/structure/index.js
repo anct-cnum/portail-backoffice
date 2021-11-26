@@ -14,7 +14,7 @@ import MesInformations from './MesInformations';
 import MonCompte from './MonCompte';
 import Recrutements from './Recrutements';
 import Aide from './Aide';
-import InscriptionFormation from './InscriptionFormation';
+import InscriptionFormation from '../../common/InscriptionFormation';
 
 function Structure() {
   const dispatch = useDispatch();

@@ -17,9 +17,9 @@ import SearchBox from '../../common/SearchBox';
 import FilterDateBox from '../../common/FilterDateBox';
 import MonCompte from './MonCompte';
 import EtatRecrutements from './EtatRecrutements';
-import InscriptionFormation from './InscriptionFormation';
 import FlashMessage from 'react-flash-message';
 import InvitationPrefet from './InvitationPrefet';
+import InscriptionFormation from '../../common/InscriptionFormation';
 
 function Admin() {
   const dispatch = useDispatch();
