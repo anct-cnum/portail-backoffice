@@ -115,6 +115,28 @@ function Documents() {
             </span>
           </p>
         </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://beta.www.conseiller-numerique.gouv.fr/kit-communication"
+              className="rf-link" target="blank" title="Télécharger le contrat de projet type">
+                        Accéder au kit de communication
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Logos, charte graphique, gabarits, modèle de carte de visite
+            </span>
+          </p>
+        </div>
+        <div className="rf-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Flyer_CNFS.pdf"
+              className="rf-link" target="blank" title="Télécharger le flyer">
+                        Télécharger le flyer (pdf)
+            </a>
+            <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+              Ce flyer présente le dispositif Conseiller numérique France Services
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
