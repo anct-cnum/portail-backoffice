@@ -119,8 +119,10 @@ function InscriptionFormation() {
             La formation est organisée prioritairement en présentiel ; en cas d&rsquo;impossibilité de suivre une formation en présentiel,
             la formation à distance peut vous être proposée.
           </p>
-          <b>Nous vous invitons à inscrire dès que possible le Conseiller numérique directement auprès de l&rsquo;organisme de formation</b>&nbsp;concerné,
+          <span>
+            <b>Nous vous invitons à inscrire dès que possible le Conseiller numérique directement auprès de l&rsquo;organisme de formation</b>&nbsp;concerné,
             qui vous communiquera les dates de formation dans votre département&nbsp;:
+          </span>
           <ul>
             <li>
               En région &Icirc;le-de-France&nbsp;: Le P&ocirc;leS
