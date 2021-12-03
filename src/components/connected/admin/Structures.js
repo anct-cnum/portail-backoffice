@@ -25,10 +25,16 @@ function Structures({ departement, region, com, search, start, end }) {
   const [pageCount, setPageCount] = useState(0);
   const [constructorHasRun, setConstructorHasRun] = useState(false);
   const [type, setType] = useState(null);
+  const [statut, setStatut] = useState(null);
 
   function selectType(event) {
     const value = event.target.value;
     setType(value !== '' ? value : null);
+  }
+
+  function selectStatut(event) {
+    const value = event.target.value;
+    setStatut(value !== '' ? value : null);
   }
 
   const navigate = page => {
@@ -38,7 +44,7 @@ function Structures({ departement, region, com, search, start, end }) {
     if (skip === 0 && pagination?.resetPage === false && location.currentPage !== undefined) {
       skip = (page - 1) * 10;
     }
-    dispatch(structureActions.getAll({ departement, region, com, search, start, end, type, page: skip }));
+    dispatch(structureActions.getAll({ departement, region, com, search, start, end, type, statut, page: skip }));
   };
 
   useEffect(() => {
@@ -52,17 +58,13 @@ function Structures({ departement, region, com, search, start, end }) {
     if (pagination?.resetPage === false && location.currentPage !== undefined) {
       navigate(page);
     } else {
-      dispatch(structureActions.getAll({ departement, region, com, search, start, end, type, page: page - 1 }));
+      dispatch(structureActions.getAll({ departement, region, com, search, start, end, type, statut, page: page - 1 }));
     }
   };
 
   useEffect(() => {
     update();
-  }, []);
-
-  useEffect(() => {
-    update();
-  }, [type]);
+  }, [type, statut]);
 
   const constructor = () => {
     if (constructorHasRun) {
@@ -74,11 +76,18 @@ function Structures({ departement, region, com, search, start, end }) {
 
   return (
     <div className="structures">
-
       <select className="rf-select rf-mb-2w" value={type === null ? '' : type} onChange={selectType}>
         <option value="">Tout type</option>
         <option value="PUBLIC">Publique</option>
         <option value="PRIVATE">Privée</option>
+      </select>
+
+      <select className="rf-select rf-mb-2w" value={statut === null ? '' : statut} onChange={selectStatut}>
+        <option value="">Tout statut</option>
+        <option value="VALIDATION_COSELEC">Validée</option>
+        <option value="CREEE">Non traitée</option>
+        <option value="ABANDON">Abandonnée</option>
+        <option value="ANNULEE">Annulée</option>
       </select>
 
       { structures && structures.loading && <span>Chargement...</span>}
