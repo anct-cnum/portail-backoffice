@@ -23,7 +23,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/structures/${id ? id : userEntityId()}`, requestOptions).then(handleResponse);
 }
 
-function getAll(departement, region, com, search, start, end, type, page, filter, sortData, sortOrder) {
+function getAll(departement, region, com, search, start, end, type, statut, page, filter, sortData, sortOrder) {
 
   const requestOptions = {
     method: 'GET',
@@ -42,8 +42,10 @@ function getAll(departement, region, com, search, start, end, type, page, filter
   if (type !== null) {
     filterType = type === 'PRIVATE' ? `&type=PRIVATE` : '&type[$ne]=PRIVATE';
   }
+  const filterStatut = statut !== null ? `&statut=${statut}` : '';
+
   // eslint-disable-next-line max-len
-  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterCom}${filterDateStart}${filterDateEnd}${filterType}${filterSearch}`;
+  let uri = `${apiUrlRoot}/structures?$skip=${page}&$sort[${sortData}]=${sortOrder}${filterDepartement}${filterRegion}${filterCom}${filterDateStart}${filterDateEnd}${filterType}${filterStatut}${filterSearch}`;
 
 
   if (filter) {

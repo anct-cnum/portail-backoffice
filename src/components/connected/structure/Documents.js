@@ -196,6 +196,7 @@ function Documents() {
             </span>
           </p>
         </div>
+        <h4>4) Préparer l&rsquo;arrivée de votre conseiller numérique</h4>
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
@@ -208,7 +209,6 @@ function Documents() {
             </span>
           </p>
         </div>
-        <h4>4) Préparer l&rsquo;arrivée de votre conseiller numérique</h4>
         <div className="rf-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/parcours_et_integration_des_CnFS.pdf"

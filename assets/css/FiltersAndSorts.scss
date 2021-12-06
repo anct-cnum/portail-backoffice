@@ -17,3 +17,27 @@
   font-weight: normal
 }
 
+.rf-table {
+  th {
+    .filtre-btn {
+      padding-left: 0;
+      text-align: left;
+      border: none !important;
+      cursor: pointer;
+      color: #383838;
+      background-color: transparent;
+      font-weight: 700;
+      font-family: "Marianne",arial,sans-serif;
+
+      .icone {
+        margin: 2px 5px;
+      }
+      .icone-2 {
+        margin: -7px 0 0 15px;
+      }
+      .icone-3 {
+        margin: -7px 0 0 35px;
+      }
+    }
+  }
+}

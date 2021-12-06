@@ -36,13 +36,13 @@ function get(id) {
   }
 }
 
-function getAll({ departement = null, region = null, com = null, search = '', start = '', end = '', type = null,
+function getAll({ departement = null, region = null, com = null, search = '', start = '', end = '', type = null, statut = null,
   page = 0, filter, sortData = 'createdAt', sortOrder = -1 }) {
 
   return dispatch => {
     dispatch(request());
 
-    structureService.getAll(departement, region, com, search, start, end, type, page, filter, sortData, sortOrder)
+    structureService.getAll(departement, region, com, search, start, end, type, statut, page, filter, sortData, sortOrder)
     .then(
       structures => dispatch(success(structures)),
       error => {

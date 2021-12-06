@@ -1,36 +1,26 @@
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { structureActions } from '../../../actions';
 import Pagination from '../../common/Pagination';
 import ProgressBar from '../../common/ProgressBar';
+import { Sort } from '../../common/sort/Sort';
+import { Order } from '../../common/sort/Sort.presenter';
 
 function EtatRecrutements() {
   const dispatch = useDispatch();
-  let location = useLocation();
 
   const structures = useSelector(state => state.structures);
-  const pagination = useSelector(state => state.pagination);
   const user = useSelector(state => state.authentication.user.user);
   const avancement = useSelector(state => state.structures.avancement);
-
-  let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
 
   const departement = user?.departement;
   const region = user?.region;
 
+  const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-
-  const navigate = page => {
-    setPage(page);
-    let skip = structures.items ? (page - 1) * structures.items.limit : 0;
-    //Structures.items est undefined au retour à la liste donc calcul manuel
-    if (skip === 0 && pagination?.resetPage === false && location.currentPage !== undefined) {
-      skip = (page - 1) * 10;
-    }
-    dispatch(structureActions.getAll({ departement: departement, region: region, page: skip }));
-  };
+  const [sort, setSort] = useState({ field: 'coselecAt', order: Order.Descending });
 
   useEffect(() => {
     if (structures.items) {
@@ -39,16 +29,29 @@ function EtatRecrutements() {
     }
   }, [structures]);
 
-  const update = () => {
-    if (pagination?.resetPage === false && location.currentPage !== undefined) {
-      navigate(page);
-    } else {
-      dispatch(structureActions.getAll({ departement: departement, region: region, page: page - 1 }));
-    }
+  const skip = page => structures.items ? (page - 1) * structures.items.limit : 0;
+
+  const update = page => {
+    dispatch(structureActions.getAll({
+      departement,
+      region,
+      page: skip(page),
+      filter: false,
+      sortData: sort.field,
+      sortOrder: sort.order
+    }));
+  };
+
+  const navigate = page => {
+    setPage(page);
+    update(page);
   };
 
   useEffect(() => {
-    update();
+    update(page);
+  }, [sort]);
+
+  useEffect(() => {
     dispatch(structureActions.getAvancementRecrutement());
   }, []);
   const labels = {
@@ -78,7 +81,11 @@ function EtatRecrutements() {
                 <thead>
                   <tr>
                     <th>Structure</th>
-                    <th>Date de Coselec</th>
+                    <th>
+                      <Sort field="coselecAt" sort={sort} onSort={setSort}>
+                        Date de Coselec
+                      </Sort>
+                    </th>
                     <th>Dotation</th>
                     <th>Candidats recrutés</th>
                     <th>Action</th>

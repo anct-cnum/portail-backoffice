@@ -164,16 +164,14 @@ function Admin() {
                   com={codeCom}
                   search={search} />} />
             <Route path={`/candidat/:id`} component={ConseillerDetails} />
-            { user.role === 'admin' &&
-              <Route path={`/admin/liste-candidats-recrutes`}
-                component={
-                  () => <CandidatsRecrutes
-                    departement={departement}
-                    region={codeRegion}
-                    com={codeCom}
-                    search={search} />
-                } />
-            }
+            <Route path={`/liste-candidats-recrutes`}
+              component={
+                () => <CandidatsRecrutes
+                  departement={departement}
+                  region={codeRegion}
+                  com={codeCom}
+                  search={search} />
+              } />
 
             <Route path={`/etat-des-recrutements`} component={EtatRecrutements} />
             <Route path={`/admin/documents`} component={Documents} />
