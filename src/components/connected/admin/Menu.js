@@ -101,15 +101,28 @@ function Menu() {
               </li>
             }
             { role === 'prefet' &&
-            <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/admin/documents" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes documents
+            <>
+              <li className={`rf-sidemenu__item ${location.pathname === '/admin/donnees-de-deploiment-des-cnfs' ? 'rf-sidemenu__item--active' : ''}`}>
+                <a className="rf-sidemenu__link" style={{ padding: '0.5rem 0' }}
+                  href="https://metabase.conseiller-numerique.gouv.fr/public/dashboard/446208c4-cae2-4c0c-be19-44cb14ce7d06"
+                  target="_blank" rel="noreferrer">
+                  <span className="rf-container" style={{ padding: '0' }}>
+                    <span className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
+                      Données de déploiement des CnFS
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li className={`rf-sidemenu__item ${location.pathname === '/admin/documents' ? 'rf-sidemenu__item--active' : ''}`}>
+                <Link className="rf-sidemenu__link" to="/admin/documents" style={{ padding: '0.5rem 0' }}>
+                  <div className="rf-container" style={{ padding: '0' }}>
+                    <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
+                      Mes documents
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </li>
+                </Link>
+              </li>
+            </>
             }
             <li className={`rf-sidemenu__item ${location.pathname.startsWith('/admin/exports') ? 'rf-sidemenu__item--active' : ''}`}>
               <Link className="rf-sidemenu__link" to="/admin/exports" style={{ padding: '0.5rem 0' }}>
