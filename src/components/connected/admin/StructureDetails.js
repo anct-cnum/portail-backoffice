@@ -175,6 +175,8 @@ function StructureDetails({ location }) {
 
   const labels = {
     VALIDATION_COSELEC: 'Validée',
+    EXAMEN_COMPLEMENTAIRE_COSELEC: 'Examen complémentaire',
+    REFUS_COSELEC: 'Refus',
     CREEE: 'Non traitée',
     ABANDON: 'Abandonnée',
     ANNULEE: 'Annulée',

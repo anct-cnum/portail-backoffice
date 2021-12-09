@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 function Structure({ structure, currentPage }) {
   const labels = {
     VALIDATION_COSELEC: 'Validée',
+    EXAMEN_COMPLEMENTAIRE_COSELEC: 'Examen complémentaire',
+    REFUS_COSELEC: 'Refus',
     CREEE: 'Non traitée',
     ABANDON: 'Abandonnée',
     ANNULEE: 'Annulée',
