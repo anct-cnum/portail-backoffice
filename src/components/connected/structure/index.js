@@ -71,13 +71,13 @@ function Structure() {
           <div className="fr-col-12 fr-col-md-9 fr-col-lg-10">
             <div className="fr-mb-5v fr-mt-3v">
               { nombreConseillersCoselec !== undefined && nombreConseillersCoselec !== null &&
-          <span style={{ fontWeight: 'normal' }} className="fr-mr-15w">
-            <Pluralize
-              singular={'conseiller validé'}
-              plural={'conseillers validés'}
-              count={nombreConseillersCoselec} />
-            &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
-          </span>
+                <span style={{ fontWeight: 'normal' }} className="fr-mr-15w">
+                  <Pluralize
+                    singular={'conseiller validé'}
+                    plural={'conseillers validés'}
+                    count={nombreConseillersCoselec} />
+                  &nbsp;par l&rsquo;Agence nationale de la cohésion des territoires
+                </span>
               }
             </div>
             <Route path={`/structure/candidats/:filter`} component={Conseillers} />
