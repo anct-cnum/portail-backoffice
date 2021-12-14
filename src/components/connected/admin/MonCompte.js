@@ -32,14 +32,14 @@ function MonCompte() {
             <div>
               <FlashMessage duration={10000}>
                 { (error === undefined || error === false) &&
-                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag" style={{ fontSize: '16px' }}>
                   Nous vous avons envoyé un mail à : <strong style={{ color: 'black' }}>{email}</strong> pour confirmation
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
                 }
                 { (error !== undefined && error !== false) &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
                   Cet adresse e-mail est déjà utilisée
                 </p>
                 }
@@ -52,19 +52,19 @@ function MonCompte() {
       {form === false ?
         <>
           <p>Email :<strong> { name }</strong></p>
-          <button className={role === 'admin' ? 'rf-btn rfmt-2w rf-mt-5w' : 'rf-btn'} onClick={() => setForm(true)}>
+          <button className={role === 'admin' ? 'fr-btn rfmt-2w fr-mt-5w' : 'fr-btn'} onClick={() => setForm(true)}>
               Modifier mon adresse e-mail &ensp;
-            <span style={{ color: 'white' }} className="rf-fi-edit-line" aria-hidden="true"/>
+            <span style={{ color: 'white' }} className="fr-fi-edit-line" aria-hidden="true"/>
           </button>
         </> :
-        <div className="rf-container--fluid">
-          <div className="rf-my-3w rf-col-lg-3 rf-col-3 rf-col-sm-8">
-            <label className="rf-label">E-mail</label>
-            <input className="rf-input" type="text" id="text-input-text" name="name" value={email} onChange={handleForm}/>
+        <div className="fr-container--fluid">
+          <div className="fr-my-3w fr-col-lg-3 fr-col-3 fr-col-sm-8">
+            <label className="fr-label">E-mail</label>
+            <input className="fr-input" type="text" id="text-input-text" name="name" value={email} onChange={handleForm}/>
           </div>
-          <div className="rf-col-lg-3 rf-col-3 rf-col-sm-8">
-            <button onClick={() => setForm(false)} className="rf-btn">Annuler </button>
-            <button className="rf-btn rf-m-auto" style={{ float: 'right' }} onClick={updateEmail}>Valider</button>
+          <div className="fr-col-lg-3 fr-col-3 fr-col-sm-8">
+            <button onClick={() => setForm(false)} className="fr-btn">Annuler </button>
+            <button className="fr-btn fr-m-auto" style={{ float: 'right' }} onClick={updateEmail}>Valider</button>
           </div>
         </div>
       }

@@ -20,7 +20,7 @@ function Structure({ structure, currentPage }) {
       <td> {structure.siret !== null ? structure.siret : 'non renseigné' } </td>
       <td>
         {structure.estLabelliseFranceServices === 'OUI' ?
-          <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="rf-mt-5v rf-ml-4w" style={{ height: '50px' }}/> :
+          <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="fr-mt-5v fr-ml-4w" style={{ height: '50px' }}/> :
           ''}
       </td>
       <td className="capitalizeFirstLetter">{structure.nom}</td>
@@ -30,7 +30,7 @@ function Structure({ structure, currentPage }) {
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
       <td> {structure.nbCandidatsRecrutes}</td>
-      <td>        <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+      <td>        <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
         to={{
           pathname: `/structure/${structure._id}`,
           currentPage: currentPage,

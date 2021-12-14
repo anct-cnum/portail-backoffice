@@ -2,22 +2,25 @@
   display: flex;
   align-items: baseline;
   text-align: center;
-  justify-content: flex-start
+  justify-content: flex-start;
 }
 .selectOption{
   display: flex;
   align-items: baseline;
-  text-align: center
+  text-align: center;
+  select {
+    width: 97px;
+  }
 }
 .labelPix {
-  margin-right: 1rem;
-  font-weight: normal
+  margin-right: 0.5rem;
+  font-weight: normal;
 }
 .labelDiplome {
-  font-weight: normal
+  font-weight: normal;
 }
 
-.rf-table {
+.fr-table {
   th {
     .filtre-btn {
       padding-left: 0;
@@ -41,3 +44,17 @@
     }
   }
 }
+.fr-fieldset--inline .fr-checkbox-group:not(:last-child) {
+  margin-right: 0.75rem;
+}
+.tri-en-ligne {
+  display: inline-block;
+  .fr-toggle {
+    width: 336px;
+  }
+  .fr-toggle--label-left .fr-toggle__label::before {
+    margin-left: 0rem;
+    margin-right: -3rem;
+  }
+}
+

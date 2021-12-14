@@ -116,9 +116,9 @@ function Conseillers({ location }) {
 
   return (
     <div className="conseillers">
-      <ul className="tabs rf-tags-group">
+      <ul className="tabs fr-tags-group">
         {tabs.map((tab, idx) => <li key={idx}>
-          <Link className={`rf-tag ${tab.filter === filter ? 'current' : ''}`}
+          <Link className={`fr-tag ${tab.filter === filter ? 'current' : ''}`}
             to={{
               pathname: `/structure/candidats/${tab.filter}`,
               currentPage: 1
@@ -147,7 +147,7 @@ function Conseillers({ location }) {
       }
 
       { !conseillers.loading && conseillers.items && conseillers.items.data.length > 0 &&
-        <div className="rf-table fr-table--layout-fixed" style={{ overflow: 'auto' }}>
+        <div className="fr-table fr-table--layout-fixed" style={{ overflow: 'auto' }}>
           <div className="spinnerCustom">
             <Spinner
               type="Oval"
@@ -186,7 +186,7 @@ function Conseillers({ location }) {
       }
 
       { search !== '' && conseillers?.items?.data.length > 100 &&
-        <p className="rf-mt-2w">Seuls les 100 premiers résultats sont affichés</p>
+        <p className="fr-mt-2w">Seuls les 100 premiers résultats sont affichés</p>
       }
 
       {search.length === 0 &&

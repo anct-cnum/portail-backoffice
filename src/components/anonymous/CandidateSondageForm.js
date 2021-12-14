@@ -83,38 +83,38 @@ function CandidateSondageForm({ match }) {
     <div>
       <Header/>
       <div className="survey">
-        <div className="rf-container rf-mt-3w">
-          <div className="rf-grid-row rf-grid-row--center">
+        <div className="fr-container fr-mt-3w">
+          <div className="fr-grid-row fr-grid-row--center">
             { verifyingToken &&
               <span>Chargement...</span>
             }
             { tokenVerified === false &&
-              <div className="rf-col-12 rf-col-md-7 rf-mt-12w labelError flashBag">
+              <div className="fr-col-12 fr-col-md-7 fr-mt-12w labelError flashBag">
                 <span>
                   {messageVerifyingToken}
                 </span>
               </div>
             }
             { submitedError &&
-              <div className="rf-col-12 rf-col-md-7 rf-mt-12w labelError flashBag">
+              <div className="fr-col-12 fr-col-md-7 fr-mt-12w labelError flashBag">
                 <span>{ submitedError }</span>
               </div>
             }
             { submitedSondage &&
-              <div className="rf-col-12 rf-col-md-7 rf-mt-10w flashBag">
+              <div className="fr-col-12 fr-col-md-7 fr-mt-10w flashBag">
                 Merci pour votre participation !&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
               </div>
             }
 
             { !submitedSondage && tokenVerified && !submitedError && !verifyingToken &&
             <>
-              <div className="rf-col-12 rf-p-5w">
+              <div className="fr-col-12 fr-p-5w">
                 <h2 className="center">Les recrutements ont démarré, dites-nous en plus sur vous !</h2>
               </div>
 
               { sondagePrintError &&
                 <FlashMessage duration={10000}>
-                  <div className="rf-col-12 rf-mb-3w flashBag labelError">
+                  <div className="fr-col-12 fr-mb-3w flashBag labelError">
                     <span>
                       Erreur&nbsp;: veuillez remplir tous les champs obligatoires (*) du formulaire.
                     </span>
@@ -122,59 +122,59 @@ function CandidateSondageForm({ match }) {
                 </FlashMessage>
               }
 
-              <div className="rf-form-group rf-col-12 rf-col-md-7 center">
-                <fieldset className="rf-fieldset rf-fieldset--inline">
+              <div className="fr-form-group fr-col-12 fr-col-md-7 center">
+                <fieldset className="fr-fieldset fr-fieldset--inline">
                   <label className = {sondagePrintError &&
-                    sondageError?.disponible ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
+                    sondageError?.disponible ? 'fr-fieldset__legend fr-text--regular fr-label invalid' : 'fr-fieldset__legend fr-text--regular fr-label'
                   }
                   id="radio-inline-legend">
                     Etes-vous toujours disponible pour un emploi ? *
                   </label>
-                  <div className="rf-fieldset__content">
-                    <div className = "rf-radio-group">
+                  <div className="fr-fieldset__content">
+                    <div className = "fr-radio-group">
                       <input type="radio" id="disponible-oui" name="disponible" value="Oui" onClick={handleChange}/>
-                      <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-oui">Oui</label>
+                      <label className={sondagePrintError && sondageError?.disponible ? 'fr-label invalid' : 'fr-label' } htmlFor="disponible-oui">Oui</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="disponible-non" name="disponible" value="Non" onClick={handleChange}/>
-                      <label className={sondagePrintError && sondageError?.disponible ? 'rf-label invalid' : 'rf-label' } htmlFor="disponible-non">Non</label>
+                      <label className={sondagePrintError && sondageError?.disponible ? 'fr-label invalid' : 'fr-label' } htmlFor="disponible-non">Non</label>
                     </div>
                   </div>
                 </fieldset>
               </div>
 
-              <div className="rf-form-group rf-col-12 rf-col-md-7 center">
-                <fieldset className="rf-fieldset rf-fieldset--inline">
+              <div className="fr-form-group fr-col-12 fr-col-md-7 center">
+                <fieldset className="fr-fieldset fr-fieldset--inline">
                   <label className = {sondagePrintError &&
-                    sondageError?.contact ? 'rf-fieldset__legend rf-text--regular rf-label invalid' : 'rf-fieldset__legend rf-text--regular rf-label'
+                    sondageError?.contact ? 'fr-fieldset__legend fr-text--regular fr-label invalid' : 'fr-fieldset__legend fr-text--regular fr-label'
                   }
                   id="radio-inline-legend">
                     Avez-vous été contacté(e) par une ou plusieurs structures ? *
                   </label>
-                  <div className="rf-fieldset__content">
-                    <div className="rf-radio-group">
+                  <div className="fr-fieldset__content">
+                    <div className="fr-radio-group">
                       <input type="radio" id="contact-oui" name="contact" value="Oui" onClick={handleChange} />
-                      <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-oui">Oui</label>
+                      <label className={sondagePrintError && sondageError?.contact ? 'fr-label invalid' : 'fr-label' } htmlFor="contact-oui">Oui</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="contact-non" name="contact" value="Non" onClick={handleChange}/>
-                      <label className={sondagePrintError && sondageError?.contact ? 'rf-label invalid' : 'rf-label' } htmlFor="contact-non">Non</label>
+                      <label className={sondagePrintError && sondageError?.contact ? 'fr-label invalid' : 'fr-label' } htmlFor="contact-non">Non</label>
                     </div>
                   </div>
                 </fieldset>
               </div>
 
-              <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
+              <div className={isActive ? 'fr-col-12 fr-col-md-7 fr-mb-6w center' : 'hidden'}>
                 <label className = {sondagePrintError &&
-                  sondageError?.nombreContact ? 'rf-label invalid' : 'rf-label' } htmlFor="nombre-contact">
+                  sondageError?.nombreContact ? 'fr-label invalid' : 'fr-label' } htmlFor="nombre-contact">
                   Combien en avez-vous eu ? *
                 </label>
                 <input type="number" name="nombreContact" id="nombre-contact" onChange={handleChange}
-                  className={sondagePrintError && sondageError?.nombreContact ? 'rf-input invalid' : 'rf-input' } />
+                  className={sondagePrintError && sondageError?.nombreContact ? 'fr-input invalid' : 'fr-input' } />
               </div>
 
-              <div className={isActive ? 'rf-col-12 rf-col-md-7 center' : 'hidden'}>
-                <label className="rf-label" htmlFor="structure-contact">
+              <div className={isActive ? 'fr-col-12 fr-col-md-7 center' : 'hidden'}>
+                <label className="fr-label" htmlFor="structure-contact">
                   { nombreContact > 1 &&
                   <span>Lesquelles :</span>
                   }
@@ -183,84 +183,84 @@ function CandidateSondageForm({ match }) {
                   }
                 </label>
                 <label className="center">
-                  <textarea name="structureContact" id="structure-contact" className="rf-input rf-mb-6w" onKeyUp={handleChange}/>
+                  <textarea name="structureContact" id="structure-contact" className="fr-input fr-mb-6w" onKeyUp={handleChange}/>
                 </label>
               </div>
 
-              <div className={isActive ? 'rf-col-12 rf-col-md-7 rf-mb-6w center' : 'hidden'}>
-                <fieldset className="rf-fieldset rf-fieldset--inline">
-                  <label className="rf-fieldset__legend rf-text--regular rf-label" id="radio-inline-legend">
+              <div className={isActive ? 'fr-col-12 fr-col-md-7 fr-mb-6w center' : 'hidden'}>
+                <fieldset className="fr-fieldset fr-fieldset--inline">
+                  <label className="fr-fieldset__legend fr-text--regular fr-label" id="radio-inline-legend">
                   Avez vous eu un ou plusieurs entretiens ?
                   </label>
-                  <div className="rf-fieldset__content">
-                    <div className="rf-radio-group">
+                  <div className="fr-fieldset__content">
+                    <div className="fr-radio-group">
                       <input type="radio" id="entretien-oui" name="entretien" value="Oui" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="entretien-oui">Oui</label>
+                      <label className="fr-label" htmlFor="entretien-oui">Oui</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="entretien-non" name="entretien" value="Non" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="entretien-non">Non</label>
+                      <label className="fr-label" htmlFor="entretien-non">Non</label>
                     </div>
                   </div>
                 </fieldset>
               </div>
 
-              <div className="rf-col-12 rf-col-md-7 rf-mb-6w center">
-                <label className="rf-label" htmlFor="axe-amelioration">
+              <div className="fr-col-12 fr-col-md-7 fr-mb-6w center">
+                <label className="fr-label" htmlFor="axe-amelioration">
                   Quels axes d&rsquo;amélioration souhaiteriez-vous apporter au dispositif ?
                 </label>
-                <input type="text" name="axe-amelioration" id="axe-amelioration" className="rf-input" onChange={handleChange}/>
+                <input type="text" name="axe-amelioration" id="axe-amelioration" className="fr-input" onChange={handleChange}/>
               </div>
 
-              <div className="rf-col-12 rf-col-md-7 rf-mb-6w center">
-                <label className="rf-label" htmlFor="precision-amelioration">
+              <div className="fr-col-12 fr-col-md-7 fr-mb-6w center">
+                <label className="fr-label" htmlFor="precision-amelioration">
                   Précisez votre réponse :
                 </label>
-                <textarea className="rf-input" id="precision-amelioration" name="precision-amelioration" onChange={handleChange}></textarea>
+                <textarea className="fr-input" id="precision-amelioration" name="precision-amelioration" onChange={handleChange}></textarea>
               </div>
 
-              <div className="rf-form-group rf-col-12 rf-col-md-7 center">
-                <fieldset className="rf-fieldset rf-fieldset--inline">
-                  <label className="rf-fieldset__legend rf-text--regular rf-label" id="radio-inline-legend">
+              <div className="fr-form-group fr-col-12 fr-col-md-7 center">
+                <fieldset className="fr-fieldset fr-fieldset--inline">
+                  <label className="fr-fieldset__legend fr-text--regular fr-label" id="radio-inline-legend">
                     Quel avis avez-vous sur le dispositif ?
                   </label>
-                  <div className="rf-fieldset__content">
-                    <div className="rf-radio-group">
+                  <div className="fr-fieldset__content">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-5" name="avis" value="5" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-5">TR&Egrave;S BON</label>
+                      <label className="fr-label" htmlFor="avis-5">TR&Egrave;S BON</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-4" name="avis" value="4" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-4">BON</label>
+                      <label className="fr-label" htmlFor="avis-4">BON</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-3" name="avis" value="3" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-3">MOYEN</label>
+                      <label className="fr-label" htmlFor="avis-3">MOYEN</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-2" name="avis" value="2" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-2">MAUVAIS</label>
+                      <label className="fr-label" htmlFor="avis-2">MAUVAIS</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-1" name="avis" value="1" onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-1">TR&Egrave;S MAUVAIS</label>
+                      <label className="fr-label" htmlFor="avis-1">TR&Egrave;S MAUVAIS</label>
                     </div>
-                    <div className="rf-radio-group">
+                    <div className="fr-radio-group">
                       <input type="radio" id="avis-0" name="avis" value="" defaultChecked onClick={handleChange}/>
-                      <label className="rf-label" htmlFor="avis-0">SANS AVIS</label>
+                      <label className="fr-label" htmlFor="avis-0">SANS AVIS</label>
                     </div>
                   </div>
                 </fieldset>
               </div>
-              <div className="rf-col-12 rf-col-md-7 rf-mb-3w center">
-                <label className="rf-label" htmlFor="precision-avis">
+              <div className="fr-col-12 fr-col-md-7 fr-mb-3w center">
+                <label className="fr-label" htmlFor="precision-avis">
                   Précisez votre réponse :
                 </label>
-                <textarea className="rf-input" id="precision-avis" name="precision-avis" onChange={handleChange}></textarea>
+                <textarea className="fr-input" id="precision-avis" name="precision-avis" onChange={handleChange}></textarea>
               </div>
 
-              <div className="rf-col-12 rf-col-md-7 center">
-                <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleSubmit} >Envoyer</button>
+              <div className="fr-col-12 fr-col-md-7 center">
+                <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" onClick={handleSubmit} >Envoyer</button>
               </div>
             </>
             }

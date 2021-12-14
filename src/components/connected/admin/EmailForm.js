@@ -24,15 +24,15 @@ function EmailForm({ setDisplayFormEmail, structureId }) {
 
   return (
     <div style={{ width: '320px' }}>
-      <div className="rf-my-3w">
-        <label className="rf-label"><h3>Email</h3></label>
-        <input className="rf-input" type="text" id="text-input-text" name="email" onChange={handleForm} />
+      <div className="fr-my-3w">
+        <label className="fr-label"><h3>Email</h3></label>
+        <input className="fr-input" type="text" id="text-input-text" name="email" onChange={handleForm} />
         { messageValidEmailRegex && !valideEmail.test(email) &&
                     <p className="invalid">Le format de l&rsquo;email saisi est invalide.</p>
         }
       </div>
-      <button onClick={() => setDisplayFormEmail(false)} className="rf-btn rf-btn--secondary">Annuler</button>
-      <button style={{ float: 'right' }} className="rf-btn" onClick={ChangeEmail}>Valider</button>
+      <button onClick={() => setDisplayFormEmail(false)} className="fr-btn fr-btn--secondary">Annuler</button>
+      <button style={{ float: 'right' }} className="fr-btn" onClick={ChangeEmail}>Valider</button>
     </div>
   );
 }

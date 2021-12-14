@@ -104,21 +104,21 @@ function ConseillerDetails({ location }) {
           pathname: location.origin,
           currentPage: location.currentPage
         }}
-        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
         Retour à la liste
       </Link>
       <div>
         { invitCandidat?.flashMessage === true &&
       <FlashMessage duration={10000}>
         { (errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
-        <p className="rf-label flashBag">
+        <p className="fr-label flashBag">
           L&rsquo;email de relance d&rsquo;inscription a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
           &nbsp;
           <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
         </p>
         }
         { (errorSendMail !== undefined && successSendMail === undefined && errorSendMail !== false) &&
-        <p className="rf-label flashBag labelError">
+        <p className="fr-label flashBag labelError">
           {errorSendMail}
         </p>
         }
@@ -135,7 +135,7 @@ function ConseillerDetails({ location }) {
         </div>
         { erreurSuppressionCandidat &&
             <FlashMessage duration={20000}>
-              <p className="rf-label flashBag labelError">
+              <p className="fr-label flashBag labelError">
                 {erreurSuppressionCandidat}
               </p>
             </FlashMessage>
@@ -153,10 +153,10 @@ function ConseillerDetails({ location }) {
             visible={downloading === true}
           />
         </div>
-        <div className="rf-container-fluid">
-          <div className="rf-grid-row">
+        <div className="fr-container-fluid">
+          <div className="fr-grid-row">
             { conseiller?.dateRecrutement?.length > 0 &&
-              <div className="rf-col-12">
+              <div className="fr-col-12">
                 <p><b>Date de recrutement prévisionnelle:&nbsp;
                   {conseiller?.dateRecrutement.map((date, idx) =>
 
@@ -175,7 +175,7 @@ function ConseillerDetails({ location }) {
                 </p>
               </div>
             }
-            <div className="rf-col-4">
+            <div className="fr-col-4">
               {conseiller?.estRecrute &&
                 <>
                   <p>Recruté(e) par&nbsp;:&nbsp; {nomStructure}</p>
@@ -219,7 +219,7 @@ function ConseillerDetails({ location }) {
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
               { role === 'admin' && <>
                 <button
-                  className="rf-btn"
+                  className="fr-btn"
                   style={{ 'padding': '1rem 1.5rem' }}
                   onClick={resendInscriptionCandidat}>
                   Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
@@ -239,16 +239,16 @@ function ConseillerDetails({ location }) {
               }
             </div>
             {confirmSuppressionCandidat &&
-               <div className="rf-col-6 rf-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
-                 <div className="rf-grid-row rf-grid-row--center">
-                   <div className="rf-col-12 rf-col-md-12 rf-col-lg-12">
-                     <div className="rf-modal__body">
-                       <div className="rf-modal__header">
-                         <button className="rf-link--close rf-link" onClick={annulerSuppressionCandidat}>Fermer</button>
+               <div className="fr-col-6 fr-mt-1w" style={{ position: 'absolute', marginLeft: '10rem' }}>
+                 <div className="fr-grid-row fr-grid-row--center">
+                   <div className="fr-col-12 fr-col-md-12 fr-col-lg-12">
+                     <div className="fr-modal__body">
+                       <div className="fr-modal__header">
+                         <button className="fr-link--close fr-link" onClick={annulerSuppressionCandidat}>Fermer</button>
                        </div>
-                       <div className="rf-modal__content">
-                         <h1 id="rf-modal-2-title" className="rf-modal__title">
-                           <span className="rf-fi-arrow-right-line rf-fi--lg"></span>
+                       <div className="fr-modal__content">
+                         <h1 id="fr-modal-2-title" className="fr-modal__title">
+                           <span className="fr-fi-arrow-right-line fr-fi--lg"></span>
                                     Supprimer la candidature définitivement
                          </h1>
                          <p>&Ecirc;tes-vous certain(e) de vouloir supprimer ce candidat ?</p>
@@ -258,7 +258,7 @@ function ConseillerDetails({ location }) {
                                        Confirmez l&apos;adresse e-mail en le saisissant ici&nbsp;:
                            </label>
                            <input className={confirmEmailCandidat === conseiller?.email ?
-                             'rf-input rf-input--valid rf-col-6' : 'rf-input rf-input--error rf-col-6'}
+                             'fr-input fr-input--valid fr-col-6' : 'fr-input fr-input--error fr-col-6'}
                            aria-describedby={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
                            type="text"
                            id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid' : 'text-input-error'}
@@ -267,65 +267,65 @@ function ConseillerDetails({ location }) {
                            />
                            <p
                              id={confirmEmailCandidat === conseiller?.email ? 'text-input-valid-desc-valid' : 'text-input-error-desc-error'}
-                             className={confirmEmailCandidat === conseiller?.email ? 'rf-valid-text' : 'rf-error-text'}>
+                             className={confirmEmailCandidat === conseiller?.email ? 'fr-valid-text' : 'fr-error-text'}>
                              {confirmEmailCandidat === conseiller?.email ? 'Adresse e-mail confirmé' : 'L\'adresse e-mail ne correspond pas'}
                            </p>
                          </div>
-                         <div className="rf-form-group">
-                           <fieldset className="rf-fieldset">
-                             <legend className="rf-fieldset__legend rf-text--regular" id="radio-legend">
+                         <div className="fr-form-group">
+                           <fieldset className="fr-fieldset">
+                             <legend className="fr-fieldset__legend fr-text--regular" id="radio-legend">
                                          Le motif de la suppression&nbsp;:
                              </legend>
-                             <div className="rf-fieldset__content">
-                               <div className="rf-radio-group">
+                             <div className="fr-fieldset__content">
+                               <div className="fr-radio-group">
                                  <input type="radio" name="radio" id="rgpd"onClick={() => {
                                    setMotif('demande RGPD');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="rgpd">Demande RGPD
+                                 <label className="fr-label" htmlFor="rgpd">Demande RGPD
                                  </label>
                                </div>
-                               <div className="rf-radio-group">
+                               <div className="fr-radio-group">
                                  <input type="radio" name="radio" id="non_interesse_dispositif" onClick={() => {
                                    setMotif('plus intéressé par le dispositif');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="non_interesse_dispositif">
+                                 <label className="fr-label" htmlFor="non_interesse_dispositif">
                                               Plus intéressé par le dispositif
                                  </label>
                                </div>
-                               <div className="rf-radio-group">
+                               <div className="fr-radio-group">
                                  <input type="radio" name="radio" id="doublon" onClick={() => {
                                    setMotif('doublon');
                                    setAutreMotif(false);
                                  }}/>
-                                 <label className="rf-label" htmlFor="doublon">
+                                 <label className="fr-label" htmlFor="doublon">
                                               Doublon
                                  </label>
                                </div>
-                               <div className="rf-radio-group">
+                               <div className="fr-radio-group">
                                  <input type="radio" name="radio" id="autre" onClick={() => setAutreMotif(true)}/>
-                                 <label className="rf-label" htmlFor="autre">
+                                 <label className="fr-label" htmlFor="autre">
                                               Autre
                                  </label>
                                  {autreMotif &&
-                                 <input type="text" className="rf-input rf-col-6" id="text-input-text" onChange={e => setMotif(e.target.value)}/> }
+                                 <input type="text" className="fr-input fr-col-6" id="text-input-text" onChange={e => setMotif(e.target.value)}/> }
                                </div>
                              </div>
                            </fieldset>
                          </div>
                        </div>
                        <div style={{ paddingBottom: '2rem' }}>
-                         <button onClick={annulerSuppressionCandidat} className="rf-btn">Annuler</button>
+                         <button onClick={annulerSuppressionCandidat} className="fr-btn">Annuler</button>
                          {confirmEmailCandidat === conseiller?.email && motif !== '' ?
                            <button
                              style={{ float: 'right', backgroundColor: '#E10600' }}
-                             className="rf-btn" onClick={suppressionCandidat}>
+                             className="fr-btn" onClick={suppressionCandidat}>
                                   Oui, Supprimer définitivement
                            </button> :
                            <button
                              style={{ float: 'right', backgroundColor: '#E7E7E7', color: '#E10600' }}
-                             className="rf-btn" disabled>
+                             className="fr-btn" disabled>
                                 Oui, Supprimer définitivement
                            </button>
                          }
@@ -336,7 +336,7 @@ function ConseillerDetails({ location }) {
                </div>
             }
             { conseiller?.pix?.partage &&
-              <div className="rf-col-4 rf-ml-6w rf-mt-1w">
+              <div className="fr-col-4 fr-ml-6w fr-mt-1w">
                 <span className="capitalizeFirstLetter"><strong>Résultats Pix</strong></span>
                 {renderStars(conseiller?.pix?.palier)}
                 <p>
@@ -344,32 +344,32 @@ function ConseillerDetails({ location }) {
                     <img src="/logos/pix-utilisation.png"
                       alt="Utilisation du numérique"
                       title="Utilisation du numérique dans la vie professionnelle"
-                      className="rf-mr-2w"
+                      className="fr-mr-2w"
                     />
                   }
                   { conseiller?.pix?.competence2 &&
                     <img src="/logos/pix-ressources.png"
                       alt="Production de ressources"
                       title="Production de ressources"
-                      className="rf-mr-2w"
+                      className="fr-mr-2w"
                     />
                   }
                   { conseiller?.pix?.competence3 &&
                   <img src="/logos/pix-citoyen.png"
                     alt="Compétences numériques en lien avec la e-citoyenneté"
                     title="Compétences numériques en lien avec la e-citoyenneté"
-                    className="rf-mr-2w"
+                    className="fr-mr-2w"
                   />
                   }
                 </p>
                 <p>
                   <a href="https://cdn.conseiller-numerique.gouv.fr/Conseillernum_Lire%20les%20r%C3%A9sultats%20du%20diagnostic%20des%20candidats_V2-2.pdf"
-                    className="rf-link"
+                    className="fr-link"
                     target="blank"
                     title="Télécharger le document d&rsquo;analyse des résultats Pix">
                     Télécharger l&rsquo;analyse des résultats Pix
                   </a>
-                  <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                  <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
                     Document d&rsquo;aide pour lire les résultats du dianostic des candidats
                   </span>
                 </p>

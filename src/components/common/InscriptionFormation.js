@@ -4,16 +4,16 @@ function InscriptionFormation() {
 
   return (
     <div className="formation">
-      <div className="rf-container-fluid">
+      <div className="fr-container-fluid">
         <h3>Présentation de l&rsquo;offre de formation des Conseillers numériques France services</h3>
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <a href="https://cdn.conseiller-numerique.gouv.fr/Presentation_offre_de_formation.pdf"
-            className="rf-link" target="blank" rel="noreferrer" title="Offre de formation">
+            className="fr-link" target="blank" rel="noreferrer" title="Offre de formation">
               Télécharger la présentation de l&rsquo;offre de formation (slides au format PDF)
           </a>
         </div>
 
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <h4>Une formation certifiante pour l&rsquo;exercice de missions professionnelles dans le domaine de la médiation numérique</h4>
           <p>
             Chaque Conseiller numérique France Services (CNFS) commence son activité par un parcours de formation certifiante
@@ -53,7 +53,7 @@ function InscriptionFormation() {
           </p>
         </div>
 
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <h4>Calendrier et déroulement de la formation</h4>
           <ul>
             <li>
@@ -107,7 +107,7 @@ function InscriptionFormation() {
           </ul>
         </div>
 
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <h4>Comment inscrire le Conseiller numérique en formation&nbsp;?</h4>
           <p>
             6 organismes de formation ont été sélectionnés à la suite d&rsquo;un marché public passé par
@@ -148,9 +148,9 @@ function InscriptionFormation() {
           </p>
         </div>
 
-        <div className="rf-grid-row rf-mt-3w">
+        <div className="fr-grid-row fr-mt-3w">
           <a href="https://cdn.conseiller-numerique.gouv.fr/Presentation_offre_de_formation.pdf"
-            className="rf-link" target="blank" rel="noreferrer" title="Offre de formation">
+            className="fr-link" target="blank" rel="noreferrer" title="Offre de formation">
               Télécharger la présentation de l&rsquo;offre de formation (slides au format PDF)
           </a>
         </div>

@@ -61,10 +61,10 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
       </td>
       <td className="td-preselection">
         {conseiller?.finalisee === true ?
-          <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+          <button className="fr-btn fr-mx-1w fr-fi-checkbox-line fr-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
           Pré sélectionner
           </button> :
-          <button className="rf-btn rf-mx-1w rf-fi-checkbox-line rf-btn--icon-left"
+          <button className="fr-btn fr-mx-1w fr-fi-checkbox-line fr-btn--icon-left"
             style={{ boxShadow: 'none' }}
             onClick={select} >
           Pré sélectionner

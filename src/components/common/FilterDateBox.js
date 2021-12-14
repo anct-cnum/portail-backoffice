@@ -20,15 +20,15 @@ function FilterDateBox() {
   }
 
   return (
-    <div className="rf-container-fluid">
-      <div className="rf-grid-row fr-grid-row--gutters">
-        <div className="rf-col-xs-12 rf-col-sm-6">
-          <div className="rf-mb-2w filterDateBoxDebut">
+    <div className="fr-container-fluid">
+      <div className="fr-grid-row fr-grid-row--gutters">
+        <div className="fr-col-xs-12 fr-col-sm-6">
+          <div className="fr-mb-2w filterDateBoxDebut">
             <DatePicker
               placeholderText="Date de début"
               id="datePickerDebut"
               name="datePickerDebut"
-              className="rf-input rf-mx-1w"
+              className="fr-input fr-mx-1w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
               selected={dates.filterDateStart}
@@ -36,13 +36,13 @@ function FilterDateBox() {
             />
           </div>
         </div>
-        <div className="rf-col-xs-12 rf-col-sm-6">
-          <div className="rf-mb-2w filterDateBoxFin">
+        <div className="fr-col-xs-12 fr-col-sm-6">
+          <div className="fr-mb-2w filterDateBoxFin">
             <DatePicker
               placeholderText="Date de fin"
               id="datePickerFin"
               name="datePickerFin"
-              className="rf-input rf-mx-1w"
+              className="fr-input fr-mx-1w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
               selected={dates.filterDateEnd}

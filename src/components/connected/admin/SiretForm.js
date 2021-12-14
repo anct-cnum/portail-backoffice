@@ -39,30 +39,30 @@ function SiretForm({ setDisplaySiretForm, structureId }) {
 
   return (
     <div>
-      <div className="rf-my-3w">
+      <div className="fr-my-3w">
         {siretValid &&
-          <dialog aria-labelledby="rf-modal-confirm-siret" role="dialog" id="rf-modal-confirm-siret" className="rf-modal modalOpened">
-            <div className="rf-container">
-              <div className="rf-grid-row rf-grid-row--center">
-                <div className="rf-col-5 rf-modal__body">
+          <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
+            <div className="fr-container">
+              <div className="fr-grid-row fr-grid-row--center">
+                <div className="fr-col-5 fr-modal__body">
                   <p>Le SIRET demandé fait référence à cette structure :</p>
                   <p><b>{siretValid}</b></p>
                   <p>Mettre à jour la structure ?</p>
-                  <button onClick={cancelSiret} className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary
-                   rf-my-3w rf-ml-9w rf-mr-4w">Annuler</button>
-                  <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left rf-my-3w" onClick={updateSiret}>Confirmer</button>
+                  <button onClick={cancelSiret} className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary
+                   fr-my-3w fr-ml-9w fr-mr-4w">Annuler</button>
+                  <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left fr-my-3w" onClick={updateSiret}>Confirmer</button>
                 </div>
               </div>
             </div>
           </dialog>
         }
 
-        <label className="rf-label"><h3>SIRET</h3></label>
-        <input className="rf-input" type="text" id="text-input-text" name="siret" value={siret} onChange={handleForm} />
+        <label className="fr-label"><h3>SIRET</h3></label>
+        <input className="fr-input" type="text" id="text-input-text" name="siret" value={siret} onChange={handleForm} />
       </div>
 
-      <button onClick={() => setDisplaySiretForm(false)} className="rf-btn rf-btn--secondary">Annuler</button>
-      <button style={{ float: 'right' }} className="rf-btn" onClick={verifySiret}
+      <button onClick={() => setDisplaySiretForm(false)} className="fr-btn fr-btn--secondary">Annuler</button>
+      <button style={{ float: 'right' }} className="fr-btn" onClick={verifySiret}
         disabled={!reg.test(siret) ? 'disabled' : ''}>Valider</button>
     </div>
   );
