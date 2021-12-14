@@ -24,7 +24,7 @@ function Pilotage() {
       </p>
       <div style={{ textAlign: 'center' }}>
         <a className="coop-btn fr-mb-4w" href={urlEspaceCoop} target="blank" rel="noreferrer">
-          Acc&eacute;der à l&rsquo;espace admin de la Coop Conseiller num&eacute;rique France Services&nbsp;*
+        Acc&eacute;der au tableau de bord des Conseillers numériques France services&nbsp;*
         </a>
       </div>
       <p className="message-condition" >
