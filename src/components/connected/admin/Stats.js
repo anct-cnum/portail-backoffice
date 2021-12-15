@@ -13,72 +13,47 @@ function Stats() {
 
   return (
     <div className="documents">
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
-          <h1>
-            Tableau de bord
-          </h1>
+      <h1>Tableau de bord</h1>
+      {stats &&
+        <div className="fr-container">
+          <div className="fr-grid-row fr-grid-row--gutters fr-mb-6w">
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre total de structures inscrites</h5>
+              <div className="fr-my-3w">{stats.structuresCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre total de candidats</h5>
+              <div className="fr-my-3w">{stats.conseillersCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre total de mises en relation</h5>
+              <div className="fr-my-3w">{stats.matchingsCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre total de candidatures recrutées</h5>
+              <div className="fr-my-3w">{stats.conseillersRecrutesCount}</div>
+            </div>
+
+
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre de structures en attente d&apos;activation</h5>
+              <div className="fr-my-3w">{stats.structuresEnAttenteCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre de structures validées</h5>
+              <div className="fr-my-3w">{stats.structuresValideesCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre de structures activées</h5>
+              <div className="fr-my-3w">{stats.structuresActiveesCount}</div>
+            </div>
+            <div className="fr-col-12 fr-col-sm-6 fr-col-md-3">
+              <h5 className="titre-stat">Nombre de structures qui recrutent</h5>
+              <div className="fr-my-3w">{stats.structuresQuiRecrutentCount}</div>
+            </div>
+          </div>
         </div>
-        { stats &&
-        <div className="rf-container">
-          <div className="rf-grid-row rf-mb-3w">
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre total de structures inscrites</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre total de candidats</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre total de mises en relation</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre total de candidatures recrutées</h4>
-            </div>
-          </div>
-          <div className="rf-grid-row">
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.conseillersCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.matchingsCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.conseillersRecrutesCount}</span>
-            </div>
-          </div>
-          <div className="rf-grid-row rf-mb-3w">
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre de structures en attente d&apos;activation</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre de structures validées</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre de structures activées</h4>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <h4 style={{ height: '48px' }}>Nombre de structures qui recrutent</h4>
-            </div>
-          </div>
-          <div className="rf-grid-row">
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresEnAttenteCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresValideesCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresActiveesCount}</span>
-            </div>
-            <div className="rf-col-xs-12 rf-col-md-3">
-              <span>{stats.structuresQuiRecrutentCount}</span>
-            </div>
-          </div>
-        </div> }
-      </div>
+      }
     </div>
   );
 }

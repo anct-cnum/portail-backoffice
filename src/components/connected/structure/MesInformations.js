@@ -52,14 +52,14 @@ function MesInformations() {
             <div>
               <FlashMessage duration={10000}>
                 { ((error === undefined || error === false) && errorMulticompte === undefined) &&
-                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag" style={{ fontSize: '16px' }}>
                   {structure?.flashMessage ? 'La mise à jour a été effectuée avec succès' : ''}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
                 }
                 { error !== undefined && error !== false &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
                   La mise à jour a échoué, veuillez réessayer plus tard
                 </p>
                 }
@@ -71,7 +71,7 @@ function MesInformations() {
       <div style={{ width: '55%' }}>
         <FlashMessage duration={10000} style={{ width: '55%' }}>
           { ((error === undefined || error === false) && errorMulticompte === undefined && sucessMulticompte !== undefined) &&
-                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag" style={{ fontSize: '16px' }}>
                   {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
@@ -84,21 +84,21 @@ function MesInformations() {
       <div style={{ width: '55%' }}>
         <FlashMessage duration={10000}>
           { errorMulticompte !== undefined &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
                   {errorMulticompte}
                 </p>
           }
         </FlashMessage>
       </div>
       }
-      <div className="rf-grid-row">
-        <div className="rf-col-4">
+      <div className="fr-grid-row">
+        <div className="fr-col-4">
           <h2 style={{ marginTop: '0' }}>Structure</h2>
           <p>Nom :<strong> { structure?.structure?.nom }</strong></p>
           <p>Siret : { structure?.structure?.siret }</p>
           <p>Date d&apos;inscription : { dayjs(structure?.structure?.dateDebutMission).format('DD/MM/YYYY') }</p>
           <p>Code Postal : { structure?.structure?.codePostal }</p>
-          <div className="rf-mt-5w">
+          <div className="fr-mt-5w">
             { !userError && users &&
               <>
                 <h2>Liste des utilisateurs</h2>
@@ -113,9 +113,9 @@ function MesInformations() {
               </>
             }
             {displayFormMulticompte === false &&
-              <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true)}>
+              <button className="fr-btn" onClick={() => setDisplayFormMulticompte(true)}>
                 Envoyer une invitation
-                <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
+                <span className="fr-fi-mail-line fr-ml-4v" aria-hidden="true"></span>
               </button>
             }
             {displayFormMulticompte === true &&
@@ -129,7 +129,7 @@ function MesInformations() {
             }
           </div>
         </div>
-        <div className="rf-col-8">
+        <div className="fr-col-8">
           <h2 style={{ marginTop: '0' }}>
             Informations de contact
           </h2>
@@ -139,10 +139,10 @@ function MesInformations() {
               <p>Prénom : { structure?.structure?.contact.prenom }</p>
               <p>Fonction : { structure?.structure?.contact.fonction }</p>
               <p>Téléphone : { structure?.structure?.contact.telephone }</p>
-              <div className="rf-mt-5w">
-                <button className="rf-btn" onClick={() => setForm(true)}>
+              <div className="fr-mt-5w">
+                <button className="fr-btn" onClick={() => setForm(true)}>
                     Modifier les informations de contact
-                  <span className="rf-fi-edit-line rf-ml-4v" aria-hidden="true"/>
+                  <span className="fr-fi-edit-line fr-ml-4v" aria-hidden="true"/>
                 </button>
               </div>
             </div>

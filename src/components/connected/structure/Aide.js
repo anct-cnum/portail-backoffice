@@ -4,9 +4,9 @@ function Aide() {
 
   return (
     <div className="aide">
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
-          <div className="rf-col-8">
+      <div className="fr-container-fluid">
+        <div className="fr-grid-row">
+          <div className="fr-col-8">
             <h2>Aide</h2>
             <p>Pour toute question relative <b>aux démarches à effectuer</b>, vous pouvez vous référer à notre guide d&rsquo;accompagnement
               &laquo;&nbsp;pas-à-pas&nbsp;&raquo;, disponible dans l&rsquo;onglet &laquo;&nbsp;Mes documents&nbsp;&raquo;.</p>

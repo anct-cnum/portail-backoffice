@@ -24,7 +24,6 @@ import InscriptionFormation from '../../common/InscriptionFormation';
 function Admin() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.authentication.user.user);
-  const menu = useSelector(state => state.menu);
   const { search } = useSelector(state => state.search);
   const dates = useSelector(state => state.filterDate);
   const successSuppressionCandidat = useSelector(state => state.conseiller?.conseillerSuccessSuppression);
@@ -96,17 +95,22 @@ function Admin() {
   }, [location]);
 
   return (
-    <div className="admin">
+    <div className="admin fr-pb-md-3w">
       <Header connected email={user?.name} />
-      <div className="rf-m-1w rf-mb-4w rf-ml-4w">
-        <h3>Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>
+      <div className="fr-container">
+        <div className="fr-grid-row">
+          <div className="fr-col-offset-lg-2 fr-col-12 fr-col-lg-8">
+            <h3 className="fr-mt-5w fr-mt-9v">Espace {titleLabel.find(title => title.key === role).label} {user.role === 'prefet' ? deptLabel : ''}</h3>
+          </div>
+        </div>
       </div>
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-1 rf-col-sm-2 rf-col-md-2' : 'rf-col-xs-5 rf-col-sm-2 rf-col-md-2'}`}>
+      <div className="fr-container fr-mb-5w">
+        <div className="fr-grid-row">
+          <div className="fr-col-12 fr-col-md-2 fr-mb-3w">
             <Menu />
           </div>
-          <div className={`${menu.hiddenMenu ? 'rf-col-xs-11 rf-col-sm-9 rf-col-md-9' : 'rf-col-xs-7 rf-col-sm-9 rf-col-md-9'}`}>
+          <div className="fr-col-12 fr-col-md-10">
+
             { successSuppressionCandidat &&
             <FlashMessage duration={20000}>
               <p className="flashBag">
@@ -114,6 +118,7 @@ function Admin() {
               </p>
             </FlashMessage>
             }
+
             { (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
                location.pathname.startsWith('/liste-candidats') || location.pathname.startsWith('/admin/liste-candidats')) &&
               <SearchBox />
@@ -122,21 +127,21 @@ function Admin() {
             { user.role === 'admin' && (location.pathname.startsWith('/structures') || location.pathname.startsWith('/candidats') ||
                location.pathname.startsWith('/liste-candidats') || location.pathname.startsWith('/admin/liste-candidats')) &&
             <>
-              <select className="rf-select rf-mb-2w" onChange={selectRegion} value={codeRegion === null ? '' : codeRegion}>
+              <select className="fr-select fr-mb-2w" onChange={selectRegion} value={codeRegion === null ? '' : codeRegion}>
                 <option value="">Toute région</option>
                 {regionList.sort((a, b) => a.name.normalize('NFD') > b.name.normalize('NFD')).map((region, idx) =>
                   <option key={idx} value={region.code}>{region.name}</option>
                 )}
               </select>
 
-              <select className="rf-select rf-mb-2w" value={departement === null ? '' : departement} onChange={selectDepartement}>
+              <select className="fr-select fr-mb-2w" value={departement === null ? '' : departement} onChange={selectDepartement}>
                 <option value="">Tout département</option>
                 {getDepartements().map((region, idx) =>
                   <option key={idx} value={region.num_dep}>{region.num_dep} - {region.dep_name}</option>
                 )}
               </select>
 
-              <select className="rf-select rf-mb-2w" value={codeCom === null ? '' : codeCom} onChange={selectCom}>
+              <select className="fr-select fr-mb-2w" value={codeCom === null ? '' : codeCom} onChange={selectCom}>
                 <option value="">Toute collectivité d&apos;outre-mer</option>
                 {getComs().map((com, idx) =>
                   <option key={idx} value={com.num_com}>{com.num_com} - {com.com_name}</option>

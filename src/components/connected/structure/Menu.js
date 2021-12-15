@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { menuActions } from '../../../actions';
 
 import {
   Link,
@@ -10,114 +8,88 @@ import {
 function Menu() {
 
   const location = useLocation();
-  const dispatch = useDispatch();
-  let menu = useSelector(state => state.menu);
-
-  const toggleMenu = e => {
-    //Toggle menu only on burger menu (not inside)
-    if (e.target.id === 'sideMenu') {
-      dispatch(menuActions.toggleMenu());
-    }
-  };
-
-  const toggleNav = () => {
-    dispatch(menuActions.toggleNav());
-  };
 
   return (
-    <nav id="sideMenu" className="Menu rf-sidemenu" aria-label="Menu latéral" onClick={toggleMenu}>
-      <div className="rf-sidemenu__inner">
 
-        {!menu.hiddenMenu &&
-          <button className="rf-sidemenu__btn--sidemenu-toggle" aria-controls="rf-sidemenu-wrapper" aria-expanded={menu.expandNav} onClick={toggleNav}>
-            Dans cette rubrique
-          </button>
-        }
-        <div className={`rf-sidemenu__wrapper ${menu.expandNav && !menu.hiddenMenu ? 'rf-sidemenu__wrapper--expanded' : ''}`} id="rf-sidemenu-wrapper">
-          <ul className="rf-sidemenu__list">
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/informations') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/informations" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes informations
-                  </div>
-                </div>
+    <nav className="fr-sidemenu" role="navigation" aria-label="Menu latéral">
+
+      <div className="fr-sidemenu__inner">
+
+        <button className="fr-sidemenu__btn" aria-controls="fr-sidemenu-wrapper" aria-expanded="false">Dans cette rubrique</button>
+        <div className="fr-collapse" id="fr-sidemenu-wrapper">
+          <ul className="fr-sidemenu__list">
+
+            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/informations') ? 'fr-sidemenu__item--active' : ''}`}>
+              <Link className="fr-sidemenu__link" to="/structure/informations">
+                  Informations
               </Link>
             </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/candidats') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/candidats/nouvelle" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes candidatures
-                  </div>
-                </div>
+
+            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/suivi-de-pilotage') ? 'fr-sidemenu__item--active' : ''}`}>
+              <Link className="fr-sidemenu__link" to="/structure/suivi-de-pilotage">
+                Suivi et pilotage des CnFS
               </Link>
             </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/recrutements') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/recrutements" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes recrutements
-                  </div>
-                </div>
+
+            <li className="fr-sidemenu__item">
+              <button className="fr-sidemenu__btn" aria-expanded="false" aria-controls="fr-sidemenu-recrutement">Recrutement</button>
+              <div className="fr-collapse" id="fr-sidemenu-recrutement">
+                <ul className="fr-sidemenu__list">
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/demarches') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/demarches">
+                      D&eacute;marches à effectuer
+                    </Link>
+                  </li>
+
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/candidats') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/candidats/nouvelle">
+                      Candidatures
+                    </Link>
+                  </li>
+
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/exports') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/exports">
+                      Exporter la liste
+                    </Link>
+                  </li>
+
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/recrutements') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/recrutements">
+                      Candidats recrut&eacute;s
+                    </Link>
+                  </li>
+
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/formation') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/formation">
+                      Inscription en formation
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li className={`fr-sidemenu__item ${location.pathname === '/structure/documents' ? 'fr-sidemenu__item--active' : ''}`}>
+              <Link className="fr-sidemenu__link" to="/structure/documents">
+                    Documents
               </Link>
             </li>
-            <li className={`rf-sidemenu__item ${location.pathname === '/structure/documents' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/documents" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes documents
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className={`rf-sidemenu__item ${location.pathname === '/structure/demarches' ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/demarches" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes démarches
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/exports') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/exports" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Mes exports
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/formation') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/formation" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Inscription en formation
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className={`rf-sidemenu__item ${location.pathname.startsWith('/structure/aide') ? 'rf-sidemenu__item--active' : ''}`}>
-              <Link className="rf-sidemenu__link" to="/structure/aide" style={{ padding: '0.5rem 0' }}>
-                <div className="rf-container" style={{ padding: '0' }}>
-                  <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
+
+            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/aide') ? 'fr-sidemenu__item--active' : ''}`}>
+              <Link className="fr-sidemenu__link" to="/structure/aide">
                     Aide
-                  </div>
-                </div>
               </Link>
             </li>
-            <li className={`rf-sidemenu__item`}>
-              <a className="rf-sidemenu__link menu-contact" href="mailto:conseiller-numerique@anct.gouv.fr">
-                <div className="rf-grid-row rf-grid-row--end" style={{ textAlign: 'end' }}>
-                    Nous contacter
-                </div>
+
+            <li className={`fr-sidemenu__item`}>
+              <a className="fr-sidemenu__link menu-contact" href="mailto:conseiller-numerique@anct.gouv.fr">
+                Nous contacter
               </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+
   );
 }
 

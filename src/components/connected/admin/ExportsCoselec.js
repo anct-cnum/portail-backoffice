@@ -43,16 +43,32 @@ function ExportsCoselec() {
       </div>
       { role === 'admin' &&
       <>
-        <p><a className="rf-link" onClick={() => getFile('candidats')}>Fichier &laquo;&nbsp;Je recrute&nbsp;&raquo; (candidats validés + embauchés)</a></p>
-        <p><a className="rf-link" onClick={() => getFile('candidatsValidesStructure')}>Liste des candidatures validées par la structure</a></p>
-        <p><a className="rf-link" onClick={() => getFile('embauches')}>Liste des candidats embauchés</a></p>
-        <p><a className="rf-link" onClick={() => getFile('structures')}>Fichier &laquo;&nbsp;structures&nbsp;&raquo;</a></p>
+        <p>
+          <a className="fr-link" href="#" onClick={() => getFile('candidats')}>
+            Fichier &laquo;&nbsp;Je recrute&nbsp;&raquo; (candidats validés + embauchés)
+          </a>
+        </p>
+        <p>
+          <a className="fr-link" href="#" onClick={() => getFile('candidatsValidesStructure')}>
+            Liste des candidatures validées par la structure
+          </a>
+        </p>
+        <p>
+          <a className="fr-link" href="#" onClick={() => getFile('embauches')}>
+            Liste des candidats embauchés
+          </a>
+        </p>
+        <p>
+          <a className="fr-link" href="#" onClick={() => getFile('structures')}>
+            Fichier &laquo;&nbsp;structures&nbsp;&raquo;
+          </a>
+        </p>
       </>
       }
       { role === 'prefet' &&
       <>
-        <a className="rf-link" onClick={() => getFile('structuresPrefet')}>Export des structures</a>
-        <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+        <a className="fr-link" href="#" onClick={() => getFile('structuresPrefet')}>Export des structures</a>
+        <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
           Export de la liste des structures
         </span>
       </>

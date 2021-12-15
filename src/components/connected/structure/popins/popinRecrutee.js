@@ -7,30 +7,30 @@ function popinRecrutee({ statut }) {
   let closeModal = document.getElementById('modal-recrutee-close');
   if (closeModal) {
     closeModal.addEventListener('click', () => {
-      let modal = document.getElementById('rf-modal-recrutee');
+      let modal = document.getElementById('fr-modal-recrutee');
       modal.classList.remove('modalOpened');
     });
   }
 
   return (
     <div>
-      <dialog aria-labelledby="rf-modal-title-modal-1" role="dialog" id="rf-modal-recrutee"
-        className={`rf-modal ${statut === 'recrutee' ? 'modalOpened' : ''}`}>
-        <div className="rf-container--fluid rf-container-md">
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-12 rf-col-md-6">
-              <div className="rf-modal__body">
-                <div className="rf-modal__header">
+      <dialog aria-labelledby="fr-modal-title-modal-1" role="dialog" id="fr-modal-recrutee"
+        className={`fr-modal ${statut === 'recrutee' ? 'modalOpened' : ''}`}>
+        <div className="fr-container--fluid fr-container-md">
+          <div className="fr-grid-row fr-grid-row--center">
+            <div className="fr-col-12 fr-col-md-6">
+              <div className="fr-modal__body">
+                <div className="fr-modal__header">
                   <button id="modal-recrutee-close"
-                    className="rf-link--close rf-link"
+                    className="fr-link--close fr-link"
                     title="Fermer la fenêtre modale"
-                    aria-controls="rf-modal-1"
+                    aria-controls="fr-modal-1"
                     target="_self">
                       Fermer
                   </button>
                 </div>
-                <div className="rf-modal__content">
-                  <h1 id="rf-modal-title-modal-1" className="rf-modal__title">
+                <div className="fr-modal__content">
+                  <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
                     Important
                   </h1>
                   <p>
