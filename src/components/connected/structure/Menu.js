@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   Link,
@@ -6,7 +7,9 @@ import {
 } from 'react-router-dom';
 
 function Menu() {
+  const user = useSelector(state => state.authentication.user.user);
 
+  const role = user.role;
   const location = useLocation();
 
   return (
@@ -24,13 +27,13 @@ function Menu() {
                   Informations
               </Link>
             </li>
-
-            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/suivi-de-pilotage') ? 'fr-sidemenu__item--active' : ''}`}>
-              <Link className="fr-sidemenu__link" to="/structure/suivi-de-pilotage">
-                Suivi et pilotage des CnFS
-              </Link>
-            </li>
-
+            { role === 'structure_coop' &&
+              <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/suivi-de-pilotage') ? 'fr-sidemenu__item--active' : ''}`}>
+                <Link className="fr-sidemenu__link" to="/structure/suivi-de-pilotage">
+                  Suivi et pilotage des CnFS
+                </Link>
+              </li>
+            }
             <li className="fr-sidemenu__item">
               <button className="fr-sidemenu__btn" aria-expanded="false" aria-controls="fr-sidemenu-recrutement">Recrutement</button>
               <div className="fr-collapse" id="fr-sidemenu-recrutement">

@@ -43,7 +43,7 @@ function Exports() {
         />
       </div>
       <p>
-        <a className="fr-link" onClick={() => getFile('candidatsByStructure')}>Export des candidats</a>
+        <a className="fr-link" href="#" onClick={() => getFile('candidatsByStructure')}>Export des candidats</a>
         <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
           Export des emails, noms, prénoms de la liste des candidats
         </span>
