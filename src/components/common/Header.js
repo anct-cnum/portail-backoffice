@@ -6,7 +6,10 @@ import { useSelector } from 'react-redux';
 function Header({ connected }) {
   const user = useSelector(state => state.authentication?.user?.user);
   const location = useLocation();
-  const role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
+  let role = new URLSearchParams(location.search).get('role') ? new URLSearchParams(location.search).get('role') : user?.role;
+  if (role === 'structure_coop') {
+    role = 'structure';
+  }
 
   return (
     <header role="banner" className="fr-header">
