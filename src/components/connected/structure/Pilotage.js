@@ -14,9 +14,9 @@ function Pilotage() {
         – consulter le suivi d&rsquo;activit&eacute; des conseillers num&eacute;riques recrut&eacute;s au sein de votre structure&nbsp;;
       </p>
       <p>
-        – pouvoir exporter ces donn&eacute;es d&rsquo;activit&eacute; au format CSV (Excel)&nbsp;;</p>
+        – exporter ces donn&eacute;es d&rsquo;activit&eacute; au format CSV (Excel)&nbsp;;</p>
       <p>
-        – d&rsquo;acc&eacute;der à la documentation des conseillers num&eacute;riques via
+        – acc&eacute;der à la documentation des conseillers num&eacute;riques via
         l&rsquo;onglet &laquo;&nbsp;Ressourcerie&nbsp;&raquo;&nbsp;;
       </p>
       <p>
