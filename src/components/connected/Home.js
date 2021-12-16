@@ -13,7 +13,7 @@ function Home() {
         <Admin role={user.role} />
       }
 
-      { user?.role === 'structure' &&
+      { (user?.role === 'structure' || user?.role === 'structure_coop') &&
         <Structure />
       }
     </>
