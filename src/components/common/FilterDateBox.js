@@ -20,7 +20,7 @@ function FilterDateBox() {
   }
 
   return (
-    <div className="fr-container-fluid">
+    <div className="fr-container fr-container--fluid">
       <div className="fr-grid-row fr-grid-row--gutters">
         <div className="fr-col-xs-12 fr-col-sm-6">
           <div className="fr-mb-2w filterDateBoxDebut">

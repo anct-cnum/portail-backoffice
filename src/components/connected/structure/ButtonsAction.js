@@ -32,7 +32,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
 
   return (
-    <div className="fr-container-fluid">
+    <div className="fr-container fr-container--fluid">
       <div className="fr-grid-row">
         {statut === 'nouvelle' &&
           <div className="fr-col-3">

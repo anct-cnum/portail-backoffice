@@ -4,7 +4,7 @@ function Aide() {
 
   return (
     <div className="aide">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <div className="fr-grid-row">
           <div className="fr-col-8">
             <h2>Aide</h2>
