@@ -4,7 +4,7 @@ function InscriptionFormation() {
 
   return (
     <div className="formation">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <h3>Présentation de l&rsquo;offre de formation des Conseillers numériques France services</h3>
         <div className="fr-grid-row">
           <a href="https://cdn.conseiller-numerique.gouv.fr/Presentation_offre_de_formation.pdf"

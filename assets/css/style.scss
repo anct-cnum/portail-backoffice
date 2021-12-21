@@ -1,5 +1,11 @@
 $blue-france:#000091;
 
+.fr-container--fluid {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+}
+
 .flashBag {
   background-color: white;
   color: #008941;
