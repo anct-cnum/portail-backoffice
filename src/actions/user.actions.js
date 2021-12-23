@@ -23,11 +23,14 @@ function login(username, password) {
     .then(
       data => {
         data.user.role = data.user.roles[0];
+        if (data.user.roles.includes('structure_coop')) {
+          data.user.role = 'structure_coop';
+        }
         delete data.user.roles;
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        if (data.user.role === 'structure') {
+        if (data.user.role === 'structure' || data.user.role === 'structure_coop') {
           history.push('/structure/candidats/nouvelle');
         } else if (data.user.role === 'prefet') {
           history.push('/structures');

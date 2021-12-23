@@ -305,7 +305,7 @@ function StructureDetails({ location }) {
           </div>
         }
 
-        <div className="fr-container-fluid">
+        <div className="fr-container fr-container--fluid">
           <p>Grand réseau : {structure?.structure?.reseau ? `Oui (${structure?.structure?.reseau})` : 'Non'}</p>
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           {['prefet', 'admin'].indexOf(user.role) !== -1 &&

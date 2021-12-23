@@ -7,7 +7,7 @@ function InscriptionFormation() {
 
   return (
     <div className="formation">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <h3>Pr&eacute;sentation de l&rsquo;offre de formation des Conseillers num&eacute;riques France services</h3>
         <div className="fr-grid-row">
           <p>

@@ -9,7 +9,7 @@ function Documents() {
 
   return (
     <div className="documents">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <h4>1) Télécharger notre guide pas-à-pas pour vous guider dans la suite de vos démarches</h4>
         <div className="fr-grid-row">
           <p>

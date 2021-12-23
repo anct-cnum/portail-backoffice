@@ -64,7 +64,7 @@ function EtatRecrutements() {
 
   return (
     <div className="recrutements">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <div className="fr-grid-row">
           <div className="fr-col-12">
             <h4 className="titre-etat-recrutements">Avancement total des recrutements sur le territoire</h4>

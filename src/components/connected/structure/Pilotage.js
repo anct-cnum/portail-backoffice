@@ -10,11 +10,17 @@ function Pilotage() {
       <p style={{ fontWeight: '600' }}>
         Un acc&egrave;s d&rsquo;administration vous est nouvellement ouvert sur l&rsquo;espace Coop des conseillers num&eacute;riques. Celui-ci vous permet de :
       </p>
-      <p>– consulter le suivi d&rsquo;activit&eacute; des conseillers num&eacute;riques recrut&eacute;s au sein de votre structure&nbsp;;<br/>
-      – pouvoir exporter ces donn&eacute;es d&rsquo;activit&eacute; au format CSV (Excel)&nbsp;;</p>
-      <p>– d&rsquo;acc&eacute;der à la documentation des conseillers num&eacute;riques via
-        l&rsquo;onglet &laquo;&nbsp;Ressourcerie&nbsp;&raquo;&nbsp;;</p>
-      <p>– consulter les statistiques d&rsquo;accompagnement de l&rsquo;ensemble des conseillers num&eacute;riques au niveau d&eacute;partemental,
+      <p>
+        – consulter le suivi d&rsquo;activit&eacute; des conseillers num&eacute;riques recrut&eacute;s au sein de votre structure&nbsp;;
+      </p>
+      <p>
+        – exporter ces donn&eacute;es d&rsquo;activit&eacute; au format CSV (Excel)&nbsp;;</p>
+      <p>
+        – acc&eacute;der à la documentation des conseillers num&eacute;riques via
+        l&rsquo;onglet &laquo;&nbsp;Ressourcerie&nbsp;&raquo;&nbsp;;
+      </p>
+      <p>
+        – consulter les statistiques d&rsquo;accompagnement de l&rsquo;ensemble des conseillers num&eacute;riques au niveau d&eacute;partemental,
         r&eacute;gional et national.
       </p>
 

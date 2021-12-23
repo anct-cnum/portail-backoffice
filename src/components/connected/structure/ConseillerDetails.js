@@ -114,7 +114,7 @@ function ConseillerDetails({ location }) {
             visible={downloading === true}
           />
         </div>
-        <div className="fr-container-fluid">
+        <div className="fr-container fr-container--fluid">
           <div className="fr-grid-row">
             { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
               <div className="fr-col-12">

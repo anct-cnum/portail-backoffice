@@ -4,7 +4,7 @@ function Demarches() {
 
   return (
     <div className="demarches">
-      <div className="fr-container-fluid">
+      <div className="fr-container fr-container--fluid">
         <div className="fr-grid-row">
           <div>
             <p>Vous retrouverez ci-dessous le lien vous permettant de déposer votre dossier de demande de subvention via l&rsquo;outil Démarches Simplifiées.
