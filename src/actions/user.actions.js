@@ -88,11 +88,11 @@ function verifyToken(token) {
   }
 }
 
-function inviteAccountsPrefet(emails, invitation) {
+function inviteAccountsPrefet(emails, niveau) {
   return dispatch => {
     dispatch(request());
 
-    userService.inviteAccountsPrefet(emails, invitation)
+    userService.inviteAccountsPrefet(emails, niveau)
     .then(
       () => {
         dispatch(success());

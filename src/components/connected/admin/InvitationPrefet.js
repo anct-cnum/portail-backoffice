@@ -26,8 +26,8 @@ function InvitationPrefet() {
   const checkEmailNotExist = email => !emails.includes(email);
 
   function handleSubmit() {
-    const invitation = radio === 'departement' ? { departement } : { regionCode };
-    dispatch(userActions.inviteAccountsPrefet(emails, invitation));
+    const niveau = radio === 'departement' ? { departement } : { regionCode };
+    dispatch(userActions.inviteAccountsPrefet(emails, niveau));
   }
 
   function handleChange(e) {

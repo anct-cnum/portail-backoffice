@@ -37,8 +37,7 @@ function login(username, password) {
   });
 }
 
-function inviteAccountsPrefet(emails, invitation) {
-  console.log('invitation:', invitation);
+function inviteAccountsPrefet(emails, niveau) {
   const apiUrl = `${process.env.REACT_APP_API}/users/inviteAccountsPrefet`;
 
   const requestOptions = {
@@ -46,7 +45,7 @@ function inviteAccountsPrefet(emails, invitation) {
     headers: Object.assign({ 'Content-Type': 'application/json' }, authHeader()),
     body: JSON.stringify({
       emails,
-      invitation
+      niveau
     })
   };
 
