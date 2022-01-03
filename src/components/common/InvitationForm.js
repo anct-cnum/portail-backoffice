@@ -29,15 +29,15 @@ function InvitationForm({ setDisplayFormMulticompte, structureId, setLoadingSnip
   };
   return (
     <div>
-      <div className="rf-my-3w">
-        <label className="rf-label">Email</label>
-        <input className="rf-input" type="email" id="text-input-text" name="email" onChange={handleForm} />
+      <div className="fr-my-3w">
+        <label className="fr-label">Email</label>
+        <input className="fr-input" type="email" id="text-input-text" name="email" onChange={handleForm} />
         { email && !valideEmail.test(email.email) && activeMessage &&
           <div className="invalid">Le format de l&rsquo;email saisi est invalide.</div>
         }
       </div>
-      <button onClick={() => setDisplayFormMulticompte(false) } className="rf-btn">Annuler</button>
-      <button style={{ float: 'right' }} className="rf-btn" onClick={sendInvitation} disabled={!email?.email ? 'disabled' : ''}>Envoyer</button>
+      <button onClick={() => setDisplayFormMulticompte(false) } className="fr-btn">Annuler</button>
+      <button style={{ float: 'right' }} className="fr-btn" onClick={sendInvitation} disabled={!email?.email ? 'disabled' : ''}>Envoyer</button>
     </div>
   );
 }

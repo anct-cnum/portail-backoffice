@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 function popinConfirmationAnnulation({ updateStatut, updateDateRecrutement, setDateValidee, toggleModal }) {
 
   return (
-    <dialog aria-labelledby="rf-modal-title-modal-1" role="dialog" id="rf-modal-annuler"
-      className="rf-modal">
-      <div className="rf-container--fluid rf-container-md">
-        <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-12 rf-col-md-6">
-            <div className="rf-modal__body centrerTexte">
-              <div className="rf-modal__header">
-                <button id="modal-annuler-close" className="rf-link--close rf-link" title="Fermer la fenêtre modale"
-                  aria-controls="rf-modal-1" target="_self" onClick={() => {
+    <dialog aria-labelledby="fr-modal-title-modal-1" role="dialog" id="fr-modal-annuler"
+      className="fr-modal">
+      <div className="fr-container--fluid fr-container-md">
+        <div className="fr-grid-row fr-grid-row--center">
+          <div className="fr-col-12 fr-col-md-6">
+            <div className="fr-modal__body centrerTexte">
+              <div className="fr-modal__header">
+                <button id="modal-annuler-close" className="fr-link--close fr-link" title="Fermer la fenêtre modale"
+                  aria-controls="fr-modal-1" target="_self" onClick={() => {
                     toggleModal(false);
                   }}>
                   Fermer
                 </button>
               </div>
-              <div className="rf-modal__content important">
+              <div className="fr-modal__content important">
                 <p>
                   <strong>
                     Important : Vous êtes sur le point d&rsquo;annuler votre demande de recrutement pour ce candidat.
@@ -35,7 +35,7 @@ function popinConfirmationAnnulation({ updateStatut, updateDateRecrutement, setD
                   setDateValidee(null);
                   toggleModal(false);
                 }}
-                className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
+                className="fr-btn fr-btn--secondary fr-fi-close-circle-line fr-btn--icon-left"
                 title="Annuler le recrutement">
                 Je valide l&rsquo;annulation du recrutement
                 </button>

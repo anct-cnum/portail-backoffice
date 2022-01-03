@@ -197,7 +197,7 @@ function StructureDetails({ location }) {
       { (sucessMulticompte !== undefined) &&
             <FlashMessage duration={10000}>
               { ((error === undefined || error === false) && errorMulticompte === undefined && sucessMulticompte !== undefined) &&
-                <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag" style={{ fontSize: '16px' }}>
                   {sucessMulticompte ?? 'Invitation à rejoindre la structure envoyée !'}
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
@@ -208,7 +208,7 @@ function StructureDetails({ location }) {
       { (errorMulticompte !== undefined) &&
             <FlashMessage duration={10000}>
               { errorMulticompte !== undefined &&
-                <p className="rf-label flashBag labelError" style={{ fontSize: '16px' }}>
+                <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
                   {errorMulticompte}
                 </p>
               }
@@ -237,14 +237,14 @@ function StructureDetails({ location }) {
       { structure?.flashMessage === true &&
       <FlashMessage duration={10000}>
         { (errorSendMail === undefined || errorSendMail === false) &&
-        <p className="rf-label flashBag">
+        <p className="fr-label flashBag">
           Le mail de relance d&rsquo;inscription a bien été envoyé pour cette structure
           &nbsp;
           <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
         </p>
         }
         { (errorSendMail !== undefined && errorSendMail !== false) &&
-        <p className="rf-label flashBag labelError">
+        <p className="fr-label flashBag labelError">
           L&rsquo;envoi du mail de relance d&rsquo;inscription a échoué, veuillez réessayer plus tard
         </p>
         }
@@ -254,14 +254,14 @@ function StructureDetails({ location }) {
       { messageEmailChange &&
             <FlashMessage duration={10000}>
               { structureEmailSuccess === true &&
-            <p className="rf-label flashBag">
+            <p className="fr-label flashBag">
               L&apos;adresse e-mail a été changée avec succès
               &nbsp;
               <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
             </p>
               }
               { structureEmailError === true &&
-            <p className="rf-label flashBag labelError">
+            <p className="fr-label flashBag labelError">
              Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
              Veuillez réessayer plus tard.
             </p>
@@ -275,7 +275,7 @@ function StructureDetails({ location }) {
           pathname: location.origin,
           currentPage: location.currentPage
         }}
-        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
         Retour à la liste
       </Link>
       <div>
@@ -305,7 +305,7 @@ function StructureDetails({ location }) {
           </div>
         }
 
-        <div className="rf-container-fluid">
+        <div className="fr-container fr-container--fluid">
           <p>Grand réseau : {structure?.structure?.reseau ? `Oui (${structure?.structure?.reseau})` : 'Non'}</p>
           <p>Type : {structure?.structure && typeStructure.find(item => item.key === (structure?.structure?.type))?.type}</p>
           {['prefet', 'admin'].indexOf(user.role) !== -1 &&
@@ -343,7 +343,7 @@ function StructureDetails({ location }) {
             </p>
           }
           { user?.role === 'admin' && structure?.structure?.statut === 'VALIDATION_COSELEC' &&
-            <button className="rf-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
+            <button className="fr-btn" onClick={resendInscription}>Renvoyer l&rsquo;email d&rsquo;inscription</button>
           }
           <h3>Statistiques</h3>
           {stats && stats.length === 0 &&
@@ -408,7 +408,7 @@ function StructureDetails({ location }) {
                   }
                 </div>
               )}
-              { role === 'admin' && <div className="rf-mt-5w">
+              { role === 'admin' && <div className="fr-mt-5w">
                 <h3>Compte associés à la structure</h3>
                 { !userError && users &&
                   <>
@@ -423,9 +423,9 @@ function StructureDetails({ location }) {
                   </>
                 }
                 {displayFormMultiCompte === false &&
-                    <button className="rf-btn" onClick={() => setDisplayFormMulticompte(true) }>
+                    <button className="fr-btn" onClick={() => setDisplayFormMulticompte(true) }>
                       Ajouter un compte
-                      <span className="rf-fi-mail-line rf-ml-4v" aria-hidden="true"></span>
+                      <span className="fr-fi-mail-line fr-ml-4v" aria-hidden="true"></span>
                     </button>
                 }
                 {displayFormMultiCompte === true &&
@@ -442,7 +442,7 @@ function StructureDetails({ location }) {
 
               {conseillers && conseillers.loading && <span>Chargement...</span>}
 
-              <div className="rf-table" style={{ overflow: 'auto' }}>
+              <div className="fr-table" style={{ overflow: 'auto' }}>
                 <table>
                   <thead>
                     <tr>

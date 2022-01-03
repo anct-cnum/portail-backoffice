@@ -77,14 +77,14 @@ function ConseillerDetails({ location }) {
     <div className="ConseillerDetails">
       { (errorUpdateStatus !== undefined && errorUpdateStatus !== false) &&
       <FlashMessage duration={20000}>
-        <p className="rf-label flashBag labelError">
+        <p className="fr-label flashBag labelError">
           { errorUpdateStatus.toString() }
         </p>
       </FlashMessage>
       }
 
       { dateRecrutementUpdated === true && dateRecrutement !== null && (errorUpdateStatus === undefined || errorUpdateStatus === false) &&
-        <p className="rf-label flashBag" style={{ fontSize: '16px' }}>
+        <p className="fr-label flashBag" style={{ fontSize: '16px' }}>
           La date d&rsquo;embauche au {dayjs(dateRecrutement).format('DD/MM/YYYY')} a bien été enregistrée
         </p>
       }
@@ -95,7 +95,7 @@ function ConseillerDetails({ location }) {
           pathname: linkUrl,
           currentPage: location.currentPage
         }}
-        className="rf-link rf-fi-arrow-left-line rf-link--icon-left">
+        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
         Retour à la liste
       </Link>
       <div>
@@ -114,16 +114,16 @@ function ConseillerDetails({ location }) {
             visible={downloading === true}
           />
         </div>
-        <div className="rf-container-fluid">
-          <div className="rf-grid-row">
+        <div className="fr-container fr-container--fluid">
+          <div className="fr-grid-row">
             { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
-              <div className="rf-col-12">
+              <div className="fr-col-12">
                 <p><b>Date de recrutement prévisionnelle:&nbsp;
                   {dayjs(conseiller?.conseiller?.dateRecrutement[0]).format('DD/MM/YY') }</b>
                 </p>
               </div>
             }
-            <div className="rf-col-5">
+            <div className="fr-col-5">
               <p>Curriculum vit&aelig; :&nbsp;
                 {conseiller?.conseiller?.cv?.file &&
                 <button className="downloadCVBtn" onClick={downloadCV}>
@@ -153,7 +153,7 @@ function ConseillerDetails({ location }) {
               <p><strong>Téléphone : {conseiller?.conseiller?.telephone ? conseiller?.conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
             </div>
             { conseiller?.conseiller?.pix?.partage &&
-              <div className="rf-col-5 rf-ml-6w rf-mt-1w">
+              <div className="fr-col-5 fr-ml-6w fr-mt-1w">
                 <span className="capitalizeFirstLetter"><strong>Résultats Pix</strong></span>
                 {renderStars(conseiller?.conseiller?.pix?.palier)}
                 <p>
@@ -161,32 +161,32 @@ function ConseillerDetails({ location }) {
                     <img src="/logos/pix-utilisation.png"
                       alt="Utilisation du numérique"
                       title="Utilisation du numérique dans la vie professionnelle"
-                      className="rf-mr-2w"
+                      className="fr-mr-2w"
                     />
                   }
                   { conseiller?.conseiller?.pix?.competence2 &&
                     <img src="/logos/pix-ressources.png"
                       alt="Production de ressources"
                       title="Production de ressources"
-                      className="rf-mr-2w"
+                      className="fr-mr-2w"
                     />
                   }
                   { conseiller?.conseiller?.pix?.competence3 &&
                   <img src="/logos/pix-citoyen.png"
                     alt="Compétences numériques en lien avec la e-citoyenneté"
                     title="Compétences numériques en lien avec la e-citoyenneté"
-                    className="rf-mr-2w"
+                    className="fr-mr-2w"
                   />
                   }
                 </p>
                 <p>
                   <a href="https://cdn.conseiller-numerique.gouv.fr/Conseillernum_Lire%20les%20r%C3%A9sultats%20du%20diagnostic%20des%20candidats_V2-2.pdf"
-                    className="rf-link"
+                    className="fr-link"
                     target="blank"
                     title="Télécharger le document d&rsquo;analyse des résultats Pix">
                     Télécharger l&rsquo;analyse des résultats Pix
                   </a>
-                  <span className="rf-footer__bottom-link" style={{ display: 'block' }}>
+                  <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
                     Document d&rsquo;aide pour lire les résultats du dianostic des candidats
                   </span>
                 </p>

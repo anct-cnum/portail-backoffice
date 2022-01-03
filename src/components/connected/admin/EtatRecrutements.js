@@ -64,19 +64,19 @@ function EtatRecrutements() {
 
   return (
     <div className="recrutements">
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
-          <div className="rf-col-12">
+      <div className="fr-container fr-container--fluid">
+        <div className="fr-grid-row">
+          <div className="fr-col-12">
             <h4 className="titre-etat-recrutements">Avancement total des recrutements sur le territoire</h4>
           </div>
-          <div className="rf-col-12">
+          <div className="fr-col-12">
             <ProgressBar completed={avancement?.pourcentage} candidatsRecrutes={avancement?.candidatsRecrutes} dotations={avancement?.dotations} />
           </div>
-          <div className="rf-col-12">
+          <div className="fr-col-12">
             <h4 className="titre-etat-recrutements">Avancement des recrutements par structure</h4>
           </div>
-          <div className="rf-col-12">
-            <div className="rf-table">
+          <div className="fr-col-12">
+            <div className="fr-table">
               <table >
                 <thead>
                   <tr>
@@ -102,7 +102,7 @@ function EtatRecrutements() {
                         </td>
                         <td>{structure?.nbCandidatsRecrutes}</td>
                         <td>
-                          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+                          <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
                             to={{ pathname: `/structure/${structure._id}`, currentPage: page, origin: `/etat-des-recrutements` }}>
                               Détails
                           </Link>

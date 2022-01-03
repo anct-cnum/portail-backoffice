@@ -76,13 +76,13 @@ function Structures({ departement, region, com, search, start, end }) {
 
   return (
     <div className="structures">
-      <select className="rf-select rf-mb-2w" value={type === null ? '' : type} onChange={selectType}>
+      <select className="fr-select fr-mb-2w" value={type === null ? '' : type} onChange={selectType}>
         <option value="">Tout type</option>
         <option value="PUBLIC">Publique</option>
         <option value="PRIVATE">Privée</option>
       </select>
 
-      <select className="rf-select rf-mb-2w" value={statut === null ? '' : statut} onChange={selectStatut}>
+      <select className="fr-select fr-mb-2w" value={statut === null ? '' : statut} onChange={selectStatut}>
         <option value="">Tout statut</option>
         <option value="VALIDATION_COSELEC">Validée</option>
         <option value="CREEE">Non traitée</option>
@@ -96,7 +96,7 @@ function Structures({ departement, region, com, search, start, end }) {
 
       { structures?.items?.data?.length > 0 &&
       <>
-        <div className="rf-table" style={{ overflow: 'auto' }}>
+        <div className="fr-table" style={{ overflow: 'auto' }}>
           <table>
             <thead>
               <tr>

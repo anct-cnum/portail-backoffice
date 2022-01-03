@@ -26,38 +26,39 @@ function Recrutements() {
 
   return (
     <div className="recrutements">
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
-          <div className="rf-col-4">
+      <div className="fr-container--fluid">
+        <div className="fr-grid-row">
+          <div className="fr-col-6">
             <h4 className="titre-recrutements">États de vos recrutements</h4>
           </div>
-          <div className="rf-col-8">
+          <div className="fr-col-6">
             <h4 className="titre-avancement">Avancement total du recrutement au sein de votre structure :</h4>
           </div>
-          <div className="rf-col-4">
-            <ul className="liste-stats rf-mb-4w">
+          <div className="fr-col-6">
+            <ul className="liste-stats fr-mb-4w">
               <li><b>{nombreConseillersCoselec}</b>&nbsp;CnFS attendu(s) dans votre structure</li>
               <li><b>{stats?.stats?.interessee ?? '0'}</b>&nbsp;candidature(s) préselectionnée(s)</li>
               <li><b>{stats?.stats?.recrutee ?? '0'}</b>&nbsp;candidature(s) validée(s) </li>
               <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat recruté(s).</li>
             </ul>
           </div>
-          <div className="rf-col-8">
+          <div className="fr-col-6">
             <ProgressBar completed={pourcentage} candidatsRecrutes={nombreConseillersFinalise} dotations={nombreConseillersCoselec} />
 
           </div>
-          <div className="rf-col-12">
+          <div className="fr-col-12">
             <h4 className="titre-etat-recrutements">Candidats recrutés</h4>
           </div>
-          <div className="rf-col-11">
-            <div className="rf-table">
-              <table >
+          <div className="fr-col-12">
+            {!conseillers.error && !conseillers.loading && conseillers.items?.total > 0 &&
+            <div className="fr-table">
+              <table>
                 <thead>
                   <tr>
                     <th>Nom</th>
-                    <th>Prénom</th>
+                    <th>Pr&eacute;nom</th>
                     <th>Date d&rsquo;embauche</th>
-                    <th>Date d&rsquo;entrée en formation</th>
+                    <th>Date d&rsquo;entr&eacute;e en formation</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -70,7 +71,7 @@ function Recrutements() {
                         <td>{miseEnRelation.dateRecrutement ? dayjs(miseEnRelation.dateRecrutement).format('DD/MM/YY') : '-'}</td>
                         <td>{miseEnRelation.conseillerObj.datePrisePoste ? dayjs(miseEnRelation.conseillerObj.datePrisePoste).format('DD/MM/YY') : '-'}</td>
                         <td>
-                          <Link className="rf-btn rf-fi-eye-line rf-btn--icon-left" style={{ boxShadow: 'none' }}
+                          <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
                             to={{ pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`, currentPage: 0, origin: `/structure/recrutements` }}>
                               Détails
                           </Link>
@@ -81,6 +82,10 @@ function Recrutements() {
                 </tbody>
               </table>
             </div>
+            }
+            {!conseillers.error && !conseillers.loading && conseillers.items?.total === 0 &&
+              <p>Vous n&rsquo;avez pas encore effectu&eacute; de recrutement.</p>
+            }
           </div>
         </div>
       </div>

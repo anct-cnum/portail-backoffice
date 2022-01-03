@@ -16,7 +16,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
   const [dateValidee, setDateValidee] = useState(dateRecrutement);
 
   const toggleModal = visible => {
-    let modal = document.getElementById('rf-modal-annuler');
+    let modal = document.getElementById('fr-modal-annuler');
     if (visible) {
       modal.classList.add('modalOpened');
     } else {
@@ -32,19 +32,19 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
 
 
   return (
-    <div className="rf-container-fluid">
-      <div className="rf-grid-row">
+    <div className="fr-container fr-container--fluid">
+      <div className="fr-grid-row">
         {statut === 'nouvelle' &&
-          <div className="rf-col-3">
-            <button onClick={updateStatut.bind(this, 'interessee')} className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" title="Pré sélectionner">
+          <div className="fr-col-3">
+            <button onClick={updateStatut.bind(this, 'interessee')} className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" title="Pré sélectionner">
               Pré sélectionner
             </button>
           </div>
         }
         {statut === 'nouvelle' &&
-          <div className="rf-col-3">
+          <div className="fr-col-3">
             <button onClick={updateStatut.bind(this, 'nonInteressee')}
-              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
               title="Ce profil ne correspond pas">
               Ce profil ne correspond pas
             </button>
@@ -52,20 +52,20 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         }
         {statut === 'interessee' &&
         <>
-          <div className="rf-col-12">
+          <div className="fr-col-12">
             <label
-              className="rf-label"
+              className="fr-label"
               style={{ fontSize: 'unset' }}
               htmlFor="datePicker">
               <strong className="important">Indiquer la date de recrutement de ce candidat (obligatoire) :</strong>
             </label>
           </div>
 
-          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3">
+          <div className="fr-col-6 fr-col-xl-4 btn-fr-col-xl-3">
             <DatePicker
               id="datePicker"
               name="datePicker"
-              className="rf-input rf-my-2w rf-mr-6w"
+              className="fr-input fr-my-2w fr-mr-6w"
               dateFormat="dd/MM/yyyy"
               locale="fr"
               selected={dateValidee ? new Date(dateValidee) : ''}
@@ -73,29 +73,29 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             />
           </div>
 
-          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3 rf-my-2w">
+          <div className="fr-col-6 fr-col-xl-4 btn-fr-col-xl-3 fr-my-2w">
             <button onClick={() => {
               updateDateRecrutement(dateValidee);
               updateStatut('recrutee');
-            }} disabled={ !dateValidee } className="rf-btn rf-btn--icon-left" title="Valider cette candidature">
+            }} disabled={ !dateValidee } className="fr-btn fr-btn--icon-left" title="Valider cette candidature">
               <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Valider cette candidature
             </button>
           </div>
         </>
         }
         { statut === 'interessee' &&
-          <div className="rf-col-6 rf-col-xl-4 btn-rf-col-xl-3 rf-my-2w">
+          <div className="fr-col-6 fr-col-xl-4 btn-fr-col-xl-3 fr-my-2w">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
-              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
               title="Annuler la pré-sélection">
               Annuler la pré-sélection
             </button>
           </div>
         }
         { statut === 'nonInteressee' &&
-          <div className="rf-col-3">
+          <div className="fr-col-3">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
-              className="rf-btn rf-fi-close-circle-line rf-btn--icon-left rf-btn--secondary"
+              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
               title="Annuler le désintérêt">
               Annuler le désintérêt
             </button>
@@ -109,11 +109,11 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             setDateValidee={setDateValidee}
             toggleModal={toggleModal}>
           </PopinConfirmationAnnulation>
-          <p className="rf-col-3">
+          <p className="fr-col-3">
             <button id="btn-annuler" onClick={() => {
               toggleModal(true);
             }}
-            className="rf-btn rf-btn--secondary rf-fi-close-circle-line rf-btn--icon-left"
+            className="fr-btn fr-btn--secondary fr-fi-close-circle-line fr-btn--icon-left"
             title="Annuler le recrutement">
             Annuler le recrutement
             </button>

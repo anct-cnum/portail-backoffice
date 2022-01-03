@@ -4,8 +4,8 @@ function Demarches() {
 
   return (
     <div className="demarches">
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row">
+      <div className="fr-container fr-container--fluid">
+        <div className="fr-grid-row">
           <div>
             <p>Vous retrouverez ci-dessous le lien vous permettant de déposer votre dossier de demande de subvention via l&rsquo;outil Démarches Simplifiées.
             </p>
@@ -31,39 +31,39 @@ function Demarches() {
             </p>
           </div>
         </div>
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <p>Collectivités, GIP et autres structures publiques&nbsp;:
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/sa-cnfs-structures-publiques"
               title="cnfs-sa-structures-publiques"
-              className="rf-link"
+              className="fr-link"
               target="blank">https://www.demarches-simplifiees.fr/commencer/sa-cnfs-structures-publiques</a>
           </p>
         </div>
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <p>Entreprises de l&rsquo;économie sociale et solidaire&nbsp;et autres structures privées&nbsp;:
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/sa-cnfs-entreprises"
               title="sa-cnfs-entreprises"
-              className="rf-link"
+              className="fr-link"
               target="blank">https://www.demarches-simplifiees.fr/commencer/sa-cnfs-entreprises</a>
           </p>
         </div>
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <p>Associations loi de 1901/1908&nbsp;:
             <br/>
             <a href="https://www.demarches-simplifiees.fr/commencer/sa-cnfs-associations"
               title="sa-cnfs-associations"
-              className="rf-link"
+              className="fr-link"
               target="blank">https://www.demarches-simplifiees.fr/commencer/sa-cnfs-associations</a>
           </p>
         </div>
-        <div className="rf-grid-row">
+        <div className="fr-grid-row">
           <p>N&rsquo;hésitez pas à consulter notre guide &laquo;&nbsp;pas-à-pas&nbsp;&raquo; pour vous guider dans vos démarches&nbsp;:
             <br/>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Guide_pas_a_pas.pdf"
               title="guide-pas-a-pas"
-              className="rf-link"
+              className="fr-link"
               target="blank">https://cdn.conseiller-numerique.gouv.fr/Guide_pas_a_pas.pdf</a>
           </p>
         </div>

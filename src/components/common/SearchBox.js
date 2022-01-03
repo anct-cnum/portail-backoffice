@@ -29,17 +29,17 @@ function SearchBox() {
   }, [search]);
 
   return (
-    <div className="rf-search-bar rf-mb-2w" role="search">
-      <label className="rf-label" htmlFor="rf-search-input">Recherche</label>
+    <div className="fr-search-bar fr-mb-4w fr-mt-1w" role="search">
+      <label className="fr-label" htmlFor="fr-search-input">Recherche</label>
       <input
-        className="rf-input"
+        className="fr-input"
         placeholder="Rechercher"
         type="search"
-        id="rf-search-input"
+        id="fr-search-input"
         value={searchInputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown} />
-      <button className="rf-btn" title="Rechercher" onClick={applySearch}>
+      <button className="fr-btn" title="Rechercher" onClick={applySearch}>
         Rechercher
       </button>
     </div>

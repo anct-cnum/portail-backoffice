@@ -1,5 +1,11 @@
 $blue-france:#000091;
 
+.fr-container--fluid {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+}
+
 .flashBag {
   background-color: white;
   color: #008941;
@@ -44,7 +50,7 @@ $blue-france:#000091;
     text-align: center;
 }
 
-.rf-sur-mesure {
+.fr-sur-mesure {
     flex: none;
     padding-right: 0;
     height: 75px;
@@ -62,13 +68,13 @@ $blue-france:#000091;
     font-weight: lighter!important;
 }
 
-.rf-tag.current {
+.fr-tag.current {
     font-weight: 600;
     color: white;
     background-color: #5770BE;
 }
 
-.rf-tag:hover {
+.fr-tag:hover {
   background-color: #D5DBEF;
 }
 
@@ -90,8 +96,10 @@ $blue-france:#000091;
 }
 
 /** Icones menu gauche **/
-.Menu .rf-sidemenu__item--active [class^="rf-fi"] {
+.fr-sidemenu__item--active a {
     color: $blue-france;
+    border-left: 2px $blue-france solid;
+    padding-left: 5px !important;
 }
 .menu-contact {
   display: inline-block;
@@ -99,7 +107,7 @@ $blue-france:#000091;
   padding-right: 0;
 }
 /** Couleur d'icone **/
-.rf-fi-edit-line, .rf-fi-mail-line {
+.fr-fi-edit-line, .fr-fi-mail-line {
   color: #fff;
 }
 /** style custom **/
@@ -165,6 +173,10 @@ $blue-france:#000091;
   cursor:pointer;
 }
 
+.centrer {
+  text-align: center;
+}
+
 .downloadCVBtn {
   font-family: "Marianne",arial,sans-serif !important;
   text-rendering: optimizeSpeed;
@@ -176,8 +188,69 @@ $blue-france:#000091;
   text-decoration: underline;
 }
 
+.logo-label-Fs {
+  display: inline-block;
+  margin-bottom: -20px;
+  height: 70px;
+}
+.siret-structure {
+  display: inline-block;
+  font-weight: 400;
+  padding: 30px;
+}
+.nombreTotalConseiller {
+  align-items: center;
+  margin-left: 17px;
+  text-align: right;
+  display: flex;
+  .logoConseiller{
+    margin-right: 0.75rem;
+    height: 32px;
+  }
+  p {
+    font-size: 0.88rem;
+  }
+}
+.fr-sidemenu__inner {
+  padding-left: 0;
+  padding-right: 0;
+  #fr-sidemenu-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    ul li a {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .fr-sidemenu__btn {
+      padding-left: 0;
+    }
+  }
+}
+.fr-sidemenu__list .fr-sidemenu__list {
+  margin: 0 0 0 1rem;
+}
+.message-condition{
+  font-size: 14px;
+  font-style: italic;
+}
+.coop-btn {
+  background-color: $blue-france;
+  display: inline-block;
+  padding-top: 14px;
+  text-align: center;
+  color: #f5f5ff;
+  font-size: 20px;
+  margin: 6px auto 0;
+  height: 56px;
+  width: 792px;
+}
+
+.titre-stat {
+  height: 90px;
+}
+
 @media (min-width: 1571px) {
-  .btn-rf-col-xl-3 {
+  .btn-fr-col-xl-3 {
     flex: 0 0 25%;
     width: 25%;
     max-width: 25%;
@@ -210,10 +283,35 @@ $blue-france:#000091;
     text-align: right;
   }
 }
+@media (min-width: 992px) and (max-width: 1145px) {
+  .liste-recrutes {
+    text-align: right;
+  }
+}
 
+@media (min-width: 992px) {
+  .hide-md {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .show-md {
+    display: none;
+  }
+  .coop-btn {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+  }
+}
 @media (max-width: 865px) {
   .br-lg {
     display: none;
+  }
+}
+@media (max-width: 767px) {
+  .titre-stat {
+    height: 45px;
   }
 }
 @media (max-width: 575px) {

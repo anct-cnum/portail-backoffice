@@ -46,11 +46,11 @@ function ChoosePassword({ match }) {
   return (
     <div>
       <Header/>
-      <div className="rf-container rf-mt-3w">
-        <div className="rf-grid-row">
-          <div className="rf-col-3"></div>
-          <div className="Login rf-col-6 rf-p-5w">
-            <h2>Choisissez votre mot de passe<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
+      <div className="fr-container fr-mt-3w">
+        <div className="fr-grid-row">
+          <div className="fr-col-3"></div>
+          <div className="Login fr-col-6 fr-p-5w">
+            <h2>Choisissez votre mot de passe<br /><span className="fr-fi-account-fill fr-fi--xl" /></h2>
 
             { verifyingToken &&
               <span>Chargement...</span>
@@ -67,18 +67,18 @@ function ChoosePassword({ match }) {
                 </div>
                 <span>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)</span>
 
-                <div className="rf-my-3w">
-                  <label className="rf-label">Votre adresse email:</label>
+                <div className="fr-my-3w">
+                  <label className="fr-label">Votre adresse email:</label>
                   <span>{resultVerifyToken.name}</span>
                 </div>
 
-                <div className="rf-my-3w">
-                  <label className="rf-label">Mot de passe</label>
+                <div className="fr-my-3w">
+                  <label className="fr-label">Mot de passe</label>
                   <input name="password"
                     type="password"
                     value={password}
                     onChange={handleChange}
-                    className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                    className={(submitted && !password ? ' is-invalid fr-input' : 'fr-input')} />
                   {submitted && !password &&
                     <div className="invalid">Mot de passe requis</div>
                   }
@@ -87,20 +87,20 @@ function ChoosePassword({ match }) {
                   }
                 </div>
 
-                <div className="rf-my-3w">
-                  <label className="rf-label">Mot de passe (confirmation)</label>
+                <div className="fr-my-3w">
+                  <label className="fr-label">Mot de passe (confirmation)</label>
                   <input name="confirmPassword"
                     type="password"
                     value={confirmPassword}
                     onChange={handleChange}
-                    className={(password !== confirmPassword ? ' is-invalid rf-input' : 'rf-input')} />
+                    className={(password !== confirmPassword ? ' is-invalid fr-input' : 'fr-input')} />
                   {password !== confirmPassword &&
                     <div className="invalid">Mot de passe doit être identique</div>
                   }
                 </div>
 
                 {choosingPassword && <span>Chargement...</span>}
-                <button className="rf-btn" onClick={handleSubmit}>Valider</button>
+                <button className="fr-btn" onClick={handleSubmit}>Valider</button>
               </div>
             }
 
@@ -108,7 +108,7 @@ function ChoosePassword({ match }) {
               <span>Votre compte a été créé avec succès. <Link to={`/login?role=${resultChoosePassword?.role}`}>Vous pouvez vous connecter</Link>.</span>
             }
 
-            <div className="rf-col-3"></div>
+            <div className="fr-col-3"></div>
           </div>
         </div>
       </div>

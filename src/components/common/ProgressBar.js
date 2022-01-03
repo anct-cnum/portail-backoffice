@@ -5,10 +5,14 @@ import Pluralize from 'react-pluralize';
 function ProgressBar(props) {
   const { completed, candidatsRecrutes, dotations } = props;
 
-  const fillerStyles = {
-    width: `${completed}%`,
+  const fillerStyles = completed > 0 ? {
+    width: `${completed < 3 ? 3 : completed}%`,
     borderTopRightRadius: completed > 95 ? '20px' : '',
     borderBottomRightRadius: completed > 95 ? '20px' : '',
+  } : {
+    backgroundColor: '#e7e7e7',
+    borderTopRightRadius: '20px',
+    borderBottomRightRadius: '20px',
   };
 
   return (

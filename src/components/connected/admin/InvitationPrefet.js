@@ -44,11 +44,10 @@ function InvitationPrefet() {
   }
 
   return (
-    <div className="rf-container rf-mt-3w">
-      <div className="rf-grid-row">
-        <div className="rf-col-3"></div>
-        <div className="Login rf-col-6">
-          <h2>Invitez des utilisateurs dans l&apos;espace préfet<br /><span className="rf-fi-account-fill rf-fi--xl" /></h2>
+    <div className="fr-container fr-mt-3w">
+      <div className="fr-grid-row">
+        <div className="Login fr-col-offset-3 fr-col-6">
+          <h2>Invitez des utilisateurs dans l&apos;espace préfet<br /><span className="fr-fi-account-fill fr-fi--xl" /></h2>
 
           { verifyingToken &&
               <span>Chargement...</span>
@@ -59,10 +58,10 @@ function InvitationPrefet() {
                   {error && <span style={{ color: 'red' }}>{error.error ? error.error : error ?? 'Une erreur s\'est produite'}</span>}
                 </div>
 
-                <div className="rf-my-3w">
-                  <label className="rf-label">Adresse préfecture:</label>
+                <div className="fr-my-3w">
+                  <label className="fr-label">Adresse préfecture:</label>
                   <span>
-                    <select className="rf-select" onChange={selectDepartement}>
+                    <select className="fr-select" onChange={selectDepartement}>
                       {regions.map((region, idx) =>
                         <option key={idx} value={region.num_dep}>{region.num_dep} - {region.dep_name}</option>
                       )}
@@ -70,14 +69,14 @@ function InvitationPrefet() {
                   </span>
                 </div>
 
-                <div className="rf-my-3w">
-                  <label className="rf-label">Adresse email à ajouter</label>
+                <div className="fr-my-3w">
+                  <label className="fr-label">Adresse email à ajouter</label>
                   <ul>
                     {emails.map((email, idx) =>
                       <li key={idx}>
                         {email}
                         <button
-                          className="rf-btn rf-fi-delete-line rf-btn--icon-left rf-btn--secondary rf-btn--sm rf-ml-1w"
+                          className="fr-btn fr-fi-delete-line fr-btn--icon-left fr-btn--secondary fr-btn--sm fr-ml-1w"
                           onClick={handleRemoveEmail.bind(this, email)}>
                           Retirer
                         </button>
@@ -88,14 +87,14 @@ function InvitationPrefet() {
                     type="text"
                     value={email}
                     onChange={handleChange}
-                    className="rf-input" />
+                    className="fr-input" />
                   { email && !checkEmail(email) &&
                     <span>L&apos;adresse email doit être du nom de domaine <strong>gouv.fr</strong>.</span>
                   }
                   { email && !checkEmailNotExist(email) &&
                     <span>L&apos;adresse email a déjà été ajoutée.</span>
                   }
-                  <button className="rf-btn rf-mt-1w"
+                  <button className="fr-btn fr-mt-1w"
                     onClick={handleAddEmail}
                     disabled={ !email || !checkEmail(email) || !checkEmailNotExist(email)}>
                       Ajouter l&apos;utilisateur
@@ -104,7 +103,7 @@ function InvitationPrefet() {
                 </div>
 
                 {invitingAccountsPrefet && <span>Chargement...</span>}
-                <button className="rf-btn rf-fi-checkbox-line rf-btn--icon-left" onClick={handleSubmit} disabled={emails.length === 0}>Valider</button>
+                <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" onClick={handleSubmit} disabled={emails.length === 0}>Valider</button>
               </div>
           }
 
@@ -112,11 +111,11 @@ function InvitationPrefet() {
               <span style={{ color: 'green' }}>
                 Invitation envoyée<br />
                 Le nouvel utilisateur doit consulter ses mails pour activer son espace prefet.<br />
-                <button className="rf-link" style={{ textDecoration: 'underline' }}
+                <button className="fr-link" style={{ textDecoration: 'underline' }}
                   onClick={() => window.location.reload() }>Je souhaite inviter une nouvelle personne</button>
               </span>
           }
-          <div className="rf-col-3"></div>
+          <div className="fr-col-3"></div>
         </div>
       </div>
     </div>

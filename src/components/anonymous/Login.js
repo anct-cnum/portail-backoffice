@@ -40,9 +40,9 @@ function Login() {
   return (
     <div>
       <Header/>
-      <div className="rf-container rf-mt-3w rf-mb-5w">
-        <div className="rf-grid-row rf-grid-row--center rf-p-2w">
-          <span style={{ textAlign: 'center' }}>
+      <div className="fr-container fr-mt-3w fr-mb-5w">
+        <div className="fr-grid-row fr-grid-row--center fr-p-2w">
+          <div className="fr-col-12 centrer fr-my-3w">
             { role === 'structure' &&
               <strong>Cet espace dédié aux structures permet la consultation de candidatures et la sélection de candidats.
                 <br/>Il met à disposition également de la documentation et l&rsquo;affichage de ses informations.
@@ -54,32 +54,29 @@ function Login() {
                 dispositif Conseiller Numérique France Services sur votre département
               </strong>
             }
-          </span>
-        </div>
-        <div className="rf-grid-row">
+          </div>
 
           { role === 'structure' &&
-          <div className="rf-col-xs-12 rf-col-sm-6 rf-pt-8w">
-            <p>
-              <strong>Rappel sur les étapes du processus de recrutement
-              des conseillers numériques France Services</strong>
-            </p>
-            <div>
-              <ul style={{ paddingLeft: '18px' }}>
-                <li>Inscription sur la plateforme <a href="http://conseiller-numerique.gouv.fr/">conseiller-numerique.gouv.fr</a></li>
-                <li>Concertation territoriale</li>
-                <li>&Eacute;tude des candidatures <span style={{ color: '#B60000' }}>(Vous êtes ici)</span></li>
-                <li>Conduite des entretiens de recrutement</li>
-                <li>Demande de subvention</li>
-                <li>Signature du contrat</li>
-              </ul>
+            <div className="fr-col-12 fr-col-sm-6 fr-pt-10w">
+              <p>
+                <strong>Rappel sur les étapes du processus de recrutement
+                des conseillers numériques France Services</strong>
+              </p>
+              <div>
+                <ul style={{ paddingLeft: '18px' }}>
+                  <li>Inscription sur la plateforme <a href="http://conseiller-numerique.gouv.fr/">conseiller-numerique.gouv.fr</a></li>
+                  <li>Concertation territoriale</li>
+                  <li>&Eacute;tude des candidatures <span style={{ color: '#B60000' }}>(Vous êtes ici)</span></li>
+                  <li>Conduite des entretiens de recrutement</li>
+                  <li>Demande de subvention</li>
+                  <li>Signature du contrat</li>
+                </ul>
+              </div>
             </div>
-          </div> }
-          { role !== 'structure' &&
-            <div className="rf-col-offset-3"></div>
           }
+
           <div
-            className={`Login ${role === 'structure' ? 'rf-col-xs-12 rf-col-sm-6 rf-p-2w' : 'rf-col-6'}`}
+            className={`Login ${role === 'structure' ? 'fr-col-12 fr-col-sm-6 fr-p-2w' : 'fr-col-6'}`}
             style={role === 'structure' ? { textAlign: 'left' } : { textAlign: 'center' }} >
             <h2>Connexion</h2>
             <div>
@@ -87,28 +84,28 @@ function Login() {
                 {error && <span style={{ color: 'red' }}>{error.error ? error.error : 'Une erreur s\'est produite'}</span>}
               </div>
 
-              <div className="rf-my-3w">
-                <label className="rf-label">Adresse email</label>
-                <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
+              <div className="fr-my-3w">
+                <label className="fr-label">Adresse email</label>
+                <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid fr-input' : 'fr-input')} />
                 {submitted && !username &&
               <div className="invalid">Adresse email requise</div>
                 }
               </div>
 
-              <div className="rf-my-3w">
-                <label className="rf-label">Mot de passe</label>
+              <div className="fr-my-3w">
+                <label className="fr-label">Mot de passe</label>
                 <input name="password"
                   type="password"
                   value={password}
                   onChange={handleChange}
-                  className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                  className={(submitted && !password ? ' is-invalid fr-input' : 'fr-input')} />
                 {submitted && !password &&
               <div className="invalid">Mot de passe requis</div>
                 }
               </div>
               {loggingIn && <span>Connexion en cours...</span>}
-              <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
-              <p>
+              <button className="fr-btn" onClick={handleSubmit}>Se connecter</button>
+              <p className="fr-mt-3w">
                 <Link to={`/mot-de-passe-oublie`}>Mot de passe oublié ?</Link>
               </p>
             </div>

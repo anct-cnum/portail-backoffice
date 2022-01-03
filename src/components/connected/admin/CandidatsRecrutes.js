@@ -85,7 +85,7 @@ function CandidatsRecrutes({ departement, region, com, search }) {
         <span>Aucun candidat recruté pour le moment.</span>
       }
 
-      <div className="rf-table" style={{ overflow: 'auto' }}>
+      <div className="fr-table" style={{ overflow: 'auto' }}>
         <table>
           <thead>
             <tr>
