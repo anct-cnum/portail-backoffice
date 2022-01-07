@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 
 import regions from '../../anonymous/createAccount/departements-region.json';
-import codeRegions from '../../anonymous/createAccount/code_region.json';
+import codeRegions from '../../../data/code_region.json';
 
 function InvitationPrefet() {
 
