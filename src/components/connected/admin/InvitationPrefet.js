@@ -71,7 +71,7 @@ function InvitationPrefet() {
           <div className="fr-form-group">
             <fieldset className="fr-fieldset">
               <legend className="fr-fieldset__legend fr-text--regular" id="radio-legend">
-                    Souhaitez vous invitez par :
+              Souhaitez-vous inviter par&nbsp;:
               </legend>
               <div className="fr-fieldset__content" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-evenly' }}>
                 <div className="fr-radio-group">
@@ -95,7 +95,7 @@ function InvitationPrefet() {
                 </div>
 
                 <div className="fr-my-3w">
-                  <label className="fr-label">Adresse préfecture par {radio === 'departement' ? 'département' : 'région'}:</label>
+                  <label className="fr-label">Adresse préfecture par {radio === 'departement' ? 'département' : 'région'}&nbsp;:</label>
                   { radio === 'departement' &&
                   <span>
                     <select className="fr-select" onChange={selectDepartement}>
