@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 
 import regions from '../../anonymous/createAccount/departements-region.json';
+import codeRegions from '../../../data/code_region.json';
 
 function InvitationPrefet() {
 
   const [emails, setEmails] = useState([]);
   const [email, setEmail] = useState('');
   const [departement, setDepartement] = useState(regions[0].num_dep);
+  const [regionCode, setRegionCode] = useState(codeRegions[0].code);
+  const [radio, setRadio] = useState('');
+  const [openSelect, setOpenSelect] = useState(false);
 
   const verifyingToken = useSelector(state => state.createAccount.verifyingPrefetToken);
   const invitingAccountsPrefet = useSelector(state => state.createAccount.invitingAccountsPrefet);
@@ -22,7 +26,8 @@ function InvitationPrefet() {
   const checkEmailNotExist = email => !emails.includes(email);
 
   function handleSubmit() {
-    dispatch(userActions.inviteAccountsPrefet(emails, departement));
+    const niveau = radio === 'departement' ? { departement } : { regionCode };
+    dispatch(userActions.inviteAccountsPrefet(emails, niveau));
   }
 
   function handleChange(e) {
@@ -43,6 +48,16 @@ function InvitationPrefet() {
     setDepartement(event.target.value);
   }
 
+  function selectRegion(event) {
+    setRegionCode(event.target.value);
+    setOpenSelect(true);
+  }
+
+  function checkRadio(event) {
+    setOpenSelect(true);
+    setRadio(event.target.value);
+  }
+
   return (
     <div className="fr-container fr-mt-3w">
       <div className="fr-grid-row">
@@ -53,13 +68,35 @@ function InvitationPrefet() {
               <span>Chargement...</span>
           }
           { !accountsPrefetInvited &&
+          <div className="fr-form-group">
+            <fieldset className="fr-fieldset">
+              <legend className="fr-fieldset__legend fr-text--regular" id="radio-legend">
+              Souhaitez-vous inviter par&nbsp;:
+              </legend>
+              <div className="fr-fieldset__content" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-evenly' }}>
+                <div className="fr-radio-group">
+                  <input type="radio" id="radio-1" name="radio" value="departement" onClick={e => checkRadio(e)}/>
+                  <label className="fr-label" htmlFor="radio-1">Département
+                  </label>
+                </div>
+                <div className="fr-radio-group">
+                  <input type="radio" id="radio-2" name="radio" value="region" onClick={e => checkRadio(e)}/>
+                  <label className="fr-label" htmlFor="radio-2">Région
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          }
+          { !accountsPrefetInvited && openSelect &&
               <div>
                 <div>
                   {error && <span style={{ color: 'red' }}>{error.error ? error.error : error ?? 'Une erreur s\'est produite'}</span>}
                 </div>
 
                 <div className="fr-my-3w">
-                  <label className="fr-label">Adresse préfecture:</label>
+                  <label className="fr-label">Adresse préfecture par {radio === 'departement' ? 'département' : 'région'}&nbsp;:</label>
+                  { radio === 'departement' &&
                   <span>
                     <select className="fr-select" onChange={selectDepartement}>
                       {regions.map((region, idx) =>
@@ -67,6 +104,16 @@ function InvitationPrefet() {
                       )}
                     </select>
                   </span>
+                  }
+                  { radio === 'region' &&
+                  <span>
+                    <select className="fr-select" onChange={selectRegion}>
+                      {codeRegions.map((region, idx) =>
+                        <option key={idx} value={region.code}>{region.code} - {region.nom}</option>
+                      )}
+                    </select>
+                  </span>
+                  }
                 </div>
 
                 <div className="fr-my-3w">
