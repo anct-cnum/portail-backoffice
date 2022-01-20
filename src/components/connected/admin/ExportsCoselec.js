@@ -71,7 +71,7 @@ function ExportsCoselec() {
         <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
           Export de la liste des structures
         </span>
-        <a className="fr-link" href="#" onClick={() => getFile('embauches')}>Export conseiller recruté</a>
+        <a className="fr-link" href="#" onClick={() => getFile('embauches')}>Export des conseiller embauchés</a>
         <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
             Liste des candidats embauchés
         </span>
