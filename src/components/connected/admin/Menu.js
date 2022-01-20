@@ -28,7 +28,13 @@ function Menu() {
               </Link>
             </li>
             }
-
+            { role === 'prefet' &&
+              <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/suivi-de-pilotage') ? 'fr-sidemenu__item--active' : ''}`}>
+                <Link className="fr-sidemenu__link" to="/admin/suivi-de-pilotage">
+                  Suivi et pilotage des CnFS
+                </Link>
+              </li>
+            }
             { role === 'prefet' &&
             <li className={`fr-sidemenu__item ${location.pathname.startsWith('/etat-des-recrutements') ? 'fr-sidemenu__item--active' : ''}`}>
               <Link className="fr-sidemenu__link" to="/etat-des-recrutements">

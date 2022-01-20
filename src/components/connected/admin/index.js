@@ -8,6 +8,7 @@ import Conseillers from './Conseillers';
 import ConseillerDetails from './ConseillerDetails';
 import CandidatsRecrutes from './CandidatsRecrutes';
 import Documents from './Documents';
+import Pilotage from './Pilotage';
 import ExportsCoselec from './ExportsCoselec';
 import Stats from './Stats';
 import Header from '../../common/Header';
@@ -185,6 +186,8 @@ function Admin() {
 
             { user.role === 'prefet' &&
             <>
+
+              <Route path={`/admin/suivi-de-pilotage`} component={Pilotage} />
               <Route path={`/admin/formation`} component={InscriptionFormation} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             </>
