@@ -1,8 +1,7 @@
 const initialState = {
-  dateDebut: new Date(1605571200000),
+  dateDebut: new Date(1605571200000), // date d'ouverture de l'espace structure 17/11/2020
   dateFin: new Date(),
   ordre: true,
-  ordreNom: undefined,
   territoire: 'codeDepartement',
 };
 

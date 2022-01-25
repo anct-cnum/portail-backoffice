@@ -13,9 +13,9 @@ function PilotageTerritoires() {
   const territoire = useSelector(state => state.pilotage?.territoire);
   const pagination = useSelector(state => state.pilotage?.pagination);
 
-  const territoires = useSelector(state => state.stats.statsTerritoires);
-  const statsTerritoiresLoading = useSelector(state => state.stats.statsTerritoiresLoading);
-  const statsTerritoiresError = useSelector(state => state.stats.statsTerritoiresError);
+  const territoires = useSelector(state => state.stats?.statsTerritoires);
+  const statsTerritoiresLoading = useSelector(state => state.stats?.statsTerritoiresLoading);
+  const statsTerritoiresError = useSelector(state => state.stats?.statsTerritoiresError);
 
   let dateDebut = useSelector(state => state.pilotage?.dateDebut);
   let ordreNom = useSelector(state => state.pilotage?.ordreNom);
@@ -38,12 +38,12 @@ function PilotageTerritoires() {
     dispatch(pilotageActions.changeOrdre(e.target.id));
   };
 
-  function handleChangeStart(e) {
-    dispatch(pilotageActions.changeDateDebut(e));
+  function handleChangeStart(date) {
+    dispatch(pilotageActions.changeDateDebut(date));
   }
 
-  function handleChangeEnd(e) {
-    dispatch(pilotageActions.changeDateFin(e));
+  function handleChangeEnd(date) {
+    dispatch(pilotageActions.changeDateFin(date));
   }
 
   useEffect(() => {

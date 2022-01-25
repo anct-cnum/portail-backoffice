@@ -186,7 +186,6 @@ function Admin() {
 
             { user.role === 'prefet' &&
             <>
-
               <Route path={`/admin/suivi-de-pilotage`} component={PilotageTerritoires} />
               <Route path={`/admin/formation`} component={InscriptionFormation} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />

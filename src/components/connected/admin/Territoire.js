@@ -5,7 +5,7 @@ function Territoire({ territoire }) {
 
   return (
     <tr>
-      <td>{territoire?.nomDepartement ? territoire?.nomDepartement : territoire?.nomRegion}</td>
+      <td>{territoire?.nomDepartement ?? territoire?.nomRegion}</td>
       <td>{territoire?.CRAEnregistres ?? 0}</td>
       <td>{territoire?.personnesAccompagnees ?? 0}</td>
       <td>{territoire?.nombreConseillersCoselec ?? 0}</td>
