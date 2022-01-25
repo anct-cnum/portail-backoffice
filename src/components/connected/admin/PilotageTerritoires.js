@@ -119,7 +119,6 @@ function PilotageTerritoires() {
                 onChange={handleChangeEnd}
               />
             </span>
-            { /*<button className="fr-btn fr-my-3w" onClick={exportDonneesTerritoire}>Exporter les donn&eacute;es</button>*/}
           </div>
         </div>
       </div>
