@@ -2,4 +2,22 @@
   .menu-pilotage {
     width: 300px;
   }
+  .no-box-shadow {
+    box-shadow: none;
+  }
+  .fr-table table thead tr th {
+    margin: 0 !important;
+    padding: 0 !important;
+    button {
+      font-weight: 700;
+      color: #2A2A2A;
+      padding: 10px;
+      height: 70px;
+    }
+  }
+  .not-found {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
