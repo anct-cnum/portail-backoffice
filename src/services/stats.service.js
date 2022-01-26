@@ -3,7 +3,8 @@ import { userService } from './user.service';
 
 export const statsService = {
   getMisesEnRelationStats,
-  getConseillersFinalisee
+  getConseillersFinalisee,
+  getStatsTerritoires
 };
 
 function getMisesEnRelationStats(id) {
@@ -26,6 +27,32 @@ function getConseillersFinalisee() {
   const apiUrlRoot = process.env.REACT_APP_API;
 
   return fetch(`${apiUrlRoot}/stats/conseillers/finalisees`, requestOptions).then(handleResponse);
+}
+
+function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
+  if (nomOrdre === 'code') {
+    nomOrdre = territoire;
+  } else if (nomOrdre === 'nom') {
+    //Afin d'obtenir nomDepartemement ou nomRegion
+    nomOrdre += territoire.slice(4);
+  }
+  const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
+  const pageIfDefined = page ? '&page=' + page : '';
+
+  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
+}
+
+function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
+    requestOptions
+  ).then(handleResponse);
 }
 
 function handleResponse(response) {
