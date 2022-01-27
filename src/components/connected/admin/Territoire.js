@@ -17,9 +17,7 @@ function Territoire({ territoire }) {
 }
 
 Territoire.propTypes = {
-  territoire: PropTypes.object,
-  currentPage: PropTypes.number,
-  trClass: PropTypes.string,
+  territoire: PropTypes.object
 };
 
 export default Territoire;

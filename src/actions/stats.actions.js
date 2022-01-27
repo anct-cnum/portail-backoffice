@@ -67,10 +67,10 @@ function getConseillersFinalisee() {
   }
 }
 
-function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
+function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin) {
   return dispatch => {
     dispatch(request());
-    statsService.getStatsTerritoires(territoire, formatDate(dateDebut), formatDate(dateFin), page, nomOrdre, ordre)
+    statsService.getStatsTerritoires(territoire, formatDate(dateDebut), formatDate(dateFin))
     .then(
       statsTerritoires => {
         dispatch(success(statsTerritoires));
