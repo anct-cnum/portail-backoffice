@@ -29,20 +29,7 @@ function getConseillersFinalisee() {
   return fetch(`${apiUrlRoot}/stats/conseillers/finalisees`, requestOptions).then(handleResponse);
 }
 
-function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
-  if (nomOrdre === 'code') {
-    nomOrdre = territoire;
-  } else if (nomOrdre === 'nom') {
-    //Afin d'obtenir nomDepartemement ou nomRegion
-    nomOrdre += territoire.slice(4);
-  }
-  const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
-  const pageIfDefined = page ? '&page=' + page : '';
-
-  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
-}
-
-function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
+function getStatsTerritoires(territoire, dateDebut, dateFin) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
@@ -50,7 +37,7 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
   };
 
   return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
+    `${apiUrlRoot}/stats/prefet/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}`,
     requestOptions
   ).then(handleResponse);
 }
