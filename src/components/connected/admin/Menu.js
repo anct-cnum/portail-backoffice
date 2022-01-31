@@ -82,7 +82,7 @@ function Menu() {
               <li className={`fr-sidemenu__item`}>
                 <a className="fr-sidemenu__link" target="_blank" rel="noreferrer"
                   href="https://cartographie.conseiller-numerique.gouv.fr/">
-                  Cartographie des Cnfs
+                  Cartographie des CnFS
                 </a>
               </li>
               <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/documents') ? 'fr-sidemenu__item--active' : ''}`}>
