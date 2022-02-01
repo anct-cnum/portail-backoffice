@@ -28,13 +28,19 @@ function Menu() {
               </Link>
             </li>
             }
-
             { role === 'prefet' &&
-            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/etat-des-recrutements') ? 'fr-sidemenu__item--active' : ''}`}>
-              <Link className="fr-sidemenu__link" to="/etat-des-recrutements">
-                État des recrutements
-              </Link>
-            </li>
+            <>
+              <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/suivi-de-pilotage') ? 'fr-sidemenu__item--active' : ''}`}>
+                <Link className="fr-sidemenu__link" to="/admin/suivi-de-pilotage">
+                  Suivi et pilotage des CnFS
+                </Link>
+              </li>
+              <li className={`fr-sidemenu__item ${location.pathname.startsWith('/etat-des-recrutements') ? 'fr-sidemenu__item--active' : ''}`}>
+                <Link className="fr-sidemenu__link" to="/etat-des-recrutements">
+                  État des recrutements
+                </Link>
+              </li>
+            </>
             }
 
             <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structures') ? 'fr-sidemenu__item--active' : ''}`}>
@@ -70,10 +76,15 @@ function Menu() {
               <li className={`fr-sidemenu__item`}>
                 <a className="fr-sidemenu__link" target="_blank" rel="noreferrer"
                   href="https://metabase.conseiller-numerique.gouv.fr/public/dashboard/446208c4-cae2-4c0c-be19-44cb14ce7d06">
-                Données de déploiement des CnFS
+                  Données de déploiement des CnFS
                 </a>
               </li>
-
+              <li className={`fr-sidemenu__item`}>
+                <a className="fr-sidemenu__link" target="_blank" rel="noreferrer"
+                  href="https://cartographie.conseiller-numerique.gouv.fr/">
+                  Cartographie des CnFS
+                </a>
+              </li>
               <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/documents') ? 'fr-sidemenu__item--active' : ''}`}>
                 <Link className="fr-sidemenu__link" to="/admin/documents">
                   Documents

@@ -37,6 +37,13 @@ function Pilotage() {
         * Astuce : Si vous le souhaitez, enregistrez la page du lien ci-dessus dans les favoris de votre navigateur afin de pouvoir
         y acc&eacute;der directement à l&rsquo;avenir. L&rsquo;acc&egrave;s restera &eacute;galement possible via votre espace structure.
       </p>
+      <div style={{ textAlign: 'center' }}>
+        <a className="coop-btn fr-mb-4w" target="blank" rel="noreferrer"
+          href="https://cdn.conseiller-numerique.gouv.fr/Guide_outil_de_suivi_et_de_pilotage.pdf">
+          Consulter le guide d&rsquo;utilisation du tableau de bord des conseillers Num&eacute;riques (pdf)
+        </a>
+      </div>
+
     </>
   );
 }
