@@ -28,6 +28,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   {
     key: 'finalisee_non_disponible',
     label: 'Candidat déjà recruté'
+  },
+  {
+    key: 'non_disponible',
+    label: 'Candidature annulée'
   }
   ];
 
