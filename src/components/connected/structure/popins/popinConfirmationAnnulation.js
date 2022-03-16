@@ -21,7 +21,7 @@ function popinConfirmationAnnulation({ updateStatut, updateDateRecrutement, setD
               <div className="fr-modal__content important">
                 <p>
                   <strong>
-                    Important : Vous êtes sur le point d&rsquo;annuler votre demande de recrutement pour ce candidat.
+                    Important&nbsp;: Vous êtes sur le point d&rsquo;annuler votre demande de recrutement pour ce candidat.
                   </strong>
                 </p>
                 <p>

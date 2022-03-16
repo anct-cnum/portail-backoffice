@@ -50,16 +50,16 @@ function popinRecrutee({ statut }) {
                     <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques"
                       target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-structures-publiques</a>
                     <br/>
-                    <strong>Entreprises</strong> :&nbsp;
+                    <strong>Entreprises</strong>&nbsp;:&nbsp;
                     <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises"
                       target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-sa-entreprises</a>
                     <br/>
-                    <strong>Associations</strong> :&nbsp;
+                    <strong>Associations</strong>&nbsp;:&nbsp;
                     <a href="https://www.demarches-simplifiees.fr/commencer/cnfs-associations"
                       target="blank">https://www.demarches-simplifiees.fr/commencer/cnfs-associations</a>
                   </p>
                   <p>
-                    <strong>Important : l&rsquo;embauche reste conditionnée à la conformité de votre dossier de demande de subvention.</strong>
+                    <strong>Important&nbsp;: l&rsquo;embauche reste conditionnée à la conformité de votre dossier de demande de subvention.</strong>
                   </p>
                 </div>
               </div>

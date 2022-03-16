@@ -12,8 +12,6 @@ import ConfirmationEmail from './components/anonymous/ConfirmationEmail';
 import Footer from './components/common/Footer';
 import PrivateRoute from './components/connected/PrivateRoute';
 
-require('dotenv').config();
-
 function App() {
 
   const exports = useSelector(state => state.exports);
