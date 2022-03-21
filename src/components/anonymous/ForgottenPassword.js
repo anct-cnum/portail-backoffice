@@ -87,9 +87,7 @@ function ForgottenPassword({ match = null }) {
               }
               {submittedEmail && errorEmail === 'Error authorization forgottenPassword' &&
                 <div className="invalid fr-mb-3w">
-                  Aucun droit de gestion du dispositif Conseiller num&eacute;rique France Services n&apos;est associ&eacute; à cette adresse mail.
-                  Si vous &ecirc;tes conseiller numérique, renouvelez votre mot de passe sur <a href="https://coop.conseiller-numerique.gouv.fr/">l&apos;espace Coop</a>.
-                  Si vous &ecirc;tes candidat, renouvelez votre mot de passe via <a href="https://candidat.conseiller-numerique.gouv.fr/">l&apos;espace Candidat</a>.
+                  Veuillez d&rsquo;abord activer votre compte via le dernier email d&rsquo;invitation reçue sur {username}
                 </div>
               }
               {submittedEmail && !username &&
