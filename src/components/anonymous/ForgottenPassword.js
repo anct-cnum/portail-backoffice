@@ -85,11 +85,11 @@ function ForgottenPassword({ match = null }) {
                   L&#39;e-mail de renouvellement de mot de passe n&#39;a pas pu être envoyé, vérifiez votre adresse e-mail !
                 </div>
               }
-              {submittedEmail && errorEmail === 'Error access forgottenPassword espace backoffice' &&
+              {submittedEmail && errorEmail === 'Error authorization forgottenPassword' &&
                 <div className="invalid fr-mb-3w">
-                 Aucun droit de gestion du dispositif Conseiller numérique France Services n&apos;est associé à cette adresse mail.
-                 Si vous êtes conseiller numérique, renouvelez votre mot de passe sur <a href="https://coop.conseiller-numerique.gouv.fr/">l&apos;espace Coop</a>.
-                 Si vous êtes candidat, renouvelez votre mot de passe via <a href="https://candidat.conseiller-numerique.gouv.fr/">l&apos;espace Candidat</a>.
+                  Aucun droit de gestion du dispositif Conseiller num&eacute;rique France Services n&apos;est associ&eacute; à cette adresse mail.
+                  Si vous &ecirc;tes conseiller numérique, renouvelez votre mot de passe sur <a href="https://coop.conseiller-numerique.gouv.fr/">l&apos;espace Coop</a>.
+                  Si vous &ecirc;tes candidat, renouvelez votre mot de passe via <a href="https://candidat.conseiller-numerique.gouv.fr/">l&apos;espace Candidat</a>.
                 </div>
               }
               {submittedEmail && !username &&
