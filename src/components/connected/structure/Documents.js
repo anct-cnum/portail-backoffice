@@ -258,6 +258,19 @@ function Documents() {
             </span>
           </p>
         </div>
+        <h4>6) Accompagner les Conseillers numériques France Services dans leurs missions</h4>
+        <div className="fr-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/guide-d-utilisation-de-l-outil-de-suivi-d-activite.pdf"
+              className="fr-link" target="blank" rel="noreferrer" title="Télécharger le kit &laquo;Bien démarrer ma mission&raquo;">
+                Télécharger le guide d’utilisation de l’outil de suivi d’activité des Conseillers numériques France Services (pdf)
+            </a>
+            <span className="fr-footer__bottom-link" style={{ display: 'block' }}>
+            Ce guide est destiné à vous accompagner dans l&rsquo;utilisation de l&rsquo;outil de suivi et de pilotage <br className="br-lg"/>
+            de l&rsquo;activité des Conseillers numériques France Services.
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
