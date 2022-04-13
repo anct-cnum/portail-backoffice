@@ -261,7 +261,7 @@ function StructureDetails({ location }) {
               <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
             </p>
               }
-              { messageErrorUpdateEmail && structureEmailError &&
+              { (messageErrorUpdateEmail && structureEmailError) &&
             <p className="fr-label flashBag labelError">
               { messageErrorUpdateEmail === 'Email déjà prise' ? messageErrorUpdateEmail :
                 <>
