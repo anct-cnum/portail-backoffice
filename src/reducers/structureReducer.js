@@ -91,16 +91,19 @@ export default function structure(state = null, action) {
         ...state,
         loadingEmail: true,
         structureEmailError: false,
-        messageChangeEmailSuccess: false
+        messageChangeEmailSuccess: false,
+        messageChangeEmailError: false
       };
     case 'UPDATE_STRUCTURE_EMAIL_SUCCESS':
       return {
         ...state,
-        messageChangeEmailSuccess: action.emailUpdated.emailUpdated
+        messageChangeEmailSuccess: action.emailUpdated.emailUpdated,
+        messageChangeEmailError: false
       };
     case 'UPDATE_STRUCTURE_EMAIL_FAILURE':
       return {
         ...state,
+        messageChangeEmailSuccess: false,
         messageChangeEmailError: true,
         structureEmailError: action.error,
       };

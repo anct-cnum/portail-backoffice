@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { structureActions } from '../../../actions';
 
-function EmailForm({ setDisplayFormEmail, structureId }) {
+function EmailForm({ setDisplayFormEmail, structureId, setMessageEmailChange }) {
   const dispatch = useDispatch();
   const [messageValidEmailRegex, setMessageValidEmailRegex] = useState(false);
   const [email, setEmail] = useState('');
@@ -19,6 +19,8 @@ function EmailForm({ setDisplayFormEmail, structureId }) {
       dispatch(structureActions.updateStructureEmail(email.toLocaleLowerCase(), structureId));
       setDisplayFormEmail(false);
       setMessageValidEmailRegex(false);
+      setMessageEmailChange(true);
+      window.scrollTo(0, 0);
     }
   };
 
@@ -39,5 +41,6 @@ function EmailForm({ setDisplayFormEmail, structureId }) {
 EmailForm.propTypes = {
   setDisplayFormEmail: PropTypes.func,
   structureId: PropTypes.string,
+  setMessageEmailChange: PropTypes.func
 };
 export default EmailForm;
