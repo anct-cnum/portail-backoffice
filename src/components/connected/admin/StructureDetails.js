@@ -263,12 +263,12 @@ function StructureDetails({ location }) {
               }
               { messageErrorUpdateEmail && structureEmailError &&
             <p className="fr-label flashBag labelError">
-             {messageErrorUpdateEmail === 'Email déjà prise' ? messageErrorUpdateEmail :
-             <>
-             Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
-             Veuillez réessayer plus tard.
-             </>
-             }
+              { messageErrorUpdateEmail === 'Email déjà prise' ? messageErrorUpdateEmail :
+                <>
+                Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
+                Veuillez réessayer plus tard.
+                </>
+              }
             </p>
               }
             </FlashMessage>
