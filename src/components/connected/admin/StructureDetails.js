@@ -27,6 +27,7 @@ function StructureDetails({ location }) {
   const structureUpdateError = useSelector(state => state.structure?.structutreSiretError);
   const structureEmailSuccess = useSelector(state => state?.structure?.messageChangeEmailSuccess);
   const structureEmailError = useSelector(state => state?.structure?.messageChangeEmailError);
+  const messageErrorUpdateEmail = useSelector(state => state?.structure?.structureEmailError);
   const [messageEmailChange, setMessageEmailChange] = useState(false);
   const [displayFormMultiCompte, setDisplayFormMulticompte] = useState(false);
 
@@ -260,10 +261,14 @@ function StructureDetails({ location }) {
               <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
             </p>
               }
-              { structureEmailError === true &&
+              { (messageErrorUpdateEmail && structureEmailError) &&
             <p className="fr-label flashBag labelError">
-             Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
-             Veuillez réessayer plus tard.
+              { messageErrorUpdateEmail ??
+                <>
+                Une erreur est survenue lors de la modification de l&rsquo;e-mail.<br/>
+                Veuillez réessayer plus tard.
+                </>
+              }
             </p>
               }
             </FlashMessage>
@@ -317,7 +322,7 @@ function StructureDetails({ location }) {
           <p>Contact : {structure?.structure?.contact?.prenom} {structure?.structure?.contact?.nom} ({structure?.structure?.contact?.fonction})</p>
           <p>Téléphone : {structure?.structure?.contact?.telephone}</p>
           {displayFormEmail === true ?
-            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} /> :
+            <EmailForm setDisplayFormEmail={setDisplayFormEmail} structureId={structure?.structure?._id} setMessageEmailChange={setMessageEmailChange} /> :
             <p>
               Email : <a href={`mailto:${structure?.structure?.contact?.email}`}>{structure?.structure?.contact?.email}</a>	&nbsp;
               { role === 'admin' && <button onClick={() => {
