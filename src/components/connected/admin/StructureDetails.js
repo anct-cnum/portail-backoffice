@@ -162,7 +162,7 @@ function StructureDetails({ location }) {
   }, [structureUpdateValid]);
 
   useEffect(() => {
-    if (structureEmailSuccess === true) {
+    if (!structureEmailSuccess) {
       setMessageEmailChange(true);
       dispatch(structureActions.get(id));
     }
