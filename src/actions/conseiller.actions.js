@@ -14,7 +14,7 @@ export const conseillerActions = {
   resetFile,
   getStructureByIdConseiller,
   suppressionCandidat,
-  resendInscriptionCandidat
+  resendInvitCandidatConseiller
 };
 
 function get(id) {
@@ -299,11 +299,11 @@ function suppressionCandidat({ id, motif, actionUser }) {
 
 }
 
-function resendInscriptionCandidat(id) {
+function resendInvitCandidatConseiller(id) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.resendInscriptionCandidat(id)
+    conseillerService.resendInvitCandidatConseiller(id)
     .then(
       user => dispatch(success(user)),
       error => dispatch(failure(error))

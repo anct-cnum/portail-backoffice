@@ -21,9 +21,9 @@ function ConseillerDetails({ location }) {
   const [confirmEmailCandidat, setConfirmEmailCandidat] = useState('');
   const [motif, setMotif] = useState('');
   const [autreMotif, setAutreMotif] = useState(false);
-  const invitCandidat = useSelector(state => state?.conseiller);
-  const errorSendMail = useSelector(state => state.conseiller?.errorResendInscriptionCandidat);
-  const successSendMail = useSelector(state => state.conseiller?.successResendInscriptionCandidat);
+  const invitEspaceCandidatConseiller = useSelector(state => state?.conseiller);
+  const errorSendMail = useSelector(state => state.conseiller?.errorResendInvitCandidatConseiller);
+  const successSendMail = useSelector(state => state.conseiller?.successResendInvitCandidatConseiller);
 
   let { id } = useParams();
 
@@ -91,9 +91,9 @@ function ConseillerDetails({ location }) {
     }
   };
 
-  const resendInscriptionCandidat = () => {
+  const resendInvitCandidatConseiller = () => {
     window.scrollTo(0, 0);
-    dispatch(conseillerActions.resendInscriptionCandidat(id));
+    dispatch(conseillerActions.resendInvitCandidatConseiller(id));
   };
 
   return (
@@ -108,21 +108,21 @@ function ConseillerDetails({ location }) {
         Retour à la liste
       </Link>
       <div>
-        { invitCandidat?.flashMessage === true &&
-      <FlashMessage duration={10000}>
-        { (errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
-        <p className="fr-label flashBag">
-          L&rsquo;email de relance d&rsquo;inscription a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
-          &nbsp;
-          <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-        </p>
-        }
-        { (errorSendMail !== undefined && successSendMail === undefined && errorSendMail !== false) &&
-        <p className="fr-label flashBag labelError">
-          {errorSendMail}
-        </p>
-        }
-      </FlashMessage>
+        {invitEspaceCandidatConseiller?.flashMessage === true &&
+          <FlashMessage duration={10000}>
+            {(errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
+              <p className="fr-label flashBag">
+                L&rsquo;email d&rsquo;invitation à l&rsquo;espace {conseiller?.statut === 'RECRUTE' ? 'COOP' : 'candidat'} a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                &nbsp;
+                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+              </p>
+            }
+            {(errorSendMail !== undefined && successSendMail === undefined && errorSendMail !== false) &&
+              <p className="fr-label flashBag labelError">
+                {errorSendMail}
+              </p>
+            }
+          </FlashMessage>
         }
         <div style={{ textAlign: 'center' }}>
           <Spinner
@@ -130,15 +130,15 @@ function ConseillerDetails({ location }) {
             color="#00BFFF"
             height={80}
             width={80}
-            visible={invitCandidat?.loadingInvitCandidat === true}
+            visible={invitEspaceCandidatConseiller?.loadingInvitCandidatConseiller === true}
           />
         </div>
-        { erreurSuppressionCandidat &&
-            <FlashMessage duration={20000}>
-              <p className="fr-label flashBag labelError">
-                {erreurSuppressionCandidat}
-              </p>
-            </FlashMessage>
+        {erreurSuppressionCandidat &&
+          <FlashMessage duration={20000}>
+            <p className="fr-label flashBag labelError">
+              {erreurSuppressionCandidat}
+            </p>
+          </FlashMessage>
         }
         <h2>
           <span className="capitalizeFirstLetter">
@@ -162,10 +162,10 @@ function ConseillerDetails({ location }) {
 
                     <span key={idx}>
                       {conseiller?.dateRecrutement?.length > 1 &&
-                        <><br/>-&nbsp;</>
+                        <><br />-&nbsp;</>
                       }
                       {dayjs(date).format('DD/MM/YY')}
-                      { conseiller?.nomStructures.length > 0 &&
+                      {conseiller?.nomStructures.length > 0 &&
                         <>&nbsp;par {conseiller?.nomStructures[idx]}</>
                       }
                     </span>
@@ -179,7 +179,7 @@ function ConseillerDetails({ location }) {
               {conseiller?.estRecrute &&
                 <>
                   <p>Recruté(e) par&nbsp;:&nbsp; {nomStructure}</p>
-                  <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.emailCN ? 'OUI' : 'NON'}</p>
+                  <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.emailCN?.address ? 'OUI' : 'NON'}</p>
                   <p>
                     Date d&rsquo;entrée en formation&nbsp;:&nbsp;
                     {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}
@@ -188,13 +188,18 @@ function ConseillerDetails({ location }) {
                     Date de sortie de formation&nbsp;:&nbsp;
                     {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}
                   </p>
+                  {conseiller?.emailCN?.address ?
+                    <p>
+                      <strong>Courriel CNFS :</strong><br />
+                      <a href={'mailto:' + conseiller?.emailCN?.address}>{conseiller?.emailCN?.address}</a>
+                    </p> : ''}
                 </>
               }
               <p>Curriculum vit&aelig; :&nbsp;
                 {conseiller?.cv?.file &&
-                <button className="downloadCVBtn" onClick={downloadCV}>
-                  Télécharger le CV (du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') })
-                </button>
+                  <button className="downloadCVBtn" onClick={downloadCV}>
+                    Télécharger le CV (du {dayjs(conseiller?.cv?.date).format('DD/MM/YYYY') })
+                  </button>
                 }
                 {!conseiller?.cv?.file &&
                   <>Non renseigné</>
@@ -203,27 +208,27 @@ function ConseillerDetails({ location }) {
               <p>Situation professionnelle : {conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
               <p>Diplômé : {conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.estDiplomeMedNum &&
-                  <p>Nom du diplôme : {conseiller?.nomDiplomeMedNum}</p>
+                <p>Nom du diplôme : {conseiller?.nomDiplomeMedNum}</p>
               }
               <p>A de l&rsquo;expérience dans la médiation numérique : {conseiller?.aUneExperienceMedNum ? 'Oui' : 'Non'}</p>
               <p>Code Postal : {conseiller?.codePostal}</p>
               <p>
-                  Lieu de résidence :&nbsp;
-                { conseiller?.nomCommune === '' || conseiller?.nomCommune === '.' ?
+                Lieu de résidence :&nbsp;
+                {conseiller?.nomCommune === '' || conseiller?.nomCommune === '.' ?
                   'Non renseigné' :
-                  conseiller?.nomCommune }
+                  conseiller?.nomCommune}
               </p>
-              <p>Mobilité géographique : { conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.distanceMax} Km` }</p>
-              <p>Date de démarrage possible : { dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') }</p>
+              <p>Mobilité géographique : {conseiller?.distanceMax === 2000 ? 'France entière' : `${conseiller?.distanceMax} Km`}</p>
+              <p>Date de démarrage possible : {dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY')}</p>
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
-              <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone' }</strong></p>
-              { role === 'admin' && <>
+              <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone'}</strong></p>
+              {role === 'admin' && <>
                 <button
                   className="fr-btn"
                   style={{ 'padding': '1rem 1.5rem' }}
-                  onClick={resendInscriptionCandidat}>
-                  Renvoyer l&rsquo;email d&rsquo;inscription [Espace candidat]
-                </button><br/><br/>
+                  onClick={resendInvitCandidatConseiller}>
+                  Renvoyer l&rsquo;email d&rsquo;invitation
+                </button><br /><br />
                 <div>
                   <button
                     className="bouton-delete"
@@ -232,7 +237,7 @@ function ConseillerDetails({ location }) {
                       setAutreMotif(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}>
-                      Supprimer la candidature
+                    Supprimer la candidature
                   </button>
                 </div>
               </>
