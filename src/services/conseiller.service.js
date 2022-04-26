@@ -16,7 +16,7 @@ export const conseillerService = {
   getCurriculumVitae,
   getStructureByIdConseiller,
   suppressionCandidat,
-  resendInscriptionCandidat
+  resendInvitCandidatConseiller
 };
 
 function get(id) {
@@ -167,13 +167,13 @@ function suppressionCandidat({ id, motif, actionUser }) {
   return fetch(`${apiUrlRoot}/conseillers/${id}/candidature?motif=${motif}&actionUser=${actionUser}`, requestOptions).then(handleResponse);
 }
 
-function resendInscriptionCandidat(id) {
+function resendInvitCandidatConseiller(id) {
   const requestOptions = {
     method: 'POST',
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${id}/relance-inscription-candidat`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers/${id}/relance-invitation`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
