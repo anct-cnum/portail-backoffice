@@ -48,7 +48,13 @@ function Menu() {
                 Liste des structures
               </Link>
             </li>
-
+            { role === 'prefet' &&
+              <li className={`fr-sidemenu__item`}>
+                <Link className="fr-sidemenu__link" to="/admin/statistiques">
+                    Statistiques des structures
+                </Link>
+              </li>
+            }
             {role === 'admin' &&
             <li className={`fr-sidemenu__item ${location.pathname.startsWith('/candidats') ? 'fr-sidemenu__item--active' : ''}`}>
               <Link className="fr-sidemenu__link" to="/candidats">
