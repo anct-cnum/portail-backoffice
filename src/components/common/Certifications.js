@@ -3,7 +3,7 @@ import React from 'react';
 function Certifications() {
 
   return (
-    <div className="formation">
+    <>
       <div className="fr-container fr-container--fluid">
         <h3>Les certifications Pix et CCP1 REMN</h3>
         <div className="fr-grid-row">
@@ -62,7 +62,7 @@ function Certifications() {
         </div>
 
       </div>
-    </div>
+    </>
   );
 }
 
