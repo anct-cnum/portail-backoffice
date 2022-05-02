@@ -16,6 +16,7 @@ import Recrutements from './Recrutements';
 import Aide from './Aide';
 import Pilotage from './Pilotage';
 import InscriptionFormation from '../../common/InscriptionFormation';
+import Certifications from '../../common/Certifications';
 
 function Structure() {
   const dispatch = useDispatch();
@@ -89,6 +90,7 @@ function Structure() {
             <Route path={`/structure/informations`} component={MesInformations} />
             <Route path={`/structure/aide`} component={Aide} />
             <Route path={`/structure/formation`} component={InscriptionFormation} />
+            <Route path={`/structure/certifications`} component={Certifications} />
             <Route path={`/mon-compte`} component={MonCompte} />
             <Route path={`/structure/suivi-de-pilotage`} component={Pilotage} />
 
