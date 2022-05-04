@@ -67,6 +67,11 @@ function Menu() {
                       Inscription en formation
                     </Link>
                   </li>
+                  <li className={`fr-sidemenu__item ${location.pathname.startsWith('/structure/certifications') ? 'fr-sidemenu__item--active' : ''}`}>
+                    <Link className="fr-sidemenu__link" to="/structure/certifications">
+                      Les certifications Pix et CCP1 REMN
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>
