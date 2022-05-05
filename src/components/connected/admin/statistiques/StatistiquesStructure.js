@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { structureActions } from '../../../../actions';
 import ElementCodePostal from './Components/ElementCodePostal';
 import StatistiquesPeriode from './StatistiquesPeriode';
 
 
 function StatistiquesStructure() {
+  const dispatch = useDispatch();
+  let { id } = useParams();
 
+  const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
+  const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
+  const structure = useSelector(state => state.structure?.structure);
+
+  console.log(structure);
+
+  useEffect(() => {
+    dispatch(structureActions.get(id));
+  }, []);
   return (
     <div className="statistics">
       <div className="fr-container">

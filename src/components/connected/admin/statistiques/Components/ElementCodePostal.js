@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { statistiqueActions } from '../../../../actions';
+import { statistiquesPrefetActions } from '../../../../../actions';
 import PropTypes from 'prop-types';
 
 function ElementCodePostal({ idStructure = '' }) {
@@ -8,15 +8,15 @@ function ElementCodePostal({ idStructure = '' }) {
   const dispatch = useDispatch();
   const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
   const setCodePostal = e => {
-    dispatch(statistiqueActions.changeCodePostalStats(e.target.value));
+    dispatch(statistiquesPrefetActions.changeCodePostalStats(e.target.value));
   };
 
   useEffect(() => {
     if (!listeCodesPostaux) {
       if (idStructure) {
-        dispatch(statistiqueActions.getCodesPostauxCrasConseillerStructure(idStructure));
+        dispatch(statistiquesPrefetActions.getCodesPostauxCrasConseillerStructure(idStructure));
       } else {
-        dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
+        dispatch(statistiquesPrefetActions.getCodesPostauxCrasConseiller());
       }
     }
   });

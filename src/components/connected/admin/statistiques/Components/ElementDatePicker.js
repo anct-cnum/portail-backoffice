@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { statistiqueActions } from '../../../../actions';
+import { statistiquesPrefetActions } from '../../../../../actions';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
@@ -15,10 +15,10 @@ function ElementDatePicker(props) {
   const setDate = date => {
     if (props.nomDate === 'datePickerDebut') {
       if (date <= dateFin) { //on ne change la date de debut que si elle est <= date de fin
-        dispatch(statistiqueActions.changeDateStatsDebut(date));
+        dispatch(statistiquesPrefetActions.changeDateStatsDebut(date));
       }
     } else if (date >= dateDebut) { //on ne change la date de fin que si elle est >= date de début
-      dispatch(statistiqueActions.changeDateStatsFin(date));
+      dispatch(statistiquesPrefetActions.changeDateStatsFin(date));
     }
   };
 
