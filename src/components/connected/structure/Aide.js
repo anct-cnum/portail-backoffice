@@ -29,10 +29,11 @@ function Aide() {
               aide.conseiller-numerique.gouv.fr
             </a>.
             </p>
-            <p>En dernier lieu, vous pouvez écrire à l&rsquo;adresse suivante&nbsp;:&nbsp;
+            <p>En dernier lieu, vous pouvez &eacute;crire &grave; l&rsquo;adresse suivante :&nbsp;
               <a href="mailto:conseiller-numerique@anct.gouv.fr" title="conseiller-numerique@anct.gouv.fr">
               conseiller-numerique@anct.gouv.fr
-              </a>.
+              </a>, ou nous appeler &agrave; travers la permanence t&eacute;l&eacute;phonique au<br/> <b>01 58 50 89 42</b> joignable chaque lundi
+              et jeudi matin de 9h30 à 12h00.
             </p>
           </div>
         </div>
