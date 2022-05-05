@@ -70,7 +70,7 @@ function InscriptionFormation() {
                 </a>.&nbsp;
                 <em>
                   N.B.&nbsp;: un Conseiller d&eacute;j&agrave; titulaire du CCP1 ou du titre professionnel lors de son recrutement peut
-                  &ecirc;tre
+                  &ecirc;tre&nbsp;
                   <a href={urlAide + '/article/un-conseiller-numerique-peut-il-etre-dispense-de-la-formation-initiale-obligatoire-ywgzld/'}
                     target="blank" rel="noreferrer" >
                     exempt&eacute;
