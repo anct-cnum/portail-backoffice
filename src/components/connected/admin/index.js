@@ -21,6 +21,7 @@ import EtatRecrutements from './EtatRecrutements';
 import FlashMessage from 'react-flash-message';
 import InvitationPrefet from './InvitationPrefet';
 import InscriptionFormation from '../../common/InscriptionFormation';
+import Certifications from '../../common/Certifications';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -188,6 +189,7 @@ function Admin() {
             <>
               <Route path={`/admin/suivi-de-pilotage`} component={PilotageTerritoires} />
               <Route path={`/admin/formation`} component={InscriptionFormation} />
+              <Route path={`/admin/certifications`} component={Certifications} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             </>
             }
