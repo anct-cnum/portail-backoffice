@@ -10,9 +10,6 @@ function Statistiques() {
   const pagination = useSelector(state => state.pagination);
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
 
-  console.log(structures);
-  console.log(page);
-
   return (
     <div className="statistiques">
       <h3>Statistiques des structures</h3>

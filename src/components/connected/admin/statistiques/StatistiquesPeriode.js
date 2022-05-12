@@ -7,7 +7,7 @@ function StatistiquesPeriode(props) {
 
   return (
     <>
-      <span>P&eacute;riode du &nbsp;</span><br className="periode-xs"/>
+      <span>P&eacute;riode du &nbsp;</span>
       <span id="span-datePickerDebut" >
         <ElementDatePicker initDate={props.dateDebut} idDate="datePickerDebut" nomDate="datePickerDebut"/>
       </span>

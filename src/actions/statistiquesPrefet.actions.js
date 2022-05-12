@@ -1,53 +1,30 @@
 import { statistiquesPrefetService } from '../services/statistiquesPrefet.service.js';
+import download from 'downloadjs';
 import dayjs from 'dayjs';
 
 export const statistiquesPrefetActions = {
-  getStatsCra,
-  getStatsAdmin,
   changeDateStatsDebut,
   changeDateStatsFin,
   changeCodePostalStats,
-  getTerritoire,
-  getStatsTerritoires,
-  getStatsCraTerritoire,
-  getStatsCraNationale,
-  exportDonneesTerritoire,
-  resetExportDonneesTerritoire,
-  getCodesPostauxCrasConseiller,
   updateListeAutresReorientations,
+  getCodesPostauxCrasConseillerStructure,
   getStatsCraStructure,
-  getCodesPostauxCrasConseillerStructure
+  getStatistiquesCSV,
+  getStatistiquesPDF,
+  resetStatistiquesPDFFile
 };
 
 const formatDate = date => {
   return dayjs(date).format('YYYY-MM-DD');
 };
 
-function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null) {
-  return dispatch => {
-    dispatch(request(dateDebut, dateFin, idUser, codePostal));
+const removeCodePrefix = type =>
+  type.startsWith('code') ? type.substring('code'.length) : type;
 
-    statistiquesPrefetService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal)
-    .then(
-      statsCra => {
-        dispatch(success(statsCra));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
+const statistiquesAdminFileName = (dateDebut, dateFin, type, idType, codePostal) =>
+  // eslint-disable-next-line max-len
+  `Statistiques_${removeCodePrefix(type)}${codePostal ? `_${codePostal}` : ''}${idType ? `_${idType}` : ''}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
-  function request(dateDebut, dateFin, idUser, codePostal) {
-    return { type: 'GET_STATS_CRA_REQUEST', dateDebut, dateFin, idUser, codePostal };
-  }
-  function success(statsCra) {
-    return { type: 'GET_STATS_CRA_SUCCESS', statsCra };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_CRA_FAILURE', error };
-  }
-}
 
 function changeDateStatsDebut(dateDebut) {
   return { type: 'CHANGE_DATE_DEBUT_STATS', dateDebut };
@@ -61,207 +38,8 @@ function changeCodePostalStats(codePostal) {
   return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal };
 }
 
-function getStatsAdmin() {
-  return dispatch => {
-    dispatch(request());
-
-    statistiquesPrefetService.getStatsAdmin()
-    .then(
-      statsAdmin => {
-        dispatch(success(statsAdmin));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_STATS_ADMIN_REQUEST' };
-  }
-  function success(statsAdmin) {
-    return { type: 'GET_STATS_ADMIN_SUCCESS', statsAdmin };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_ADMIN_FAILURE', error };
-  }
-}
-
-function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
-  return dispatch => {
-    dispatch(request());
-    statistiquesPrefetService.getStatsTerritoires(territoire, formatDate(dateDebut), formatDate(dateFin), page, nomOrdre, ordre)
-    .then(
-      statsTerritoires => {
-        dispatch(success(statsTerritoires));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_STATS_TERRITOIRES_REQUEST' };
-  }
-  function success(statsTerritoires) {
-    return { type: 'GET_STATS_TERRITOIRES_SUCCESS', statsTerritoires };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_TERRITOIRES_FAILURE', error };
-  }
-}
-
-function getTerritoire(typeTerritoire, idTerritoire, date) {
-  return dispatch => {
-    dispatch(request());
-
-    statistiquesPrefetService.getTerritoire(typeTerritoire, idTerritoire, date)
-    .then(
-      territoire => dispatch(success(territoire)),
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_TERRITOIRE_REQUEST' };
-  }
-  function success(territoire) {
-    return { type: 'GET_TERRITOIRE_SUCCESS', territoire };
-  }
-  function failure(error) {
-    return { type: 'GET_TERRITOIRE_FAILURE', error };
-  }
-}
-
-function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, conseillerIds) {
-  return dispatch => {
-    dispatch(request());
-
-    statistiquesPrefetService.getStatsCraTerritoire(formatDate(dateDebutStats), formatDate(dateFinStats), typeTerritoire, conseillerIds)
-    .then(
-      statsTerritoire => {
-        dispatch(success(statsTerritoire));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_STATS_CRA_TERRITOIRE_REQUEST' };
-  }
-  function success(statsTerritoire) {
-    return { type: 'GET_STATS_CRA_TERRITOIRE_SUCCESS', statsTerritoire };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_CRA_TERRITOIRE_FAILURE', error };
-  }
-}
-
-function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal = null) {
-  return dispatch => {
-    dispatch(request());
-    statistiquesPrefetService.getStatsCraStructure(formatDate(dateDebut), formatDate(dateFin), idStructure, codePostal)
-    .then(
-      statsStructure => {
-        dispatch(success(statsStructure));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_STATS_CRA_STRUCTURE_REQUEST' };
-  }
-  function success(statsStructure) {
-    return { type: 'GET_STATS_CRA_STRUCTURE_SUCCESS', statsStructure };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_CRA_STRUCTURE_FAILURE', error };
-  }
-}
-
-function getStatsCraNationale(dateDebutStats, dateFinStats) {
-  return dispatch => {
-    dispatch(request());
-
-    statistiquesPrefetService.getStatsCraNationale(formatDate(dateDebutStats), formatDate(dateFinStats))
-    .then(
-      statsNationales => {
-        dispatch(success(statsNationales));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_STATS_CRA_NATIONALES_REQUEST' };
-  }
-  function success(statsNationales) {
-    return { type: 'GET_STATS_CRA_NATIONALES_SUCCESS', statsNationales };
-  }
-  function failure(error) {
-    return { type: 'GET_STATS_CRA_NATIONALES_FAILURE', error };
-  }
-}
-
-function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin, nomOrdre = 'code', ordre = 1) {
-  return async dispatch => {
-    dispatch(request());
-
-    await statistiquesPrefetService.getExportDonneesTerritoire(territoire, formatDate(dateDebut), formatDate(dateFin), nomOrdre, ordre)
-    .then(exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)))
-    .catch(exportTerritoireFileError => dispatch(failure(exportTerritoireFileError)));
-  };
-
-  function request() {
-    return { type: 'GET_EXPORT_TERRITOIRE_REQUEST' };
-  }
-  function success(exportTerritoireFileBlob) {
-    return { type: 'GET_EXPORT_TERRITOIRE_SUCCESS', exportTerritoireFileBlob };
-  }
-  function failure(exportTerritoireFileError) {
-    return { type: 'GET_EXPORT_TERRITOIRE_FAILURE', exportTerritoireFileError };
-  }
-}
-
-function resetExportDonneesTerritoire() {
-  return { type: 'EXPORT_TERRITOIRE_RESET' };
-}
-
-function getCodesPostauxCrasConseiller() {
-
-  return dispatch => {
-    dispatch(request());
-
-    statistiquesPrefetService.getCodesPostauxCrasConseiller()
-    .then(
-      listeCodesPostaux => {
-        dispatch(success(listeCodesPostaux));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'GET_CODES_POSTAUX_CRA_REQUEST' };
-  }
-  function success(listeCodesPostaux) {
-    return { type: 'GET_CODES_POSTAUX_CRA_SUCCESS', listeCodesPostaux };
-  }
-  function failure(error) {
-    return { type: 'GET_CODES_POSTAUX_CRA_FAILURE', error };
-  }
+function updateListeAutresReorientations(listeAutresReorientations) {
+  return { type: 'UPDATE_AUTRES_REORIENTATIONS', listeAutresReorientations };
 }
 
 function getCodesPostauxCrasConseillerStructure(idStructure) {
@@ -291,6 +69,74 @@ function getCodesPostauxCrasConseillerStructure(idStructure) {
   }
 }
 
-function updateListeAutresReorientations(listeAutresReorientations) {
-  return { type: 'UPDATE_AUTRES_REORIENTATIONS', listeAutresReorientations };
+function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal = null) {
+  return dispatch => {
+    dispatch(request());
+    statistiquesPrefetService.getStatsCraStructure(formatDate(dateDebut), formatDate(dateFin), idStructure, codePostal)
+    .then(
+      statsStructure => {
+        dispatch(success(statsStructure));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_CRA_STRUCTURE_REQUEST' };
+  }
+  function success(statsStructure) {
+    return { type: 'GET_STATS_CRA_STRUCTURE_SUCCESS', statsStructure };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CRA_STRUCTURE_FAILURE', error };
+  }
+}
+
+function getStatistiquesCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
+  return dispatch => {
+    dispatch(request());
+    statistiquesPrefetService.getStatistiquesCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal)
+    .then(
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType, codePostal)}.csv`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_CSV_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_CSV_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CSV_FAILURE', error };
+  }
+}
+
+function getStatistiquesPDF(dateDebut, dateFin, type, idType, codePostal) {
+  return dispatch => {
+    dispatch(request());
+    statistiquesPrefetService.getStatistiquesPDF(dateDebut, dateFin, type, idType, codePostal)
+    .then(
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, codePostal)}.pdf`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_PDF_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_PDF_SUCCESS', data, download };
+  }
+  function failure(error) {
+
+    return { type: 'GET_STATS_PDF_FAILURE', error };
+  }
+}
+
+function resetStatistiquesPDFFile() {
+  return { type: 'RESET_FILE' };
 }

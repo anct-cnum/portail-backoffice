@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { userRoles } from '../../../../helpers';
 
-import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
+import labelsCorrespondance from '../../../../../data/labelsCorrespondance.json';
 
-function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutres }) {
+function ElementHighcharts({ donneesStats, variablesGraphique, listeAutres }) {
 
   const isReoriente = variablesGraphique.titre.optionTitre === 'Usager.ères réorienté.es';
   const { typeGraphique, largeurGraphique, hauteurGraphique,
@@ -42,11 +41,11 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     const type = typeGraphique === 'stacked' ? 'bar' : typeGraphique;
 
     let chart = {
-      width: print ? 700 : largeurGraphique,
+      width: 700,
       height: hauteurGraphique,
       marginLeft: margeGaucheGraphique,
       marginRight: margeDroiteGraphique,
-      backgroundColor: print ? '#fff' : '#1e1e1e',
+      backgroundColor: '#fff',
       spacing: [0, 0, 0, 0],
 
       style: {
@@ -77,7 +76,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       width: 300,
       align: 'left',
       style: {
-        color: print ? '#1e1e1e' : '#fff',
+        color: '#1e1e1e',
         fontSize: '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
@@ -104,7 +103,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
           data: [element.valeur],
           color: couleursGraphique[i],
-          borderColor: print ? '#fff' : '#1e1e1e',
+          borderColor: '#fff',
           borderWidth: 1,
         });
       } else if (typeGraphique === 'pie') {
@@ -134,7 +133,6 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     });
 
     if (typeGraphique === 'stacked') {
-
       if (valeurs[0].data[0] >= 8 && valeurs[valeurs.length - 1].data[0] >= 8) {
         valeurs[0].borderRadiusTopLeft = '100%';
         valeurs[0].borderRadiusTopRight = '100%';
@@ -146,9 +144,9 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       donnees = [{
         name: 'Accompagnements par mois',
         type: 'column',
-        yAxis: 1,
         data: valeurs,
         color: '#169b62',
+        yAxis: 1,
       }, {
         name: 'Accompagnements cumul&eacute;s',
         data: valeursCumul,
@@ -183,7 +181,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
       case 'pie':
         if (isReoriente) {
-          const x = print ? -100 : -165;
+          const x = -100;
           legende = {
             title: optionResponsive ? {} : {
               text: '<span>Lieux</span>',
@@ -191,7 +189,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
                 fontFamily: 'Marianne',
                 fontWeight: 'bold',
                 fontSize: '16px',
-                color: print ? '#1e1e1e' : '#fff',
+                color: '#1e1e1e',
               }
             },
             itemMarginBottom: 5,
@@ -203,12 +201,12 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             width: optionResponsive ? '100%' : '30%',
             maxHeight: '450px',
             itemStyle: {
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e',
               fontWeight: 400,
               lineHeight: '20px',
             },
             itemHoverStyle: {
-              color: print ? '#1e1e1e' : '#fff'
+              color: '#1e1e1e'
             },
           };
         } else {
@@ -217,15 +215,15 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             itemMarginBottom: 5,
             align: 'left',
             x: -10,
-            y: 0,
-            width: '100%',
+            y: 10,
+            width: '460px',
             itemStyle: {
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e',
               fontWeight: 400,
               lineHeight: '20px'
             },
             itemHoverStyle: {
-              color: print ? '#1e1e1e' : '#fff'
+              color: '#1e1e1e'
             },
           };
         }
@@ -244,13 +242,16 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
         legende = {
           symbolPadding: 12,
           itemMarginBottom: 5,
+          x: -10,
+          y: 10,
+          width: '360px',
           align: 'left',
           itemStyle: {
-            color: print ? '#1e1e1e' : '#fff',
+            color: '#1e1e1e',
             fontWeight: 400,
           },
           itemHoverStyle: {
-            color: print ? '#1e1e1e' : '#fff'
+            color: '#1e1e1e'
           },
         };
 
@@ -265,11 +266,12 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           x: -10,
           y: -60,
           itemMarginBottom: 5,
+          width: '460px',
           itemStyle: {
-            color: print ? '#1e1e1e' : '#fff',
+            color: '#1e1e1e'
           },
           itemHoverStyle: {
-            color: print ? '#1e1e1e' : '#fff'
+            color: '#1e1e1e'
           },
           navigation: {
             enabled: false,
@@ -305,22 +307,19 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     switch (typeGraphique) {
 
       case 'bar':
-
         axeY = {
           title: {
             text: null
           },
           gridLineWidth: 0,
-          labels: '',
-          fontSize: '12px',
+          labels: {
+            enabled: false
+          }
         };
-
         break;
 
       case 'pie':
-
         axeY = null;
-
         break;
 
       case 'column':
@@ -329,7 +328,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             text: null
           },
           tickWidth: 1,
-          tickColor: print ? '#1e1e1e' : '#fff',
+          tickColor: '#1e1e1e',
           gridLineWidth: 0,
 
           labels: {
@@ -338,7 +337,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             format: '{value}',
             style: {
               fontSize: '12px',
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e',
             }
           }
         };
@@ -411,7 +410,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             x: -8,
             format: '{value}',
             style: {
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e',
               fontSize: '12px',
             }
           },
@@ -446,7 +445,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             format: '<b>{value}</b>',
             style: {
               fontSize: '12px',
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e'
             }
           },
         };
@@ -460,7 +459,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           lineWidth: 0,
           labels: {
             style: {
-              color: print ? '#1e1e1e' : '#fff',
+              color: '#1e1e1e',
               fontSize: '12px'
             }
           }
@@ -492,7 +491,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
         optionsTrace.bar = {
           borderRadius: 6,
           borderWidth: 2,
-          borderColor: print ? '#fff' : '#1e1e1e',
+          borderColor: '#fff',
           pointWidth: 12,
           pointPadding: 25,
           series: {
@@ -530,7 +529,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           cursor: 'pointer',
           size: isReoriente && !optionResponsive ? 382 : 162,
           dataLabels: {
-            format: userRoles()?.includes('admin_coop') || isReoriente ? '{point.y}%' : '{point.y}',
+            format: '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {
@@ -710,7 +709,6 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 ElementHighcharts.propTypes = {
   donneesStats: PropTypes.array,
   variablesGraphique: PropTypes.object,
-  print: PropTypes.bool,
   listeAutres: PropTypes.array,
 };
 

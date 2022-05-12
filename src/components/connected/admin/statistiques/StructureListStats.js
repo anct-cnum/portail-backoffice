@@ -14,9 +14,10 @@ function StructureListStats({ structure, currentPage }) {
       <td>
         <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
           to={{
-            pathname: `/admin/structure/statistiques/${structure._id}`,
+            pathname: `/admin/structure/statistiques/${structure?._id}`,
             currentPage: currentPage,
-            origin: `/admin/statistiques`
+            origin: `/admin/statistiques`,
+            idStructure: structure?._id,
           }}>
             Statistiques
         </Link>

@@ -8,8 +8,8 @@ import fr from 'date-fns/locale/fr';
 registerLocale('fr', fr);
 function ElementDatePicker(props) {
 
-  let dateDebut = useSelector(state => state.statistique?.dateDebutStats);
-  let dateFin = useSelector(state => state.statistique?.dateFinStats);
+  let dateDebut = useSelector(state => state.statistiquesPrefet?.dateDebutStats);
+  let dateFin = useSelector(state => state.statistiquesPrefet?.dateFinStats);
 
   const dispatch = useDispatch();
   const setDate = date => {
