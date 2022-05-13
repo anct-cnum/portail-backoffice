@@ -8,6 +8,7 @@ export const statistiquesPrefetActions = {
   changeCodePostalStats,
   updateListeAutresReorientations,
   getCodesPostauxCrasConseillerStructure,
+  getStatsStructures,
   getStatsCraStructure,
   getStatistiquesCSV,
   getStatistiquesPDF,
@@ -43,7 +44,6 @@ function updateListeAutresReorientations(listeAutresReorientations) {
 }
 
 function getCodesPostauxCrasConseillerStructure(idStructure) {
-
   return dispatch => {
     dispatch(request());
 
@@ -66,6 +66,31 @@ function getCodesPostauxCrasConseillerStructure(idStructure) {
   }
   function failure(error) {
     return { type: 'GET_CODES_POSTAUX_CRA_FAILURE', error };
+  }
+}
+
+function getStatsStructures(dateDebut, dateFin, page) {
+  return dispatch => {
+    dispatch(request());
+    statistiquesPrefetService.getStatsStructures(formatDate(dateDebut), formatDate(dateFin), page)
+    .then(
+      statsStructures => {
+        dispatch(success(statsStructures));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_STRUCTURES_REQUEST' };
+  }
+  function success(statsStructure) {
+    return { type: 'GET_STATS_STRUCTURES_SUCCESS', statsStructure };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_STRUCTURES_FAILURE', error };
   }
 }
 

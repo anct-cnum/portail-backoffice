@@ -2,19 +2,28 @@ import { authHeader, history, userEntityId } from '../helpers';
 import { userService } from './user.service';
 
 export const statistiquesPrefetService = {
-  getStatsCra,
-  getStatsAdmin,
-  getTerritoire,
-  getStatsTerritoires,
-  getStatsCraTerritoire,
+  getStatsStructures,
   getStatsCraNationale,
-  getExportDonneesTerritoire,
+  getExportDonneesStructure,
   getCodesPostauxCrasConseiller,
   getStatsCraStructure,
   getCodesPostauxCrasConseillerStructure,
   getStatistiquesPDF,
   getStatistiquesCSV
 };
+
+function getStatsStructures(dateDebut, dateFin, page) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(
+    `${apiUrlRoot}/stats/prefet/structures?dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}`,
+    requestOptions
+  ).then(handleResponse);
+}
 
 function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
   if (nomOrdre === 'code') {
@@ -29,64 +38,6 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
   return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
 }
 
-function getStatsCra(dateDebut, dateFin, idUser, codePostal) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader(),
-  };
-
-  const idConseiller = idUser ?? userEntityId();
-
-  return fetch(`${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}`,
-    requestOptions).then(handleResponse);
-}
-
-function getStatsAdmin() {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' })
-  };
-
-  return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
-}
-
-function getTerritoire(typeTerritoire, idTerritoire, date) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-  };
-  return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoire?typeTerritoire=${typeTerritoire}&idTerritoire=${idTerritoire}&dateFin=${date}`,
-    requestOptions
-  ).then(handleResponse);
-}
-
-function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-  };
-
-  return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
-    requestOptions
-  ).then(handleResponse);
-}
-
-function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-  const requestOptions = {
-    method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-  };
-  conseillerIds = JSON.stringify(conseillerIds);
-  return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
-    requestOptions).then(handleResponse);
-}
 
 function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal) {
   const apiUrlRoot = process.env.REACT_APP_API;
@@ -109,7 +60,7 @@ function getStatsCraNationale(dateDebut, dateFin) {
     requestOptions).then(handleResponse);
 }
 
-async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre) {
+async function getExportDonneesStructure(territoire, dateDebut, dateFin, nomOrdre, ordre) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(
@@ -120,7 +71,7 @@ async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrd
   };
 
   const apiUrlRoot = process.env.REACT_APP_API;
-  const exportTerritoiresRoute = '/exports/territoires.csv/';
+  const exportTerritoiresRoute = '/exports/structures.csv/';
 
   return handleFileResponse(
     await fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`, requestOptions)

@@ -26,14 +26,12 @@ function StatistiquesStructure() {
 
   const codePostalStats = useSelector(state => state.statistiquesPrefet?.codePostalStats);
   const donneesStatistiques = useSelector(state => state.statistiquesPrefet?.statsData);
-  const dateDebutStats = useSelector(state => state.statistiquesPrefet?.dateDebutStats);
-  const dateFinStats = useSelector(state => state.statistiquesPrefet?.dateFinStats);
+  const dateFinStats = useSelector(state => state.filterDate?.filterDateEnd);
+  const dateDebutStats = useSelector(state => state.filterDate?.filterDateStart);
   const structure = useSelector(state => state.structure?.structure);
 
   useEffect(() => {
-    if (structure === undefined) {
-      dispatch(structureActions.get(id));
-    }
+    dispatch(structureActions.get(id));
   }, []);
 
   useEffect(() => {
@@ -83,7 +81,7 @@ function StatistiquesStructure() {
             }
 
             <div className="fr-mt-2w"></div>
-            <h3 className="title">Statistiques</h3>
+            <h3 className="title">Statistiques {structure?.nom}</h3>
             <div className="fr-mb-5w fr-mt-md-4w"></div>
           </div>
         </div>

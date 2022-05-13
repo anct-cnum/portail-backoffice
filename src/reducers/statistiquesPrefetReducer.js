@@ -40,6 +40,24 @@ export default function statistiquesPrefet(state = initialState, action) {
         codesPostauxLoading: false,
         codesPostauxError: true,
       };
+    case 'GET_STATS_STRUCTURES_REQUEST':
+      return {
+        ...state,
+        statistiquesStructuresLoading: true,
+        statistiquesStructuresError: false,
+      };
+    case 'GET_STATS_STRUCTURES_SUCCESS':
+      return {
+        ...state,
+        statistiquesStructures: action.statsStructure,
+        statistiquesStructuresLoading: false,
+      };
+    case 'GET_STATS_STRUCTURES_FAILURE':
+      return {
+        ...state,
+        statistiquesStructuresError: action.error,
+        statistiquesStructuresLoading: false,
+      };
     case 'GET_STATS_CRA_STRUCTURE_REQUEST':
       return {
         ...state,
