@@ -106,11 +106,11 @@ function Menu() {
             </li>
 
             { role === 'prefet' &&
-            <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/formation') ? 'fr-sidemenu__item--active' : ''}`}>
-              <Link className="fr-sidemenu__link" to="/admin/formation">
-                Inscription en formation
-              </Link>
-            </li>
+              <li className={`fr-sidemenu__item ${location.pathname.startsWith('/admin/formation') ? 'fr-sidemenu__item--active' : ''}`}>
+                <Link className="fr-sidemenu__link" to="/admin/formation">
+                  Inscription en formation
+                </Link>
+              </li>
             }
 
           </ul>

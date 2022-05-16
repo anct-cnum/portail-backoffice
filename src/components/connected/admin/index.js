@@ -23,6 +23,7 @@ import Statistiques from './statistiques/Statistiques';
 import StatistiquesStructure from './statistiques/StatistiquesStructure';
 import InvitationPrefet from './InvitationPrefet';
 import InscriptionFormation from '../../common/InscriptionFormation';
+import Certifications from '../../common/Certifications';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -192,6 +193,7 @@ function Admin() {
               <Route path={`/admin/formation`} component={InscriptionFormation} />
               <Route path={`/admin/structure/statistiques/:id`} component={StatistiquesStructure} />
               <Route path={`/admin/statistiques`} component={Statistiques} />
+              <Route path={`/admin/certifications`} component={Certifications} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             </>
             }

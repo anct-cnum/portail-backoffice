@@ -4,6 +4,7 @@ function InscriptionFormation() {
 
   const url = process.env.REACT_APP_FRANCE_COMPETENCES_HOSTNAME;
   const urlPix = process.env.REACT_APP_PIX_CERTIFIER_HOSTNAME;
+  const urlAide = process.env.REACT_APP_AIDE_HOSTNAME;
 
   return (
     <div className="formation">
@@ -46,9 +47,14 @@ function InscriptionFormation() {
           avec les besoins des usagers de leur structure d&rsquo;accueil. C&rsquo;est pourquoi il ne s&rsquo;agit pas simplement de
           proposer une formation &agrave; l&rsquo;accompagnement aux d&eacute;marches administratives, mais d&rsquo;offrir la possibilit&eacute;
           de &laquo;&nbsp;faire avec&nbsp;&raquo; et non de faire &laquo;&nbsp;&agrave; la place&nbsp;&raquo; de l&rsquo;usager.
-          Le cadre du plan France Relance permet de proposer une mesure de formation durable dans l&rsquo;int&eacute;r&ecirc;t de l&rsquo;employeur comme
-          du candidat qui en b&eacute;n&eacute;ficiera pour sa vie professionnelle future. Pour cette raison, l&rsquo;assiduit&eacute; en
-          formation est une obligation des Conseillers num&eacute;riques France Services et la structure d&rsquo;accueil est tenue de favoriser
+          Le cadre du plan France Relance permet de proposer une mesure de formation permettant aux Conseillers num&eacute;riques de monter en
+          comp&eacute;tences et de pr&eacute;parer une insertion durable dans le secteur professionnel de la m&eacute;diation num&eacute;rique.
+          Pour les structures d&rsquo;accueil, l&rsquo;obtention des deux certifications par les Conseillers num&eacute;riques est un gage de qualit&eacute;
+          pour leurs futures interventions aupr&egrave;s des usagers et participe &agrave; l&rsquo;essor de leurs projets en mati&egrave;re de lutte contre
+          l&rsquo;exclusion num&eacute;rique. Pour cette raison,&nbsp;
+            <a href={urlAide + '/article/la-presence-en-formation-est-elle-obligatoire-1db4moy/?bust=1649067275166'} target="blank" rel="noreferrer">
+              l&rsquo;assiduit&eacute; en formation
+            </a> est une obligation des Conseillers num&eacute;riques France Services et la structure d&rsquo;accueil est tenue de favoriser
           cette obligation. Le non-respect de cet engagement inscrit dans l&rsquo;appel &agrave; manifestation d&rsquo;int&eacute;r&ecirc;t
           constitue un motif de remise en cause de la subvention vers&eacute;e &agrave; la structure.
           </p>
@@ -64,7 +70,11 @@ function InscriptionFormation() {
                 </a>.&nbsp;
                 <em>
                   N.B.&nbsp;: un Conseiller d&eacute;j&agrave; titulaire du CCP1 ou du titre professionnel lors de son recrutement peut
-                  &ecirc;tre exempt&eacute; de formation initiale.
+                  &ecirc;tre&nbsp;
+                  <a href={urlAide + '/article/un-conseiller-numerique-peut-il-etre-dispense-de-la-formation-initiale-obligatoire-ywgzld/'}
+                    target="blank" rel="noreferrer" >
+                    exempt&eacute;
+                  </a> de formation initiale.
                 </em>
               </li>
               <li>
@@ -76,7 +86,7 @@ function InscriptionFormation() {
           <p>
             L&rsquo;&eacute;chec &agrave; l&rsquo;un ou l&rsquo;autre de ces examens ne remet pas en cause ni le contrat de travail, ni la convention de
             subvention. En ce cas, la structure d’accueil est invit&eacute;e &agrave; accompagner le salari&eacute; &agrave; une nouvelle pr&eacute;sentation
-            de l’examen. En revanche, la pr&eacute;sentation aux deux examens constitue une obligation pour chaque Conseiller num&eacute;rique
+            de l&rsquo;examen. En revanche, la pr&eacute;sentation aux deux examens constitue une obligation pour chaque Conseiller num&eacute;rique
             France Services et pour sa structure d&rsquo;accueil employeur.
           </p>
         </div>
@@ -100,7 +110,7 @@ function InscriptionFormation() {
             </li>
             <li>
               <p>
-                <em>3 semaines avant la date de signature du contrat de travail&nbsp;:</em>
+                <em>Apr&egrave;s sa s&eacute;lection en Comit&eacute; national de s&eacute;lection:</em>
               </p>
               <p>
                 Votre structure d&rsquo;accueil inscrit le Conseiller num&eacute;rique recrut&eacute; aupr&egrave;s de l&rsquo;organisme de
@@ -128,15 +138,18 @@ function InscriptionFormation() {
               <br/>
             </li>
             <li>
-              <p><em>Apr&egrave;s la signature du contrat de travail et sous un d&eacute;lai maximum de 15 jours&nbsp;: d&eacute;part en formation</em></p>
+              <p><em>Apr&egrave;s la signature du contrat de travail : d&eacute;part en formation</em></p>
             </li>
             <li>
               <p>
                 <em>Dans un d&eacute;lai maximum de 6 mois &agrave; compter de la date de sortie de formation&nbsp;:</em>
               </p>
               <p>
-                Pr&eacute;sentation du candidat &agrave; la certification par son organisme de formation : examen PIX et examen jury du 1er certificat
-                de comp&eacute;tences professionnelles du titre professionnel REMN.
+                Pr&eacute;sentation du candidat, par son organisme de formation, <a target="blank" rel="noreferrer"
+                  href={ urlAide + '/article/quelles-sont-les-deux-certifications-visees-par-la-formation-comment-se-passe-les-examens-1fh1gis/'}>
+                    &agrave; la certification PIX et &agrave; l&rsquo;examen du 1er certificat de comp&eacute;tences professionnelles du titre
+                    professionnel REMN
+                </a>
               </p>
             </li>
           </ul>
@@ -152,7 +165,7 @@ function InscriptionFormation() {
           </p>
           <p>
             La formation est organis&eacute;e prioritairement en pr&eacute;sentiel ; en cas d&rsquo;impossibilit&eacute; de suivre une
-            formation en pr&eacute;sentiel, la formation &agrave; distance peut vous &ecirc;tre propos&eacute;e.
+            formation en pr&eacute;sentiel, la formation &agrave; distance vous sera propos&eacute;e.
           </p>
           <span>
             <b>Nous vous invitons &agrave; inscrire d&egrave;s que possible le Conseiller num&eacute;rique directement aupr&egrave;s de
@@ -165,7 +178,7 @@ function InscriptionFormation() {
             </li>
             <li>
               En r&eacute;gion Hauts-de-France, Normandie et Grand-Est&nbsp;: Les Assembleurs
-              (Faustine Faure&nbsp;-&nbsp;<a href="mailto:faustine@pop.eu.com">faustine@pop.eu.com</a>)
+              (Jules Deregnaucourt&nbsp;-&nbsp;<a href="mailto:jules@pop.eu.com">jules@pop.eu.com</a>)
             </li>
             <li>
               En r&eacute;gion PACA, Occitanie, Corse, Nouvelle-Aquitaine, Pays-de-la-Loire, Bretagne et dans les d&eacute;partements d&rsquo;outre-mer
