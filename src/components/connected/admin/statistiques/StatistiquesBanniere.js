@@ -6,8 +6,8 @@ import { statistiquesPrefetActions } from '../../../../actions';
 function StatistiquesBanniere({ dateDebut, dateFin, idStructure, codePostal = null }) {
 
   const dispatch = useDispatch();
-  const downloadError = useSelector(state => state.conseiller?.downloadError);
-  const blob = useSelector(state => state.conseiller?.blob);
+  const errorPDF = useSelector(state => state.statistiquesPrefet?.errorPDF);
+  const blob = useSelector(state => state.statistiquesPrefet?.blob);
 
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -22,10 +22,10 @@ function StatistiquesBanniere({ dateDebut, dateFin, idStructure, codePostal = nu
   }
 
   useEffect(() => {
-    if (blob !== null && blob !== undefined && (downloadError === undefined || downloadError === false)) {
+    if (blob !== null && blob !== undefined && (errorPDF === undefined || errorPDF === false)) {
       dispatch(statistiquesPrefetActions.resetStatistiquesPDFFile());
     }
-  }, [blob, downloadError]);
+  }, [blob, errorPDF]);
 
   return (
     <>

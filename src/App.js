@@ -16,10 +16,13 @@ function App() {
 
   const exports = useSelector(state => state.exports);
   const downloading = useSelector(state => state?.conseiller?.downloading);
+  let statsDataLoading = useSelector(state => state.statistiquesPrefet?.statsDataLoading);
+  let pdfLoading = useSelector(state => state.statistiquesPrefet?.loadingPDF);
+  let loadingCSV = useSelector(state => state.statistiquesPrefet?.loadingCSV);
 
   return (
     <div className="App">
-      { (exports?.loading === true || downloading === true) &&
+      { (exports?.loading === true || downloading === true || statsDataLoading === true || pdfLoading === true || loadingCSV === true) &&
       <div className="wrapperModal"></div>
       }
       <Router history={history}>

@@ -17,12 +17,12 @@ function StatistiquesStructure() {
   const dispatch = useDispatch();
   let { id } = useParams();
 
-  const statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
-  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
-  const errorCSV = useSelector(state => state.conseiller?.errorCSV);
-  const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
-  const errorPDF = useSelector(state => state.conseiller?.errorPDF);
-  const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
+  const statsDataLoading = useSelector(state => state.statistiquesPrefet?.statsDataLoading);
+  const loadingCSV = useSelector(state => state.statistiquesPrefet?.loadingCSV);
+  const errorCSV = useSelector(state => state.statistiquesPrefet?.errorCSV);
+  const loadingPDF = useSelector(state => state.statistiquesPrefet?.loadingPDF);
+  const errorPDF = useSelector(state => state.statistiquesPrefet?.errorPDF);
+  const isPDFDownloaded = useSelector(state => state.statistiquesPrefet?.statistiquesPDF);
 
   const codePostalStats = useSelector(state => state.statistiquesPrefet?.codePostalStats);
   const donneesStatistiques = useSelector(state => state.statistiquesPrefet?.statsData);
