@@ -11,3 +11,4 @@ export * from './pagination.actions';
 export * from './exports.actions';
 export * from './sondage.actions';
 export * from './pilotage.actions';
+export * from './statistiquesPrefet.actions';

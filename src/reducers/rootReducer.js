@@ -6,6 +6,7 @@ import conseillerReducer from './conseillerReducer';
 import structureReducer from './structureReducer';
 import structuresReducer from './structuresReducer';
 import statsReducer from './statsReducer';
+import statistiquesPrefetReducer from './statistiquesPrefetReducer';
 import dashboardStatsReducer from './dashboardStatsReducer';
 import filtersAndSorts from './filtersAndSortsReducer';
 import menu from './menuReducer';
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   sondages: sondagesReducer,
   user: userReducer,
   pilotage: pilotageReducer,
+  statistiquesPrefet: statistiquesPrefetReducer,
 });
 
 export default rootReducer;
