@@ -46,7 +46,7 @@ function getStatistiquesPDF(dateDebut, dateFin, type, idType, codePostal) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    headers: authHeader()
   };
 
   // eslint-disable-next-line max-len
