@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-import 'moment/locale/fr';
+import dayjs from 'dayjs';
 import ElementHighcharts from './Components/ElementHighcharts';
 import { sortByMonthAndYear } from '../../../../utils/functionsSort';
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import { statistiquesPrefetActions } from '../../../../actions';
+require('dayjs/locale/fr');
 
 function BottomPage({ donneesStats }) {
 
   const dispatch = useDispatch();
-
   const listeAutres = useSelector(states => states.statistique?.listeAutresReorientations);
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
@@ -41,7 +40,7 @@ function BottomPage({ donneesStats }) {
   let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
     let statsEvolutionsMapped2 = moisListe.map(mois => {
-      mois.nom = moment().month(`${mois.mois}`).format('MMMM');
+      mois.nom = dayjs().locale('fr').month(`${mois.mois}`).format('MMMM');
       mois.nom = mois.nom?.concat(' ', annee);
       mois.annee = annee;
       mois.valeur = mois.totalCras;
@@ -61,7 +60,7 @@ function BottomPage({ donneesStats }) {
   monthToPrint[0].forEach((value, index) => {
     if (statsEvolutionsFiltered.some(mois => mois.mois === value) === false) {
       let annee = monthToPrint[1][index];
-      let nom = moment().month(`${value}`).format('MMMM');
+      let nom = dayjs().locale('fr').month(`${value}`).format('MMMM');
       nom = nom?.concat(' ', annee);
       statsEvolutionsFiltered.push({ 'mois': value, 'valeur': 0, 'annee': annee.toString(), 'nom': nom });
     }
