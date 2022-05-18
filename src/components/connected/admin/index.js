@@ -19,6 +19,8 @@ import FilterDateBox from '../../common/FilterDateBox';
 import MonCompte from './MonCompte';
 import EtatRecrutements from './EtatRecrutements';
 import FlashMessage from 'react-flash-message';
+import Statistiques from './statistiques/Statistiques';
+import StatistiquesStructure from './statistiques/StatistiquesStructure';
 import InvitationPrefet from './InvitationPrefet';
 import InscriptionFormation from '../../common/InscriptionFormation';
 import Certifications from '../../common/Certifications';
@@ -189,6 +191,8 @@ function Admin() {
             <>
               <Route path={`/admin/suivi-de-pilotage`} component={PilotageTerritoires} />
               <Route path={`/admin/formation`} component={InscriptionFormation} />
+              <Route path={`/admin/structure/statistiques/:id`} component={StatistiquesStructure} />
+              <Route path={`/admin/statistiques`} component={Statistiques} />
               <Route path={`/admin/certifications`} component={Certifications} />
               <Route exact path="/" render={() => (<Redirect to="/structures" />)} />
             </>
