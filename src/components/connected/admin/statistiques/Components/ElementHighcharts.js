@@ -181,7 +181,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, listeAutres }) {
 
       case 'pie':
         if (isReoriente) {
-          const x = -100;
+          const x = -17;
           legende = {
             title: optionResponsive ? {} : {
               text: '<span>Lieux</span>',
@@ -692,7 +692,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, listeAutres }) {
   return (
     <>
       <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
-      {listeAutres &&
+      {listeAutres?.length > 0 &&
         <div className="lieux-autres">
           <div className="fr-mt-list">Autres <span>(écrits manuellement)</span></div>
           <ul>
