@@ -180,7 +180,7 @@ function ConseillerDetails({ location }) {
               {conseiller?.estRecrute &&
                 <>
                   <p>Recruté(e) par&nbsp;:&nbsp; {nomStructure}</p>
-                  <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.emailCN?.address ? 'OUI' : 'NON'}</p>
+                  <p>Espace Coop créé&nbsp;:&nbsp;{conseiller?.mattermost?.id ? 'OUI' : 'NON'}</p>
                   <p>
                     Date d&rsquo;entrée en formation&nbsp;:&nbsp;
                     {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}

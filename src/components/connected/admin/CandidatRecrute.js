@@ -13,7 +13,7 @@ function CandidatRecrute({ candidat, currentPage }) {
       <td>{candidat?.email}</td>
       <td>{candidat?.datePrisePoste ? dayjs(candidat?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}</td>
       <td>{candidat?.dateFinFormation ? dayjs(candidat?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}</td>
-      <td>{ <span>{candidat?.emailCN ? 'OUI' : 'NON'}</span> }</td>
+      <td>{ <span>{candidat?.mattermost?.id ? 'OUI' : 'NON'}</span> }</td>
       <td>
         <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
           pathname: `/candidat/${candidat?._id}`,
