@@ -207,6 +207,9 @@ function ConseillerDetails({ location }) {
                 }
               </p>
               <p>Situation professionnelle : {conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
+              {(!conseiller?.estRecrute && role === 'admin') &&
+                <p>Posséde un compte candidat : {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
+              }
               <p>Diplômé : {conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.estDiplomeMedNum &&
                 <p>Nom du diplôme : {conseiller?.nomDiplomeMedNum}</p>
