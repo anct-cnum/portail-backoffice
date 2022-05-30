@@ -207,9 +207,6 @@ function ConseillerDetails({ location }) {
                 }
               </p>
               <p>Situation professionnelle : {conseiller?.estEnEmploi ? 'en emploi' : 'sans emploi'}</p>
-              {(!conseiller?.estRecrute && role === 'admin') &&
-                <p>Posséde un compte candidat : {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
-              }
               <p>Diplômé : {conseiller?.estDiplomeMedNum ? 'Oui' : 'Non'}</p>
               {conseiller?.estDiplomeMedNum &&
                 <p>Nom du diplôme : {conseiller?.nomDiplomeMedNum}</p>
@@ -227,6 +224,9 @@ function ConseillerDetails({ location }) {
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone'}</strong></p>
               {role === 'admin' && <>
+                {!conseiller?.estRecrute &&
+                  <p>Posséde un compte candidat : {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
+                }
                 <button
                   className="fr-btn"
                   style={{ 'padding': '1rem 1.5rem' }}
