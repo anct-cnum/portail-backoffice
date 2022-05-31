@@ -224,6 +224,9 @@ function ConseillerDetails({ location }) {
               <p><strong>Courriel : <a href={'mailto:' + conseiller?.email}>{conseiller?.email}</a></strong></p>
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone'}</strong></p>
               {role === 'admin' && <>
+                {conseiller?.statut !== 'RECRUTE' &&
+                  <p>Poss&egrave;de un compte candidat&nbsp;: {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
+                }
                 <button
                   className="fr-btn"
                   style={{ 'padding': '1rem 1.5rem' }}
