@@ -225,7 +225,7 @@ function ConseillerDetails({ location }) {
               <p><strong>Téléphone : {conseiller?.telephone ? conseiller?.telephone : 'pas de numéro de téléphone'}</strong></p>
               {role === 'admin' && <>
                 {conseiller?.statut !== 'RECRUTE' &&
-                  <p>Poss&eacute;de un compte candidat&nbsp;: {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
+                  <p>Poss&egrave;de un compte candidat&nbsp;: {conseiller?.possedeCompteCandidat ? 'Oui' : 'Non'}</p>
                 }
                 <button
                   className="fr-btn"
