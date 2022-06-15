@@ -199,8 +199,8 @@ function Documents() {
         <div className="fr-grid-row">
           <p>
             <a href="https://cdn.conseiller-numerique.gouv.fr/Aidants_Connect_x_CNFS.pdf"
-              className="fr-link" target="blank" rel="noreferrer" title="T&eacute;l&eacute;charger la note Aidants Connect &amp; CnFS">
-                T&eacute;l&eacute;charger la note Aidants Connect &amp; CnFS (pdf)
+              className="fr-link" target="blank" rel="noreferrer" title="Télécharger la note Aidants Connect &amp; CnFS">
+                Télécharger la note Aidants Connect &amp; CnFS (pdf)
             </a>
           </p>
         </div>
