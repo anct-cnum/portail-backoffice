@@ -196,6 +196,14 @@ function Documents() {
             </span>
           </p>
         </div>
+        <div className="fr-grid-row">
+          <p>
+            <a href="https://cdn.conseiller-numerique.gouv.fr/Aidants_Connect_x_CNFS.pdf"
+              className="fr-link" target="blank" rel="noreferrer" title="Télécharger la note Aidants Connect &amp; CnFS">
+                Télécharger la note Aidants Connect &amp; CnFS (pdf)
+            </a>
+          </p>
+        </div>
         <h4>4) Préparer l&rsquo;arrivée de votre conseiller numérique</h4>
         <div className="fr-grid-row">
           <p>
