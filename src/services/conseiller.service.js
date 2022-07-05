@@ -10,6 +10,8 @@ export const conseillerService = {
   getAllMisesEnRelation,
   updateStatus,
   updateDateRecrutement,
+  updateDateFinDeContrat,
+  updateMotifFinDeContrat,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
@@ -113,6 +115,30 @@ function updateDateRecrutement(id, date) {
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
       dateRecrutement: date
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
+}
+
+function updateDateFinDeContrat(id, date) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      dateFinDeContrat: date
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
+}
+
+function updateMotifFinDeContrat(id, motif) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      motifFinDeContrat: motif
     })
   };
 

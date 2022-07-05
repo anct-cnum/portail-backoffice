@@ -7,6 +7,8 @@ export const conseillerActions = {
   getAll,
   updateStatus,
   updateDateRecrutement,
+  updateDateFinDeContrat,
+  updateMotifFinDeContrat,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
@@ -137,6 +139,54 @@ function updateDateRecrutement({ id, date }) {
   }
   function failure(error) {
     return { type: 'UPDATE_DATE_FAILURE', error };
+  }
+}
+
+function updateDateFinDeContrat({ id, date }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.updateDateFinDeContrat(id, date)
+    .then(
+      miseEnRelation => dispatch(success(miseEnRelation)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_REQUEST' };
+  }
+  function success(miseEnRelation) {
+    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_SUCCESS', miseEnRelation };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_FAILURE', error };
+  }
+}
+
+function updateMotifFinDeContrat({ id, motif }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.updateMotifFinDeContrat(id, motif)
+    .then(
+      miseEnRelation => dispatch(success(miseEnRelation)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_REQUEST' };
+  }
+  function success(miseEnRelation) {
+    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_SUCCESS', miseEnRelation };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_FAILURE', error };
   }
 }
 

@@ -9,11 +9,13 @@ import PopinConfirmationAnnulation from './popins/popinConfirmationAnnulation';
 
 //Print datePicker calendar in FR
 registerLocale('fr', fr);
-function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement }) {
+function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement, dateFinDeContrat, motifFinDeContrat }) {
 
   const dispatch = useDispatch();
 
   const [dateValidee, setDateValidee] = useState(dateRecrutement);
+  const [dateFinDeContratValidee, setDateFinDeContratValidee] = useState(dateFinDeContrat);
+  const [motifFinDeContratValide, setMotifFinDeContratValide] = useState(motifFinDeContrat);
 
   const toggleModal = visible => {
     let modal = document.getElementById('fr-modal-annuler');
@@ -30,6 +32,14 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
     dispatch(conseillerActions.updateDateRecrutement({ id: miseEnRelationId, date }));
   };
 
+  const updateDateFinDeContrat = date => {
+    date = moment(date);
+    dispatch(conseillerActions.updateDateFinDeContrat({ id: miseEnRelationId, date }));
+  };
+
+  const updateMotifFinDeContrat = motif => {
+    dispatch(conseillerActions.updateMotifFinDeContrat({ id: miseEnRelationId, motif }));
+  };
 
   return (
     <div className="fr-container fr-container--fluid">
@@ -121,7 +131,84 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         </>
         }
         {statut === 'finalisee' &&
-          <p><strong>Recrutement finalisé pour ce candidat</strong></p>
+        <>
+          <div className="fr-col-12">
+            <h3><strong>Recrutement finalisé pour ce candidat</strong></h3>
+          </div>
+
+          <div className="fr-col-12">
+            <p><strong>Notifier une rupture de contrat :</strong></p>
+          </div>
+
+          <div className="fr-col-12">
+            <label
+              className="fr-label"
+              style={{ fontSize: 'unset' }}
+              htmlFor="datePickerFinDeContrat">
+              <strong>Indiquer la date de fin de contrat (obligatoire) :</strong>
+            </label>
+          </div>
+
+          <div className="fr-col-12 fr-col-xl-4">
+            <DatePicker
+              id="datePickerFinDeContrat"
+              name="datePickerFinDeContrat"
+              className="fr-input fr-my-2w fr-mr-6w"
+              dateFormat="dd/MM/yyyy"
+              locale="fr"
+              selected={dateFinDeContratValidee ? new Date(dateFinDeContratValidee) : ''}
+              onChange={date => setDateFinDeContratValidee(date)}
+            />
+          </div>
+
+
+          <div className="fr-col-12">
+            <label
+              className="fr-label"
+              style={{ fontSize: 'unset' }}
+              htmlFor="datePicker">
+              <strong>Indiquer le motif de fin de contrat (obligatoire) :</strong>
+            </label>
+          </div>
+
+          <div className="fr-col-6 fr-col-xl-4">
+            <select id="motifFinDeContrat" name="motifFinDeContrat" className="fr-select fr-my-2w fr-mb-w"
+              onChange={ motif => setMotifFinDeContratValide(motif.target.value)} value={motifFinDeContratValide === null ? '' : motifFinDeContratValide}>
+              <option value="">Choisir un motif</option>
+              <option value="licenciement">Licenciement</option>
+              <option value="nonReconductionCDD">Non-reconduction du CDD</option>
+              <option value="demission">Démission</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+
+          <div className="fr-col-12 fr-col-xl-4 btn-fr-col-xl-3 fr-my-2w">
+            <button onClick={() => {
+              updateDateFinDeContrat(dateFinDeContratValidee);
+              updateMotifFinDeContrat(motifFinDeContratValide);
+              updateStatut('nouvelle_rupture');
+            }} disabled={ !dateFinDeContratValidee || !motifFinDeContratValide } className="fr-btn fr-btn--icon-left" title="Notifier la rupture de contrat">
+              <i className="ri-user-follow-fill ri-xs"></i>&nbsp;Notifier la rupture de contrat
+            </button>
+          </div>
+        </>
+        }
+        {statut === 'nouvelle_rupture' &&
+        <>
+          <div className="fr-col-5">
+            <p><strong>Rupture de contrat notifiée</strong></p><br />
+            <button onClick={() => {
+              updateStatut('finalisee');
+              updateDateFinDeContrat(null);
+              updateMotifFinDeContrat(null);
+            }}
+            className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
+            title="Annuler la rupture de contrat">
+            Annuler la rupture de contrat
+            </button>
+          </div>
+        </>
         }
       </div>
     </div>
@@ -132,7 +219,9 @@ ButtonsAction.propTypes = {
   statut: PropTypes.string,
   updateStatut: PropTypes.func,
   miseEnRelationId: PropTypes.string,
-  dateRecrutement: PropTypes.string
+  dateRecrutement: PropTypes.string,
+  dateFinDeContrat: PropTypes.string,
+  motifFinDeContrat: PropTypes.string
 };
 
 export default ButtonsAction;
