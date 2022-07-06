@@ -40,7 +40,7 @@ function MonCompte() {
                 }
                 { (error !== undefined && error !== false) &&
                 <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
-                  Cet adresse e-mail est déjà utilisée
+                  {error}
                 </p>
                 }
               </FlashMessage>
