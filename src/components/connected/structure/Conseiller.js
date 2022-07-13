@@ -26,6 +26,10 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
     label: 'Candidat recruté'
   },
   {
+    key: 'nouvelle_rupture',
+    label: 'Rupture notifiée'
+  },
+  {
     key: 'finalisee_non_disponible',
     label: 'Candidat déjà recruté'
   },

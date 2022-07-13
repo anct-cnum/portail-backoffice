@@ -158,6 +158,40 @@ export default function conseiller(state = null, action) {
         flashMessage: true,
         loadingInvitCandidatConseiller: false
       };
+    case 'UPDATE_MOTIF_RUPTURE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        errorUpdateStatus: false
+      };
+    case 'UPDATE_MOTIF_RUPTURE_SUCCESS':
+      return {
+        ...state,
+        loading: false
+      };
+    case 'UPDATE_MOTIF_RUPTURE_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        errorUpdateStatus: action.error
+      };
+    case 'UPDATE_DATE_RUPTURE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        errorUpdateStatus: false
+      };
+    case 'UPDATE_DATE_RUPTURE_SUCCESS':
+      return {
+        ...state,
+        loading: false
+      };
+    case 'UPDATE_DATE_RUPTURE_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        errorUpdateStatus: action.error
+      };
     default:
       return state;
   }

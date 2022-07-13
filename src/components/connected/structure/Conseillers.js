@@ -101,6 +101,10 @@ function Conseillers({ location }) {
       filter: 'finalisee'
     },
     {
+      name: 'Rupture notifiée',
+      filter: 'nouvelle_rupture'
+    },
+    {
       name: 'Afficher toutes les candidatures',
       filter: 'toutes'
     }

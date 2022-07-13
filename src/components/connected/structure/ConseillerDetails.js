@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import ButtonsAction from './ButtonsAction';
 import PopinInteressee from './popins/popinInteressee';
 import PopinRecrutee from './popins/popinRecrutee';
+import PopinNouvelleRupture from './popins/popinNouvelleRupture';
 import FlashMessage from 'react-flash-message';
 import Spinner from 'react-loader-spinner';
 import 'moment/locale/fr';
@@ -101,6 +102,7 @@ function ConseillerDetails({ location }) {
       <div>
         <PopinInteressee statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
         <PopinRecrutee statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
+        <PopinNouvelleRupture statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>
         <h2>
           <span className="capitalizeFirstLetter">
             {conseiller?.conseiller?.prenom}&nbsp;{conseiller?.conseiller?.nom}</span>
@@ -201,7 +203,11 @@ function ConseillerDetails({ location }) {
         miseEnRelationId = {conseiller?.miseEnRelation?._id ? conseiller?.miseEnRelation?._id : location.miseEnRelation?._id}
         updateStatut={updateStatut}
         dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ?
-          conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement} />
+          conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement}
+        dateRupture={conseiller?.miseEnRelation?.dateRupture !== undefined ?
+          conseiller?.miseEnRelation?.dateRupture : location.miseEnRelation?.dateRupture}
+        motifRupture={conseiller?.miseEnRelation?.motifRupture !== undefined ?
+          conseiller?.miseEnRelation?.motifRupture : location.miseEnRelation?.motifRupture} />
     </div>
   );
 }

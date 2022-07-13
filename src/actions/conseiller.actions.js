@@ -7,6 +7,8 @@ export const conseillerActions = {
   getAll,
   updateStatus,
   updateDateRecrutement,
+  updateDateRupture,
+  updateMotifRupture,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
@@ -137,6 +139,54 @@ function updateDateRecrutement({ id, date }) {
   }
   function failure(error) {
     return { type: 'UPDATE_DATE_FAILURE', error };
+  }
+}
+
+function updateDateRupture({ id, date }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.updateDateRupture(id, date)
+    .then(
+      miseEnRelation => dispatch(success(miseEnRelation)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_DATE_RUPTURE_REQUEST' };
+  }
+  function success(miseEnRelation) {
+    return { type: 'UPDATE_DATE_RUPTURE_SUCCESS', miseEnRelation };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_DATE_RUPTURE_FAILURE', error };
+  }
+}
+
+function updateMotifRupture({ id, motif }) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.updateMotifRupture(id, motif)
+    .then(
+      miseEnRelation => dispatch(success(miseEnRelation)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_MOTIF_RUPTURE_REQUEST' };
+  }
+  function success(miseEnRelation) {
+    return { type: 'UPDATE_MOTIF_RUPTURE_SUCCESS', miseEnRelation };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_MOTIF_RUPTURE_FAILURE', error };
   }
 }
 
