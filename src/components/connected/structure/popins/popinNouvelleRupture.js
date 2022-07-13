@@ -34,22 +34,25 @@ function popinNouvelleRupture({ statut }) {
                     Important
                   </h1>
                   <p>
-                    Votre signalement de rupture de contrat <strong>a bien été pris en compte</strong> par nos équipes.
+                    Votre signalement de rupture de contrat <strong>a bien &eacute;t&eacute; pris en compte</strong> par nos &eacute;quipes.
                   </p>
                   <p>
-                    Afin d&rsquo;être en capacité de finaliser celui-ci, et comme indiqué dans notre FAQ, nous vous remercions de bien vouloir nous transmettre,
-                    via votre dossier sur la plateforme Démarches Simplifiées,&nbsp;
-                    <strong>tous les documents relatifs à la fin de contrat</strong> de votre Conseiller numérique France Services au sein de votre structure.
+                    Afin d&rsquo;&ecirc;tre en capacit&eacute; de finaliser celui-ci, et comme indiqu&eacute;
+                    dans notre FAQ, nous vous remercions de bien vouloir nous transmettre,
+                    via votre dossier sur la plateforme D&eacute;marches Simplifi&eacute;es,&nbsp;
+                    <strong>tous les documents relatifs &agrave;	 la fin de contrat</strong> de votre Conseiller num&eacute;rique France Services
+                    au sein de votre structure.
                   </p>
                   <p>
-                    Une fois enregistrés, <strong>un email vous confirmera que vous aurez la possibilité de valider une nouvelle
+                    Une fois enregistr&eacute;s, <strong>un email vous confirmera que vous aurez la possibilit&eacute; de valider une nouvelle
                     candidature</strong> sur la plateforme.
                   </p>
                   <p>
-                    <strong>Si vous ne souhaitez pas procéder à un nouveau recrutement</strong>, nous vous remercions de bien vouloir nous en informer
-                    à l&rsquo;adresse suivante : <a href="mailto:conseiller-numerique@anct.gouv.fr"
-                      title="conseiller-numerique@anct.gouv.fr">conseiller-numerique@anct.gouv.fr</a>, ainsi qu&rsquo;à l&rsquo;indiquer à votre
-                    Préfecture de département.
+                    <strong>Si vous ne souhaitez pas proc&eacute;der &agrave; un nouveau recrutement</strong>,
+                    nous vous remercions de bien vouloir nous en informer
+                    &agrave;	 l&rsquo;adresse suivante : <a href="mailto:conseiller-numerique@anct.gouv.fr"
+                      title="conseiller-numerique@anct.gouv.fr">conseiller-numerique@anct.gouv.fr</a>, ainsi qu&rsquo;&agrave; l&rsquo;indiquer à votre
+                    Pr&eacute;fecture de d&eacute;partement.
                   </p>
                 </div>
               </div>
