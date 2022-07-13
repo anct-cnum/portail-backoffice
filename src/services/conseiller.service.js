@@ -10,8 +10,8 @@ export const conseillerService = {
   getAllMisesEnRelation,
   updateStatus,
   updateDateRecrutement,
-  updateDateFinDeContrat,
-  updateMotifFinDeContrat,
+  updateDateRupture,
+  updateMotifRupture,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
@@ -121,24 +121,24 @@ function updateDateRecrutement(id, date) {
   return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
 }
 
-function updateDateFinDeContrat(id, date) {
+function updateDateRupture(id, date) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      dateFinDeContrat: date
+      dateRupture: date
     })
   };
 
   return fetch(`${apiUrlRoot}/misesEnRelation/${id}`, requestOptions).then(handleResponse);
 }
 
-function updateMotifFinDeContrat(id, motif) {
+function updateMotifRupture(id, motif) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      motifFinDeContrat: motif
+      motifRupture: motif
     })
   };
 

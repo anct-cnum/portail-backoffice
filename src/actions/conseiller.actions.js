@@ -7,8 +7,8 @@ export const conseillerActions = {
   getAll,
   updateStatus,
   updateDateRecrutement,
-  updateDateFinDeContrat,
-  updateMotifFinDeContrat,
+  updateDateRupture,
+  updateMotifRupture,
   preSelectionner,
   verifyCandidateToken,
   verifySondageToken,
@@ -142,11 +142,11 @@ function updateDateRecrutement({ id, date }) {
   }
 }
 
-function updateDateFinDeContrat({ id, date }) {
+function updateDateRupture({ id, date }) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.updateDateFinDeContrat(id, date)
+    conseillerService.updateDateRupture(id, date)
     .then(
       miseEnRelation => dispatch(success(miseEnRelation)),
       error => {
@@ -156,21 +156,21 @@ function updateDateFinDeContrat({ id, date }) {
   };
 
   function request() {
-    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_REQUEST' };
+    return { type: 'UPDATE_DATE_RUPTURE_REQUEST' };
   }
   function success(miseEnRelation) {
-    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_SUCCESS', miseEnRelation };
+    return { type: 'UPDATE_DATE_RUPTURE_SUCCESS', miseEnRelation };
   }
   function failure(error) {
-    return { type: 'UPDATE_DATE_FIN_DE_CONTRAT_FAILURE', error };
+    return { type: 'UPDATE_DATE_RUPTURE_FAILURE', error };
   }
 }
 
-function updateMotifFinDeContrat({ id, motif }) {
+function updateMotifRupture({ id, motif }) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.updateMotifFinDeContrat(id, motif)
+    conseillerService.updateMotifRupture(id, motif)
     .then(
       miseEnRelation => dispatch(success(miseEnRelation)),
       error => {
@@ -180,13 +180,13 @@ function updateMotifFinDeContrat({ id, motif }) {
   };
 
   function request() {
-    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_REQUEST' };
+    return { type: 'UPDATE_MOTIF_RUPTURE_REQUEST' };
   }
   function success(miseEnRelation) {
-    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_SUCCESS', miseEnRelation };
+    return { type: 'UPDATE_MOTIF_RUPTURE_SUCCESS', miseEnRelation };
   }
   function failure(error) {
-    return { type: 'UPDATE_MOTIF_FIN_DE_CONTRAT_FAILURE', error };
+    return { type: 'UPDATE_MOTIF_RUPTURE_FAILURE', error };
   }
 }
 

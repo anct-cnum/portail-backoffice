@@ -204,10 +204,10 @@ function ConseillerDetails({ location }) {
         updateStatut={updateStatut}
         dateRecrutement={conseiller?.miseEnRelation?.dateRecrutement !== undefined ?
           conseiller?.miseEnRelation?.dateRecrutement : location.miseEnRelation?.dateRecrutement}
-        dateFinDeContrat={conseiller?.miseEnRelation?.dateFinDeContrat !== undefined ?
-          conseiller?.miseEnRelation?.dateFinDeContrat : location.miseEnRelation?.dateFinDeContrat}
-        motifFinDeContrat={conseiller?.miseEnRelation?.motifFinDeContrat !== undefined ?
-          conseiller?.miseEnRelation?.motifFinDeContrat : location.miseEnRelation?.motifFinDeContrat} />
+        dateRupture={conseiller?.miseEnRelation?.dateRupture !== undefined ?
+          conseiller?.miseEnRelation?.dateRupture : location.miseEnRelation?.dateRupture}
+        motifRupture={conseiller?.miseEnRelation?.motifRupture !== undefined ?
+          conseiller?.miseEnRelation?.motifRupture : location.miseEnRelation?.motifRupture} />
     </div>
   );
 }
