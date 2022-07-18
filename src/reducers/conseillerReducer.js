@@ -98,6 +98,7 @@ export default function conseiller(state = null, action) {
       return {
         ...state,
         downloadError: action.error,
+        downloading: false,
         isDownloaded: false
       };
     case 'RESET_FILE':

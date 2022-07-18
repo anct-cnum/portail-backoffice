@@ -14,6 +14,7 @@ function ConseillerDetails({ location }) {
   const role = user.role;
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const downloading = useSelector(state => state.conseiller?.downloading);
+  const downloadError = useSelector(state => state.conseiller?.downloadError);
   const nomStructure = useSelector(state => state.conseiller?.nomStructure);
   const successSuppressionCandidat = useSelector(state => state.conseiller?.conseillerSuccessSuppression);
   const erreurSuppressionCandidat = useSelector(state => state.conseiller?.conseillerErreurSuppression);
@@ -138,6 +139,13 @@ function ConseillerDetails({ location }) {
           <FlashMessage duration={20000}>
             <p className="fr-label flashBag labelError">
               {erreurSuppressionCandidat}
+            </p>
+          </FlashMessage>
+        }
+        {downloadError &&
+          <FlashMessage duration={20000}>
+            <p className="fr-label flashBag labelError">
+              {downloadError}
             </p>
           </FlashMessage>
         }
