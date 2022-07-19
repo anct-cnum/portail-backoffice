@@ -65,7 +65,7 @@ function ExportsCoselec() {
         </p>
         <p>
           <a className="fr-link" href="#" onClick={() => getFile('ruptures')}>
-            Fichier des ruptures
+            Fichier des demandes de rupture
           </a>
         </p>
       </>
