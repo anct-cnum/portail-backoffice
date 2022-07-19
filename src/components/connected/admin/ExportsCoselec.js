@@ -63,6 +63,11 @@ function ExportsCoselec() {
             Fichier &laquo;&nbsp;structures&nbsp;&raquo;
           </a>
         </p>
+        <p>
+          <a className="fr-link" href="#" onClick={() => getFile('ruptures')}>
+            Fichier des ruptures
+          </a>
+        </p>
       </>
       }
       { role === 'prefet' &&
