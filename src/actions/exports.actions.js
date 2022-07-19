@@ -22,7 +22,7 @@ function exportFile(nameFile) {
   }
   function success(blob, nameFile) {
     if (nameFile === 'ruptures') {
-      nameFile = `${nameFile}_${dayjs(new Date()).format('YYYY-MM-DD')}`;
+      nameFile = `demandes_${nameFile}_${dayjs(new Date()).format('DD-MM-YYYY')}`;
       return { type: 'EXPORT_FILE_SUCCESS', blob, nameFile };
     }
     return { type: 'EXPORT_FILE_SUCCESS', blob, nameFile };
