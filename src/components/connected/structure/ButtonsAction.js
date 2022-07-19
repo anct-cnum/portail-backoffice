@@ -178,7 +178,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             <li>Licenciement : Pour motif &eacute;conomique / Rupture conventionnelle / Pour faute professionnelle</li>
             <li>Non-reconduction du CDD : Pour motif &eacute;conomique / A l&rsquo;amiable / Non-satisfaction</li>
             <li>D&eacute;mission : Li&eacute;e &agrave; la formation / Inad&eacute;quation du profil au poste / Raisons personnelles
-              / Autre opportunit&eacute; professionnelle / Changement de SA au sein du dispositif / D&eacute;saccords avec l&rsquo;employeur</li>
+              / Autre opportunit&eacute; professionnelle / Changement de structure au sein du dispositif / D&eacute;saccords avec l&rsquo;employeur</li>
           </ul>
 
           <div className="fr-col-6 fr-col-xl-4">
@@ -191,7 +191,7 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
                 title="Pour motif &eacute;conomique / A l&rsquo;amiable / Non-satisfaction">Non-reconduction du CDD</option>
               <option value="demission"
                 title="Li&eacute;e &agrave; la formation / Inad&eacute;quation du profil au poste / Raisons personnelles
-                / Autre opportunit&eacute; professionnelle / Changement de SA au sein du dispositif / D&eacute;saccords avec l&rsquo;employeur">
+                / Autre opportunit&eacute; professionnelle / Changement de structure au sein du dispositif / D&eacute;saccords avec l&rsquo;employeur">
                   D&eacute;mission</option>
             </select>
           </div>
