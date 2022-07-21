@@ -1,4 +1,5 @@
 import { exportsService } from '../services/exports.service';
+import dayjs from 'dayjs';
 
 export const exportsActions = {
   exportFile,
@@ -20,6 +21,9 @@ function exportFile(nameFile) {
     return { type: 'EXPORT_FILE_REQUEST' };
   }
   function success(blob, nameFile) {
+    if (nameFile === 'ruptures') {
+      nameFile = `demandes_${nameFile}_${dayjs(new Date()).format('DD-MM-YYYY')}`;
+    }
     return { type: 'EXPORT_FILE_SUCCESS', blob, nameFile };
   }
   function failure(error) {
