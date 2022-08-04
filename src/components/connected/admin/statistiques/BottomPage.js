@@ -120,7 +120,7 @@ function BottomPage({ donneesStats }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&Eacute;volution des comptes rendu d&rsquo;activit&eacute',
+      optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute',
       margeTitre: 48,
     }
   };
