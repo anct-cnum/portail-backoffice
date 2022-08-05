@@ -102,6 +102,12 @@ function StructureDetails({ location }) {
       nameSingle: 'rupture de contrat',
       key: 'finalisee_rupture',
       order: 7
+    },
+    {
+      name: 'ruptures notifiés',
+      nameSingle: 'rupture notifiée',
+      key: 'nouvelle_rupture',
+      order: 8
     }
   ];
 
