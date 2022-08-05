@@ -104,7 +104,7 @@ function StructureDetails({ location }) {
       order: 7
     },
     {
-      name: 'ruptures notifiés',
+      name: 'ruptures notifiées',
       nameSingle: 'rupture notifiée',
       key: 'nouvelle_rupture',
       order: 8
