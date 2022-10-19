@@ -114,7 +114,7 @@ function ConseillerDetails({ location }) {
             {(errorSendMail === undefined || errorSendMail === false || successSendMail === true) &&
               <p className="fr-label flashBag">
                 L&rsquo;email d&rsquo;invitation à l&rsquo;espace {conseiller?.statut === 'RECRUTE' ? 'COOP' : 'candidat'}
-                a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                &nbsp;a bien été envoyé à {conseiller?.prenom}&nbsp;{conseiller?.nom}
                 &nbsp;
                 <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
               </p>
