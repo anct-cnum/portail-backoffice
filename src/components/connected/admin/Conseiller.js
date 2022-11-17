@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { conseillerActions } from '../../../actions';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function Conseiller({ conseiller, currentPage }) {
 
@@ -16,7 +17,7 @@ function Conseiller({ conseiller, currentPage }) {
 
   return (
     <tr className="conseiller">
-      <td>{conseiller?.idPG}</td>
+      <td><ClickAndSave field={conseiller?.idPG}/></td>
       <td>{conseiller?.prenom}</td>
       <td>{conseiller?.nom}</td>
       <td>{dayjs(conseiller?.createdAt).format('DD/MM/YYYY')}</td>

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { conseillerActions, statsActions } from '../../../actions';
+import ClickAndSave from '../../common/ClickAndSave';
 import ProgressBar from '../../common/ProgressBar';
 
 function Recrutements() {
@@ -67,7 +68,7 @@ function Recrutements() {
                   {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
                     return (
                       <tr key={idx}>
-                        <td>{miseEnRelation.conseillerObj.idPG}</td>
+                        <td><ClickAndSave field={miseEnRelation.conseillerObj?.idPG}/></td>
                         <td>{miseEnRelation.conseillerObj.nom}</td>
                         <td>{miseEnRelation.conseillerObj.prenom}</td>
                         <td>{miseEnRelation.dateRecrutement ? dayjs(miseEnRelation.dateRecrutement).format('DD/MM/YY') : '-'}</td>

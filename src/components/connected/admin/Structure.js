@@ -3,6 +3,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function Structure({ structure, currentPage }) {
   const labels = {
@@ -16,7 +17,7 @@ function Structure({ structure, currentPage }) {
   };
   return (
     <tr>
-      <td>{structure.idPG}</td>
+      <td><ClickAndSave field={structure?.idPG}/></td>
       <td> {structure.siret !== null ? structure.siret : 'non renseigné' } </td>
       <td>
         {structure.estLabelliseFranceServices === 'OUI' ?

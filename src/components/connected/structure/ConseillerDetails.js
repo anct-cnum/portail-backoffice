@@ -11,6 +11,7 @@ import PopinNouvelleRupture from './popins/popinNouvelleRupture';
 import FlashMessage from 'react-flash-message';
 import Spinner from 'react-loader-spinner';
 import 'moment/locale/fr';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function ConseillerDetails({ location }) {
 
@@ -119,7 +120,7 @@ function ConseillerDetails({ location }) {
         <div className="fr-container fr-container--fluid">
           <div className="fr-grid-row">
             <div className="fr-col-12">
-              ID: {conseiller?.idPG}
+              ID: <ClickAndSave field={conseiller?.idPG}/>
             </div>
             { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
               <div className="fr-col-12">
