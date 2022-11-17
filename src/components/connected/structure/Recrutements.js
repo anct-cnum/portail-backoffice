@@ -37,9 +37,9 @@ function Recrutements() {
           <div className="fr-col-6">
             <ul className="liste-stats fr-mb-4w">
               <li><b>{nombreConseillersCoselec}</b>&nbsp;CnFS attendu(s) dans votre structure</li>
-              <li><b>{stats?.stats?.interessee ?? '0'}</b>&nbsp;candidature(s) préselectionnée(s)</li>
-              <li><b>{stats?.stats?.recrutee ?? '0'}</b>&nbsp;candidature(s) validée(s) </li>
-              <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat recruté(s).</li>
+              <li><b>{stats?.stats?.interessee ?? '0'}</b>&nbsp;candidature(s) pr&eacute;selectionn&eacute;e(s)</li>
+              <li><b>{stats?.stats?.recrutee ?? '0'}</b>&nbsp;candidature(s) valid&eacute;e(s) </li>
+              <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat recrut&eacute;(s).</li>
             </ul>
           </div>
           <div className="fr-col-6">
@@ -47,7 +47,7 @@ function Recrutements() {
 
           </div>
           <div className="fr-col-12">
-            <h4 className="titre-etat-recrutements">Candidats recrutés</h4>
+            <h4 className="titre-etat-recrutements">Candidats recrut&eacute;s</h4>
           </div>
           <div className="fr-col-12">
             {!conseillers.error && !conseillers.loading && conseillers.items?.total > 0 &&
@@ -55,6 +55,7 @@ function Recrutements() {
               <table>
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Nom</th>
                     <th>Pr&eacute;nom</th>
                     <th>Date d&rsquo;embauche</th>
@@ -66,6 +67,7 @@ function Recrutements() {
                   {!conseillers.error && !conseillers.loading && conseillers.items && conseillers.items.data.map((miseEnRelation, idx) => {
                     return (
                       <tr key={idx}>
+                        <td>{miseEnRelation.conseillerObj.idPG}</td>
                         <td>{miseEnRelation.conseillerObj.nom}</td>
                         <td>{miseEnRelation.conseillerObj.prenom}</td>
                         <td>{miseEnRelation.dateRecrutement ? dayjs(miseEnRelation.dateRecrutement).format('DD/MM/YY') : '-'}</td>
@@ -73,7 +75,7 @@ function Recrutements() {
                         <td>
                           <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
                             to={{ pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`, currentPage: 0, origin: `/structure/recrutements` }}>
-                              Détails
+                              D&eacute;tails
                           </Link>
                         </td>
                       </tr>);
