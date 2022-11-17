@@ -39,7 +39,7 @@ function Recrutements() {
               <li><b>{nombreConseillersCoselec}</b>&nbsp;CnFS attendu(s) dans votre structure</li>
               <li><b>{stats?.stats?.interessee ?? '0'}</b>&nbsp;candidature(s) pr&eacute;selectionn&eacute;e(s)</li>
               <li><b>{stats?.stats?.recrutee ?? '0'}</b>&nbsp;candidature(s) valid&eacute;e(s) </li>
-              <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat recrut&eacute;(s).</li>
+              <li><b>{nombreConseillersFinalise}</b>&nbsp;candidat(s) recrut&eacute;(s).</li>
             </ul>
           </div>
           <div className="fr-col-6">
