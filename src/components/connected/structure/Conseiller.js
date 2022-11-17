@@ -49,6 +49,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
 
   return (
     <tr className="conseiller">
+      <td>{miseEnRelation.conseillerObj?.idPG}</td>
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}

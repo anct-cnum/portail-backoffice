@@ -118,6 +118,9 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="fr-container fr-container--fluid">
           <div className="fr-grid-row">
+            <div className="fr-col-12">
+              ID: {conseiller?.idPG}
+            </div>
             { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
               <div className="fr-col-12">
                 <p><b>Date de recrutement prévisionnelle:&nbsp;

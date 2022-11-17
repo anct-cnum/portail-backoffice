@@ -8,7 +8,6 @@ function CandidatRecrute({ candidat, currentPage }) {
 
   return (
     <tr className="conseiller">
-
       <td>{candidat?.idPG}</td>
       <td>{candidat?.nom}</td>
       <td>{candidat?.prenom}</td>
