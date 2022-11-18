@@ -164,6 +164,7 @@ function Conseillers({ location }) {
           <table className="table-conseillers">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 { search !== '' && <th style={{ minWidth: '200px' }}>Email</th>}

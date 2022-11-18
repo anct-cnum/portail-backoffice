@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { conseillerActions } from '../../../actions';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
 
@@ -49,6 +50,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
 
   return (
     <tr className="conseiller">
+      <td><ClickAndSave field={miseEnRelation.conseillerObj?.idPG}/></td>
       <td>{miseEnRelation.conseillerObj.prenom}</td>
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
