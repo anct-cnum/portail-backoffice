@@ -120,7 +120,7 @@ function ConseillerDetails({ location }) {
         <div className="fr-container fr-container--fluid">
           <div className="fr-grid-row">
             <div className="fr-col-12">
-              ID: <ClickAndSave field={conseiller?.idPG}/>
+              <p>ID: <ClickAndSave field={conseiller?.conseiller?.idPG}/></p>
             </div>
             { conseiller?.conseiller?.dateRecrutement?.length > 0 &&
               <div className="fr-col-12">
