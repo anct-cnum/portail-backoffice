@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../../actions';
 import { history } from '../../../helpers';
 import PropTypes from 'prop-types';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function ConseillerNonMisEnRelation({ conseiller, search, update }) {
   const structure = useSelector(state => state.structure);
@@ -35,6 +36,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
 
   return (
     <tr className="conseiller">
+      <td><ClickAndSave field={conseiller?.idPG}/></td>
       <td>{conseiller.prenom}</td>
       <td>{conseiller.nom}</td>
       { search && <td>{conseiller.email}</td>}

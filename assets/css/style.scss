@@ -27,7 +27,9 @@ $blue-france:#000091;
   transform: translate(-50%, -50%);
   z-index: 3000;
 }
-
+.copier {
+  cursor: pointer;
+}
 .wrapperModal {
   position: fixed;
   z-index: 1;

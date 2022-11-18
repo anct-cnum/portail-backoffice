@@ -6,6 +6,7 @@ import Spinner from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import FlashMessage from 'react-flash-message';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function ConseillerDetails({ location }) {
   const history = useHistory();
@@ -164,6 +165,9 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="fr-container fr-container--fluid">
           <div className="fr-grid-row">
+            <div className="fr-col-12">
+              <p>ID: <ClickAndSave field={conseiller?.idPG}/></p>
+            </div>
             { conseiller?.dateRecrutement?.length > 0 &&
               <div className="fr-col-12">
                 <p><b>Date de recrutement prévisionnelle:&nbsp;

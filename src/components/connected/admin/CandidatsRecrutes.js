@@ -89,6 +89,7 @@ function CandidatsRecrutes({ departement, region, com, search }) {
         <table>
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nom</th>
               <th>Prénom</th>
               <th>Email</th>

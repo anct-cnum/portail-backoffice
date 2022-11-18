@@ -3,11 +3,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ClickAndSave from '../../common/ClickAndSave';
 
 function CandidatRecrute({ candidat, currentPage }) {
 
   return (
     <tr className="conseiller">
+      <td><ClickAndSave field={candidat?.idPG}/></td>
       <td>{candidat?.nom}</td>
       <td>{candidat?.prenom}</td>
       <td>{candidat?.email}</td>

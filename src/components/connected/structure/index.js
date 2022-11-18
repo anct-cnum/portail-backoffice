@@ -47,7 +47,8 @@ function Structure() {
                 <img src="/logos/ex-libris-france-services.svg" alt="label france services" className="fr-ml-3v fr-mt-4v logo-label-Fs"/>
               }
               <p className="siret-structure">
-                  SIRET: {structure?.structure?.siret ? structure?.structure?.siret : 'non renseigné'}
+                SIRET: {structure?.structure?.siret ?? 'non renseigné'}<br />
+                <strong>ID: {structure?.structure?.idPG ?? 'non disponible'}</strong>
               </p>
             </h2>
           </div>
