@@ -1158,49 +1158,10 @@
   "resolved" "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
   "version" "1.1.3"
 
-"@gouvfr/buttons@^0.5.3":
-  "integrity" "sha512-PqnmqSDoO23Oc4N5ULZNl3Kf4fjI59gjc0pqSfsexXUriOpe/snUdSEIGbk7repWHsyqA2bhv2k7JsqZOoz3mg=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/buttons/-/buttons-0.5.3.tgz"
-  "version" "0.5.3"
-  dependencies:
-    "@gouvfr/core" "^0.5.3"
-    "@gouvfr/links" "^0.5.3"
-    "@gouvfr/schemes" "^0.5.3"
-
-"@gouvfr/core@^0.5.3":
-  "integrity" "sha512-0XEEZMxxNpZcCPrwReaT+DyyKuVvEB9hFkFfQl2EIV9SFNLJwY39F8mr5XqWAH+3XMlsvPqSkaUc28xUHa5IJQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/core/-/core-0.5.3.tgz"
-  "version" "0.5.3"
-  dependencies:
-    "@gouvfr/schemes" "^0.5.3"
-
 "@gouvfr/dsfr@^1.2.1":
   "integrity" "sha512-11TYlm2nqJVN7VezjManBNUy/O3o/nJ5X9F1N6wkstf0x0N6Ucmtys4yTCPdC036AHqQj7X3v/OwIuvSUDOx5A=="
   "resolved" "https://registry.npmjs.org/@gouvfr/dsfr/-/dsfr-1.3.1.tgz"
   "version" "1.3.1"
-
-"@gouvfr/links@^0.5.3":
-  "integrity" "sha512-/rsEGBmsoV5ZbPCEM9AoQtmZJwsKxqtqqLCdXYkjaJNo8bKdDfROa6zzGwnnDlBfuKaSZgM42TEiD6KCdOKDNA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/links/-/links-0.5.3.tgz"
-  "version" "0.5.3"
-  dependencies:
-    "@gouvfr/core" "^0.5.3"
-    "@gouvfr/schemes" "^0.5.3"
-
-"@gouvfr/modal@^0.5.4":
-  "integrity" "sha512-HVQkdOvaoQEFU7XBTVOVjYyC1E5m/fbDkqsN1r/N+SgUABZpG4THEvZwKUMFc6/aUDfhiQFGlk5C87e4kIJUrA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/modal/-/modal-0.5.4.tgz"
-  "version" "0.5.4"
-  dependencies:
-    "@gouvfr/buttons" "^0.5.3"
-    "@gouvfr/core" "^0.5.3"
-    "@gouvfr/links" "^0.5.3"
-    "@gouvfr/schemes" "^0.5.3"
-
-"@gouvfr/schemes@^0.5.3":
-  "integrity" "sha512-9BN5VH4H8U+j4Wcit+gc8a26wQLMPEAm6edlNmj0BhHrcgK2X7yNrS0Zg0J90KqILQRKNMDC8AxYg7GvtrWDKg=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/schemes/-/schemes-0.5.3.tgz"
-  "version" "0.5.3"
 
 "@humanwhocodes/config-array@^0.9.2":
   "integrity" "sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw=="
