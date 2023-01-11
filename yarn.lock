@@ -1069,11 +1069,6 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
-"@colors/colors@1.5.0":
-  "integrity" "sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ=="
-  "resolved" "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"
-  "version" "1.5.0"
-
 "@csstools/normalize.css@*":
   "integrity" "sha512-M0qqxAcwCsIVfpFQSlGN5XjXWu8l5JDZN+fPt1LeW5SZexQTgnaEvgXAY+CeygRw0EeppWHi12JxESWiWrB0Sg=="
   "resolved" "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-12.0.0.tgz"
@@ -1163,65 +1158,6 @@
   "resolved" "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
   "version" "1.1.3"
 
-"@gouvfr/accordions@^0.4.0":
-  "integrity" "sha512-SM5SC78fJo+v9hYAN916FV8vlnMowQAhQqSvPjR3fifwMwFHGlJRgJvl3BwRzXoVHwH9p8PEBG68VVZo1QlvMw=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/accordions/-/accordions-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/links" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/all@^0.4.0":
-  "integrity" "sha512-HdQ2Xj42/stLRtMshf/9Lwes2cV6AXjclUumsERJLRbQJHZioX+dE2ez5HD2SVGQSwCzOKvWIiYfNBOgS6kqoQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/all/-/all-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/accordions" "^0.4.0"
-    "@gouvfr/breadcrumb" "^0.4.0"
-    "@gouvfr/buttons" "^0.4.0"
-    "@gouvfr/callouts" "^0.4.0"
-    "@gouvfr/cards" "^0.4.0"
-    "@gouvfr/checkboxes" "^0.4.0"
-    "@gouvfr/content" "^0.4.0"
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/footer" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/grid" "^0.4.0"
-    "@gouvfr/header" "^0.4.0"
-    "@gouvfr/highlights" "^0.4.0"
-    "@gouvfr/ie11" "^0.4.0"
-    "@gouvfr/inputs" "^0.4.0"
-    "@gouvfr/links" "^0.4.0"
-    "@gouvfr/logo" "^0.4.0"
-    "@gouvfr/navigation" "^0.4.0"
-    "@gouvfr/pagination" "^0.4.0"
-    "@gouvfr/radios" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-    "@gouvfr/search" "^0.4.0"
-    "@gouvfr/selects" "^0.4.0"
-    "@gouvfr/table" "^0.4.0"
-    "@gouvfr/tags" "^0.4.0"
-    "@gouvfr/tiles" "^0.4.0"
-    "@gouvfr/utilities" "^0.4.0"
-
-"@gouvfr/breadcrumb@^0.4.0":
-  "integrity" "sha512-lqSMIX8sm2ON7CaJLAqYlx/9xU3lJeUrup+pZA9TUo+KfBZDU4oiEFyolYkbLgf9tatqVwSijHflN/D57Dy/4g=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/breadcrumb/-/breadcrumb-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/buttons@^0.4.0":
-  "integrity" "sha512-BPG9AvvKlwU0TvJc6a7XEqFHrQGIy4wDNFnQ50zaKM5D3Pd8OL3OEqtj7N0DKpaMm2DYFqM+ix8b+nWWYzLkmg=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/buttons/-/buttons-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/links" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
 "@gouvfr/buttons@^0.5.3":
   "integrity" "sha512-PqnmqSDoO23Oc4N5ULZNl3Kf4fjI59gjc0pqSfsexXUriOpe/snUdSEIGbk7repWHsyqA2bhv2k7JsqZOoz3mg=="
   "resolved" "https://registry.npmjs.org/@gouvfr/buttons/-/buttons-0.5.3.tgz"
@@ -1230,47 +1166,6 @@
     "@gouvfr/core" "^0.5.3"
     "@gouvfr/links" "^0.5.3"
     "@gouvfr/schemes" "^0.5.3"
-
-"@gouvfr/callouts@^0.4.0":
-  "integrity" "sha512-vpMMd0zkQdt+FrBFux4Z8m5ly+jnc3SR4sbxv8vFa55gWQMCw3kyPqX/BjtFZB5V/4F4w3m16oUwZf2YiaS9Hg=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/callouts/-/callouts-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/cards@^0.4.0":
-  "integrity" "sha512-fRyUfD9vrDiDNWjLkBKAKGSlpAGEuP7u7J4pUjy6x7qt9AmtHBNARFuBwTrG3+9qWt50O+wJ9sAz3NKZ/LDrWQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/cards/-/cards-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/checkboxes@^0.4.0":
-  "integrity" "sha512-QaZwoQcgO44NdFKgdF0uMobR+f810mKQj2Q4QX+yX5hHS4Vau0Ke63J22QtsUaTVgDMGFbUggn+xZlzmCY5ltQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/checkboxes/-/checkboxes-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/content@^0.4.0":
-  "integrity" "sha512-wVnLivUFn6aeaf/scvjo0aiQBOXWGs1webTfRh5aPqk6cSd+2WsMPmSMqFnbm/LJIc/kgSVzAC9oDsNWvid/iQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/content/-/content-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/core@^0.4.0":
-  "integrity" "sha512-z9C/Owgp5SvSkTa/tYkHPmRMkelxGSyF7V0fqhMq5ldq9E55NsVApA/5ESZT4lOcECcm28lQyf7FyxmB72OqEA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/core/-/core-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "gently-copy" "^3.2.0"
-    "prompt" "^1.0.0"
 
 "@gouvfr/core@^0.5.3":
   "integrity" "sha512-0XEEZMxxNpZcCPrwReaT+DyyKuVvEB9hFkFfQl2EIV9SFNLJwY39F8mr5XqWAH+3XMlsvPqSkaUc28xUHa5IJQ=="
@@ -1284,74 +1179,6 @@
   "resolved" "https://registry.npmjs.org/@gouvfr/dsfr/-/dsfr-1.3.1.tgz"
   "version" "1.3.1"
 
-"@gouvfr/footer@^0.4.0":
-  "integrity" "sha512-q4cwLAfBNIt81pISKjpLL6D2lXQeZyculMex9txpkpP3MrxZdWT/Ay5iDNJ6FubHeL+eU/NVtUDz1ND+uIsmog=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/footer/-/footer-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/grid" "^0.4.0"
-    "@gouvfr/logo" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/forms@^0.4.0":
-  "integrity" "sha512-hcMb/FN/ULS4m7nlDSm/BULpiCbiG1OOY1yrb+OYSYT+17E21/eg573z8+Q7vQV5YS/RJHDS2hmq2AOwIjlX5A=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/forms/-/forms-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/grid@^0.4.0":
-  "integrity" "sha512-bNEVRBhbsriFaixrJSe+Ted7Ak+A+c/QIHoaBdw2nSgiNPuT6HBFgtIPD0aYOEGdfjHC6TDBuN/V15CLvLBaIA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/grid/-/grid-0.4.1.tgz"
-  "version" "0.4.1"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-
-"@gouvfr/header@^0.4.0":
-  "integrity" "sha512-q4FPQaCBZPpHfrLQziI9DnIv9fuE3KVujpTU2OfcJ+HUu/73FrsnnyVpCFXWQGCF8LglmeA4O3oq2ILme8zwRQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/header/-/header-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/logo" "^0.4.0"
-    "@gouvfr/navigation" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-    "@gouvfr/search" "^0.4.0"
-
-"@gouvfr/highlights@^0.4.0":
-  "integrity" "sha512-E6NT6CRlwItQT1kSZdVwxOAiCKId5/ATRYWRNE1a+T6Q24VW6K6LMSV2N3i4sxXxlaGx5hFAHj+hzAupDEe77g=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/highlights/-/highlights-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/ie11@^0.4.0":
-  "integrity" "sha512-FASqUxLyYryZBFSJ9EnCH1+mWWqFt2u/0/PFLj1HmvVr2RfP+mwdIaXoJAk5jIGUV8hv1IC0Jo6BZlJgPK+Y/Q=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/ie11/-/ie11-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-
-"@gouvfr/inputs@^0.4.0":
-  "integrity" "sha512-4OojAIY72C+mMFRGMMegRljfb8VHbL7a9tF5pisl3exaXNdHr6MBhdlCjrBlXpiH7xVhipQtBFXga9o9sQ5yTw=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/inputs/-/inputs-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/links@^0.4.0":
-  "integrity" "sha512-epoJM4sxgu2xABDu9m2IRT3H+w2WD7S8XNr8EvjTr2NkSjTelUJWUfYmpqcZietudhJpiloi4NnBJBmIPJ9cAQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/links/-/links-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
 "@gouvfr/links@^0.5.3":
   "integrity" "sha512-/rsEGBmsoV5ZbPCEM9AoQtmZJwsKxqtqqLCdXYkjaJNo8bKdDfROa6zzGwnnDlBfuKaSZgM42TEiD6KCdOKDNA=="
   "resolved" "https://registry.npmjs.org/@gouvfr/links/-/links-0.5.3.tgz"
@@ -1359,14 +1186,6 @@
   dependencies:
     "@gouvfr/core" "^0.5.3"
     "@gouvfr/schemes" "^0.5.3"
-
-"@gouvfr/logo@^0.4.0":
-  "integrity" "sha512-28lXk5RX2DHgurs6esHj6Q2HOiQie765Wwk+LRdqEhA4nzFqDa0azhSmNPw5jqu0JBGLBmri0IH8sL1v2TNeUA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/logo/-/logo-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
 
 "@gouvfr/modal@^0.5.4":
   "integrity" "sha512-HVQkdOvaoQEFU7XBTVOVjYyC1E5m/fbDkqsN1r/N+SgUABZpG4THEvZwKUMFc6/aUDfhiQFGlk5C87e4kIJUrA=="
@@ -1378,95 +1197,10 @@
     "@gouvfr/links" "^0.5.3"
     "@gouvfr/schemes" "^0.5.3"
 
-"@gouvfr/navigation@^0.4.0":
-  "integrity" "sha512-5c39cCLzjCIQhrwjFkpgW9k/mUVi/RlvTM57aOF8wJH6IEKjMKd9M4mk2FBvUKvcbIb4069Jla84tjvovMoxBw=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/navigation/-/navigation-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/buttons" "^0.4.0"
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-    "@gouvfr/utilities" "^0.4.0"
-
-"@gouvfr/pagination@^0.4.0":
-  "integrity" "sha512-XbjiuLoPIbt2VRN7olmbCnVmxfRL0IR0jdxP5Ngc33OUrZUTww8REKy0FBlyO5/YKwHtokXj9OE/gjn3TjPapA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/pagination/-/pagination-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/radios@^0.4.0":
-  "integrity" "sha512-467Tlzn3StVXW+4/2IKz112QcokQ+YovgAu3KAEPfW6Yaqc+VDIe86sI4Om85xjinzxEUcvYgj/NLiQA5ap2kQ=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/radios/-/radios-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/schemes@^0.4.0":
-  "integrity" "sha512-yOI0/4rzL98rJG6R3Y+nc6wLju+fEteFmT4YMALJtScrdSWEnadifam/pbacLWLCQoh+r6xsfi8s/VeU5zy6wg=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/schemes/-/schemes-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-
 "@gouvfr/schemes@^0.5.3":
   "integrity" "sha512-9BN5VH4H8U+j4Wcit+gc8a26wQLMPEAm6edlNmj0BhHrcgK2X7yNrS0Zg0J90KqILQRKNMDC8AxYg7GvtrWDKg=="
   "resolved" "https://registry.npmjs.org/@gouvfr/schemes/-/schemes-0.5.3.tgz"
   "version" "0.5.3"
-
-"@gouvfr/search@^0.4.0":
-  "integrity" "sha512-HD4jrH2T+32qdyCAjNhNHasRctQwLTPI6MSMxveyKUHaGO4opnYizjGbnVquY3Zs4EUg4+qFvA9OcFXQDrC4rA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/search/-/search-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/buttons" "^0.4.0"
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/inputs" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/selects@^0.4.0":
-  "integrity" "sha512-UkIwc6KvOMecf2TB32JCr0njQKC2GuYQzR5eRRNBqmR4eCoxCgNRYkeYGN+yXdCRn4s40NafX+dcQyTBRDGJ4Q=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/selects/-/selects-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/forms" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/table@^0.4.0":
-  "integrity" "sha512-cubP8J9S/WS+mVH8fMZ1ThkNw2AwIfHmBBzLoAuB5dIP2fPZFgF+W7+QKrlV8YPTJ/hfoNfebmK5+Gw4qjjeTA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/table/-/table-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/tags@^0.4.0":
-  "integrity" "sha512-g/0ZanNhnJCeIFqjk68L/ZObrxmusrXechk2lps0B6FdsTDCzmtdR3aYvZn13trk8oPykun5LQKcJjV74JxYhw=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/tags/-/tags-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/tiles@^0.4.0":
-  "integrity" "sha512-dgmqe0j/iVTzlYuvqA9BVBhUHuSmL8RuJ7rcIKykO5b1OhKqBUchbLd5r3WiMO6ImvxRM3tfsiMmg4UJJMbkPw=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/tiles/-/tiles-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
-    "@gouvfr/schemes" "^0.4.0"
-
-"@gouvfr/utilities@^0.4.0":
-  "integrity" "sha512-8cNJ1IIFmzbxUht4+Z6B3vtSgbUIlB0xw2vymWUFjCnCuf197FiI/ZimiGtjcVM2I2QSnqrA9j17bY3v8GkDhA=="
-  "resolved" "https://registry.npmjs.org/@gouvfr/utilities/-/utilities-0.4.0.tgz"
-  "version" "0.4.0"
-  dependencies:
-    "@gouvfr/core" "^0.4.0"
 
 "@humanwhocodes/config-array@^0.9.2":
   "integrity" "sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw=="
@@ -2984,16 +2718,6 @@
   dependencies:
     "lodash" "^4.17.14"
 
-"async@~0.9.0":
-  "integrity" "sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0="
-  "resolved" "https://registry.npmjs.org/async/-/async-0.9.2.tgz"
-  "version" "0.9.2"
-
-"async@~1.0.0":
-  "integrity" "sha1-+PwEyjoTeErenhZBr5hXjPvWR6k="
-  "resolved" "https://registry.npmjs.org/async/-/async-1.0.0.tgz"
-  "version" "1.0.0"
-
 "async@0.9.x":
   "integrity" "sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0="
   "resolved" "https://registry.npmjs.org/async/-/async-0.9.2.tgz"
@@ -4220,11 +3944,6 @@
   "resolved" "https://registry.npmjs.org/colorette/-/colorette-2.0.16.tgz"
   "version" "2.0.16"
 
-"colors@1.0.x":
-  "integrity" "sha1-BDP0TYCWgP3rYO0mDxsMJi6CpAs="
-  "resolved" "https://registry.npmjs.org/colors/-/colors-1.0.3.tgz"
-  "version" "1.0.3"
-
 "combined-stream@^1.0.6", "combined-stream@^1.0.8", "combined-stream@~1.0.6":
   "integrity" "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg=="
   "resolved" "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
@@ -4647,11 +4366,6 @@
   "integrity" "sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw=="
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
   "version" "3.0.11"
-
-"cycle@1.0.x":
-  "integrity" "sha1-IegLK+hYD5i0aPN5QwZisEbDStI="
-  "resolved" "https://registry.npmjs.org/cycle/-/cycle-1.0.3.tgz"
-  "version" "1.0.3"
 
 "damerau-levenshtein@^1.0.7":
   "integrity" "sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA=="
@@ -5660,11 +5374,6 @@
   "resolved" "https://registry.npmjs.org/extsprintf/-/extsprintf-1.3.0.tgz"
   "version" "1.3.0"
 
-"eyes@0.1.x":
-  "integrity" "sha1-Ys8SAjTGg3hdkCNIqADvPgzCC8A="
-  "resolved" "https://registry.npmjs.org/eyes/-/eyes-0.1.8.tgz"
-  "version" "0.1.8"
-
 "fast-deep-equal@^3.1.1", "fast-deep-equal@^3.1.3":
   "integrity" "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
   "resolved" "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz"
@@ -5991,14 +5700,6 @@
   "integrity" "sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg=="
   "resolved" "https://registry.npmjs.org/gensync/-/gensync-1.0.0-beta.2.tgz"
   "version" "1.0.0-beta.2"
-
-"gently-copy@^3.2.0":
-  "integrity" "sha512-IBLU4rCffg0Dvq3/7KyiPionCCdEdKnyfe94c00C8+VbgzIS2J9L2jHdLchG9sn8lDqBGzbvfuYVZB/ZlffS7g=="
-  "resolved" "https://registry.npmjs.org/gently-copy/-/gently-copy-3.2.0.tgz"
-  "version" "3.2.0"
-  dependencies:
-    "chalk" "^2.4.2"
-    "shelljs" "^0.8.3"
 
 "get-caller-file@^2.0.5":
   "integrity" "sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg=="
@@ -6673,11 +6374,6 @@
     "has" "^1.0.3"
     "side-channel" "^1.0.4"
 
-"interpret@^1.0.0":
-  "integrity" "sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA=="
-  "resolved" "https://registry.npmjs.org/interpret/-/interpret-1.4.0.tgz"
-  "version" "1.4.0"
-
 "interpret@^2.2.0":
   "integrity" "sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw=="
   "resolved" "https://registry.npmjs.org/interpret/-/interpret-2.2.0.tgz"
@@ -6962,7 +6658,7 @@
   "resolved" "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
   "version" "3.0.1"
 
-"isstream@~0.1.2", "isstream@0.1.x":
+"isstream@~0.1.2":
   "integrity" "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
   "resolved" "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz"
   "version" "0.1.2"
@@ -8225,11 +7921,6 @@
     "dns-packet" "^1.3.1"
     "thunky" "^1.0.2"
 
-"mute-stream@~0.0.4":
-  "integrity" "sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA=="
-  "resolved" "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
-  "version" "0.0.8"
-
 "nan@^2.13.2", "nan@^2.15.0":
   "integrity" "sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ=="
   "resolved" "https://registry.npmjs.org/nan/-/nan-2.15.0.tgz"
@@ -9475,17 +9166,6 @@
   dependencies:
     "asap" "~2.0.6"
 
-"prompt@^1.0.0":
-  "integrity" "sha512-XNXhNv3PUHJDcDkISpCwSJxtw9Bor4FZnlMUDW64N/KCPdxhfVlpD5+YUXI/Z8a9QWmOhs9KSiVtR8nzPS0BYA=="
-  "resolved" "https://registry.npmjs.org/prompt/-/prompt-1.2.2.tgz"
-  "version" "1.2.2"
-  dependencies:
-    "@colors/colors" "1.5.0"
-    "async" "~0.9.0"
-    "read" "1.0.x"
-    "revalidator" "0.1.x"
-    "winston" "2.x"
-
 "prompts@^2.0.1", "prompts@^2.4.2":
   "integrity" "sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q=="
   "resolved" "https://registry.npmjs.org/prompts/-/prompts-2.4.2.tgz"
@@ -9845,13 +9525,6 @@
     "parse-json" "^5.0.0"
     "type-fest" "^0.6.0"
 
-"read@1.0.x":
-  "integrity" "sha1-s9oZvQUkMal2cdRKQmNK33ELQMQ="
-  "resolved" "https://registry.npmjs.org/read/-/read-1.0.7.tgz"
-  "version" "1.0.7"
-  dependencies:
-    "mute-stream" "~0.0.4"
-
 "readable-stream@^2.0.1":
   "integrity" "sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw=="
   "resolved" "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.7.tgz"
@@ -9880,13 +9553,6 @@
   "version" "3.6.0"
   dependencies:
     "picomatch" "^2.2.1"
-
-"rechoir@^0.6.2":
-  "integrity" "sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q="
-  "resolved" "https://registry.npmjs.org/rechoir/-/rechoir-0.6.2.tgz"
-  "version" "0.6.2"
-  dependencies:
-    "resolve" "^1.1.6"
 
 "rechoir@^0.7.0":
   "integrity" "sha512-/njmZ8s1wVeR6pjTZ+0nCnv8SpZNRMT2D1RLOJQESlYFDBvwpTA4KWJpZ+sBJ4+vhjILRcK7JIFdGCdxEAAitg=="
@@ -10149,7 +9815,7 @@
   "resolved" "https://registry.npmjs.org/resolve.exports/-/resolve.exports-1.1.0.tgz"
   "version" "1.1.0"
 
-"resolve@^1.1.6", "resolve@^1.10.0", "resolve@^1.14.2", "resolve@^1.19.0", "resolve@^1.20.0", "resolve@^1.22.0", "resolve@^1.9.0":
+"resolve@^1.10.0", "resolve@^1.14.2", "resolve@^1.19.0", "resolve@^1.20.0", "resolve@^1.22.0", "resolve@^1.9.0":
   "integrity" "sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw=="
   "resolved" "https://registry.npmjs.org/resolve/-/resolve-1.22.0.tgz"
   "version" "1.22.0"
@@ -10180,11 +9846,6 @@
   "integrity" "sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw=="
   "resolved" "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz"
   "version" "1.0.4"
-
-"revalidator@0.1.x":
-  "integrity" "sha1-/s5hv6DBtSoga9axgZgYS91SOjs="
-  "resolved" "https://registry.npmjs.org/revalidator/-/revalidator-0.1.8.tgz"
-  "version" "0.1.8"
 
 "rimraf@^2.6.3":
   "integrity" "sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w=="
@@ -10520,15 +10181,6 @@
   "resolved" "https://registry.npmjs.org/shell-quote/-/shell-quote-1.7.3.tgz"
   "version" "1.7.3"
 
-"shelljs@^0.8.3":
-  "integrity" "sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow=="
-  "resolved" "https://registry.npmjs.org/shelljs/-/shelljs-0.8.5.tgz"
-  "version" "0.8.5"
-  dependencies:
-    "glob" "^7.0.0"
-    "interpret" "^1.0.0"
-    "rechoir" "^0.6.2"
-
 "side-channel@^1.0.4":
   "integrity" "sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw=="
   "resolved" "https://registry.npmjs.org/side-channel/-/side-channel-1.0.4.tgz"
@@ -10791,11 +10443,6 @@
   "integrity" "sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w=="
   "resolved" "https://registry.npmjs.org/stable/-/stable-0.1.8.tgz"
   "version" "0.1.8"
-
-"stack-trace@0.0.x":
-  "integrity" "sha1-VHxws0fo0ytOEI6hoqFZ5f3eGcA="
-  "resolved" "https://registry.npmjs.org/stack-trace/-/stack-trace-0.0.10.tgz"
-  "version" "0.0.10"
 
 "stack-utils@^2.0.3":
   "integrity" "sha512-xrQcmYhOsn/1kX+Vraq+7j4oE2j/6BFscZ0etmYg81xuM8Gq0022Pxb8+IqgOFUIaxHs0KaSb7T1+OegiNrNFA=="
@@ -11991,18 +11638,6 @@
   "integrity" "sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw=="
   "resolved" "https://registry.npmjs.org/wildcard/-/wildcard-2.0.0.tgz"
   "version" "2.0.0"
-
-"winston@2.x":
-  "integrity" "sha512-TWoamHt5yYvsMarGlGEQE59SbJHqGsZV8/lwC+iCcGeAe0vUaOh+Lv6SYM17ouzC/a/LB1/hz/7sxFBtlu1l4A=="
-  "resolved" "https://registry.npmjs.org/winston/-/winston-2.4.5.tgz"
-  "version" "2.4.5"
-  dependencies:
-    "async" "~1.0.0"
-    "colors" "1.0.x"
-    "cycle" "1.0.x"
-    "eyes" "0.1.x"
-    "isstream" "0.1.x"
-    "stack-trace" "0.0.x"
 
 "word-wrap@^1.2.3", "word-wrap@~1.2.3":
   "integrity" "sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ=="

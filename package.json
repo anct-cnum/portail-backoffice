@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@gouvfr/all": "^0.4.0",
     "@gouvfr/dsfr": "^1.2.1",
     "@gouvfr/modal": "^0.5.4",
     "@testing-library/jest-dom": "^5.11.4",
