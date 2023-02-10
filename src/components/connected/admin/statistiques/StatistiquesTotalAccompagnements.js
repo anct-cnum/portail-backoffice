@@ -15,9 +15,9 @@ function StatistiquesTotalAccompagnements({ type, nbTotalAccompagnements }) {
       <div className={ type ? 'fr-col-12' : 'fr-col-9' }>
         <ElementText textePluralize={
           <Pluralize
-            zero={'personne totale accompagnée durant cette période'}
-            singular={'personne totale accompagnée durant cette période'}
-            plural={'personnes totales accompagnées durant cette période'}
+            zero={'nouvel usager accompagné durant cette période'}
+            singular={'nouvel usager accompagné durant cette période'}
+            plural={'nouveaux usagers accompagnés durant cette période'}
             count={nbTotalAccompagnements}
             showCount={false} />
         } classe={type ? 'text-' + type : 'text'}/>
