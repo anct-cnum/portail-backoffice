@@ -55,7 +55,9 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       <td>{miseEnRelation.conseillerObj.nom}</td>
       { search && <td>{miseEnRelation.conseillerObj.email}</td>}
       <td>{statutLabel.find(item => item.key === miseEnRelation.statut).label}</td>
-      <td>{dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
+      <td>{miseEnRelation.conseillerObj.statut === 'RECRUTE' ?
+        dayjs(miseEnRelation.conseillerObj.dateDisponibilite).format('DD/MM/YYYY') :
+        dayjs(miseEnRelation.conseillerObj.createdAt).format('DD/MM/YYYY')}</td>
       <td>{miseEnRelation.conseillerObj.codePostal}</td>
       { !search && <td>
         { miseEnRelation.conseillerObj?.pix?.partage &&

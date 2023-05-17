@@ -41,7 +41,7 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
       <td>{conseiller.nom}</td>
       { search && <td>{conseiller.email}</td>}
       <td>{conseiller?.finalisee === true ? <> Déjà recruté </> : <> Non mis en relation </>}</td>
-      <td>{dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</td>
+      <td>{conseiller?.finalisee === true ? dayjs(conseiller.dateDisponibilite).format('DD/MM/YYYY') : dayjs(conseiller.createdAt).format('DD/MM/YYYY')}</td>
       <td>{conseiller.codePostal}</td>
       { !search && <td>
         { conseiller?.pix?.partage &&
@@ -62,15 +62,11 @@ function ConseillerNonMisEnRelation({ conseiller, search, update }) {
         }
       </td>
       <td className="td-preselection">
-        {conseiller?.finalisee === true ?
-          <button className="fr-btn fr-mx-1w fr-fi-checkbox-line fr-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
-          Pré sélectionner
-          </button> :
-          <button className="fr-btn fr-mx-1w fr-fi-checkbox-line fr-btn--icon-left"
-            style={{ boxShadow: 'none' }}
-            onClick={select} >
-          Pré sélectionner
-          </button>}
+        <button className="fr-btn fr-mx-1w fr-fi-checkbox-line fr-btn--icon-left"
+          style={{ boxShadow: 'none' }}
+          onClick={select} >
+          Pr&eacute; s&eacute;lectionner
+        </button>
       </td>
     </tr>
   );
