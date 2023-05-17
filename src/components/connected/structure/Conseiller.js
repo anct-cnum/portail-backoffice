@@ -68,7 +68,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td> }
       <td>
-        {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.statut !== 'finalisee_non_disponible' &&
+        {miseEnRelation.conseillerObj?.cv?.file && miseEnRelation.conseillerObj.disponible &&
           <button className="downloadCVBtn" onClick={downloadCV}>
             <img src="/logos/icone-telecharger.svg" alt="Télécharger le CV" style={{ height: '26px' }}/>
           </button>
@@ -78,7 +78,7 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
         }
       </td>
       <td>
-        { miseEnRelation.statut !== 'finalisee_non_disponible' ?
+        { miseEnRelation.conseillerObj.disponible ?
           <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
