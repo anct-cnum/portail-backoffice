@@ -41,6 +41,14 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
   {
     key: 'non_disponible',
     label: 'Candidature annulée'
+  },
+  {
+    key: 'renouvellement_initiee',
+    label: 'Renouvellement notifié'
+  },
+  {
+    key: 'terminee',
+    label: 'Candidat renouvelé'
   }
   ];
 
