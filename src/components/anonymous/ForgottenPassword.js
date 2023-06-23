@@ -106,7 +106,7 @@ function ForgottenPassword({ match = null }) {
           {token &&
             /* Etape 2 */
             <div className="Login fr-col-8 fr-p-5w">
-              <h2>Renouveler votre mot de passe<br /><span className="fr-fi-account-fill fr-fi--xl" /></h2>
+              <h2>Renouveler votre mot de passe<br /><i className="ri-account-box-line"></i></h2>
 
               { verifyingToken &&
                 <span>Chargement...</span>

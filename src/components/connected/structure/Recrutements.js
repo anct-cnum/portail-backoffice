@@ -74,9 +74,9 @@ function Recrutements() {
                         <td>{miseEnRelation.dateRecrutement ? dayjs(miseEnRelation.dateRecrutement).format('DD/MM/YY') : '-'}</td>
                         <td>{miseEnRelation.conseillerObj.datePrisePoste ? dayjs(miseEnRelation.conseillerObj.datePrisePoste).format('DD/MM/YY') : '-'}</td>
                         <td>
-                          <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
+                          <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }}
                             to={{ pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`, currentPage: 0, origin: `/structure/recrutements` }}>
-                              D&eacute;tails
+                            <i className="ri-eye-line"></i>&nbsp;D&eacute;tails
                           </Link>
                         </td>
                       </tr>);

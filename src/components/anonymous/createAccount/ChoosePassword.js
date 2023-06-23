@@ -50,7 +50,7 @@ function ChoosePassword({ match }) {
         <div className="fr-grid-row">
           <div className="fr-col-3"></div>
           <div className="Login fr-col-6 fr-p-5w">
-            <h2>Choisissez votre mot de passe<br /><span className="fr-fi-account-fill fr-fi--xl" /></h2>
+            <h2>Choisissez votre mot de passe<br /><i className="ri-account-box-line"></i></h2>
 
             { verifyingToken &&
               <span>Chargement...</span>

@@ -50,7 +50,7 @@ function Header({ connected }) {
                     <li>
                       <Link to="/mon-compte" title="Mon Compte">
                         <h3 className="fr-tile__title fr-mr-md-2w">
-                          <span className="hide-md fr-ml-1v" ><i className="fr-fi-account-fill"></i></span>
+                          <span className="hide-md fr-ml-1v" ><i className="ri-account-box-line"></i></span>
                           <span className="show-md">{user?.name}</span>
                         </h3>
                       </Link>

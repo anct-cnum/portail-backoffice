@@ -47,17 +47,17 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
       <div className="fr-grid-row">
         {statut === 'nouvelle' &&
           <div className="fr-col-3">
-            <button onClick={updateStatut.bind(this, 'interessee')} className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" title="Pré sélectionner">
-              Pré sélectionner
+            <button onClick={updateStatut.bind(this, 'interessee')} className="fr-btn" title="Pré sélectionner">
+              <i className="ri-checkbox-line"></i>&nbsp;Pré sélectionner
             </button>
           </div>
         }
         {statut === 'nouvelle' &&
           <div className="fr-col-3">
             <button onClick={updateStatut.bind(this, 'nonInteressee')}
-              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
+              className="fr-btn fr-btn--secondary"
               title="Ce profil ne correspond pas">
-              Ce profil ne correspond pas
+              <i className="ri-close-circle-line"></i>&nbsp;Ce profil ne correspond pas
             </button>
           </div>
         }
@@ -97,18 +97,18 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
         { statut === 'interessee' &&
           <div className="fr-col-6 fr-col-xl-4 btn-fr-col-xl-3 fr-my-2w">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
-              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
+              className="fr-btn fr-btn--secondary"
               title="Annuler la pré-sélection">
-              Annuler la pré-sélection
+              <i className="ri-close-circle-line"></i>&nbsp;Annuler la pré-sélection
             </button>
           </div>
         }
         { statut === 'nonInteressee' &&
           <div className="fr-col-3">
             <button onClick={updateStatut.bind(this, 'nouvelle')}
-              className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
+              className="fr-btn fr-btn--secondary"
               title="Annuler le désintérêt">
-              Annuler le désintérêt
+              <i className="ri-close-circle-line"></i>&nbsp;Annuler le désintérêt
             </button>
           </div>
         }
@@ -124,9 +124,9 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             <button id="btn-annuler" onClick={() => {
               toggleModal(true);
             }}
-            className="fr-btn fr-btn--secondary fr-fi-close-circle-line fr-btn--icon-left"
+            className="fr-btn fr-btn--secondary"
             title="Annuler le recrutement">
-            Annuler le recrutement
+              <i className="ri-close-circle-line"></i>&nbsp;Annuler le recrutement
             </button>
           </p>
         </>
@@ -214,9 +214,9 @@ function ButtonsAction({ statut, updateStatut, miseEnRelationId, dateRecrutement
             <button onClick={() => {
               updateStatut('finalisee');
             }}
-            className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary"
+            className="fr-btn fr-btn--secondary"
             title="Annuler la rupture de contrat">
-            Annuler la rupture de contrat
+              <i className="ri-close-circle-line"></i>&nbsp;Annuler la rupture de contrat
             </button>
           </div>
         }

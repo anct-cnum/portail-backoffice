@@ -41,11 +41,10 @@ function Conseiller({ conseiller, currentPage }) {
         }
       </td>
       <td>
-        <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+        <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
           pathname: `/candidat/${conseiller?._id}`,
           currentPage: currentPage,
-          origin: '/candidats' }}>
-            Détails
+          origin: '/candidats' }}><i className="ri-eye-line"></i>&nbsp;Détails
         </Link>
       </td>
     </tr>
