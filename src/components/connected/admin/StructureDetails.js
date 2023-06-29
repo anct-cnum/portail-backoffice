@@ -286,8 +286,8 @@ function StructureDetails({ location }) {
           pathname: location.origin,
           currentPage: location.currentPage
         }}
-        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
-        Retour à la liste
+        className="fr-link">
+        <i className="ri-arrow-left-line"></i>&nbsp;Retour à la liste
       </Link>
       <div>
         <h2>
@@ -436,7 +436,8 @@ function StructureDetails({ location }) {
                 {displayFormMultiCompte === false &&
                     <button className="fr-btn" onClick={() => setDisplayFormMulticompte(true) }>
                       Ajouter un compte
-                      <span className="fr-fi-mail-line fr-ml-4v" aria-hidden="true"></span>
+                      &nbsp;<i className="ri-mail-line fr-ml-4v"></i>
+
                     </button>
                 }
                 {displayFormMultiCompte === true &&

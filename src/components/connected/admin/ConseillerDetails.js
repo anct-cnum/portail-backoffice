@@ -106,7 +106,8 @@ function ConseillerDetails({ location }) {
           pathname: location.origin,
           currentPage: location.currentPage
         }}
-        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
+        className="fr-link">
+        <i className="ri-arrow-left-line"></i>&nbsp;
         Retour à la liste
       </Link>
       <div>
@@ -269,7 +270,7 @@ function ConseillerDetails({ location }) {
                        </div>
                        <div className="fr-modal__content">
                          <h1 id="fr-modal-2-title" className="fr-modal__title">
-                           <span className="fr-fi-arrow-right-line fr-fi--lg"></span>
+                           <span className="ri-arrow-right-line"></span>
                                     Supprimer la candidature définitivement
                          </h1>
                          <p>&Ecirc;tes-vous certain(e) de vouloir supprimer ce candidat ?</p>

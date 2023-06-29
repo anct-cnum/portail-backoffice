@@ -102,9 +102,9 @@ function EtatRecrutements() {
                         </td>
                         <td>{structure?.nbCandidatsRecrutes}</td>
                         <td>
-                          <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
+                          <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }}
                             to={{ pathname: `/structure/${structure._id}`, currentPage: page, origin: `/etat-des-recrutements` }}>
-                              Détails
+                            <i className="ri-eye-line"></i>&nbsp;Détails
                           </Link>
                         </td>
                       </tr>);

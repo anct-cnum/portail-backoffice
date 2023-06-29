@@ -48,9 +48,9 @@ function SiretForm({ setDisplaySiretForm, structureId }) {
                   <p>Le SIRET demandé fait référence à cette structure :</p>
                   <p><b>{siretValid}</b></p>
                   <p>Mettre à jour la structure ?</p>
-                  <button onClick={cancelSiret} className="fr-btn fr-fi-close-circle-line fr-btn--icon-left fr-btn--secondary
-                   fr-my-3w fr-ml-9w fr-mr-4w">Annuler</button>
-                  <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left fr-my-3w" onClick={updateSiret}>Confirmer</button>
+                  <button onClick={cancelSiret} className="fr-btn fr-btn--secondary
+                   fr-my-3w fr-ml-9w fr-mr-4w"><i className="ri-close-circle-line"></i>&nbsp;Annuler</button>
+                  <button className="fr-btn fr-my-3w" onClick={updateSiret}><i className="ri-checkbox-line"></i>&nbsp;Confirmer</button>
                 </div>
               </div>
             </div>

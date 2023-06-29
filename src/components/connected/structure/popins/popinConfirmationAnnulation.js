@@ -35,9 +35,9 @@ function popinConfirmationAnnulation({ updateStatut, updateDateRecrutement, setD
                   setDateValidee(null);
                   toggleModal(false);
                 }}
-                className="fr-btn fr-btn--secondary fr-fi-close-circle-line fr-btn--icon-left"
+                className="fr-btn fr-btn--secondary"
                 title="Annuler le recrutement">
-                Je valide l&rsquo;annulation du recrutement
+                  <i className="ri-close-circle-line"></i>&nbsp;Je valide l&rsquo;annulation du recrutement
                 </button>
               </div>
             </div>

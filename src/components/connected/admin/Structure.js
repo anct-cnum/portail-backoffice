@@ -31,12 +31,12 @@ function Structure({ structure, currentPage }) {
       <td>{dayjs(structure.createdAt).format('DD/MM/YYYY')}</td>
       <td>{structure.codePostal}</td>
       <td> {structure.nbCandidatsRecrutes}</td>
-      <td>        <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
+      <td>        <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }}
         to={{
           pathname: `/structure/${structure._id}`,
           currentPage: currentPage,
           origin: `/structures`
-        }}>Détails</Link></td>
+        }}><i className="ri-eye-line"></i>&nbsp;Détails</Link></td>
     </tr>
   );
 }

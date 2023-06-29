@@ -97,8 +97,8 @@ function ConseillerDetails({ location }) {
           pathname: linkUrl,
           currentPage: location.currentPage
         }}
-        className="fr-link fr-fi-arrow-left-line fr-link--icon-left">
-        Retour à la liste
+        className="fr-link">
+        <i className="ri-arrow-left-line"></i>&nbsp;Retour à la liste
       </Link>
       <div>
         <PopinInteressee statut={conseiller?.miseEnRelation?.statut ? conseiller?.miseEnRelation?.statut : location.miseEnRelation?.statut}/>

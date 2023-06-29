@@ -116,7 +116,7 @@ function MesInformations() {
             {displayFormMulticompte === false &&
               <button className="fr-btn" onClick={() => setDisplayFormMulticompte(true)}>
                 Envoyer une invitation
-                <span className="fr-fi-mail-line fr-ml-4v" aria-hidden="true"></span>
+                &nbsp;<i className="ri-mail-line"></i>
               </button>
             }
             {displayFormMulticompte === true &&
@@ -142,8 +142,8 @@ function MesInformations() {
               <p>Téléphone : { structure?.structure?.contact.telephone }</p>
               <div className="fr-mt-5w">
                 <button className="fr-btn" onClick={() => setForm(true)}>
-                    Modifier les informations de contact
-                  <span className="fr-fi-edit-line fr-ml-4v" aria-hidden="true"/>
+                  Modifier les informations de contact
+                  <i className="ri-pencil-line"></i>
                 </button>
               </div>
             </div>

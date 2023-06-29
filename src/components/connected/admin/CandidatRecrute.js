@@ -17,11 +17,11 @@ function CandidatRecrute({ candidat, currentPage }) {
       <td>{candidat?.dateFinFormation ? dayjs(candidat?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}</td>
       <td>{ <span>{candidat?.mattermost?.id ? 'OUI' : 'NON'}</span> }</td>
       <td>
-        <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+        <Link className="fr-btn" style={{ boxShadow: 'none' }} to={{
           pathname: `/candidat/${candidat?._id}`,
           currentPage: currentPage,
           origin: '/admin/liste-candidats-recrutes' }}>
-            Détails
+          <i className="ri-eye-line"></i>&nbsp;Détails
         </Link>
       </td>
     </tr>
