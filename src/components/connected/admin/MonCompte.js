@@ -53,8 +53,8 @@ function MonCompte() {
         <>
           <p>Email :<strong> { name }</strong></p>
           <button className={role === 'admin' ? 'fr-btn rfmt-2w fr-mt-5w' : 'fr-btn'} onClick={() => setForm(true)}>
-              Modifier mon adresse e-mail &ensp;
-            <span style={{ color: 'white' }} className="fr-fi-edit-line" aria-hidden="true"/>
+            Modifier mon adresse e-mail &ensp;
+            <i className="ri-pencil-line"></i>
           </button>
         </> :
         <div className="fr-container--fluid">

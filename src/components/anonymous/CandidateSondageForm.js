@@ -260,7 +260,7 @@ function CandidateSondageForm({ match }) {
               </div>
 
               <div className="fr-col-12 fr-col-md-7 center">
-                <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" onClick={handleSubmit} >Envoyer</button>
+                <button className="fr-btn " onClick={handleSubmit} ><i className="ri-checkbox-line"></i>&nbsp;Envoyer</button>
               </div>
             </>
             }

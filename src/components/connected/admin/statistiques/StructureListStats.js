@@ -14,15 +14,14 @@ function StructureListStats({ structure, currentPage }) {
       <td>{structure.CRAEnregistres}</td>
       <td>{structure.personnesAccompagnees}</td>
       <td>
-        <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }}
+        <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }}
           to={{
             pathname: `/admin/structure/statistiques/${structure?._id}`,
             currentPage: currentPage,
             origin: `/admin/statistiques`,
             idStructure: structure?._id,
           }}>
-            Statistiques
-        </Link>
+            Statistiques&nbsp;<i className="ri-eye-line"></i></Link>
       </td>
     </tr>
   );

@@ -77,16 +77,16 @@ function Conseiller({ miseEnRelation, currentPage, currentFilter, search }) {
       </td>
       <td>
         { miseEnRelation.statut !== 'finalisee_non_disponible' ?
-          <Link className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
+          <Link className="fr-btn fr-btn--icon-left" style={{ boxShadow: 'none' }} to={{
             pathname: `/structure/candidat/${miseEnRelation.conseillerObj._id}`,
             miseEnRelation: miseEnRelation,
             currentPage: currentPage,
             currentFilter: currentFilter,
           }}>
-              Détails
+            <i className="ri-eye-line"></i>&nbsp;Détails
           </Link> :
-          <button className="fr-btn fr-fi-eye-line fr-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
-              Détails
+          <button className="fr-btn fr-btn--icon-left" style={{ background: '#383838', opacity: '0.33', color: 'white' }} disabled>
+            <i className="ri-eye-line"></i>&nbsp;Détails
           </button>
         }
       </td>

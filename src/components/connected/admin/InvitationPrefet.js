@@ -62,7 +62,7 @@ function InvitationPrefet() {
     <div className="fr-container fr-mt-3w">
       <div className="fr-grid-row">
         <div className="Login fr-col-offset-3 fr-col-6">
-          <h2>Invitez des utilisateurs dans l&apos;espace préfet<br /><span className="fr-fi-account-fill fr-fi--xl" /></h2>
+          <h2>Invitez des utilisateurs dans l&apos;espace préfet<br /><i className="ri-account-box-line"></i></h2>
 
           { verifyingToken &&
               <span>Chargement...</span>
@@ -123,9 +123,9 @@ function InvitationPrefet() {
                       <li key={idx}>
                         {email}
                         <button
-                          className="fr-btn fr-fi-delete-line fr-btn--icon-left fr-btn--secondary fr-btn--sm fr-ml-1w"
+                          className="fr-btn fr-btn--secondary fr-btn--sm fr-ml-1w"
                           onClick={handleRemoveEmail.bind(this, email)}>
-                          Retirer
+                          <i className="ri-delete-bin-line"></i>&nbsp;Retirer
                         </button>
                       </li>)}
                   </ul>
@@ -150,7 +150,7 @@ function InvitationPrefet() {
                 </div>
 
                 {invitingAccountsPrefet && <span>Chargement...</span>}
-                <button className="fr-btn fr-fi-checkbox-line fr-btn--icon-left" onClick={handleSubmit} disabled={emails.length === 0}>Valider</button>
+                <button className="fr-btn" onClick={handleSubmit} disabled={emails.length === 0}><i className="ri-checkbox-line"></i>&nbsp;Valider</button>
               </div>
           }
 
