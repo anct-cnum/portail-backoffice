@@ -27,12 +27,13 @@ function login(username, password) {
           data.user.role = 'structure_coop';
         }
         delete data.user.roles;
+        if (data.user.role === 'structure_coop' || data.user.role === 'structure') {
+          dispatch(failure('Vous n\'avez pas accès à cette application'));
+        }
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        if (data.user.role === 'structure' || data.user.role === 'structure_coop') {
-          history.push('/structure/candidats/nouvelle');
-        } else if (data.user.role === 'prefet') {
+        if (data.user.role === 'prefet') {
           history.push('/structures');
         } else if (data.user.role === 'admin') {
           history.push('/tableau-de-bord');
