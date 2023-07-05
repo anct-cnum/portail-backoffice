@@ -24,13 +24,10 @@ function login(username, password) {
       data => {
         data.user.role = data.user.roles[0];
         if (data.user.roles.includes('structure_coop')) {
-          data.user.role = 'structure_coop';
-        }
-        delete data.user.roles;
-        if (data.user.role === 'structure_coop' || data.user.role === 'structure') {
           dispatch(failure('Vous n\'avez pas accès à cette application'));
           return history.push('/login?role=structure');
         }
+        delete data.user.roles;
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
