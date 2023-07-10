@@ -24,6 +24,9 @@ function login(username, password) {
       data => {
         data.user.role = data.user.roles[0];
         if (data.user.roles.includes('structure_coop')) {
+          data.user.role = 'structure_coop';
+        }
+        if (data.user.role === 'structure_coop' && data.user.migrationDashboard === true) {
           dispatch(failure('Vous n\'avez pas accès à cette application'));
           return history.push('/login?role=structure');
         }
@@ -31,7 +34,9 @@ function login(username, password) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        if (data.user.role === 'prefet') {
+        if (data.user.role === 'structure' || data.user.role === 'structure_coop') {
+          history.push('/structure/candidats/nouvelle');
+        } else if (data.user.role === 'prefet') {
           history.push('/structures');
         } else if (data.user.role === 'admin') {
           history.push('/tableau-de-bord');

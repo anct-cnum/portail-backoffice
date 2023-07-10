@@ -41,7 +41,7 @@ function Login() {
   return (
     <div>
       <Header />
-      {role === 'structure' &&
+      {role === 'structure' && error && loggingIn === false &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
           <div className="fr-container fr-container--fluid fr-container-md">
             <div className="fr-grid-row fr-grid-row--center">
@@ -52,7 +52,7 @@ function Login() {
                     <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
                       A partir de maintenant l&rsquo;espace Coop structure &eacute;volue et devient &quot;Le tableau de pilotage&quot;
                     </h1>
-                    <p>
+                    <div>
                       <strong>Pourquoi un changement de nom et d&rsquo;interface ?</strong><br />
                       <span>Votre espace &eacute;volue pour mieux r&eacute;pondre &agrave; vos attentes !</span>
                       <p className="fr-mb-2w fr-mt-2w">
@@ -68,7 +68,7 @@ function Login() {
                         <span>En cliquant sur le <a href={`${urlTableauDePilotage}/login`}>lien</a></span>
                       </p>
                       <span className="fr-mt-4w">L&rsquo;&eacute;quipe Conseiller num&eacute;rique</span>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
