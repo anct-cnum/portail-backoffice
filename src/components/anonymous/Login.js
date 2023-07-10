@@ -13,6 +13,7 @@ function Login() {
 
   const [submitted, setSubmitted] = useState(false);
   const { username, password } = inputs;
+  const urlTableauDePilotage = process.env.REACT_APP_TABLEAU_DE_PILOTAGE_HOSTNAME;
   const loggingIn = useSelector(state => state.authentication.loggingIn);
   const error = useSelector(state => state.authentication.error);
   const dispatch = useDispatch();
@@ -39,7 +40,42 @@ function Login() {
 
   return (
     <div>
-      <Header/>
+      <Header />
+      {role === 'structure' && error && loggingIn === false &&
+        <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
+          <div className="fr-container fr-container--fluid fr-container-md">
+            <div className="fr-grid-row fr-grid-row--center">
+              <div className="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                <div className="fr-modal__body">
+                  <div className="fr-modal__header"></div>
+                  <div className="fr-modal__content">
+                    <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
+                      A partir de maintenant l&rsquo;espace Coop structure &eacute;volue et devient &quot;Le tableau de pilotage&quot;
+                    </h1>
+                    <div>
+                      <strong>Pourquoi un changement de nom et d&rsquo;interface ?</strong><br />
+                      <span>Votre espace &eacute;volue pour mieux r&eacute;pondre &agrave; vos attentes !</span>
+                      <p className="fr-mb-2w fr-mt-2w">
+                        Le tableau de pilotage vous propose une identit&eacute; visuelle personnalis&eacute;e ainsi qu&rsquo;un nouvel
+                        univers int&eacute;grant de nouvelles fonctionnalit&eacute;s et donn&eacute;es.
+                      </p>
+                      <p className="fr-mb-2w">
+                        <strong>Ce qui ne change pas</strong><br />
+                        <span>Notre philosophie centr&eacute;e utilisateur</span>
+                      </p>
+                      <p>
+                        <strong>Comment acc&eacute;der au Tableau de pilotage ?</strong><br />
+                        <span>En cliquant sur le <a href={`${urlTableauDePilotage}/login`}>lien</a></span>
+                      </p>
+                      <span className="fr-mt-4w">L&rsquo;&eacute;quipe Conseiller num&eacute;rique</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dialog>
+      }
       <div className="fr-container fr-mt-3w fr-mb-5w">
         <div className="fr-grid-row fr-grid-row--center fr-p-2w">
           <div className="fr-col-12 centrer fr-my-3w">

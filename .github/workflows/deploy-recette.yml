@@ -35,6 +35,7 @@ jobs:
         envkey_REACT_APP_FRANCE_COMPETENCES_HOSTNAME: "https://www.francecompetences.fr/recherche/rncp/34137"
         envkey_REACT_APP_PIX_CERTIFIER_HOSTNAME: "https://pix.fr/se-certifier"
         envkey_REACT_APP_AIDE_HOSTNAME: "https://aide.conseiller-numerique.gouv.fr/fr"
+        envkey_REACT_APP_TABLEAU_DE_PILOTAGE_HOSTNAME: "https://beta.pilotage.conseiller-numerique.gouv.fr"
         file_name: .env
     - name: Build application
       run: yarn run build
