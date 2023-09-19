@@ -30,6 +30,10 @@ function login(username, password) {
           dispatch(failure('Vous n\'avez pas accès à cette application'));
           return history.push('/login?role=structure');
         }
+        if (data.user.role === 'prefet' && data.user.migrationDashboard === true) {
+          dispatch(failure('Vous n\'avez pas accès à cette application'));
+          return history.push('/login?role=prefet');
+        }
         delete data.user.roles;
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
