@@ -38,10 +38,20 @@ function Login() {
     }
   }
 
+  const formatRole = role => {
+    if (role === 'prefet') {
+      return 'Préfet';
+    }
+    if (role === 'structure') {
+      return 'Structure';
+    }
+    return '';
+  };
+
   return (
     <div>
       <Header />
-      {role === 'structure' && error && loggingIn === false &&
+      {role === 'structure' || role === 'prefet' && error && loggingIn === false &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
           <div className="fr-container fr-container--fluid fr-container-md">
             <div className="fr-grid-row fr-grid-row--center">
@@ -50,7 +60,7 @@ function Login() {
                   <div className="fr-modal__header"></div>
                   <div className="fr-modal__content">
                     <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
-                      A partir de maintenant l&rsquo;espace Coop structure &eacute;volue et devient &quot;Le tableau de pilotage&quot;
+                      &Agrave; partir de maintenant l&rsquo;espace {formatRole(role)} &eacute;volue et devient &quot;Le tableau de pilotage&quot;
                     </h1>
                     <div>
                       <strong>Pourquoi un changement de nom et d&rsquo;interface ?</strong><br />
